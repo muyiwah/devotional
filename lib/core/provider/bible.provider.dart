@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:mivdevotional/core/model/bible.model.dart';
 import 'package:mivdevotional/core/model/devorion_model.dart';
+import 'package:mivdevotional/core/model/word_clinic.dart';
 import 'package:mivdevotional/core/repository/repository.dart';
 import 'package:flutter/foundation.dart';
 
@@ -99,19 +100,20 @@ class BibleModel extends ChangeNotifier {
     // notifyListeners();
   }
 
-  Future<List<DevotionModel>> getIndexofTodayDevotional() async {
-    List<DevotionModel> allDevotional = [];
+  Future<List<WordClinicModel>> getWordClinic() async {
+    List<WordClinicModel> allWordClinic = [];
 
-    await _repository.getBible('${path}devotion_data.json').then((data) {
+    await _repository.getBible('${path}word_clinic.json').then((data) {
       var decodedJson = jsonDecode(data);
       for (int i = 0; decodedJson.length > i; i++) {
-        allDevotional.add(DevotionModel.fromMap(decodedJson[i]));
+        allWordClinic.add(WordClinicModel.fromMap(decodedJson[i]));
       }
+      // print(decodedJson);
       // print(allDevotional.firstWhere((element) => element.date=="March 23"));
-      return allDevotional;
+      return allWordClinic;
     });
 
-    return allDevotional;
+    return allWordClinic;
     // notifyListeners();
   }
 }

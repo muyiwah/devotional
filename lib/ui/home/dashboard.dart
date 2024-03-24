@@ -6,6 +6,7 @@ import 'package:mivdevotional/ui/home/dev.dart';
 import 'package:mivdevotional/ui/home/home_screen.dart';
 import 'package:mivdevotional/ui/home/sliver.dart';
 import 'package:flutter/material.dart';
+import 'package:mivdevotional/ui/home/word_clinic_page.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
@@ -80,10 +81,11 @@ class _DashboardState extends State<Dashboard> {
   }
 
   List screen = [
+    
     MyWidget(),
     HomeScreen(),
     DevorionScreen(),
-    Center(child: Text('Word Clinic')),
+   WordClinicPage(),
     Center(child: Text('account')),
     Text('data2'),
   ];

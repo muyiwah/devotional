@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:mivdevotional/core/model/devorion_model.dart';
+import 'package:mivdevotional/core/model/word_clinic.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/devotion_today.dart';
 import 'package:mivdevotional/ui/book/daily_verse.dart';
@@ -22,9 +23,11 @@ class _MyWidgetState extends State<MyWidget> {
     // TODO: implement initState
     super.initState();
     getAllDevotional();
+    getAllWordClinic();
   }
 
   List<DevotionModel> allDevotional = [];
+  List<WordClinicModel> allWordClinickkk = [];
   DevotionModel todayDevotional = DevotionModel(
       title: '',
       reference: '',
@@ -40,6 +43,15 @@ class _MyWidgetState extends State<MyWidget> {
     todayDevotional =
         (allDevotional.firstWhere((element) => element.date == refineDate()));
 
+    setState(() {});
+  } 
+  
+   getAllWordClinic() async {
+    allWordClinickkk =
+        await Provider.of<BibleModel>(context, listen: false).getWordClinic();
+    // todayDevotional =
+    //     (allDevotional.firstWhere((element) => element.date == refineDate()));
+print(allWordClinickkk[0].conclusion);
     setState(() {});
   }
 

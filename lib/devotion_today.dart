@@ -49,7 +49,7 @@ class _DevotionTodayState extends State<DevotionToday> {
               floating: true,
               snap: true,
               pinned: true,
-              title: Text(widget.todayDevotional.title,overflow: TextOverflow.visible,),
+              title: Text(widget.todayDevotional.title,overflow: TextOverflow.visible,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15),),
               expandedHeight: 200.0,
               flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
