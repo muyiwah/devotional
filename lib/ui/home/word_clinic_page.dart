@@ -34,7 +34,6 @@ class _WordClinicPageState extends State<WordClinicPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(allWordClinickkk[0].title.toString()),
           Text(allWordClinickkk[0].subtitle.toString()),
@@ -46,22 +45,44 @@ class _WordClinicPageState extends State<WordClinicPage> {
                 .toList(),
           ),
           Text(allWordClinickkk[0].objective.toString()),
-          Text(allWordClinickkk[0].iNTRODUCTION.toString()),
+          Text(
+            allWordClinickkk[0].iNTRODUCTION.toString(),
+            style: TextStyle(fontSize: 22),
+          ),
           Expanded(
               child: ListView.builder(
                   itemCount: _discussion.length,
                   itemBuilder: (context, index) => Container(
                         child: Wrap(
                           children: [
-                            Text(_discussion[index].title.toString()),SizedBox(width: 15,),
-                        Wrap(children: _discussion[index].scriptures.map((e) => InkWell(onTap: () => print(e),
-                          child: Container(padding: EdgeInsets.all(3),color: Colors.amber.withOpacity(.2),margin: EdgeInsets.symmetric(horizontal: 2),
-                            child: Text(e)))).toList(),)  
-                        ],
-                          
+                            Text(_discussion[index].title.toString(),
+            style: TextStyle(fontSize: 22),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Wrap(
+                              children: _discussion[index]
+                                  .scriptures
+                                  .map((e) => InkWell(
+                                      onTap: () => print(e),
+                                      child: Container(
+                                          padding: EdgeInsets.all(3),
+                                          color: Colors.amber.withOpacity(.2),
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 2),
+                                          child: Text(e,
+            style: TextStyle(fontSize: 22),
+                                          ))))
+                                  .toList(),
+                            )
+                          ],
                         ),
                       ))),
-          Text(allWordClinickkk[0].conclusion.toString()),
+          Text(allWordClinickkk[0].conclusion.toString(),
+            style: TextStyle(fontSize: 22),
+          ),
+          // Spacer()
         ],
       ),
     );

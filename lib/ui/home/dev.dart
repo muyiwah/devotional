@@ -25,7 +25,8 @@ class _MyWidgetState extends State<MyWidget> {
     getAllDevotional();
     getAllWordClinic();
   }
-
+int df=DateTime.now().month;
+int dfd=DateTime.now().second;
   List<DevotionModel> allDevotional = [];
   List<WordClinicModel> allWordClinickkk = [];
   DevotionModel todayDevotional = DevotionModel(
@@ -42,7 +43,8 @@ class _MyWidgetState extends State<MyWidget> {
         await Provider.of<BibleModel>(context, listen: false).getDevotional();
     todayDevotional =
         (allDevotional.firstWhere((element) => element.date == refineDate()));
-
+print('weekday is $df');
+print('date is $dfd');
     setState(() {});
   } 
   
