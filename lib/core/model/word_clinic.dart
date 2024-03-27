@@ -6,8 +6,11 @@ import 'package:flutter/src/widgets/text.dart';
 class WordClinicModel {
   String? title;
   String? subtitle;
+  String? date;
+  int? week;
   List<String>? scriptures;
   String? memoryVerse;
+  String? discussion_title;
   String? objective;
   String? iNTRODUCTION;
   List<DISCUSSION>? discussion;
@@ -16,19 +19,25 @@ class WordClinicModel {
   WordClinicModel(
       {this.title,
       this.subtitle,
+      this.date,
+      this.week,
       this.scriptures,
+      this.discussion_title,
       this.memoryVerse,
       this.objective,
       this.iNTRODUCTION,
       this.discussion,
-      this.conclusion });
+      this.conclusion});
 
   WordClinicModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];
+    date = json['date'];
+    week = json['week'];
     subtitle = json['subtitle'];
     scriptures = json['scriptures'].cast<String>();
     memoryVerse = json['memory_verse'];
     objective = json['objective'];
+    discussion_title = json['discussion_title'];
     iNTRODUCTION = json['INTRODUCTION'];
     if (json['DISCUSSION'] != null) {
       discussion = <DISCUSSION>[];
@@ -42,8 +51,11 @@ class WordClinicModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['title'] = title;
+    data['week'] = week;
+    data['date'] = date;
     data['subtitle'] = subtitle;
     data['scriptures'] = scriptures;
+    data['discussion_title'] = discussion_title;
     data['memory_verse'] = memoryVerse;
     data['objective'] = objective;
     data['INTRODUCTION'] = iNTRODUCTION;
@@ -57,10 +69,13 @@ class WordClinicModel {
   factory WordClinicModel.fromMap(Map<String, dynamic> map) {
     return WordClinicModel(
       title: map['title'] ?? '',
+      week: map['week'] ?? 0,
       subtitle: map['subtitle'] ?? '',
+      date: map['date'] ?? '',
       scriptures: List<String>.from(map['scriptures']) ?? [],
       memoryVerse: map['memory_verse'] ?? '',
       objective: map['objective'] ?? '',
+      discussion_title: map['discussion_title'] ?? '',
       iNTRODUCTION: map['INTRODUCTION'] ?? '',
       discussion: map['DISCUSSION'] != null
           ? List<DISCUSSION>.from(
@@ -104,7 +119,9 @@ class DISCUSSION {
   factory DISCUSSION.fromMap(Map<String, dynamic> map) {
     return DISCUSSION(
       title: map['title'] ?? '',
-      scriptures:map['scriptures']!=null? List<String>.from(map['scriptures']) :[''],
+      scriptures: map['scriptures'] != null
+          ? List<String>.from(map['scriptures'])
+          : [''],
     );
   }
 

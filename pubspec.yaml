@@ -43,6 +43,8 @@ dependencies:
   custom_floating_action_button: ^0.0.3
   floating_overlay: ^1.2.1
   share_plus: ^7.2.1 
+  scrollable_positioned_list: ^0.3.8
+  uid: ^0.0.2
 
 dev_dependencies:
   flutter_test:

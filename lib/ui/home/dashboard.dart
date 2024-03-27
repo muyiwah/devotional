@@ -2,11 +2,15 @@ import 'package:mivdevotional/core/model/devorion_model.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/devotion_screen.dart';
 import 'package:mivdevotional/devotion_today.dart';
+import 'package:mivdevotional/notepad.dart';
+import 'package:mivdevotional/notes_Screen.dart';
 import 'package:mivdevotional/ui/home/dev.dart';
 import 'package:mivdevotional/ui/home/home_screen.dart';
+import 'package:mivdevotional/ui/home/saved_scriptures.dart';
 import 'package:mivdevotional/ui/home/sliver.dart';
 import 'package:flutter/material.dart';
-import 'package:mivdevotional/ui/home/word_clinic_page.dart';
+import 'package:mivdevotional/ui/home/word_clinic_screen.dart';
+import 'package:mivdevotional/ui/home/word_clinic_today.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
@@ -81,13 +85,14 @@ class _DashboardState extends State<Dashboard> {
   }
 
   List screen = [
-    
     MyWidget(),
     HomeScreen(),
+    Notespad(),
+    NoteScreen(),
     DevorionScreen(),
-   WordClinicPage(),
-    Center(child: Text('account')),
-    Text('data2'),
+    WordClinicToday(),
+    WordClinicPage(),
+    SavedScriptures(),
   ];
   int selected = 0;
   @override
@@ -121,6 +126,7 @@ class _DashboardState extends State<Dashboard> {
               icon: Icon(Icons.library_books), label: "Word Clinic"),
           // TabData(iconData: Icons.schedule, title: "Account"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Settings"),
         ],
       ),
     );

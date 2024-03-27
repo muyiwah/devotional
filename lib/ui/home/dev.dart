@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:mivdevotional/core/model/devorion_model.dart';
 import 'package:mivdevotional/core/model/word_clinic.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
+import 'package:mivdevotional/core/utility/get_week.dart';
 import 'package:mivdevotional/devotion_today.dart';
 import 'package:mivdevotional/ui/book/daily_verse.dart';
 import 'package:mivdevotional/ui/home/dailyverse_full.dart';
@@ -25,8 +26,9 @@ class _MyWidgetState extends State<MyWidget> {
     getAllDevotional();
     getAllWordClinic();
   }
-int df=DateTime.now().month;
-int dfd=DateTime.now().second;
+
+  int df = DateTime.now().month;
+  int dfd = DateTime.now().weekOfMonth;
   List<DevotionModel> allDevotional = [];
   List<WordClinicModel> allWordClinickkk = [];
   DevotionModel todayDevotional = DevotionModel(
@@ -43,24 +45,24 @@ int dfd=DateTime.now().second;
         await Provider.of<BibleModel>(context, listen: false).getDevotional();
     todayDevotional =
         (allDevotional.firstWhere((element) => element.date == refineDate()));
-print('weekday is $df');
-print('date is $dfd');
+    print('weekday is $df');
+    print('date is $dfd');
     setState(() {});
-  } 
-  
-   getAllWordClinic() async {
+  }
+
+  getAllWordClinic() async {
     allWordClinickkk =
         await Provider.of<BibleModel>(context, listen: false).getWordClinic();
     // todayDevotional =
     //     (allDevotional.firstWhere((element) => element.date == refineDate()));
-print(allWordClinickkk[0].conclusion);
+    print(allWordClinickkk[0].conclusion);
     setState(() {});
   }
 
   DateTime date = DateTime.now();
 
   String today = '';
-//2024-03-24 
+//2024-03-24
   String refineDate() {
     String month = '';
     today = (date.toString().split(' ')[0].split('-')[1].toString() +
@@ -97,79 +99,140 @@ print(allWordClinickkk[0].conclusion);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage('assets/images/bible3.png',),fit: BoxFit.cover)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DevotionToday(todayDevotional)));
+              },
+              child: Container(
+                  margin: EdgeInsets.all(20),
+                  height: 400,
+                  width: double.infinity,
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      color: Colors.black.withOpacity(.5),
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        todayDevotional.date,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w200),
+                      ),  Text(
+                        todayDevotional.title,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      Text(
+                        todayDevotional.text,
+                        maxLines: 3,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12)),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              'assets/images/6.webp',
+                              fit: BoxFit.cover,
+                            )),
+                      ),
+                      Center(
+                        child: Text(
+                          'Read now',
+                          maxLines: 3,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ],
+                  )),
+            ),
+            InkWell(
+              onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DevotionToday(todayDevotional)));
-            },
-            child: Container(
-                padding: EdgeInsets.all(6),
-                color: Colors.blue,
-                child: Text(
-                  'mivdevotional',
-                  style: TextStyle(color: Colors.white),
-                )),
-          ),
-          InkWell(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        DailverseFullScreen(DailyVerse().verses[ran]))),
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              width: double.infinity,
-              margin: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                boxShadow: const [
-                  BoxShadow(
-                      blurRadius: 3,
-                      spreadRadius: .2,
-                      offset: Offset(-2, 2),
-                      color: Colors.blueGrey)
-                ],
-                gradient: LinearGradient(colors: const [
-                  Colors.blue,
-                  Color.fromARGB(255, 115, 78, 237),
-                  // Color.fromARGB(209, 1, 32, 206)
-                ], begin: Alignment.topRight, end: Alignment.bottomLeft),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width - 180,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          DailyVerse().verses[ran].verse,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          DailyVerse().verses[ran].ref,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
+                      builder: (context) =>
+                          DailverseFullScreen(DailyVerse().verses[ran]))),
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                width: double.infinity,
+                margin: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  boxShadow:  [
+                    BoxShadow(
+                        blurRadius: 1,
+                        spreadRadius: .7,
+                        offset: Offset(-2, 2),
+                        color: Colors.black.withOpacity(.9))
+                  ],
+                  gradient: LinearGradient(colors: const [
+                    Colors.black,
+                    Color.fromARGB(255, 124, 217, 31),
+                    // Color.fromARGB(209, 1, 32, 206)
+                  ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width - 180,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                           'Daily Verse',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(color: Colors.white,fontSize: 18),
+                          ), 
+                          SizedBox(height: 10,),
+                          Text(
+                            DailyVerse().verses[ran].verse,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(color: Colors.white,fontSize: 17),
+                          ),
+                          Text(
+                            DailyVerse().verses[ran].ref,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 5),
-                    height: 80,
-                    width: 100,
-                    child: Image.asset('assets/images/bible.png'),
-                  )
-                ],
+                    Container(
+                      margin: EdgeInsets.only(left: 5),
+                      height: 80,
+                      width: 100, child: Icon(Icons.heart_broken_rounded,color: Colors.white,size: 50,),
+                      // child: Image.asset('assets/images/bible.png'),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

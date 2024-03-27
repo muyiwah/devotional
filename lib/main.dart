@@ -5,6 +5,7 @@ import 'package:mivdevotional/ui/home/home_screen.dart';
 import 'package:mivdevotional/ui/home/sliver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mivdevotional/ui/home/welcome.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         ),
         // home: HomeScreen(),
         // home: MySilverScreen(),
-        home: Dashboard(),
+        home: Welcome(),
       ),
     );
   }

@@ -6,11 +6,13 @@ class SaveColor {
 final int chapter;
 final int verse;
 final String color;
+final String content;
   SaveColor({
     required this.book,
     required this.chapter,
     required this.verse,
     required this.color,
+    required this.content,
   });
 
   SaveColor copyWith({
@@ -18,12 +20,14 @@ final String color;
     int? chapter,
     int? verse,
     String? color,
+    String? content,
   }) {
     return SaveColor(
       book: book ?? this.book,
       chapter: chapter ?? this.chapter,
       verse: verse ?? this.verse,
       color: color ?? this.color,
+      content: color ?? this.content,
     );
   }
 
@@ -34,6 +38,7 @@ final String color;
     result.addAll({'chapter': chapter});
     result.addAll({'verse': verse});
     result.addAll({'color': color});
+    result.addAll({'content': content});
   
     return result;
   }
@@ -44,6 +49,7 @@ final String color;
       chapter: map['chapter']?.toInt() ?? 0,
       verse: map['verse']?.toInt() ?? 0,
       color: map['color'] ?? '',
+      content: map['content'] ?? '',
     );
   }
 
@@ -54,25 +60,8 @@ final String color;
 
   @override
   String toString() {
-    return 'SaveColor(book: $book, chapter: $chapter, verse: $verse, color: $color)';
+    return 'SaveColor(book: $book, chapter: $chapter, verse: $verse, color: $color, content: $content)';
   }
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-  
-    return other is SaveColor &&
-      other.book == book &&
-      other.chapter == chapter &&
-      other.verse == verse &&
-      other.color == color;
-  }
-
-  @override
-  int get hashCode {
-    return book.hashCode ^
-      chapter.hashCode ^
-      verse.hashCode ^
-      color.hashCode;
-  }
+ 
 }

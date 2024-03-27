@@ -6,6 +6,7 @@ import 'package:mivdevotional/ui/constants/constant_widgets.dart';
 import 'package:floating_overlay/floating_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:animated_floating_buttons/animated_floating_buttons.dart';
 import 'package:custom_floating_action_button/custom_floating_action_button.dart';
@@ -13,8 +14,9 @@ import 'package:custom_floating_action_button/custom_floating_action_button.dart
 class ShowChapter extends StatefulWidget {
   final String bookName;
   final int chapter;
+  int verse;
 
-  ShowChapter({required this.bookName, required this.chapter});
+  ShowChapter({required this.bookName, required this.chapter, this.verse = -1});
 
   @override
   State<ShowChapter> createState() => _ShowChapterState();
@@ -26,8 +28,19 @@ class _ShowChapterState extends State<ShowChapter> {
     // TODO: implement initState
     super.initState();
     getColouredVerses();
+    Future.delayed(Duration(seconds: 1), () {
+      if (widget.verse != -1) goToVerse();
+    });
   }
 
+  String selectedScripture = "";
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ScrollOffsetController scrollOffsetController =
+      ScrollOffsetController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+  final ScrollOffsetListener scrollOffsetListener =
+      ScrollOffsetListener.create();
   bool selected = false;
   int selectedIndex = -1;
   final controller = FloatingOverlayController.relativeSize(
@@ -48,7 +61,9 @@ class _ShowChapterState extends State<ShowChapter> {
         book: widget.bookName,
         chapter: widget.chapter,
         verse: verse,
-        color: color);
+        color: color,
+        content: selectedScripture
+        );
 
     if (notEmpty) {
       String d = prefs.getString('savedColor').toString();
@@ -63,6 +78,7 @@ class _ShowChapterState extends State<ShowChapter> {
             dataList[u].verse == save.verse) {
           dataList.removeAt(u);
         }
+
       }
 
       dataList.add(save);
@@ -72,7 +88,7 @@ class _ShowChapterState extends State<ShowChapter> {
       prefs.setString('savedColor', jsonEncode(dataList));
     }
     String d = prefs.getString('savedColor').toString();
-
+print('//////////////////');
     print(d);
     getColouredVerses();
   }
@@ -94,6 +110,7 @@ class _ShowChapterState extends State<ShowChapter> {
         data.add(SaveColor.fromJsonJson(jsonEncode(
             (json.decode(prefs.getString('savedColor').toString()))[x])));
       }
+      print(data);
       for (int y = 0; data.length > y; y++) {
         if (data[y].book == widget.bookName &&
             data[y].chapter == widget.chapter) {
@@ -102,7 +119,7 @@ class _ShowChapterState extends State<ShowChapter> {
         }
       }
 
-      print(data2);
+      print(data);
       // print(data3);
       setState(() {});
     }
@@ -111,9 +128,18 @@ class _ShowChapterState extends State<ShowChapter> {
   final GlobalKey<AnimatedFloatingActionButtonState> key =
       GlobalKey<AnimatedFloatingActionButtonState>();
 
+  goToVerse() {
+    print(widget.verse);
+    itemScrollController.scrollTo(
+        index: widget.verse != 0 ? widget.verse - 1 : widget.verse,
+        duration: Duration(seconds: 2),
+        curve: Curves.easeInOutCubic);
+  }
+
   @override
   Widget build(BuildContext context) {
     print('${widget.bookName}   ${widget.chapter}');
+
     return CustomFloatingActionButton(
         body: Scaffold(
             appBar: AppBar(
@@ -265,7 +291,11 @@ class _ShowChapterState extends State<ShowChapter> {
                         (bibleData.chapter == widget.chapter))
                     .toList();
 
-                return ListView.builder(
+                return ScrollablePositionedList.builder(
+                    itemScrollController: itemScrollController,
+                    scrollOffsetController: scrollOffsetController,
+                    itemPositionsListener: itemPositionsListener,
+                    scrollOffsetListener: scrollOffsetListener,
                     itemCount: chapterVerses.length,
                     itemBuilder: (BuildContext context, index) {
                       Color color = Colors.transparent;
@@ -296,14 +326,24 @@ class _ShowChapterState extends State<ShowChapter> {
                           selected = true;
                           setState(() {
                             selectedIndex = index;
+                            selectedScripture = chapterVerses[index].text;
                           });
+                          print(selectedScripture);
                         },
                         child: Container(
-                          color: (selected &&
-                                  index == selectedIndex &&
-                                  color == Colors.transparent)
-                              ? Colors.blue.withOpacity(.3)
-                              : color,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: (widget.verse != -1 &&
+                                      widget.verse == index + 1)
+                                  ? Colors.red.withOpacity(.3)
+                                  : Colors.transparent,
+                            ),
+                            color: (selected &&
+                                    index == selectedIndex &&
+                                    color == Colors.transparent)
+                                ? Colors.blue.withOpacity(.3)
+                                : color,
+                          ),
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             '${chapterVerses[index].verse.toString()}. ${chapterVerses[index].text}',
