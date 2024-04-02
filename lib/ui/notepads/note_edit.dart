@@ -70,7 +70,7 @@ print(widget.data.id);
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Make a note'),
+        title: Text('Edit a note'),
         actions: [
           InkWell(onTap: () => SaveNote(),
             child: Container(

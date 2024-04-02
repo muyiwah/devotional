@@ -7,7 +7,7 @@ import 'package:share_plus/share_plus.dart';
 class DailverseFullScreen extends StatelessWidget {
   DailverseFullScreen(this.vers, {super.key});
   DailyVerseModel vers;
-  int ran = Random().nextInt(7);
+  int ran = Random().nextInt(15);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +44,7 @@ class DailverseFullScreen extends StatelessWidget {
                       TextStyle(color: Colors.white, fontSize: 18, height: 1.6),
                 ),
                 Text(
-                  'KJV STUDY BIBLE',
+                  'STUDY BIBLE',
                   textAlign: TextAlign.center,
                   style:
                       TextStyle(color: Colors.white, fontSize: 18, height: 1.6),
@@ -74,7 +74,7 @@ class DailverseFullScreen extends StatelessWidget {
               child: InkWell(
                 onTap: () async {
                   final result = await Share.share(
-                      'check out my website https://example.com');
+                      '${vers.verse}${vers.ref}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com');
 
 // if (result.status == ShareResultStatus.success) {
 //     print('Thank you for sharing my website!');

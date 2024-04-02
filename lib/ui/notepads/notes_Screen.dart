@@ -30,8 +30,9 @@ var uid = UId.getId();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool notEmpty = false;
     notEmpty = prefs.containsKey('savedNote');
-
-    if (notEmpty) {
+if( _notesController.text.isNotEmpty || _titleController.text.isNotEmpty)
+{ 
+     if (notEmpty) {
       String togetNote = prefs.getString('savedNote').toString();
       for (int x = 0; jsonDecode(togetNote).length > x; x++) {
         data.add(NotepadModel.fromJsonJson(jsonEncode(
@@ -45,6 +46,7 @@ var uid = UId.getId();
     }
     String f =prefs.getString('savedNote').toString();
     print(f);Navigator.pop(context);
+    }
   }
 
   @override

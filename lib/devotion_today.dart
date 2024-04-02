@@ -6,6 +6,7 @@ import 'package:mivdevotional/ui/book/daily_verse.dart';
 import 'package:mivdevotional/ui/book/show_chapter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DevotionToday extends StatefulWidget {
   DevotionToday(this.todayDevotional);
@@ -29,8 +30,8 @@ class _DevotionTodayState extends State<DevotionToday> {
   int ran = Random().nextInt(3) + 5;
   String y = '';
 
-   int getChapter() {
-    String k='';
+  int getChapter() {
+    String k = '';
     print(widget.todayDevotional.reference);
     if (widget.todayDevotional.reference.startsWith('1') ||
         widget.todayDevotional.reference.startsWith('2') ||
@@ -55,17 +56,56 @@ class _DevotionTodayState extends State<DevotionToday> {
 
     return int.parse(k);
   }
+  // int thisMonth = DateTime.now().month;
+
+  // String refineDate() {
+
+  //   String month = '';
+    
+  //   if (thisMonth == 1) {
+  //     month = 'January';
+  //   } else if (thisMonth == 2) {
+  //     month = 'February';
+  //   } else if (thisMonth == 3) {
+  //     month = 'March';
+  //   } else if (thisMonth == 4) {
+  //     month = 'April';
+  //   } else if (thisMonth == 5) {
+  //     month = 'May';
+  //   } else if (thisMonth ==6) {
+  //     month = 'June';
+  //   } else if (thisMonth == 7) {
+  //     month = 'July';
+  //   } else if (thisMonth == 8) {
+  //     month = 'August';
+  //   } else if (thisMonth == 9) {
+  //     month = 'September';
+  //   } else if (thisMonth == 10) {
+  //     month = 'October';
+  //   } else if (thisMonth == 11) {
+  //     month = 'November';
+  //   } else if (thisMonth == 12) {
+  //     month = 'December';
+  //   }
+  //   return month;
+  // }
+
+
+
+
   String getVerse() {
-    print(widget.todayDevotional.reference);
+    print(widget.todayDevotional.reference);print('herer');
     if (widget.todayDevotional.reference.startsWith('1') ||
         widget.todayDevotional.reference.startsWith('2') ||
         widget.todayDevotional.reference.startsWith('3')) {
       y = widget.todayDevotional.reference.split(' ')[2].split(':')[1];
     } else {
       y = widget.todayDevotional.reference.split(' ')[1].split(':')[1];
-
+   
       print(y);
-      print(y.contains('-'));
+      // y.replaceAll('-','+');
+      // print(y);
+      // print(y.contains('+'));
     }
     if (y.contains('-')) {
       print(y);
@@ -132,8 +172,8 @@ class _DevotionTodayState extends State<DevotionToday> {
                 color: Colors.black,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                     ),
+                    color: Colors.white,
+                  ),
                   // padding: const EdgeInsets.only(left: 10,right: 10),
                   child: SingleChildScrollView(
                     child: Column(
@@ -177,7 +217,7 @@ class _DevotionTodayState extends State<DevotionToday> {
                                 children: [
                                   Text(
                                     widget.todayDevotional.reference,
-                                    style: TextStyle(color: Colors.white),
+                                    style: TextStyle(color: Colors.white,fontSize: 16),
                                   ),
                                   Icon(
                                     Icons.arrow_forward_ios,
@@ -194,17 +234,18 @@ class _DevotionTodayState extends State<DevotionToday> {
                               fontWeight: FontWeight.w600, fontSize: 16),
                         ),
                         // Text(widget.todayDevotional.title),
-                    if( widget.todayDevotional.scripture.isNotEmpty)    Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            widget.todayDevotional.scripture,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w200,
-                                fontSize: 16,
-                                color: Colors.blue,
-                                height: 1.6),
+                        if (widget.todayDevotional.scripture.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              widget.todayDevotional.scripture,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w200,
+                                  fontSize: 16,
+                                  color: Colors.blue,
+                                  height: 1.6),
+                            ),
                           ),
-                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
@@ -213,51 +254,66 @@ class _DevotionTodayState extends State<DevotionToday> {
                                 fontSize: 16, color: Colors.black, height: 1.6),
                           ),
                         ),
-                       if(widget.todayDevotional.thought.isNotEmpty) Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RichText(
-                              text: TextSpan(children: [
-                            TextSpan(
-                                text: 'Thought of the day: ',
-                                style: TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.w500)),
-                            TextSpan(
-                                text: widget.todayDevotional.thought,
-                                style: TextStyle(height: 1.6,
-                                  color: Colors.black87,
-                                  fontSize: 16,
-                                ))
-                          ])),
-                        ),
-                    if(widget.todayDevotional.action_plan.isNotEmpty)    Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RichText(
-                              text: TextSpan(children: [
-                            TextSpan(
-                                text: 'Action Plan: ',
-                                style: TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.w500)),
-                            TextSpan(
-                                text: widget.todayDevotional.action_plan,
-                                style: TextStyle(height: 1.6,
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                ))
-                          ])),
-                        ),
-                      if(widget.todayDevotional.prayer.isNotEmpty)  Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RichText(
-                              text: TextSpan(children: [
-                            TextSpan(
-                                text: 'Prayer: ',
-                                style: TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.w500)),
-                            TextSpan(
-                                text: widget.todayDevotional.prayer,
-                                style: TextStyle(height: 1.6,
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                ))
-                          ])),
-                        ),
+                        if (widget.todayDevotional.thought.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                  text: 'Thought of the day: ',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500)),
+                              TextSpan(
+                                  text: widget.todayDevotional.thought,
+                                  style: TextStyle(
+                                    height: 1.6,
+                                    color: Colors.black87,
+                                    fontSize: 16,
+                                  ))
+                            ])),
+                          ),
+                        if (widget.todayDevotional.action_plan.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                  text: 'Action Plan: ',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500)),
+                              TextSpan(
+                                  text: widget.todayDevotional.action_plan,
+                                  style: TextStyle(
+                                    height: 1.6,
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                  ))
+                            ])),
+                          ),
+                        if (widget.todayDevotional.prayer.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                  text: 'Prayer: ',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500)),
+                              TextSpan(
+                                  text: widget.todayDevotional.prayer,
+                                  style: TextStyle(
+                                    height: 1.6,
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                  ))
+                            ])),
+                          ),
                       ],
                     ),
                   ),
@@ -265,6 +321,20 @@ class _DevotionTodayState extends State<DevotionToday> {
               )),
             ]),
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final result = await Share.share(
+            '<b>Awakening Word Today</b>\nThe Men of Issachar Vision\n\n ${widget.todayDevotional.date}\n\n${widget.todayDevotional.title}\n${widget.todayDevotional.reference}\n\n${widget.todayDevotional.scripture}\n\n ${widget.todayDevotional.text}\n\nAction plan: ${widget.todayDevotional.action_plan}\n\nThought of the day: ${widget.todayDevotional.thought}\n\nprayer: ${widget.todayDevotional.prayer}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com',
+          );
+
+// if (result.status == ShareResultStatus.success) {
+//     print('Thank you for sharing my website!');
+// }
+        },
+        child: Icon(
+          Icons.share,
         ),
       ),
     );

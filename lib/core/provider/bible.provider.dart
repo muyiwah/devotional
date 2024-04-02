@@ -18,14 +18,33 @@ class BibleModel extends ChangeNotifier {
   List get oldTestamentBooks => _oldTestamentBooks;
   List get newTestamentBooks => _newTestamentBooks;
   List get chaptersPerBook => _chaptersPerBook;
-
+  List<Bible> searchData = [];
+  List<Bible> searchResult = [];
   Future getBibleText() async {
+    List bibleText =[];
+
     await _repository.getBible(path + 'bible.json').then((bibleData) {
       var decodedJson = jsonDecode(bibleData);
-      List bibleText = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      // searchData = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      bibleText = decodedJson.map((row) => Bible.fromJson(row)).toList();
       _bible = bibleText;
+     for(int x=0;bibleText.length>x;x++){
+      searchData.add(bibleText[x]);
+     }
     });
     notifyListeners();
+  }
+
+  List<Bible> search(data) {
+
+    print('herer');
+    searchResult.clear();
+    for (int x = 0; searchData.length > x; x++) {
+      if (searchData[x].text.toLowerCase().contains(data)) {
+        searchResult.add(searchData[x]);
+      }
+    }
+    return searchResult;
   }
 
   Future getBibleBook() async {

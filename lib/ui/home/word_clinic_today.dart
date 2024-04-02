@@ -8,6 +8,7 @@ import 'package:mivdevotional/ui/book/show_chapter.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:collection/collection.dart';
+import 'package:share_plus/share_plus.dart';
 
 class WordClinicToday extends StatefulWidget {
   const WordClinicToday({super.key});
@@ -31,11 +32,44 @@ class _WordClinicTodayState extends State<WordClinicToday> {
     allWordClinickkk =
         await Provider.of<BibleModel>(context, listen: false).getWordClinic();
     wordClinicToday = (allWordClinickkk
-        .firstWhere((element) => element.week == DateTime.now().weekOfMonth));
+        .firstWhere((element) => (element.week == DateTime.now().weekOfMonth && element.date==refineDate())));
     _discussion = (wordClinicToday.discussion)!;
     setState(() {});
   }
 
+  int thisMonth = DateTime.now().month;
+
+String refineDate() {
+
+    String month = '';
+    
+    if (thisMonth == 1) {
+      month = 'January';
+    } else if (thisMonth == 2) {
+      month = 'February';
+    } else if (thisMonth == 3) {
+      month = 'March';
+    } else if (thisMonth == 4) {
+      month = 'April';
+    } else if (thisMonth == 5) {
+      month = 'May';
+    } else if (thisMonth ==6) {
+      month = 'June';
+    } else if (thisMonth == 7) {
+      month = 'July';
+    } else if (thisMonth == 8) {
+      month = 'August';
+    } else if (thisMonth == 9) {
+      month = 'September';
+    } else if (thisMonth == 10) {
+      month = 'October';
+    } else if (thisMonth == 11) {
+      month = 'November';
+    } else if (thisMonth == 12) {
+      month = 'December';
+    }
+    return month;
+  }
   String y = '';
   String getVerse(e) {
     if (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) {
@@ -221,87 +255,99 @@ class _WordClinicTodayState extends State<WordClinicToday> {
                               ))
                         ])),
 
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: _discussion
-                            .mapIndexed((index, e) => Container(
-                                  margin: EdgeInsets.symmetric(vertical: 5),
-                                  decoration:
-                                      BoxDecoration(border: Border.all()),
-                                  child: Wrap(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(3.0),
-                                        child: Text(
-                                          '${index + 1}. ${e.title}',
-                                          style: TextStyle(fontSize: 16),
+                                           Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: _discussion
+                              .mapIndexed((index, e) => Container(padding: EdgeInsets.all(3),
+                                    margin:  EdgeInsets.symmetric(vertical: 5),
+                                    decoration:
+                                        BoxDecoration(border: Border.all(color: e.title.contains("*")?Colors.white:Colors.black)),
+                                    child: Wrap(
+                                      children: [
+                                        Padding(
+                                          padding:  EdgeInsets.all( e.title.contains("*")?0:3.0),
+                                          child: 
+                                          RichText(
+                                  text: TextSpan(children: [
+                                 TextSpan(
+                                    text: '${e.title.replaceAll("*", "")}:',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight:  e.title.contains("*")?FontWeight.w500:FontWeight.normal,
+                                        height: 1.6)),]))),
+                                          
+                                          
+                                          
+                                        //   Text(
+                                        //     '${e.title.replaceAll("*", "")}',
+                                        //     style:  TextStyle(fontSize: 16,fontWeight:  e.title.contains("*")?FontWeight.w500:FontWeight.normal),
+                                        //   ),
+                                        // ),
+                                        const SizedBox(
+                                          width: 10,
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                        child: ListView(
-                                            scrollDirection: Axis.horizontal,
-                                            children: e.scriptures
-                                                .map((e) => Container(
-                                                      padding:
-                                                          EdgeInsets.symmetric(horizontal:5,vertical: 3),
-                                                      margin:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 5),
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.blue
-                                                              .withOpacity(.3),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      5)),
-                                                      child: InkWell(
-                                                        onTap: () =>
-                                                            Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) => ShowChapter(
-                                                                bookName: (e.startsWith('1') ||
-                                                                        e.startsWith(
-                                                                            '2') ||
-                                                                        e.startsWith(
-                                                                            '3'))
-                                                                    ? ('${e.split(' ')[0]} ${e.split(' ')[1]}')
-                                                                    : e
-                                                                        .split(' ')[
-                                                                            0]
-                                                                        .toString(),
-                                                                chapter: (e.startsWith('1') ||
-                                                                        e.startsWith(
-                                                                            '2') ||
-                                                                        e.startsWith(
-                                                                            '3'))
-                                                                    ? int.parse(e
-                                                                        .split(' ')[2]
-                                                                        .split(':')[0])
-                                                                    : int.parse(e.split(' ')[1].split(':')[0]),
-                                                                verse: int.parse(getVerse(e))),
+                                        e.title.contains("*")?SizedBox.shrink(): SizedBox(
+                                          height: 30,
+                                          child: ListView(
+                                              scrollDirection: Axis.horizontal,
+                                              children: e.scriptures
+                                                  .map((e) => Container(
+                                                        padding:
+                                                            const EdgeInsets.symmetric(horizontal:5,vertical: 3),
+                                                        margin:
+                                                            const EdgeInsets.symmetric(
+                                                                horizontal: 5),
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.blue
+                                                                .withOpacity(.3),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5)),
+                                                        child: InkWell(
+                                                          onTap: () =>
+                                                              Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (context) => ShowChapter(
+                                                                  bookName: (e.startsWith('1') ||
+                                                                          e.startsWith(
+                                                                              '2') ||
+                                                                          e.startsWith(
+                                                                              '3'))
+                                                                      ? ('${e.split(' ')[0]} ${e.split(' ')[1]}')
+                                                                      : e
+                                                                          .split(' ')[
+                                                                              0]
+                                                                          .toString(),
+                                                                  chapter: (e.startsWith('1') ||
+                                                                          e.startsWith(
+                                                                              '2') ||
+                                                                          e.startsWith(
+                                                                              '3'))
+                                                                      ? int.parse(e
+                                                                          .split(' ')[2]
+                                                                          .split(':')[0])
+                                                                      : int.parse(e.split(' ')[1].split(':')[0]),
+                                                                  verse: int.parse(getVerse(e))),
+                                                            ),
+                                                          ),
+                                                          child: Text(
+                                                            e,
+                                                            style: const TextStyle(
+                                                              fontSize: 16,
+                                                            ),
                                                           ),
                                                         ),
-                                                        child: Text(
-                                                          e,
-                                                          style: TextStyle(
-                                                            fontSize: 16,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ))
-                                                .toList()),
-                                      ),
-                                    ],
-                                  ),
-                                ))
-                            .toList(),
-                      ),
-
+                                                      ))
+                                                  .toList()),
+                                        ),
+                                      ],
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
                       // Expanded(
                       //     child: ListView.builder(
                       //         itemCount: _discussion.length,
@@ -389,6 +435,19 @@ class _WordClinicTodayState extends State<WordClinicToday> {
               ),
             )
           : Center(child: CircularProgressIndicator()),
-    );
+    floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final result = await Share.share(
+            'Wordclinic Today\nThe Men of Issachar Vision\n\nTHEME        ${wordClinicToday.title}      ${wordClinicToday.date}\n\nTOPIC:        ${wordClinicToday.subtitle}\n\nTEXT        ${wordClinicToday.scriptures}\n\nMEMORY VERSE:  ${wordClinicToday.memoryVerse}\n\nOBJECTIVE: ${wordClinicToday.objective}\n\nINTRODUCTION\n${wordClinicToday.iNTRODUCTION}\n\nDISCUSSION\n${_discussion.mapIndexed((index, element) => '${'-'}'+element.title+'${element.scriptures.map((e) => e).toList() }'  +'\n').toList()}\n\nCONCLUSION\n${wordClinicToday.conclusion}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com',
+          );
+
+// if (result.status == ShareResultStatus.success) {
+//     print('Thank you for sharing my website!');
+// }
+        },
+        child: Icon(
+          Icons.share,
+        ),
+      ), );
   }
 }

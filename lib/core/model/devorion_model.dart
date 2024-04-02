@@ -63,7 +63,7 @@ class DevotionModel {
       reference: map['reference'] ?? '',
       scripture: map['scripture'] ?? '',
       action_plan: map['action_plan'] ?? '',
-      thought: map['thought'] ?? '',
+      thought: map['thoughts'] ?? '',
       prayer: map['prayer'] ?? '',
       text: map['text'] ?? '',
       date: map['date'] ?? '',

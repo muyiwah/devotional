@@ -1,3 +1,4 @@
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/devotion_screen.dart';
 import 'package:mivdevotional/ui/home/dashboard.dart';
@@ -8,7 +9,9 @@ import 'package:flutter/services.dart';
 import 'package:mivdevotional/ui/home/welcome.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async{
+  //  WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -30,7 +33,7 @@ class MyApp extends StatelessWidget {
       providers: [ChangeNotifierProvider(create: (_) => BibleModel())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Bible App ',
+        title: 'Miv Devotional',
         theme: ThemeData(
           fontFamily: 'Lato',
           primarySwatch: Colors.teal,
