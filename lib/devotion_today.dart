@@ -61,7 +61,7 @@ class _DevotionTodayState extends State<DevotionToday> {
   // String refineDate() {
 
   //   String month = '';
-    
+
   //   if (thisMonth == 1) {
   //     month = 'January';
   //   } else if (thisMonth == 2) {
@@ -90,18 +90,16 @@ class _DevotionTodayState extends State<DevotionToday> {
   //   return month;
   // }
 
-
-
-
   String getVerse() {
-    print(widget.todayDevotional.reference);print('herer');
+    print(widget.todayDevotional.reference);
+    print('herer');
     if (widget.todayDevotional.reference.startsWith('1') ||
         widget.todayDevotional.reference.startsWith('2') ||
         widget.todayDevotional.reference.startsWith('3')) {
       y = widget.todayDevotional.reference.split(' ')[2].split(':')[1];
     } else {
       y = widget.todayDevotional.reference.split(' ')[1].split(':')[1];
-   
+
       print(y);
       // y.replaceAll('-','+');
       // print(y);
@@ -217,7 +215,8 @@ class _DevotionTodayState extends State<DevotionToday> {
                                 children: [
                                   Text(
                                     widget.todayDevotional.reference,
-                                    style: TextStyle(color: Colors.white,fontSize: 16),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16),
                                   ),
                                   Icon(
                                     Icons.arrow_forward_ios,
@@ -326,7 +325,7 @@ class _DevotionTodayState extends State<DevotionToday> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final result = await Share.share(
-            '<b>Awakening Word Today</b>\nThe Men of Issachar Vision\n\n ${widget.todayDevotional.date}\n\n${widget.todayDevotional.title}\n${widget.todayDevotional.reference}\n\n${widget.todayDevotional.scripture}\n\n ${widget.todayDevotional.text}\n\nAction plan: ${widget.todayDevotional.action_plan}\n\nThought of the day: ${widget.todayDevotional.thought}\n\nprayer: ${widget.todayDevotional.prayer}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com',
+            '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${widget.todayDevotional.date}, 2024*\n\n*${widget.todayDevotional.title}*\n\n*${widget.todayDevotional.reference}*\n\n*${widget.todayDevotional.scripture}*\n\n ${widget.todayDevotional.text}\n\n*Action plan:* ${widget.todayDevotional.action_plan}\n\n*Thought of the day:* ${widget.todayDevotional.thought}\n\n*prayer:* ${widget.todayDevotional.prayer}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com',
           );
 
 // if (result.status == ShareResultStatus.success) {

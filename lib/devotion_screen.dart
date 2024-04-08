@@ -360,9 +360,11 @@ thisDay=newDate.day;
           ),
           InkWell(
             onTap: () async {
-              final result = await Share.share(
-              'Awakening Word Today\nThe Men of Issachar Vision\n\n ${allDevotional[selectedIndex].date}\n\n${allDevotional[selectedIndex].title}\n${allDevotional[selectedIndex].reference}\n\n${allDevotional[selectedIndex].scripture}\n\n ${allDevotional[selectedIndex].text}\n\nAction plan: ${allDevotional[selectedIndex].action_plan}\n\nThought of the day: ${allDevotional[selectedIndex].thought}\n\nprayer: ${allDevotional[selectedIndex].prayer}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com',
-            );
+
+               final result = await Share.share(
+            '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${allDevotional[selectedIndex].date}, 2024*\n\n*${allDevotional[selectedIndex].title}*\n\n*${allDevotional[selectedIndex].reference}*\n\n*${allDevotional[selectedIndex].scripture}*\n\n ${allDevotional[selectedIndex].text}\n\n*Action plan:* ${allDevotional[selectedIndex].action_plan}\n\n*Thought of the day:* ${allDevotional[selectedIndex].thought}\n\n*prayer:* ${allDevotional[selectedIndex].prayer}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com',
+          );
+           
             },
             child: CircleAvatar(
               child: Icon(Icons.share),
