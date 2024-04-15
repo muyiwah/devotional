@@ -137,7 +137,7 @@ class _DashboardState extends State<Dashboard> {
           BottomNavigationBarItem(
               icon: Icon(Icons.library_books), label: "Word Clinic"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.library_books), label: "Others"),
+              icon: Icon(Icons.menu), label: "Others"),
         ],
       ),
     );

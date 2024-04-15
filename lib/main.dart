@@ -12,6 +12,35 @@ import 'package:provider/provider.dart';
 void main() async{
   //  WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
+   ErrorWidget.builder = (FlutterErrorDetails details) {
+    bool isDebug = false;
+    assert(() {
+      isDebug = false;
+      return true;
+    }());
+    if (isDebug == true) {
+      return ErrorWidget(details.exception);
+    }
+    return Scaffold(
+        body: Dialog(
+      child: Container(padding: EdgeInsets.all(20),
+        height: 200,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(child: Text('sorry, a little problem, probably wrong scripture parsing. pls dismiss',textAlign: TextAlign.center,)),
+            Builder(builder: (context) {
+              return ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('dismiss'));
+            })
+          ],
+        ),
+      ),
+    ));
+  };
   runApp(MyApp());
 }
 

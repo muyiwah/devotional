@@ -60,11 +60,12 @@ thisDay=newDate.day;
       date: '');
 
         String y = '';
-  String getVerse(e) {
+  String getVerse(e) {print(e);
     if (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) {
       y = e.split(' ')[2].split(':')[1];
     } else {
       y = e.split(' ')[1].split(':')[1];
+      print(y);
     }
     if (y.contains('-')) {
       y = y.split('-')[0];
@@ -178,6 +179,12 @@ thisDay=newDate.day;
                             if (allDevotional[index].reference.isNotEmpty)
                               InkWell(
                                   onTap: () {
+                                    // print(allDevotional[index]
+                                    //                   .reference
+                                    //                   .split(' ')[0]
+                                    //                   .toString());
+                                    //                   print(int.parse(allDevotional[index].reference.split(' ')[1].split(':')[0]));
+                                    //                   print( int.parse(getVerse(allDevotional[index].reference)));
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -362,7 +369,7 @@ thisDay=newDate.day;
             onTap: () async {
 
                final result = await Share.share(
-            '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${allDevotional[selectedIndex].date}, 2024*\n\n*${allDevotional[selectedIndex].title}*\n\n*${allDevotional[selectedIndex].reference}*\n\n*${allDevotional[selectedIndex].scripture}*\n\n ${allDevotional[selectedIndex].text}\n\n*Action plan:* ${allDevotional[selectedIndex].action_plan}\n\n*Thought of the day:* ${allDevotional[selectedIndex].thought}\n\n*prayer:* ${allDevotional[selectedIndex].prayer}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com',
+            '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${allDevotional[selectedIndex].date}, 2024*\n\n*${allDevotional[selectedIndex].title}*\n\n*${allDevotional[selectedIndex].reference}*\n\n*${allDevotional[selectedIndex].scripture}*\n\n ${allDevotional[selectedIndex].text}\n\n*Action plan:* ${allDevotional[selectedIndex].action_plan}\n\n*Thought of the day:* ${allDevotional[selectedIndex].thought}\n\n*prayer:* ${allDevotional[selectedIndex].prayer}\n\nDownload app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
           );
            
             },

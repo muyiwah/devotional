@@ -74,7 +74,7 @@ class DailverseFullScreen extends StatelessWidget {
               child: InkWell(
                 onTap: () async {
                   final result = await Share.share(
-                      '${vers.verse}${vers.ref}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com');
+                      '${vers.verse} ${vers.ref}\n\nDownload app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com');
 
 // if (result.status == ShareResultStatus.success) {
 //     print('Thank you for sharing my website!');

@@ -325,7 +325,7 @@ class _DevotionTodayState extends State<DevotionToday> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final result = await Share.share(
-            '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${widget.todayDevotional.date}, 2024*\n\n*${widget.todayDevotional.title}*\n\n*${widget.todayDevotional.reference}*\n\n*${widget.todayDevotional.scripture}*\n\n ${widget.todayDevotional.text}\n\n*Action plan:* ${widget.todayDevotional.action_plan}\n\n*Thought of the day:* ${widget.todayDevotional.thought}\n\n*prayer:* ${widget.todayDevotional.prayer}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com',
+            '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${widget.todayDevotional.date}, 2024*\n\n*${widget.todayDevotional.title}*\n\n*${widget.todayDevotional.reference}*\n\n*${widget.todayDevotional.scripture}*\n\n ${widget.todayDevotional.text}\n\n*Action plan:* ${widget.todayDevotional.action_plan}\n\n*Thought of the day:* ${widget.todayDevotional.thought}\n\n*prayer:* ${widget.todayDevotional.prayer}\n\nDownload app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
           );
 
 // if (result.status == ShareResultStatus.success) {
