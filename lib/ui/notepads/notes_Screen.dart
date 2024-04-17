@@ -61,7 +61,7 @@ if( _notesController.text.isNotEmpty || _titleController.text.isNotEmpty)
                 margin: EdgeInsets.only(right: 20),
                 child: Text(
                   'SAVE',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 18),
                 )),
           )
         ],

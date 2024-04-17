@@ -143,7 +143,7 @@ class _NotespadState extends State<Notespad> {
                           ),
                           child: Container(
                             padding: EdgeInsets.all(10),
-                            height: 90.0,
+                            height: 80.0,
                             margin: EdgeInsets.symmetric(
                               horizontal: 10.0,
                               vertical: 3.0,
@@ -159,7 +159,7 @@ class _NotespadState extends State<Notespad> {
                                 child: Align(alignment: Alignment.centerLeft,
                                   child: Text(maxLines:2,
                                     data[index].title,
-                                    style: TextStyle(fontSize: 20.0,),
+                                    style: TextStyle(fontSize: 18.0,),
                                   ),
                                 ),
                               ),

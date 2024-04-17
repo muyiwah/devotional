@@ -44,10 +44,10 @@ class _DevotionTodayState extends State<DevotionToday> {
       print(k.contains('1'));
     }
 
-    if (k.contains('14')) {
+    if (k.contains('-')) {
       print(k);
       k = k.split('–')[0];
-    } else if (y.contains(',')) {
+    } else if (k.contains(',')) {
       k = k.split(',')[0];
     } else {
       k = k;

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
 // import 'package:cloud_firestore/cloud_firestore.dart';
@@ -175,7 +176,7 @@ class _MyWidgetState extends State<MyWidget> {
                           maxLines: 3,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16,
+                            fontSize: Platform.isAndroid? 16:17,
                           ),
                         ),
                         Container(
@@ -246,7 +247,7 @@ class _MyWidgetState extends State<MyWidget> {
                           Text(
                             DailyVerse().verses[ran].verse,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(color: Colors.white, fontSize: 17),
+                            style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                           Text(
                             DailyVerse().verses[ran].ref,

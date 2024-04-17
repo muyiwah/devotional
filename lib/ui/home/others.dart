@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -68,8 +69,9 @@ initState(){
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-           Expanded(child: SizedBox.shrink()),
-            Expanded(flex: 2,
+           Expanded(flex: 2,
+            child: SizedBox.shrink()),
+            Expanded(flex: 3,
               child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
@@ -117,11 +119,11 @@ initState(){
                               children: [
                                 Text(
                                   'Word clinic',
-                                  style: TextStyle(fontSize: 20, color: Colors.white),
+                                  style: TextStyle(fontSize:Platform.isAndroid? 18:20, color: Colors.white),
                                 ),
                                 Text(textAlign:TextAlign.center,
                                   'Check all avaailable word clinic',
-                                  style: TextStyle(fontSize: 16, color: Colors.white),
+                                  style: TextStyle(fontSize:Platform.isAndroid?  16:18, color: Colors.white),
                                 ),
                               ],
                             ),
@@ -176,12 +178,12 @@ initState(){
                         children: [
                           Text(
                             'Devotionals',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            style: TextStyle(fontSize:Platform.isAndroid?  18:20, color: Colors.white),
                           ),
                           Text(
                             textAlign: TextAlign.center,
                             'Check all available devotionals',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                            style: TextStyle(fontSize:Platform.isAndroid?  16:18, color: Colors.white),
                           ),
                         ],
                       ),
@@ -234,18 +236,18 @@ initState(){
                         children: [
                           Text(
                             'Marked Scriptures',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            style: TextStyle(fontSize:Platform.isAndroid?  18:20, color: Colors.white),
                           ),
-                          Text(
-                            '',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
-                          ),
+                          // Text(
+                          //   '',
+                          //   style: TextStyle(fontSize: 18, color: Colors.white),
+                          // ),
                        data.isNotEmpty?   Text(textAlign:TextAlign.center,
                             'Check all ${data.length} marked scriptures',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                            style: TextStyle(fontSize:Platform.isAndroid?  16:18, color: Colors.white),
                           ): Text(textAlign:TextAlign.center,
                             'No marked scriptures available',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                            style: TextStyle(fontSize: Platform.isAndroid? 16:18, color: Colors.white),
                           ),
                         ],
                       ),
