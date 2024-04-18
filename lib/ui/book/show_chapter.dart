@@ -36,6 +36,7 @@ class _ShowChapterState extends State<ShowChapter> {
     });
   }
 
+  bool kjv = true;
   List chapterVerses2 = [];
   String selectedScripture = "";
   final ItemScrollController itemScrollController = ItemScrollController();
@@ -150,6 +151,36 @@ class _ShowChapterState extends State<ShowChapter> {
             style: TextStyle(fontSize: 18),
           ),
           centerTitle: true,
+          actions: [
+            Center(
+              child: InkWell(
+                onTap: () => setState(() {
+           kjv=true;     
+                  
+                }),
+                child: Container(
+                    margin: EdgeInsets.only(right: 10),
+                    padding: EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                        color: kjv ? Colors.blue : Colors.grey,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Text('KJV')),
+              ),
+            ),
+            Center(
+              child: InkWell(onTap: () => setState(() {
+           kjv=false;     
+              }),
+                child: Container(
+                    margin: EdgeInsets.only(right: 10),
+                    padding: EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                        color: kjv ? Colors.grey : Colors.blue,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Text('ASV')),
+              ),
+            ),
+          ],
         ),
         body: FloatingOverlay(
             controller: controller,
@@ -306,7 +337,8 @@ class _ShowChapterState extends State<ShowChapter> {
                             .then((_) {
                           ScaffoldMessenger.of(context)
                             ..removeCurrentSnackBar()
-                            ..showSnackBar(SnackBar(duration: Duration(milliseconds: 1500),
+                            ..showSnackBar(SnackBar(
+                                duration: Duration(milliseconds: 1500),
                                 backgroundColor: Colors.green.withOpacity(.9),
                                 behavior: SnackBarBehavior.floating,
                                 margin: EdgeInsets.only(
@@ -314,27 +346,34 @@ class _ShowChapterState extends State<ShowChapter> {
                                         MediaQuery.of(context).size.height * .2,
                                     left: 10,
                                     right: 10),
-                                content: Center(child: Text("${widget.bookName} ${widget.chapter}:${selectedIndex + 1} copied to clipboard"))));
+                                content: Center(
+                                    child: Text(
+                                        "${widget.bookName} ${widget.chapter}:${selectedIndex + 1} copied to clipboard"))));
                         });
                       },
                       child: Container(
-                        alignment: Alignment.center,
-                        color: Colors.yellow,
-                        height: 50,
-                        width: 60,
-                        child: Icon(Icons.copy_rounded)
-                      ),
+                          alignment: Alignment.center,
+                          color: Colors.yellow,
+                          height: 50,
+                          width: 60,
+                          child: Icon(Icons.copy_rounded)),
                     ),
                   ),
                 ),
               ],
             ),
             child: Consumer<BibleModel>(builder: (context, bibleModel, child) {
-              List chapterVerses = bibleModel.bible
-                  .where((bibleData) =>
-                      (bibleData.book == widget.bookName) &&
-                      (bibleData.chapter == widget.chapter))
-                  .toList();
+              List chapterVerses = kjv
+                  ? bibleModel.bible
+                      .where((bibleData) =>
+                          (bibleData.book == widget.bookName) &&
+                          (bibleData.chapter == widget.chapter))
+                      .toList()
+                  : bibleModel.bibleAsv
+                      .where((bibleData) =>
+                          (bibleData.book == widget.bookName) &&
+                          (bibleData.chapter == widget.chapter))
+                      .toList();
               chapterVerses2 = chapterVerses;
               return ScrollablePositionedList.builder(
                   itemScrollController: itemScrollController,

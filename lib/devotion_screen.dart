@@ -140,6 +140,9 @@ thisDay=newDate.day;
     if (bibleProvider.bible.isEmpty) {
       bibleProvider.getBibleText();
     }
+    if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getAsvText();
+    }
     return CustomFloatingActionButton(
       body: Scaffold(
         appBar: AppBar(

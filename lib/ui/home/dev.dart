@@ -69,10 +69,10 @@ class _MyWidgetState extends State<MyWidget> {
         await Provider.of<BibleModel>(context, listen: false).getDevotional();
     todayDevotional =
         (allDevotional.firstWhere((element) => element.date == refineDate()));
-    print('weekday is $df');
-    print('date is $dfd');
-    print(    jsonEncode(todayDevotional) 
-);
+//     print('weekday is $df');
+//     print('date is $dfd');
+//     print(    jsonEncode(todayDevotional) 
+// );
 
     setState(() {});
   }

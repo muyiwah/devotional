@@ -10,15 +10,18 @@ class BibleModel extends ChangeNotifier {
   final String path = 'assets/bibleJson/';
   Repository _repository = Repository();
   List _bible = [];
+  List _bibleAsv = [];
   List<BibleBookWithChapters> _oldTestamentBooks = [];
   List<BibleBookWithChapters> _newTestamentBooks = [];
   List _chaptersPerBook = [];
 
   List get bible => _bible;
+  List get bibleAsv => _bibleAsv;
   List get oldTestamentBooks => _oldTestamentBooks;
   List get newTestamentBooks => _newTestamentBooks;
   List get chaptersPerBook => _chaptersPerBook;
   List<Bible> searchData = [];
+  List<Bible> searchDataAsv = [];
   List<Bible> searchResult = [];
   Future getBibleText() async {
     List bibleText =[];
@@ -35,9 +38,23 @@ class BibleModel extends ChangeNotifier {
     notifyListeners();
   }
 
+Future getAsvText() async {
+    List bibleText =[];
+
+    await _repository.getBible(path + 'asv.json').then((bibleData) {
+      var decodedJson = jsonDecode(bibleData);
+      // searchData = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      bibleText = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      print(bibleText.length);print('yepeeeeeeee');
+      _bibleAsv = bibleText;
+     for(int x=0;bibleText.length>x;x++){
+      searchDataAsv.add(bibleText[x]);
+     }
+    });
+    notifyListeners();
+  }
   List<Bible> search(data) {
 
-    print('herer');
     searchResult.clear();
     for (int x = 0; searchData.length > x; x++) {
       if (searchData[x].text.toLowerCase().contains(data)) {

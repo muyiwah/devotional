@@ -36,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
     if (bibleProvider.bible.isEmpty) {
       bibleProvider.getBibleText();
     }
-
+ if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getAsvText();
+    }
     return Scaffold(
       body: SafeArea(
         child: Padding(

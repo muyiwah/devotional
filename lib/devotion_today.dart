@@ -131,7 +131,10 @@ class _DevotionTodayState extends State<DevotionToday> {
     }
     if (bibleProvider.bible.isEmpty) {
       bibleProvider.getBibleText();
+    } if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getAsvText();
     }
+    
     return Scaffold(
       body: Container(
         child: CustomScrollView(

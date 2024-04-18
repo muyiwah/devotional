@@ -109,7 +109,10 @@ class _DashboardState extends State<Dashboard> {
     }
     if (bibleProvider.bible.isEmpty) {
       bibleProvider.getBibleText();
-    }  return Scaffold(
+    } 
+     if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getAsvText();
+    } return Scaffold(
       body: screen[selected],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
