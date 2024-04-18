@@ -5,6 +5,7 @@ import 'dart:math';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mivdevotional/core/model/devorion_model.dart';
 import 'package:mivdevotional/core/model/word_clinic.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
@@ -15,6 +16,7 @@ import 'package:mivdevotional/ui/home/dailyverse_full.dart';
 import 'package:mivdevotional/ui/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:typewritertext/typewritertext.dart';
 // import 'package:firebase_database/firebase_database.dart';
 
 
@@ -171,13 +173,16 @@ class _MyWidgetState extends State<MyWidget> {
                               fontSize: 18,
                               fontWeight: FontWeight.w700),
                         ),
-                        Text(
-                          todayDevotional.text,
-                          maxLines: 3,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: Platform.isAndroid? 16:17,
+                        TypeWriterText(
+                          text: Text(
+                            todayDevotional.text,
+                            maxLines: 3,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: Platform.isAndroid? 16:17,
+                            ),
                           ),
+                           duration: Duration(milliseconds: 50)
                         ),
                         Container(
                           width: double.infinity,
@@ -199,7 +204,7 @@ class _MyWidgetState extends State<MyWidget> {
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500),
-                          ),
+                          ).animate().fadeIn(delay: Duration(seconds: 4),duration: Duration(seconds: 3)),
                         ),
                       ],
                     )),
@@ -270,8 +275,11 @@ class _MyWidgetState extends State<MyWidget> {
                   ],
                 ),
               ),
-            ),
-          ],
+            ).animate().fadeIn(duration: Duration(seconds: 3)).slide(
+                      duration: Duration(seconds: 2),
+                      begin: Offset(0, 0.5),
+                      curve: Curves.easeInOut),
+     ],
         ),
       ),
     );

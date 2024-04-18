@@ -24,7 +24,7 @@ initState(){
 }
    List<SaveColor> data = [];
   List<SaveColor> data2 = [];
-  getColouredVerses() async {print('GETIIIIIING VERESESESESE');
+  getColouredVerses() async {
     data.clear();
     data2.clear();
 

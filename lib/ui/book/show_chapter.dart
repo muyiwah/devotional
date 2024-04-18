@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/services.dart';
 import 'package:mivdevotional/core/model/bible.model.dart';
 import 'package:mivdevotional/core/model/save_color.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
@@ -35,6 +36,7 @@ class _ShowChapterState extends State<ShowChapter> {
     });
   }
 
+  List chapterVerses2 = [];
   String selectedScripture = "";
   final ItemScrollController itemScrollController = ItemScrollController();
   final ScrollOffsetController scrollOffsetController =
@@ -271,7 +273,8 @@ class _ShowChapterState extends State<ShowChapter> {
                         controller.hide();
                         savePrefColor(selectedIndex, 'white');
                       },
-                      child: Container(alignment: Alignment.center,
+                      child: Container(
+                        alignment: Alignment.center,
                         color: Colors.white,
                         height: 50,
                         width: 60,
@@ -279,6 +282,47 @@ class _ShowChapterState extends State<ShowChapter> {
                           'clear',
                           style: TextStyle(color: Colors.black),
                         ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 3),
+                  height: 50,
+                  width: 60,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Material(
+                    child: InkWell(
+                      onTap: () {
+                        Clipboard.setData(ClipboardData(
+                                text:
+                                    '${chapterVerses2[selectedIndex].text} ${widget.bookName} ${widget.chapter}:${selectedIndex + 1}'))
+                            .then((_) {
+                          ScaffoldMessenger.of(context)
+                            ..removeCurrentSnackBar()
+                            ..showSnackBar(SnackBar(duration: Duration(milliseconds: 1500),
+                                backgroundColor: Colors.green.withOpacity(.9),
+                                behavior: SnackBarBehavior.floating,
+                                margin: EdgeInsets.only(
+                                    bottom:
+                                        MediaQuery.of(context).size.height * .2,
+                                    left: 10,
+                                    right: 10),
+                                content: Center(child: Text("${widget.bookName} ${widget.chapter}:${selectedIndex + 1} copied to clipboard"))));
+                        });
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        color: Colors.yellow,
+                        height: 50,
+                        width: 60,
+                        child: Icon(Icons.copy_rounded)
                       ),
                     ),
                   ),
@@ -291,7 +335,7 @@ class _ShowChapterState extends State<ShowChapter> {
                       (bibleData.book == widget.bookName) &&
                       (bibleData.chapter == widget.chapter))
                   .toList();
-
+              chapterVerses2 = chapterVerses;
               return ScrollablePositionedList.builder(
                   itemScrollController: itemScrollController,
                   scrollOffsetController: scrollOffsetController,
