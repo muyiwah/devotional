@@ -10,7 +10,7 @@ class ShowTestamentBooks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Config.screenHeight * 80,
+      height: Config.screenHeight * 72.5,
       child: ListView.builder(
           physics: BouncingScrollPhysics(),
           itemCount: books.length,

@@ -69,69 +69,69 @@ initState(){
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-           Expanded(flex: 2,
+           Expanded(flex: 5,
             child: SizedBox.shrink()),
             Expanded(flex: 3,
               child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 4),
-                    height: 100,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                    boxShadow: [
-                          BoxShadow(
-                              color: Colors.black,
-                              offset: Offset(
-                                -2,
-                                2,
-                              ),
-                              blurRadius: 1,
-                              spreadRadius: 1)
-                        ],    gradient: LinearGradient(colors: const [
-                          Color.fromARGB(246, 1, 32, 206),
-                          Color.fromARGB(255, 155, 118, 167),
-                        ], begin: Alignment.topRight, end: Alignment.bottomLeft),
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.amber),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: double.infinity,
-                          margin: EdgeInsets.all(3),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.red),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.asset('assets/images/2.jpeg')),
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        InkWell(onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>WordClinicPage())).then((value) => getColouredVerses()),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 4),
-                            width: MediaQuery.of(context).size.width - 200,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  'Word clinic',
-                                  style: TextStyle(fontSize:Platform.isAndroid? 18:20, color: Colors.white),
-                                ),
-                                Text(textAlign:TextAlign.center,
-                                  'Check all avaailable word clinic',
-                                  style: TextStyle(fontSize:Platform.isAndroid?  16:18, color: Colors.white),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   margin: EdgeInsets.symmetric(vertical: 4),
+                  //   height: 100,
+                  //   width: double.infinity,
+                  //   decoration: BoxDecoration(
+                  //   boxShadow: [
+                  //         BoxShadow(
+                  //             color: Colors.black,
+                  //             offset: Offset(
+                  //               -2,
+                  //               2,
+                  //             ),
+                  //             blurRadius: 1,
+                  //             spreadRadius: 1)
+                  //       ],    gradient: LinearGradient(colors: const [
+                  //         Color.fromARGB(246, 1, 32, 206),
+                  //         Color.fromARGB(255, 155, 118, 167),
+                  //       ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+                  //       borderRadius: BorderRadius.circular(12),
+                  //       color: Colors.amber),
+                  //   child: Row(
+                  //     children: [
+                  //       Container(
+                  //         height: double.infinity,
+                  //         margin: EdgeInsets.all(3),
+                  //         decoration: BoxDecoration(
+                  //             borderRadius: BorderRadius.circular(12),
+                  //             color: Colors.red),
+                  //         child: ClipRRect(
+                  //             borderRadius: BorderRadius.circular(12),
+                  //             child: Image.asset('assets/images/2.jpeg')),
+                  //       ),
+                  //       SizedBox(
+                  //         width: 4,
+                  //       ),
+                  //       InkWell(onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>WordClinicPage())).then((value) => getColouredVerses()),
+                  //         child: Container(
+                  //           padding: EdgeInsets.symmetric(vertical: 4),
+                  //           width: MediaQuery.of(context).size.width - 200,
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.center,
+                  //             mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //             children: [
+                  //               Text(
+                  //                 'Word clinic',
+                  //                 style: TextStyle(fontSize:Platform.isAndroid? 18:20, color: Colors.white),
+                  //               ),
+                  //               Text(textAlign:TextAlign.center,
+                  //                 'Check all avaailable word clinic',
+                  //                 style: TextStyle(fontSize:Platform.isAndroid?  16:18, color: Colors.white),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
                InkWell(
                 onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>DevorionScreen())).then((value) => getColouredVerses()),
                  child: Container(

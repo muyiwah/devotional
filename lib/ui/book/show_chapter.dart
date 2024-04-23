@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/services.dart';
 import 'package:mivdevotional/core/model/bible.model.dart';
 import 'package:mivdevotional/core/model/save_color.dart';
@@ -35,6 +36,8 @@ class _ShowChapterState extends State<ShowChapter> {
       if (widget.verse != -1) goToVerse();
     });
   }
+
+  String selection = 'Kjv';
 
   bool kjv = true;
   List chapterVerses2 = [];
@@ -91,8 +94,6 @@ class _ShowChapterState extends State<ShowChapter> {
       prefs.setString('savedColor', jsonEncode(dataList));
     }
     String d = prefs.getString('savedColor').toString();
-    print('//////////////////');
-    print(d);
     getColouredVerses();
   }
 
@@ -139,6 +140,17 @@ class _ShowChapterState extends State<ShowChapter> {
         curve: Curves.easeInOutCubic);
   }
 
+  List<String> _list = [
+    'Kjv',
+    'Niv',
+    'Nlt',
+    'Msg',
+    'Amp',
+    'Asv',
+    'Bishop',
+
+  ];
+
   @override
   Widget build(BuildContext context) {
     print('${widget.bookName}   ${widget.chapter}');
@@ -152,34 +164,62 @@ class _ShowChapterState extends State<ShowChapter> {
           ),
           centerTitle: true,
           actions: [
-            Center(
-              child: InkWell(
-                onTap: () => setState(() {
-           kjv=true;     
-                  
-                }),
-                child: Container(
-                    margin: EdgeInsets.only(right: 10),
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                        color: kjv ? Colors.blue : Colors.grey,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Text('KJV')),
+            Container(
+              width: 100,
+              margin: EdgeInsets.only(right: 20),
+              child: CustomDropdown<String>(maxlines: 2,
+                closedHeaderPadding: EdgeInsets.all(10),
+                decoration: CustomDropdownDecoration(
+                    hintStyle: TextStyle(color: Colors.blue),
+                    closedFillColor: Colors.blue,
+                    listItemStyle: TextStyle(color: Colors.blue, fontSize: 17)),
+                hintText: '',
+                items: _list,
+                initialItem: _list[0],
+                onChanged: (value) {
+              controller.hide();
+              print(value);
+                  selection = value;
+                  setState(() {});
+                },
               ),
-            ),
-            Center(
-              child: InkWell(onTap: () => setState(() {
-           kjv=false;     
-              }),
-                child: Container(
-                    margin: EdgeInsets.only(right: 10),
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                        color: kjv ? Colors.grey : Colors.blue,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Text('ASV')),
-              ),
-            ),
+            )
+            // Container(width: 50,
+            //   child: DropdownButton(
+            //       isExpanded: true,
+            //        value: selection,
+            //       items: [
+            //         DropdownMenuItem(
+            //           child: Text('Kjv'),
+            //           value: 'Kjv',
+            //         ),
+            //         DropdownMenuItem(
+            //           child: Text('Niv'),
+            //           value: 'Niv', 
+            //         ),
+            //         DropdownMenuItem(
+            //           child: Text('Nlt'),
+            //           value: 'Nlt',
+            //         ),
+            //       DropdownMenuItem(
+            //           child: Text('Amp'),
+            //           value: 'Amp',
+            //         ), DropdownMenuItem(
+            //           child: Text('Msg'),
+            //           value: 'Msg',
+            //         ), DropdownMenuItem(
+            //           child: Text('Nasb'),
+            //           value: 'Nasb',
+            //         ),
+            //         DropdownMenuItem(
+            //           child: Text('Bishop'),
+            //           value: 'Bishop',
+            //         ),  ],
+            //       onChanged: (value) {
+            //         selection = value!;
+            //      if(mounted)    setState(() {});
+            //       }),
+            // ),
           ],
         ),
         body: FloatingOverlay(
@@ -331,6 +371,8 @@ class _ShowChapterState extends State<ShowChapter> {
                   child: Material(
                     child: InkWell(
                       onTap: () {
+                        controller.hide();
+
                         Clipboard.setData(ClipboardData(
                                 text:
                                     '${chapterVerses2[selectedIndex].text} ${widget.bookName} ${widget.chapter}:${selectedIndex + 1}'))
@@ -363,17 +405,51 @@ class _ShowChapterState extends State<ShowChapter> {
               ],
             ),
             child: Consumer<BibleModel>(builder: (context, bibleModel, child) {
-              List chapterVerses = kjv
+              List chapterVerses = selection == 'Kjv'
                   ? bibleModel.bible
                       .where((bibleData) =>
                           (bibleData.book == widget.bookName) &&
                           (bibleData.chapter == widget.chapter))
                       .toList()
-                  : bibleModel.bibleAsv
-                      .where((bibleData) =>
-                          (bibleData.book == widget.bookName) &&
-                          (bibleData.chapter == widget.chapter))
-                      .toList();
+                  : selection == "Amp"
+                      ? bibleModel.bibleAmp
+                          .where((bibleData) =>
+                              (bibleData.book == widget.bookName) &&
+                              (bibleData.chapter == widget.chapter))
+                          .toList()
+                      : selection == "Niv"
+                          ? bibleModel.bibleNiv
+                              .where((bibleData) =>
+                                  (bibleData.book == widget.bookName) &&
+                                  (bibleData.chapter == widget.chapter))
+                              .toList()
+                          : selection == "Msg"
+                              ? bibleModel.bibleMsg
+                                  .where((bibleData) =>
+                                      (bibleData.book == widget.bookName) &&
+                                      (bibleData.chapter == widget.chapter))
+                                  .toList()
+                              : selection == "Bishop"
+                                  ? bibleModel.bibleBishop
+                                      .where((bibleData) =>
+                                          (bibleData.book == widget.bookName) &&
+                                          (bibleData.chapter == widget.chapter))
+                                      .toList()
+                                  : selection == "Nlt"
+                                      ? bibleModel.bibleNlt
+                                          .where((bibleData) =>
+                                              (bibleData.book ==
+                                                  widget.bookName) &&
+                                              (bibleData.chapter ==
+                                                  widget.chapter))
+                                          .toList()
+                                      : bibleModel.bibleAsv
+                                          .where((bibleData) =>
+                                              (bibleData.book ==
+                                                  widget.bookName) &&
+                                              (bibleData.chapter ==
+                                                  widget.chapter))
+                                          .toList();
               chapterVerses2 = chapterVerses;
               return ScrollablePositionedList.builder(
                   itemScrollController: itemScrollController,

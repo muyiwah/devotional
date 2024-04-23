@@ -11,12 +11,23 @@ class BibleModel extends ChangeNotifier {
   Repository _repository = Repository();
   List _bible = [];
   List _bibleAsv = [];
+  List _bibleNiv = [];
+  List _bibleNlt = [];
+  List _bibleMsg = [];
+  List _bibleAmp = [];
+  List _bibleBishop = [];
   List<BibleBookWithChapters> _oldTestamentBooks = [];
   List<BibleBookWithChapters> _newTestamentBooks = [];
   List _chaptersPerBook = [];
 
   List get bible => _bible;
   List get bibleAsv => _bibleAsv;
+  List get bibleNiv => _bibleNiv;
+  List get bibleNlt => _bibleNlt;
+  List get bibleMsg => _bibleMsg;
+  List get bibleAmp => _bibleAmp;
+  List get bibleBishop => _bibleBishop;
+
   List get oldTestamentBooks => _oldTestamentBooks;
   List get newTestamentBooks => _newTestamentBooks;
   List get chaptersPerBook => _chaptersPerBook;
@@ -45,14 +56,95 @@ Future getAsvText() async {
       var decodedJson = jsonDecode(bibleData);
       // searchData = decodedJson.map((row) => Bible.fromJson(row)).toList();
       bibleText = decodedJson.map((row) => Bible.fromJson(row)).toList();
-      print(bibleText.length);print('yepeeeeeeee');
       _bibleAsv = bibleText;
-     for(int x=0;bibleText.length>x;x++){
-      searchDataAsv.add(bibleText[x]);
-     }
+    //  for(int x=0;bibleText.length>x;x++){
+    //   searchDataAsv.add(bibleText[x]);
+    //  }
     });
     notifyListeners();
   }
+
+Future getAmpText() async {
+    List bibleText =[];
+
+    await _repository.getBible(path + 'amplified.json').then((bibleData) {
+      var decodedJson = jsonDecode(bibleData);
+      // searchData = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      bibleText = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      _bibleAmp = bibleText;
+    //  for(int x=0;bibleText.length>x;x++){
+    //   searchDataAsv.add(bibleText[x]);
+    //  }
+    });
+    notifyListeners();
+  }
+
+
+Future getNltText() async {
+    List bibleText =[];
+
+    await _repository.getBible(path + 'nlt.json').then((bibleData) {
+      var decodedJson = jsonDecode(bibleData);
+      // searchData = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      bibleText = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      // print(bibleText.length);
+      _bibleNlt = bibleText;
+    //  for(int x=0;bibleText.length>x;x++){
+    //   searchDataAsv.add(bibleText[x]);
+    //  }
+    });
+    notifyListeners();
+  }
+  
+  Future getNivText() async {
+    List bibleText =[];
+
+    await _repository.getBible(path + 'niv.json').then((bibleData) {
+      var decodedJson = jsonDecode(bibleData);
+      // searchData = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      bibleText = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      // print(bibleText.length);
+      _bibleNiv = bibleText;
+    //  for(int x=0;bibleText.length>x;x++){
+    //   searchDataAsv.add(bibleText[x]);
+    //  }
+    });
+    notifyListeners();
+  }
+  
+  Future getMsgText() async {
+    List bibleText =[];
+
+    await _repository.getBible(path + 'msgBible.json').then((bibleData) {
+      var decodedJson = jsonDecode(bibleData);
+      // searchData = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      bibleText = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      _bibleMsg = bibleText;
+    //  for(int x=0;bibleText.length>x;x++){
+    //   searchDataAsv.add(bibleText[x]);
+    //  }
+    });
+    notifyListeners();
+  }
+  
+  Future getBishopText() async {
+    List bibleText =[];
+
+    await _repository.getBible(path + 'bishop.json').then((bibleData) {
+      var decodedJson = jsonDecode(bibleData);
+      // searchData = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      bibleText = decodedJson.map((row) => Bible.fromJson(row)).toList();
+      _bibleBishop = bibleText;
+    //  for(int x=0;bibleText.length>x;x++){
+    //   searchDataAsv.add(bibleText[x]);
+    //  }
+    });
+    notifyListeners();
+  }
+
+
+
+
   List<Bible> search(data) {
 
     searchResult.clear();

@@ -547,7 +547,7 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                         curve: Curves.easeOutSine),
                                     child:  Icon(
                                       Icons.arrow_back_ios,
-                                     color: Colors.black.withOpacity(.7), size: 32,
+                                     color: Colors.black.withOpacity(.5), size: 32,
                                     ),
                                   ),
                                   const SizedBox(
@@ -559,7 +559,7 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                               const Duration(milliseconds: 500),
                                           curve: Curves.easeOutSine),
                                       child:  Icon(
-                                        Icons.arrow_forward_ios,color: Colors.black.withOpacity(.7),
+                                        Icons.arrow_forward_ios,color: Colors.black.withOpacity(.5),
                                         size: 32,
                                       )),
                                 ],

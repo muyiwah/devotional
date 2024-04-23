@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/services.dart';
 import 'package:mivdevotional/core/model/devorion_model.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/ui/book/daily_verse.dart';
@@ -29,7 +30,9 @@ class _DevotionTodayState extends State<DevotionToday> {
 
   int ran = Random().nextInt(3) + 5;
   String y = '';
-
+  bool thoughtFocused = false;
+  bool actionPlanFocused = false;
+  bool prayerFocused = false;
   int getChapter() {
     String k = '';
     print(widget.todayDevotional.reference);
@@ -131,10 +134,22 @@ class _DevotionTodayState extends State<DevotionToday> {
     }
     if (bibleProvider.bible.isEmpty) {
       bibleProvider.getBibleText();
-    } if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getAsvText();
     }
-    
+     if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getNivText();
+    }  if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getNltText();
+    }  if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getMsgText();
+    }  if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getBishopText();
+    }
+ if (bibleProvider.bibleAmp.isEmpty) {
+      bibleProvider.getAmpText();
+    }
     return Scaffold(
       body: Container(
         child: CustomScrollView(
@@ -248,73 +263,220 @@ class _DevotionTodayState extends State<DevotionToday> {
                                   height: 1.6),
                             ),
                           ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            widget.todayDevotional.text,
-                            style: TextStyle(
-                                fontSize: 16, color: Colors.black, height: 1.6),
+                        InkWell(
+                          onTap: () {
+                               actionPlanFocused = false;
+                                  thoughtFocused = false;
+                                  prayerFocused = false;
+                                  setState(() {
+                                    
+                                  });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SelectableText(
+                              widget.todayDevotional.text,
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.black, height: 1.6),
+                            ),
                           ),
                         ),
                         if (widget.todayDevotional.thought.isNotEmpty)
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: RichText(
-                                text: TextSpan(children: [
-                              TextSpan(
-                                  text: 'Thought of the day: ',
-                                  style: TextStyle(
-                                      color: Colors.black,
+                            child: InkWell(
+                              onTap: () {
+                                thoughtFocused = true;
+                                  actionPlanFocused = false;
+                           prayerFocused = false;
+                                setState(() {});
+                              },
+                              onTapCancel: () {
+                                thoughtFocused = false;
+                                  actionPlanFocused = false;
+                           prayerFocused = false;
+                                setState(() {});
+                              },
+                              onLongPress: () {
+                                actionPlanFocused = false;
+                                  thoughtFocused = true;
+                                  prayerFocused = false;setState(() {
+                                    
+                                  });
+                                Clipboard.setData(ClipboardData(
+                                        text: widget.todayDevotional.thought))
+                                    .then((_) {
+                                  ScaffoldMessenger.of(context)
+                                    ..removeCurrentSnackBar()
+                                    ..showSnackBar(SnackBar(
+                                        duration: Duration(milliseconds: 1500),
+                                        backgroundColor:
+                                            Colors.green.withOpacity(.9),
+                                        behavior: SnackBarBehavior.floating,
+                                        margin: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                .2,
+                                            left: 10,
+                                            right: 10),
+                                        content: Center(
+                                            child:
+                                                Text("copied to clipboard"))));
+                                });
+                              },
+                              child: RichText(
+                                  text: TextSpan(children: [
+                                TextSpan(
+                                    text: 'Thought of the day: ',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500)),
+                                TextSpan(
+                                    text: widget.todayDevotional.thought,
+                                    style: TextStyle(
+                                      backgroundColor: thoughtFocused
+                                          ? Colors.blue.withOpacity(.2)
+                                          : Colors.transparent,
+                                      height: 1.6,
+                                      color: Colors.black87,
                                       fontSize: 16,
-                                      fontWeight: FontWeight.w500)),
-                              TextSpan(
-                                  text: widget.todayDevotional.thought,
-                                  style: TextStyle(
-                                    height: 1.6,
-                                    color: Colors.black87,
-                                    fontSize: 16,
-                                  ))
-                            ])),
+                                    ))
+                              ])),
+                            ),
                           ),
                         if (widget.todayDevotional.action_plan.isNotEmpty)
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: RichText(
-                                text: TextSpan(children: [
-                              TextSpan(
-                                  text: 'Action Plan: ',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500)),
-                              TextSpan(
-                                  text: widget.todayDevotional.action_plan,
-                                  style: TextStyle(
-                                    height: 1.6,
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                  ))
-                            ])),
+                            child: InkWell(
+                              onLongPress: () {
+                              actionPlanFocused = true;
+                                  thoughtFocused = false;
+                                  prayerFocused = false;
+                                  setState(() {
+                                    
+                                  });  Clipboard.setData(ClipboardData(
+                                        text:
+                                            widget.todayDevotional.action_plan))
+                                    .then((_) {
+                                  ScaffoldMessenger.of(context)
+                                    ..removeCurrentSnackBar()
+                                    ..showSnackBar(SnackBar(
+                                        duration: Duration(milliseconds: 1500),
+                                        backgroundColor:
+                                            Colors.green.withOpacity(.9),
+                                        behavior: SnackBarBehavior.floating,
+                                        margin: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                .2,
+                                            left: 10,
+                                            right: 10),
+                                        content: Center(
+                                            child:
+                                                Text("copied to clipboard"))));
+                                });
+                              },
+                              child: InkWell(
+                                onTap: () {
+                                  actionPlanFocused = true;
+                           prayerFocused = false;
+                                  thoughtFocused = false;
+                                  setState(() {});
+                                },
+                                onTapCancel: () {
+                           prayerFocused = false;
+                                  actionPlanFocused = false;
+                                  thoughtFocused = false;
+                                  setState(() {});
+                                },
+                                child: RichText(
+                                    text: TextSpan(children: [
+                                  TextSpan(
+                                      text: 'Action Plan: ',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500)),
+                                  TextSpan(
+                                      text: widget.todayDevotional.action_plan,
+                                      style: TextStyle(
+                                        backgroundColor: actionPlanFocused
+                                            ? Colors.blue.withOpacity(.2)
+                                            : Colors.transparent,
+                                        height: 1.6,
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                      ))
+                                ])),
+                              ),
+                            ),
                           ),
                         if (widget.todayDevotional.prayer.isNotEmpty)
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: RichText(
-                                text: TextSpan(children: [
-                              TextSpan(
-                                  text: 'Prayer: ',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500)),
-                              TextSpan(
-                                  text: widget.todayDevotional.prayer,
-                                  style: TextStyle(
-                                    height: 1.6,
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                  ))
-                            ])),
+                          InkWell(
+                            onLongPress: () {
+
+                              actionPlanFocused = false;
+                                  thoughtFocused = false;
+                                  prayerFocused = true;setState(() {
+                                    
+                                  });
+                              Clipboard.setData(ClipboardData(
+                                      text: widget.todayDevotional.prayer))
+                                  .then((_) {
+                                ScaffoldMessenger.of(context)
+                                  ..removeCurrentSnackBar()
+                                  ..showSnackBar(SnackBar(
+                                      duration: Duration(milliseconds: 1500),
+                                      backgroundColor:
+                                          Colors.green.withOpacity(.9),
+                                      behavior: SnackBarBehavior.floating,
+                                      margin: EdgeInsets.only(
+                                          bottom: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .2,
+                                          left: 10,
+                                          right: 10),
+                                      content: Center(
+                                          child: Text("copied to clipboard"))));
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  prayerFocused = true;
+                                  actionPlanFocused = false;
+                                  thoughtFocused = false;
+                                  setState(() {});
+                                },
+                                onTapCancel: () {
+                                  actionPlanFocused = false;
+                                  thoughtFocused = false;
+                                  prayerFocused = false;
+                                  setState(() {});
+                                },
+                                child: RichText(
+                                    text: TextSpan(children: [
+                                  TextSpan(
+                                      text: 'Prayer: ',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500)),
+                                  TextSpan(
+                                      text: widget.todayDevotional.prayer,
+                                      style: TextStyle(backgroundColor: prayerFocused?Colors.blue.withOpacity(.2):Colors.transparent,
+                                        height: 1.6,
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                      ))
+                                ])),
+                              ),
+                            ),
                           ),
                       ],
                     ),
@@ -342,3 +504,4 @@ class _DevotionTodayState extends State<DevotionToday> {
     );
   }
 }
+

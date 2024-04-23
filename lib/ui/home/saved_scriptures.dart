@@ -110,7 +110,7 @@ class _SavedScripturesState extends State<SavedScriptures> {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     Text(
-                                      data[index].verse.toString(),
+                                     '${ data[index].verse+1}',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ],

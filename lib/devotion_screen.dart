@@ -143,6 +143,19 @@ thisDay=newDate.day;
     if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getAsvText();
     }
+      if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getNivText();
+    }  if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getNltText();
+    }  if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getMsgText();
+    }  if (bibleProvider.bibleAsv.isEmpty) {
+      bibleProvider.getBishopText();
+    }
+
+    if (bibleProvider.bibleAmp.isEmpty) {
+      bibleProvider.getAmpText();
+    }
     return CustomFloatingActionButton(
       body: Scaffold(
         appBar: AppBar(
