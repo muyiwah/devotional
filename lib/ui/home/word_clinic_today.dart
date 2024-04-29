@@ -437,7 +437,7 @@ String refineDate() {
           : Center(child: CircularProgressIndicator()),
     floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final result = await Share.share(
+          await Share.share(
             'Wordclinic Today\nThe Men of Issachar Vision\n\nTHEME        ${wordClinicToday.title}      ${wordClinicToday.date}\n\nTOPIC:        ${wordClinicToday.subtitle}\n\nTEXT        ${wordClinicToday.scriptures}\n\nMEMORY VERSE:  ${wordClinicToday.memoryVerse}\n\nOBJECTIVE: ${wordClinicToday.objective}\n\nINTRODUCTION\n${wordClinicToday.iNTRODUCTION}\n\nDISCUSSION\n${_discussion.mapIndexed((index, element) => '${'-'}'+element.title+'${element.scriptures.map((e) => e).toList() }'  +'\n').toList()}\n\nCONCLUSION\n${wordClinicToday.conclusion}\n\nDownload app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
           );
 

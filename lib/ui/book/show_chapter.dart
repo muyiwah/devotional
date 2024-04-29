@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:mivdevotional/core/model/bible.model.dart';
 import 'package:mivdevotional/core/model/save_color.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
@@ -32,11 +33,51 @@ class _ShowChapterState extends State<ShowChapter> {
     // TODO: implement initState
     super.initState();
     getColouredVerses();
+    initTts();
     Future.delayed(Duration(seconds: 1), () {
       if (widget.verse != -1) goToVerse();
     });
   }
 
+  String currentlyPlayingSentence = '';
+  FlutterTts _flutterTts = FlutterTts();
+  Map? _currentVoice;
+  List<Map> _voices = [];
+  int audioPlayIndex = 0;
+  int? _currentWordStart, _currentWordEnd;
+  List<String> _voicesString = ['Melina'];
+  initTts() {
+    _flutterTts.setProgressHandler((text, start, end, word) {
+      currentlyPlayingSentence = text;
+      setState(() {
+        _currentWordStart = start;
+        _currentWordEnd = end;
+      });
+    });
+    _flutterTts.getVoices.then((data) {
+      try {
+        _voicesString.clear();
+        _voices = List<Map>.from(data);
+        setState(() {
+          _voices.where((_voice) => _voice['name'].contains('en')).toList();
+          _voices.forEach(
+            (voi) => _voicesString.add(voi['name']),
+          );
+          print(_voicesString);
+          _currentVoice = _voices[14];
+          setVoice(_currentVoice!);
+        });
+      } catch (e) {
+        print(e);
+      }
+    });
+  }
+
+  setVoice(Map voice) {
+    _flutterTts.setVoice({'name': voice['name'], 'locale': voice['locale']});
+  }
+
+  List<String> allScripture = [];
   String selection = 'Kjv';
 
   bool kjv = true;
@@ -59,7 +100,6 @@ class _ShowChapterState extends State<ShowChapter> {
     constrained: true,
   );
   List<SaveColor> dataList = [];
-
   savePrefColor(verse, color) async {
     dataList.clear();
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -74,7 +114,6 @@ class _ShowChapterState extends State<ShowChapter> {
 
     if (notEmpty) {
       String d = prefs.getString('savedColor').toString();
-      // print((json.decode(d))[0]['title']);
       for (int x = 0; jsonDecode(d).length > x; x++) {
         dataList.add(SaveColor.fromJsonJson(jsonEncode(
             (json.decode(prefs.getString('savedColor').toString()))[x])));
@@ -109,12 +148,10 @@ class _ShowChapterState extends State<ShowChapter> {
     if (prefs.containsKey('savedColor')) {
       String d = prefs.getString('savedColor').toString();
       //  CustomsavedColorModel data= CustomsavedColorModel.fromJsonJson( prefs.getString('savedColor') as String);
-      //  print(data.cohortId);
       for (int x = 0; jsonDecode(d).length > x; x++) {
         data.add(SaveColor.fromJsonJson(jsonEncode(
             (json.decode(prefs.getString('savedColor').toString()))[x])));
       }
-      print(data);
       for (int y = 0; data.length > y; y++) {
         if (data[y].book == widget.bookName &&
             data[y].chapter == widget.chapter) {
@@ -123,8 +160,6 @@ class _ShowChapterState extends State<ShowChapter> {
         }
       }
 
-      print(data);
-      // print(data3);
       setState(() {});
     }
   }
@@ -133,7 +168,6 @@ class _ShowChapterState extends State<ShowChapter> {
       GlobalKey<AnimatedFloatingActionButtonState>();
 
   goToVerse() {
-    print(widget.verse);
     itemScrollController.scrollTo(
         index: widget.verse != 0 ? widget.verse - 1 : widget.verse,
         duration: Duration(seconds: 2),
@@ -148,387 +182,550 @@ class _ShowChapterState extends State<ShowChapter> {
     'Amp',
     'Asv',
     'Bishop',
-
   ];
 
   @override
   Widget build(BuildContext context) {
-    print('${widget.bookName}   ${widget.chapter}');
-
     return Scaffold(
-        appBar: AppBar(
-          leading: InkWell(child: back, onTap: () => Navigator.pop(context)),
-          title: Text(
-            '${widget.bookName}   ${widget.chapter}',
-            style: TextStyle(fontSize: 18),
+      appBar: AppBar(
+        leading: InkWell(child: back, onTap: () => Navigator.pop(context)),
+        title: Text(
+          '${widget.bookName}   ${widget.chapter}',
+          style: TextStyle(fontSize: 18),
+        ),
+        centerTitle: false,
+        actions: [
+          Container(
+            width: 100,
+            margin: EdgeInsets.only(right: 20),
+            child: CustomDropdown<String>(
+              maxlines: 2,
+              closedHeaderPadding: EdgeInsets.all(10),
+              decoration: CustomDropdownDecoration(
+                  hintStyle: TextStyle(color: Colors.blue),
+                  closedFillColor: Colors.blue,
+                  listItemStyle: TextStyle(color: Colors.blue, fontSize: 17)),
+              hintText: '',
+              items: _list,
+              initialItem: _list[0],
+              onChanged: (value) {
+                controller.hide();
+                selection = value;
+                setState(() {});
+              },
+            ),
           ),
-          centerTitle: true,
-          actions: [
+          if (_voicesString.isNotEmpty)
             Container(
               width: 100,
               margin: EdgeInsets.only(right: 20),
-              child: CustomDropdown<String>(maxlines: 2,
+              child: CustomDropdown<String>(
+                maxlines: 2,
                 closedHeaderPadding: EdgeInsets.all(10),
                 decoration: CustomDropdownDecoration(
                     hintStyle: TextStyle(color: Colors.blue),
                     closedFillColor: Colors.blue,
                     listItemStyle: TextStyle(color: Colors.blue, fontSize: 17)),
                 hintText: '',
-                items: _list,
-                initialItem: _list[0],
+                items: _voicesString,
+                initialItem: _voicesString[0],
                 onChanged: (value) {
-              controller.hide();
-              print(value);
-                  selection = value;
-                  setState(() {});
+                  controller.hide();
                 },
               ),
-            )
-            // Container(width: 50,
-            //   child: DropdownButton(
-            //       isExpanded: true,
-            //        value: selection,
-            //       items: [
-            //         DropdownMenuItem(
-            //           child: Text('Kjv'),
-            //           value: 'Kjv',
-            //         ),
-            //         DropdownMenuItem(
-            //           child: Text('Niv'),
-            //           value: 'Niv', 
-            //         ),
-            //         DropdownMenuItem(
-            //           child: Text('Nlt'),
-            //           value: 'Nlt',
-            //         ),
-            //       DropdownMenuItem(
-            //           child: Text('Amp'),
-            //           value: 'Amp',
-            //         ), DropdownMenuItem(
-            //           child: Text('Msg'),
-            //           value: 'Msg',
-            //         ), DropdownMenuItem(
-            //           child: Text('Nasb'),
-            //           value: 'Nasb',
-            //         ),
-            //         DropdownMenuItem(
-            //           child: Text('Bishop'),
-            //           value: 'Bishop',
-            //         ),  ],
-            //       onChanged: (value) {
-            //         selection = value!;
-            //      if(mounted)    setState(() {});
-            //       }),
-            // ),
+            ),
+          // Container(width: 50,
+          //   child: DropdownButton(
+          //       isExpanded: true,
+          //        value: selection,
+          //       items: [
+          //         DropdownMenuItem(
+          //           child: Text('Kjv'),
+          //           value: 'Kjv',
+          //         ),
+          //         DropdownMenuItem(
+          //           child: Text('Niv'),
+          //           value: 'Niv',
+          //         ),
+          //         DropdownMenuItem(
+          //           child: Text('Nlt'),
+          //           value: 'Nlt',
+          //         ),
+          //       DropdownMenuItem(
+          //           child: Text('Amp'),
+          //           value: 'Amp',
+          //         ), DropdownMenuItem(
+          //           child: Text('Msg'),
+          //           value: 'Msg',
+          //         ), DropdownMenuItem(
+          //           child: Text('Nasb'),
+          //           value: 'Nasb',
+          //         ),
+          //         DropdownMenuItem(
+          //           child: Text('Bishop'),
+          //           value: 'Bishop',
+          //         ),  ],
+          //       onChanged: (value) {
+          //         selection = value!;
+          //      if(mounted)    setState(() {});
+          //       }),
+          // ),
+        ],
+      ),
+      body: FloatingOverlay(
+          controller: controller,
+          floatingChild: Row(
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 3),
+                height: 50,
+                width: 60,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1.0,
+                  ),
+                ),
+                child: Material(
+                  child: InkWell(
+                    onTap: () {
+                      controller.hide();
+                      savePrefColor(selectedIndex, 'red');
+                    },
+                    child: Container(
+                      color: Colors.red,
+                      height: 50,
+                      width: 60,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 3),
+                height: 50,
+                width: 60,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1.0,
+                  ),
+                ),
+                child: Material(
+                  child: InkWell(
+                    onTap: () {
+                      controller.hide();
+                      savePrefColor(selectedIndex, 'blue');
+                    },
+                    child: Container(
+                      color: Colors.blue,
+                      height: 50,
+                      width: 60,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 3),
+                height: 50,
+                width: 60,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1.0,
+                  ),
+                ),
+                child: Material(
+                  child: InkWell(
+                    onTap: () {
+                      controller.hide();
+                      savePrefColor(selectedIndex, 'green');
+                    },
+                    child: Container(
+                      color: Colors.green,
+                      height: 50,
+                      width: 60,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 3),
+                height: 50,
+                width: 60,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1.0,
+                  ),
+                ),
+                child: Material(
+                  child: InkWell(
+                    onTap: () {
+                      controller.hide();
+                      savePrefColor(selectedIndex, 'purple');
+                      // tempSave(selectedIndex, 'purple');
+                    },
+                    child: Container(
+                      color: Colors.purple,
+                      height: 50,
+                      width: 60,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 3),
+                height: 50,
+                width: 60,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1.0,
+                  ),
+                ),
+                child: Material(
+                  child: InkWell(
+                    onTap: () {
+                      controller.hide();
+                      savePrefColor(selectedIndex, 'white');
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      color: Colors.white,
+                      height: 50,
+                      width: 60,
+                      child: Text(
+                        'clear',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 3),
+                height: 50,
+                width: 60,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1.0,
+                  ),
+                ),
+                child: Material(
+                  child: InkWell(
+                    onTap: () {
+                      controller.hide();
+
+                      Clipboard.setData(ClipboardData(
+                              text:
+                                  '${chapterVerses2[selectedIndex].text} ${widget.bookName} ${widget.chapter}:${selectedIndex + 1}'))
+                          .then((_) {
+                        ScaffoldMessenger.of(context)
+                          ..removeCurrentSnackBar()
+                          ..showSnackBar(SnackBar(
+                              duration: Duration(milliseconds: 1500),
+                              backgroundColor: Colors.green.withOpacity(.9),
+                              behavior: SnackBarBehavior.floating,
+                              margin: EdgeInsets.only(
+                                  bottom:
+                                      MediaQuery.of(context).size.height * .2,
+                                  left: 10,
+                                  right: 10),
+                              content: Center(
+                                  child: Text(
+                                      "${widget.bookName} ${widget.chapter}:${selectedIndex + 1} copied to clipboard"))));
+                      });
+                    },
+                    child: Container(
+                        alignment: Alignment.center,
+                        color: Colors.yellow,
+                        height: 50,
+                        width: 60,
+                        child: Icon(Icons.copy_rounded)),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          child: Consumer<BibleModel>(builder: (context, bibleModel, child) {
+            List chapterVerses = selection == 'Kjv'
+                ? bibleModel.bible
+                    .where((bibleData) =>
+                        (bibleData.book == widget.bookName) &&
+                        (bibleData.chapter == widget.chapter))
+                    .toList()
+                : selection == "Amp"
+                    ? bibleModel.bibleAmp
+                        .where((bibleData) =>
+                            (bibleData.book == widget.bookName) &&
+                            (bibleData.chapter == widget.chapter))
+                        .toList()
+                    : selection == "Niv"
+                        ? bibleModel.bibleNiv
+                            .where((bibleData) =>
+                                (bibleData.book == widget.bookName) &&
+                                (bibleData.chapter == widget.chapter))
+                            .toList()
+                        : selection == "Msg"
+                            ? bibleModel.bibleMsg
+                                .where((bibleData) =>
+                                    (bibleData.book == widget.bookName) &&
+                                    (bibleData.chapter == widget.chapter))
+                                .toList()
+                            : selection == "Bishop"
+                                ? bibleModel.bibleBishop
+                                    .where((bibleData) =>
+                                        (bibleData.book == widget.bookName) &&
+                                        (bibleData.chapter == widget.chapter))
+                                    .toList()
+                                : selection == "Nlt"
+                                    ? bibleModel.bibleNlt
+                                        .where((bibleData) =>
+                                            (bibleData.book ==
+                                                widget.bookName) &&
+                                            (bibleData.chapter ==
+                                                widget.chapter))
+                                        .toList()
+                                    : bibleModel.bibleAsv
+                                        .where((bibleData) =>
+                                            (bibleData.book ==
+                                                widget.bookName) &&
+                                            (bibleData.chapter ==
+                                                widget.chapter))
+                                        .toList();
+            chapterVerses2 = chapterVerses;
+            return ScrollablePositionedList.builder(
+                itemScrollController: itemScrollController,
+                scrollOffsetController: scrollOffsetController,
+                itemPositionsListener: itemPositionsListener,
+                scrollOffsetListener: scrollOffsetListener,
+                itemCount: chapterVerses.length,
+                itemBuilder: (BuildContext context, index) {
+                  Color color = Colors.transparent;
+                  if (data3.isNotEmpty && data3.contains(index)) {
+                    String my = data2[data3.indexOf(index)].color;
+                    if (my == 'red') {
+                      color = Colors.red;
+                    } else if (my == 'blue') {
+                      color = Colors.blue;
+                    } else if (my == 'purple') {
+                      color = Colors.purple;
+                    } else if (my == 'green') {
+                      color = Colors.green;
+                    } else if (my == 'white') {
+                      color = Colors.transparent;
+                    }
+                  }
+
+                  return InkWell(
+                    onLongPress: () {
+                      // _flutterTts.speak(chapterVerses[index].text);
+                    },
+                    onTap: () {
+                      controller.toggle();
+                      selected = true;
+                      setState(() {
+                        selectedIndex = index;
+                        selectedScripture = chapterVerses[index].text;
+                      });
+                    },
+                    child:
+                        //  Container(
+                        //   decoration: BoxDecoration(
+                        //     border: Border.all(
+                        //       color: (widget.verse != -1 &&
+                        //               widget.verse == index + 1)
+                        //           ? Colors.red.withOpacity(.3)
+                        //           : Colors.transparent,
+                        //     ),
+                        //     color: (selected &&
+                        //             index == selectedIndex &&
+                        //             color == Colors.transparent)
+                        //         ? Colors.blue.withOpacity(.3)
+                        //         : color,
+                        //   ),
+                        //   padding: const EdgeInsets.all(8.0),
+                        //   child: RichText(
+                        //     text: TextSpan(
+                        //       children: [
+                        //        TextSpan(
+                        //                 text:
+                        //                     '${chapterVerses[index].verse.toString()}. ',
+                        //                 style: TextStyle(color: Colors.black)),
+                        //         TextSpan(
+                        //           text:
+                        //               '${chapterVerses[index].text.toString()}',
+                        //           style: TextStyle(
+                        //               color: (color == Colors.purple ||
+                        //                       color == Colors.red ||
+                        //                       color == Colors.green ||
+                        //                       color == Colors.blue)
+                        //                   ? Colors.white
+                        //                   : Colors.black,
+                        //               fontSize: 16),
+                        //         ),
+
+                        //           TextSpan(
+                        //             text:
+                        //                 '${chapterVerses[index].text.toString().substring(_currentWordStart!, _currentWordEnd)}',
+                        //             style: TextStyle(
+                        //                 backgroundColor: Colors.yellow,
+                        //                 color: (color == Colors.purple ||
+                        //                         color == Colors.red ||
+                        //                         color == Colors.green ||
+                        //                         color == Colors.blue)
+                        //                     ? Colors.white
+                        //                     : Colors.black,
+                        //                 fontSize: 16),
+                        //           ),
+
+                        //           TextSpan(
+                        //             text:
+                        //                 '${chapterVerses[index].text.toString().substring(_currentWordEnd!)}',
+                        //             style: TextStyle(
+                        //                 color: (color == Colors.purple ||
+                        //                         color == Colors.red ||
+                        //                         color == Colors.green ||
+                        //                         color == Colors.blue)
+                        //                     ? Colors.white
+                        //                     : Colors.black,
+                        //                 fontSize: 16),
+                        //           ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
+                        Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color:
+                              (widget.verse != -1 && widget.verse == index + 1)
+                                  ? Colors.red.withOpacity(.3)
+                                  : Colors.transparent,
+                        ),
+                        color: (selected &&
+                                index == selectedIndex &&
+                                color == Colors.transparent)
+                            ? Colors.blue.withOpacity(.3)
+                            : color,
+                      ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                                text:
+                                    '${chapterVerses[index].verse.toString()}. ',
+                                style: TextStyle(color: Colors.black)),
+                            TextSpan(
+                              text: currentlyPlayingSentence ==
+                                      chapterVerses[index].text
+                                  ? '${chapterVerses[index].text.toString().substring(0, _currentWordStart)}'
+                                  : '${chapterVerses[index].text.toString()}',
+                              style: TextStyle(
+                                  color: (color == Colors.purple ||
+                                          color == Colors.red ||
+                                          color == Colors.green ||
+                                          color == Colors.blue)
+                                      ? Colors.white
+                                      : Colors.black,
+                                  fontSize: 16),
+                            ),
+                            if (_currentWordStart != null &&
+                                currentlyPlayingSentence ==
+                                    chapterVerses[index].text)
+                              TextSpan(
+                                text:
+                                    '${chapterVerses[index].text.toString().substring(_currentWordStart!, _currentWordEnd)}',
+                                style: TextStyle(
+                                    backgroundColor: Colors.yellow,
+                                    color: (color == Colors.purple ||
+                                            color == Colors.red ||
+                                            color == Colors.green ||
+                                            color == Colors.blue)
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontSize: 16),
+                              ),
+                            if (_currentWordEnd != null &&
+                                currentlyPlayingSentence ==
+                                    chapterVerses[index].text)
+                              TextSpan(
+                                text:
+                                    '${chapterVerses[index].text.toString().substring(_currentWordEnd!)}',
+                                style: TextStyle(
+                                    color: (color == Colors.purple ||
+                                            color == Colors.red ||
+                                            color == Colors.green ||
+                                            color == Colors.blue)
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontSize: 16),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                });
+          })),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            FloatingActionButton.small(
+                heroTag: '1',
+                child: Icon(
+                   (_currentWordStart != null &&_currentWordStart! !=0)? Icons.stop:Icons.volume_mute),
+                onPressed: () {
+                  // allScripture.clear();
+                  //     for (int x = 0; chapterVerses.length > x; x++) {
+                  //       _flutterTts.speak(chapterVerses[x].text);
+                  //       allScripture.add(chapterVerses[index].text);
+                  //       print(allScripture[x]);
+                  //       audioPlayIndex = x;
+                  //     };
+                  // print(_currentWordStart);
+                  if (_currentWordStart != null &&_currentWordStart! !=0) {
+                    _flutterTts.stop();_currentWordStart=0;setState(() {
+                      
+                    });
+                  } else {
+                    allScripture.clear();
+                    for (int x = 0; chapterVerses2.length > x; x++) {
+                      _flutterTts.speak(chapterVerses2[x].text);
+                      allScripture.add(chapterVerses2[x].text);
+                      // print(allScripture[x]);
+                      audioPlayIndex = x;
+                    }setState(() {
+                      
+                    });
+                  }
+                }),
+            FloatingActionButton(
+                heroTag: '2',
+                child: Icon(Icons.search),
+                onPressed: () {
+                  if (controller.isFloating) {
+                    controller.toggle();
+                  }
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => SearchScreen())));
+                }),
           ],
         ),
-        body: FloatingOverlay(
-            controller: controller,
-            floatingChild: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 3),
-                  height: 50,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    border: Border.all(
-                      color: Colors.black,
-                      width: 1.0,
-                    ),
-                  ),
-                  child: Material(
-                    child: InkWell(
-                      onTap: () {
-                        controller.hide();
-                        savePrefColor(selectedIndex, 'red');
-                      },
-                      child: Container(
-                        color: Colors.red,
-                        height: 50,
-                        width: 60,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 3),
-                  height: 50,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    border: Border.all(
-                      color: Colors.black,
-                      width: 1.0,
-                    ),
-                  ),
-                  child: Material(
-                    child: InkWell(
-                      onTap: () {
-                        controller.hide();
-                        savePrefColor(selectedIndex, 'blue');
-                      },
-                      child: Container(
-                        color: Colors.blue,
-                        height: 50,
-                        width: 60,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 3),
-                  height: 50,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    border: Border.all(
-                      color: Colors.black,
-                      width: 1.0,
-                    ),
-                  ),
-                  child: Material(
-                    child: InkWell(
-                      onTap: () {
-                        controller.hide();
-                        savePrefColor(selectedIndex, 'green');
-                      },
-                      child: Container(
-                        color: Colors.green,
-                        height: 50,
-                        width: 60,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 3),
-                  height: 50,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    border: Border.all(
-                      color: Colors.black,
-                      width: 1.0,
-                    ),
-                  ),
-                  child: Material(
-                    child: InkWell(
-                      onTap: () {
-                        controller.hide();
-                        savePrefColor(selectedIndex, 'purple');
-                        // tempSave(selectedIndex, 'purple');
-                      },
-                      child: Container(
-                        color: Colors.purple,
-                        height: 50,
-                        width: 60,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 3),
-                  height: 50,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    border: Border.all(
-                      color: Colors.black,
-                      width: 1.0,
-                    ),
-                  ),
-                  child: Material(
-                    child: InkWell(
-                      onTap: () {
-                        controller.hide();
-                        savePrefColor(selectedIndex, 'white');
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        color: Colors.white,
-                        height: 50,
-                        width: 60,
-                        child: Text(
-                          'clear',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 3),
-                  height: 50,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    border: Border.all(
-                      color: Colors.black,
-                      width: 1.0,
-                    ),
-                  ),
-                  child: Material(
-                    child: InkWell(
-                      onTap: () {
-                        controller.hide();
-
-                        Clipboard.setData(ClipboardData(
-                                text:
-                                    '${chapterVerses2[selectedIndex].text} ${widget.bookName} ${widget.chapter}:${selectedIndex + 1}'))
-                            .then((_) {
-                          ScaffoldMessenger.of(context)
-                            ..removeCurrentSnackBar()
-                            ..showSnackBar(SnackBar(
-                                duration: Duration(milliseconds: 1500),
-                                backgroundColor: Colors.green.withOpacity(.9),
-                                behavior: SnackBarBehavior.floating,
-                                margin: EdgeInsets.only(
-                                    bottom:
-                                        MediaQuery.of(context).size.height * .2,
-                                    left: 10,
-                                    right: 10),
-                                content: Center(
-                                    child: Text(
-                                        "${widget.bookName} ${widget.chapter}:${selectedIndex + 1} copied to clipboard"))));
-                        });
-                      },
-                      child: Container(
-                          alignment: Alignment.center,
-                          color: Colors.yellow,
-                          height: 50,
-                          width: 60,
-                          child: Icon(Icons.copy_rounded)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            child: Consumer<BibleModel>(builder: (context, bibleModel, child) {
-              List chapterVerses = selection == 'Kjv'
-                  ? bibleModel.bible
-                      .where((bibleData) =>
-                          (bibleData.book == widget.bookName) &&
-                          (bibleData.chapter == widget.chapter))
-                      .toList()
-                  : selection == "Amp"
-                      ? bibleModel.bibleAmp
-                          .where((bibleData) =>
-                              (bibleData.book == widget.bookName) &&
-                              (bibleData.chapter == widget.chapter))
-                          .toList()
-                      : selection == "Niv"
-                          ? bibleModel.bibleNiv
-                              .where((bibleData) =>
-                                  (bibleData.book == widget.bookName) &&
-                                  (bibleData.chapter == widget.chapter))
-                              .toList()
-                          : selection == "Msg"
-                              ? bibleModel.bibleMsg
-                                  .where((bibleData) =>
-                                      (bibleData.book == widget.bookName) &&
-                                      (bibleData.chapter == widget.chapter))
-                                  .toList()
-                              : selection == "Bishop"
-                                  ? bibleModel.bibleBishop
-                                      .where((bibleData) =>
-                                          (bibleData.book == widget.bookName) &&
-                                          (bibleData.chapter == widget.chapter))
-                                      .toList()
-                                  : selection == "Nlt"
-                                      ? bibleModel.bibleNlt
-                                          .where((bibleData) =>
-                                              (bibleData.book ==
-                                                  widget.bookName) &&
-                                              (bibleData.chapter ==
-                                                  widget.chapter))
-                                          .toList()
-                                      : bibleModel.bibleAsv
-                                          .where((bibleData) =>
-                                              (bibleData.book ==
-                                                  widget.bookName) &&
-                                              (bibleData.chapter ==
-                                                  widget.chapter))
-                                          .toList();
-              chapterVerses2 = chapterVerses;
-              return ScrollablePositionedList.builder(
-                  itemScrollController: itemScrollController,
-                  scrollOffsetController: scrollOffsetController,
-                  itemPositionsListener: itemPositionsListener,
-                  scrollOffsetListener: scrollOffsetListener,
-                  itemCount: chapterVerses.length,
-                  itemBuilder: (BuildContext context, index) {
-                    Color color = Colors.transparent;
-                    if (data3.isNotEmpty && data3.contains(index)) {
-                      print(index);
-                      print(data3);
-                      print(data3.indexOf(index));
-                      // print(data2);
-                      String my = data2[data3.indexOf(index)].color;
-                      if (my == 'red') {
-                        color = Colors.red;
-                      } else if (my == 'blue') {
-                        color = Colors.blue;
-                      } else if (my == 'purple') {
-                        color = Colors.purple;
-                      } else if (my == 'green') {
-                        color = Colors.green;
-                      } else if (my == 'white') {
-                        color = Colors.transparent;
-                      }
-                    }
-                    return InkWell(
-                      onLongPress: () {
-                        // savePrefColor(index + 1, 'red');
-                      },
-                      onTap: () {
-                        controller.toggle();
-                        selected = true;
-                        setState(() {
-                          selectedIndex = index;
-                          selectedScripture = chapterVerses[index].text;
-                        });
-                        print(selectedScripture);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: (widget.verse != -1 &&
-                                    widget.verse == index + 1)
-                                ? Colors.red.withOpacity(.3)
-                                : Colors.transparent,
-                          ),
-                          color: (selected &&
-                                  index == selectedIndex &&
-                                  color == Colors.transparent)
-                              ? Colors.blue.withOpacity(.3)
-                              : color,
-                        ),
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '${chapterVerses[index].verse.toString()}. ${chapterVerses[index].text}',
-                          style: TextStyle(
-                              color: (color == Colors.purple ||
-                                      color == Colors.red ||
-                                      color == Colors.green ||
-                                      color == Colors.blue)
-                                  ? Colors.white
-                                  : Colors.black,
-                              fontSize: 16),
-                        ),
-                      ),
-                    );
-                  });
-            })),
-        floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.search),
-            onPressed: () {
-              if (controller.isFloating) {
-                controller.toggle();
-              }
-              Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => SearchScreen())));
-            }));
+      ),
+    );
     //       options: [
     //         InkWell(onTap: () {Navigator.push(context, MaterialPageRoute(builder:
     //         (context)=>SearchScreen()));},

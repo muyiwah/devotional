@@ -51,7 +51,8 @@ dependencies:
   typewritertext: ^3.0.2
   path_provider: ^2.0.2
   animated_custom_dropdown: ^3.0.0
-
+  flutter_tts: ^4.0.2
+  siri_wave: ^2.0.0+1
   
     
   # cloud_firestore: ^4.0.5 

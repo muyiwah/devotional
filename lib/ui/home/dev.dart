@@ -6,6 +6,7 @@ import 'dart:math';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:mivdevotional/core/model/devorion_model.dart';
 import 'package:mivdevotional/core/model/word_clinic.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
