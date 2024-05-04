@@ -4,6 +4,7 @@ import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:mivdevotional/core/model/bible.model.dart';
+import 'package:mivdevotional/core/model/reader_model.dart';
 import 'package:mivdevotional/core/model/save_color.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/ui/book/search_screen.dart';
@@ -20,8 +21,9 @@ class ShowChapter extends StatefulWidget {
   final String bookName;
   final int chapter;
   int verse;
+  final bool fromSearch;
 
-  ShowChapter({required this.bookName, required this.chapter, this.verse = -1});
+  ShowChapter({required this.bookName, required this.chapter, this.verse = -1, required  this.fromSearch});
 
   @override
   State<ShowChapter> createState() => _ShowChapterState();
@@ -34,11 +36,12 @@ class _ShowChapterState extends State<ShowChapter> {
     super.initState();
     getColouredVerses();
     initTts();
+    getSavedVoice();
     Future.delayed(Duration(seconds: 1), () {
       if (widget.verse != -1) goToVerse();
     });
   }
-
+ReaderModel _readerModel =ReaderModel(name: '', gender: '', identifier: '', locale: '');
   String currentlyPlayingSentence = '';
   FlutterTts _flutterTts = FlutterTts();
   Map? _currentVoice;
@@ -46,14 +49,35 @@ class _ShowChapterState extends State<ShowChapter> {
   int audioPlayIndex = 0;
   int? _currentWordStart, _currentWordEnd;
   List<String> _voicesString = ['Melina'];
-  initTts() {
+
+   void setVoiceN() {
+    _flutterTts.setVoice({'name':_readerModel.name, 'locale':_readerModel.locale});
+  }
+  initTts() async{
     _flutterTts.setProgressHandler((text, start, end, word) {
+      int x=0;
       currentlyPlayingSentence = text;
+     if(currentlyPlayingSentence.endsWith(word))
+    { x=(chapterVerses2.indexWhere((element) => element.text==currentlyPlayingSentence));
+      
+      if(x.isEven)
+     {  scollToVerse(x);}
+       }
       setState(() {
         _currentWordStart = start;
         _currentWordEnd = end;
+
       });
     });
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+       if (prefs.containsKey('savedReader')) {
+      String d = prefs.getString('savedReader').toString();
+ReaderModel _readerModel=ReaderModel.fromJsonJson( jsonEncode(jsonDecode(d)));
+ setVoiceN();
+       }
+
+       else{
     _flutterTts.getVoices.then((data) {
       try {
         _voicesString.clear();
@@ -63,19 +87,19 @@ class _ShowChapterState extends State<ShowChapter> {
           _voices.forEach(
             (voi) => _voicesString.add(voi['name']),
           );
-          print(_voicesString);
-          _currentVoice = _voices[14];
-          setVoice(_currentVoice!);
+          // print(_voicesString);
+          _currentVoice = _voices[8];
+          setVoice2();
         });
       } catch (e) {
         print(e);
       }
     });
+  }}
+setVoice2() {
+    _flutterTts.setVoice({'name':  _voices[8]['name'], 'locale':  _voices[8]['locale']});
   }
 
-  setVoice(Map voice) {
-    _flutterTts.setVoice({'name': voice['name'], 'locale': voice['locale']});
-  }
 
   List<String> allScripture = [];
   String selection = 'Kjv';
@@ -139,6 +163,17 @@ class _ShowChapterState extends State<ShowChapter> {
   List<SaveColor> data = [];
   List<SaveColor> data2 = [];
   List<int> data3 = [];
+
+  getSavedVoice()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+       if (prefs.containsKey('savedReader')) {
+      String d = prefs.getString('savedReader').toString();
+ReaderModel _readerModel=ReaderModel.fromJsonJson( jsonEncode(jsonDecode(d)));
+
+
+       }
+  }
   getColouredVerses() async {
     data.clear();
     data2.clear();
@@ -174,6 +209,12 @@ class _ShowChapterState extends State<ShowChapter> {
         curve: Curves.easeInOutCubic);
   }
 
+  scollToVerse(pos) {
+    itemScrollController.scrollTo(
+        index:pos,
+        duration: Duration(seconds: 2),
+        curve: Curves.easeInOutCubic);
+  }
   List<String> _list = [
     'Kjv',
     'Niv',
@@ -193,7 +234,7 @@ class _ShowChapterState extends State<ShowChapter> {
           '${widget.bookName}   ${widget.chapter}',
           style: TextStyle(fontSize: 18),
         ),
-        centerTitle: false,
+        centerTitle: true,
         actions: [
           Container(
             width: 100,
@@ -215,25 +256,25 @@ class _ShowChapterState extends State<ShowChapter> {
               },
             ),
           ),
-          if (_voicesString.isNotEmpty)
-            Container(
-              width: 100,
-              margin: EdgeInsets.only(right: 20),
-              child: CustomDropdown<String>(
-                maxlines: 2,
-                closedHeaderPadding: EdgeInsets.all(10),
-                decoration: CustomDropdownDecoration(
-                    hintStyle: TextStyle(color: Colors.blue),
-                    closedFillColor: Colors.blue,
-                    listItemStyle: TextStyle(color: Colors.blue, fontSize: 17)),
-                hintText: '',
-                items: _voicesString,
-                initialItem: _voicesString[0],
-                onChanged: (value) {
-                  controller.hide();
-                },
-              ),
-            ),
+          // if (_voicesString.isNotEmpty)
+          //   Container(
+          //     width: 100,
+          //     margin: EdgeInsets.only(right: 20),
+          //     child: CustomDropdown<String>(
+          //       maxlines: 2,
+          //       closedHeaderPadding: EdgeInsets.all(10),
+          //       decoration: CustomDropdownDecoration(
+          //           hintStyle: TextStyle(color: Colors.blue),
+          //           closedFillColor: Colors.blue,
+          //           listItemStyle: TextStyle(color: Colors.blue, fontSize: 17)),
+          //       hintText: '',
+          //       items: _voicesString,
+          //       initialItem: _voicesString[0],
+          //       onChanged: (value) {
+          //         controller.hide();
+          //       },
+          //     ),
+          //   ),
           // Container(width: 50,
           //   child: DropdownButton(
           //       isExpanded: true,
@@ -501,7 +542,7 @@ class _ShowChapterState extends State<ShowChapter> {
                                                 widget.chapter))
                                         .toList();
             chapterVerses2 = chapterVerses;
-            return ScrollablePositionedList.builder(
+            return ScrollablePositionedList.builder(   
                 itemScrollController: itemScrollController,
                 scrollOffsetController: scrollOffsetController,
                 itemPositionsListener: itemPositionsListener,
@@ -678,22 +719,15 @@ class _ShowChapterState extends State<ShowChapter> {
           })),
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Row(
+        child: widget.fromSearch==false?  Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            FloatingActionButton.small(
+          FloatingActionButton.small(
                 heroTag: '1',
                 child: Icon(
                    (_currentWordStart != null &&_currentWordStart! !=0)? Icons.stop:Icons.volume_mute),
                 onPressed: () {
-                  // allScripture.clear();
-                  //     for (int x = 0; chapterVerses.length > x; x++) {
-                  //       _flutterTts.speak(chapterVerses[x].text);
-                  //       allScripture.add(chapterVerses[index].text);
-                  //       print(allScripture[x]);
-                  //       audioPlayIndex = x;
-                  //     };
-                  // print(_currentWordStart);
+              
                   if (_currentWordStart != null &&_currentWordStart! !=0) {
                     _flutterTts.stop();_currentWordStart=0;setState(() {
                       
@@ -709,7 +743,7 @@ class _ShowChapterState extends State<ShowChapter> {
                       
                     });
                   }
-                }),
+                },),
             FloatingActionButton(
                 heroTag: '2',
                 child: Icon(Icons.search),
@@ -723,7 +757,7 @@ class _ShowChapterState extends State<ShowChapter> {
                           builder: ((context) => SearchScreen())));
                 }),
           ],
-        ),
+        ):SizedBox.shrink(),
       ),
     );
     //       options: [

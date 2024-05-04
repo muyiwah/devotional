@@ -204,7 +204,7 @@ thisDay=newDate.day;
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ShowChapter(
+                                          builder: (context) => ShowChapter(fromSearch: false,
                                               bookName: (allDevotional[index]
                                                           .reference
                                                           .startsWith('1') ||

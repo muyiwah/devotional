@@ -5,6 +5,7 @@ import 'package:mivdevotional/devotion_screen.dart';
 import 'package:mivdevotional/devotion_today.dart';
 import 'package:mivdevotional/ui/book/show_book.dart';
 import 'package:mivdevotional/ui/home/others.dart';
+import 'package:mivdevotional/ui/learningtool_create_event.dart';
 import 'package:mivdevotional/ui/notepads/notepad.dart';
 import 'package:mivdevotional/ui/notepads/notes_Screen.dart';
 import 'package:mivdevotional/ui/home/dev.dart';
@@ -91,12 +92,14 @@ class _DashboardState extends State<Dashboard> {
     MyWidget(),
     HomeScreen(),
     Notespad(),
-    WordClinicPage(),Others()
+    WordClinicPage(),
+    // Others(),
+    LearningToolCreateEvent()
   ];
   int selected = 0;
   @override
   Widget build(BuildContext context) {
-  var screenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(context).size;
     Config.setScreenSize(screenSize.height / 100, screenSize.width / 100);
 
     final bibleProvider = Provider.of<BibleModel>(context, listen: false);
@@ -109,23 +112,26 @@ class _DashboardState extends State<Dashboard> {
     }
     if (bibleProvider.bible.isEmpty) {
       bibleProvider.getBibleText();
-    } 
-     if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getAsvText();
     }
-     if (bibleProvider.bibleAsv.isEmpty) {
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getNivText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getNltText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getMsgText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getBishopText();
     }
-   if (bibleProvider.bibleAmp.isEmpty) {
+    if (bibleProvider.bibleAmp.isEmpty) {
       bibleProvider.getAmpText();
     }
-     return Scaffold(
+    return Scaffold(
       body: screen[selected],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
@@ -152,8 +158,9 @@ class _DashboardState extends State<Dashboard> {
               label: 'Notes', icon: Icon(Icons.message_rounded)),
           BottomNavigationBarItem(
               icon: Icon(Icons.library_books), label: "Word Clinic"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.menu), label: "Others"),
+          // BottomNavigationBarItem(
+          //     icon: Icon(Icons.menu), label: "Others"),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Others"),
         ],
       ),
     );

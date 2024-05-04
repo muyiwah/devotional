@@ -28,7 +28,7 @@ class ShowBook extends StatelessWidget {
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (_) => ShowChapter(
+                    builder: (_) => ShowChapter(fromSearch: false,
                           bookName: book.name,
                           chapter: index,
                         ))),

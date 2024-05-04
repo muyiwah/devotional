@@ -83,7 +83,7 @@ bool isSearched=false;
                         Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ShowChapter(bookName:result[index].book ,
+                                  builder: (context) => ShowChapter(bookName:result[index].book ,fromSearch:true,
                                   chapter: result[index].chapter,verse: result[index].verse,)));
                   },
                     child: Container(padding: EdgeInsets.all(8),

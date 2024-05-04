@@ -200,7 +200,7 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                             onTap: () => Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                    builder: (context) => ShowChapter(
+                                                    builder: (context) => ShowChapter(fromSearch: false,
                                                         bookName: (e.startsWith(
                                                                     '1') ||
                                                                 e.startsWith(
@@ -410,7 +410,8 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                                                               Navigator.push(
                                                                             context,
                                                                             MaterialPageRoute(
-                                                                              builder: (context) => ShowChapter(bookName: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? ('${e.split(' ')[0]} ${e.split(' ')[1]}') : e.split(' ')[0].toString(), chapter: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? int.parse(e.split(' ')[2].split(':')[0]) : int.parse(e.split(' ')[1].split(':')[0]), verse: int.parse(getVerse(e))),
+                                                                              builder: (context) => ShowChapter(fromSearch: false,
+                                                                                bookName: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? ('${e.split(' ')[0]} ${e.split(' ')[1]}') : e.split(' ')[0].toString(), chapter: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? int.parse(e.split(' ')[2].split(':')[0]) : int.parse(e.split(' ')[1].split(':')[0]), verse: int.parse(getVerse(e))),
                                                                             ),
                                                                           ),
                                                                           child:

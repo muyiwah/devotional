@@ -1,6 +1,4 @@
 PODS:
-  - audio_waveforms (0.0.1):
-    - Flutter
   - custom_floating_action_button (0.0.1):
     - Flutter
   - Flutter (1.0.0)
@@ -16,7 +14,6 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - audio_waveforms (from `.symlinks/plugins/audio_waveforms/ios`)
   - custom_floating_action_button (from `.symlinks/plugins/custom_floating_action_button/ios`)
   - Flutter (from `Flutter`)
   - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
@@ -25,8 +22,6 @@ DEPENDENCIES:
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
 
 EXTERNAL SOURCES:
-  audio_waveforms:
-    :path: ".symlinks/plugins/audio_waveforms/ios"
   custom_floating_action_button:
     :path: ".symlinks/plugins/custom_floating_action_button/ios"
   Flutter:
@@ -41,7 +36,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
 
 SPEC CHECKSUMS:
-  audio_waveforms: cd736909ebc6b6a164eb74701d8c705ce3241e1c
   custom_floating_action_button: d1676bb7a5380db43a9510dfa05c559d265e6c96
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_tts: 0f492aab6accf87059b72354fcb4ba934304771d
