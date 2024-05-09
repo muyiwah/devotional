@@ -7,8 +7,8 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:mivdevotional/core/model/devorion_model.dart';
-import 'package:mivdevotional/core/model/word_clinic.dart';
+import 'package:mivdevotional/model/devorion_model.dart';
+import 'package:mivdevotional/model/word_clinic.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/core/utility/get_week.dart';
 import 'package:mivdevotional/devotion_today.dart';
@@ -171,7 +171,7 @@ class _MyWidgetState extends State<MyWidget> {
                           todayDevotional.title,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 18,
+                              fontSize: 17,
                               fontWeight: FontWeight.w700),
                         ),
                         TypeWriterText(

@@ -1,10 +1,11 @@
-import 'package:mivdevotional/core/model/devorion_model.dart';
+import 'package:mivdevotional/model/devorion_model.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/core/utility/config.dart';
 import 'package:mivdevotional/devotion_screen.dart';
 import 'package:mivdevotional/devotion_today.dart';
 import 'package:mivdevotional/ui/book/show_book.dart';
 import 'package:mivdevotional/ui/home/others.dart';
+import 'package:mivdevotional/ui/home/tts.dart';
 import 'package:mivdevotional/ui/learningtool_create_event.dart';
 import 'package:mivdevotional/ui/notepads/notepad.dart';
 import 'package:mivdevotional/ui/notepads/notes_Screen.dart';
@@ -94,6 +95,7 @@ class _DashboardState extends State<Dashboard> {
     Notespad(),
     WordClinicPage(),
     // Others(),
+    // MyApp2(),
     LearningToolCreateEvent()
   ];
   int selected = 0;
@@ -130,6 +132,16 @@ class _DashboardState extends State<Dashboard> {
     }
     if (bibleProvider.bibleAmp.isEmpty) {
       bibleProvider.getAmpText();
+    }
+       if (bibleProvider.bibleRsv.isEmpty) {
+      bibleProvider.getRsvText();
+    }
+
+    if (bibleProvider.bibleBbe.isEmpty) {
+      bibleProvider.getBbeText();
+    }
+    if (bibleProvider.bibleDby.isEmpty) {
+      bibleProvider.getDbyText();
     }
     return Scaffold(
       body: screen[selected],

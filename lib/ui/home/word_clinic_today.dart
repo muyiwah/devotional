@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mivdevotional/core/model/word_clinic.dart';
+import 'package:mivdevotional/model/word_clinic.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/core/utility/config.dart';
 import 'package:mivdevotional/core/utility/get_week.dart';

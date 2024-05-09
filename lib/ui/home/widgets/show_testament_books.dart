@@ -1,4 +1,4 @@
-import 'package:mivdevotional/core/model/bible.model.dart';
+import 'package:mivdevotional/model/bible.model.dart';
 import 'package:mivdevotional/core/utility/config.dart';
 import 'package:mivdevotional/ui/book/show_book.dart';
 import 'package:flutter/material.dart';

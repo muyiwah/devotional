@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:mivdevotional/core/model/reader_model.dart';
-import 'package:mivdevotional/core/model/save_color.dart';
+import 'package:mivdevotional/model/reader_model.dart';
+import 'package:mivdevotional/model/save_color.dart';
 import 'package:mivdevotional/devotion_screen.dart';
+import 'package:mivdevotional/model/voiceSettings.dart';
 import 'package:mivdevotional/ui/home/saved_scriptures.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,9 +24,41 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
     // TODO: implement initState
     super.initState();
     initTts();
+    if (Platform.isAndroid) {
+      _getDefaultEngine();
+      _getDefaultVoice();
+    }
   }
 
+ 
+  bool sundaySelected = true;
+  bool mondaySelected = true;
+  bool tuesdaySelected = true;
+  bool wednesdaySelected = true;
+  bool thursdaySelected = true;
+  bool fridaySelected = true;
+  bool saturdayelected = true;
+
+  VoiceSettings _voiceSettings = VoiceSettings(volume: .5, rate: .5, pitch: .5);
+  double volume = 0.5;
+  double pitch = 1.0;
+  double rate = 0.5;
+  double freqheight = 0;
+Future<void> _getDefaultEngine() async {
+    var engine = await _flutterTts.getDefaultEngine;
+    if (engine != null) {
+      print(engine);
+    }
+  }
+
+  Future<void> _getDefaultVoice() async {
+    var voice = await _flutterTts.getDefaultVoice;
+    if (voice != null) {
+      print(voice);
+    }
+  }
   String selectedReader = "Karen";
+  String selectedReaderAndroid = "en-gb-x-gba-network";
 
   int? _currentWordStart, _currentWordEnd;
   String _currentlyPlayingSentence = '';
@@ -35,15 +68,19 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
   FlutterTts _flutterTts = FlutterTts();
   Map? _currentVoice;
   List<ReaderModel> readerDesc = [];
-  ReaderModel _readerModel =
-      ReaderModel(name: '', gender: '', identifier: '', locale: '');
-double readerHeight=0;
+  ReaderModel _readerModel = ReaderModel(
+    name: '',
+    gender: '',
+    identifier: '',
+    locale: '',
+  );
+  double readerHeight = 0;
   ReaderModel myReader =
       ReaderModel(name: 'dd', gender: '', identifier: '', locale: '');
   List<String> _voicesString = [];
   initTts() async {
     readerDesc.clear();
-  getColouredVerses();
+    getColouredVerses();
 
     _flutterTts.setProgressHandler((text, start, end, word) {
       _currentlyPlayingSentence = text;
@@ -62,46 +99,93 @@ double readerHeight=0;
       setState(() {});
     }
 
-    _flutterTts.getVoices.then((data) {
-      try {
-        _voicesString.clear();
-        _voices = List<Map>.from(data);
-        setState(() {
-          _voices = _voices
-              .where((_voice) => _voice['locale'].contains('en'))
-              .toList();
-          _voices = _voices
-              .where((voice) =>
-                  voice['name'] != 'Trinoids' &&
-                  voice['name'] != 'Albert' &&
-                  voice['name'] != 'Jester' &&
-                  voice['name'] != 'Whisper' &&
-                  voice['name'] != 'Superstar' &&
-                  voice['name'] != 'Bells' &&
-                  voice['name'] != 'Bad News' &&
-                  voice['name'] != 'Bubbles' &&
-                  voice['name'] != 'Bahh' &&
-                  voice['name'] != 'Junior' &&
-                  voice['name'] != 'Wobble' &&
-                  voice['name'] != 'Zarvox' &&
-                  voice['name'] != 'Boing')
-              .toList();
-          // _voices.forEach(
-          //   (voi) => _voicesString.add(voi['name']),
-          // );
-          _voices.forEach((element) =>
-              readerDesc.add(ReaderModel.fromJson(jsonEncode(element))));
-          // print(readerDesc);
-          //  if (prefs.containsKey('savedReader')) {}
-          //  else{
-          _currentVoice = _voices[0];
-          setVoice(_currentVoice!);
-          // }
-        });
-      } catch (e) {
-        print(e);
-      }
-    });
+    if (Platform.isIOS) {
+      _flutterTts.getVoices.then((data) {
+        try {
+          _voicesString.clear();
+          _voices = List<Map>.from(data);
+          setState(() {
+            _voices = _voices
+                .where((_voice) => _voice['locale'].contains('en'))
+                .toList();
+            print(_voices);
+            _voices = _voices
+                .where((voice) =>
+                    voice['name'] != 'Trinoids' &&
+                    voice['name'] != 'Albert' &&
+                    voice['name'] != 'Jester' &&
+                    voice['name'] != 'Whisper' &&
+                    voice['name'] != 'Superstar' &&
+                    voice['name'] != 'Bells' &&
+                    voice['name'] != 'Bad News' &&
+                    voice['name'] != 'Bubbles' &&
+                    voice['name'] != 'Bahh' &&
+                    voice['name'] != 'Junior' &&
+                    voice['name'] != 'Wobble' &&
+                    voice['name'] != 'Zarvox' &&
+                    voice['name'] != 'Boing')
+                .toList();
+            // _voices.forEach(
+            //   (voi) => _voicesString.add(voi['name']),
+            // );
+            _voices.forEach((element) =>
+                readerDesc.add(ReaderModel.fromJson(jsonEncode(element))));
+            // print(_voices);
+            print(_voices.length);
+            if (prefs.containsKey('savedReader')) {
+            } else {
+              _currentVoice = _voices[0];
+              setVoiceNow(_currentVoice!);
+            }
+          });
+        } catch (e) {
+          print(e);
+        }
+      });
+    } else {
+      _flutterTts.getVoices.then((data) {
+        try {
+          _voicesString.clear();
+          _voices = List<Map>.from(data);
+          setState(() {
+            _voices = _voices
+                .where((_voice) => _voice['name'].contains('en-gb'))
+                .toList();
+            print(_voices);
+            _voices = _voices
+                .where((voice) =>
+                    voice['name'] != 'Trinoids' &&
+                    voice['name'] != 'Albert' &&
+                    voice['name'] != 'Jester' &&
+                    voice['name'] != 'Whisper' &&
+                    voice['name'] != 'Superstar' &&
+                    voice['name'] != 'Bells' &&
+                    voice['name'] != 'Bad News' &&
+                    voice['name'] != 'Bubbles' &&
+                    voice['name'] != 'Bahh' &&
+                    voice['name'] != 'Junior' &&
+                    voice['name'] != 'Wobble' &&
+                    voice['name'] != 'Zarvox' &&
+                    voice['name'] != 'Boing')
+                .toList();
+            // _voices.forEach(
+            //   (voi) => _voicesString.add(voi['name']),
+            // );
+            _voices.forEach((element) =>
+                readerDesc.add(ReaderModel.fromJson(jsonEncode(element))));
+            // print(_voices);
+            print(_voices.length);
+            if (prefs.containsKey('savedReader')) {
+            } else {
+              _currentVoice = _voices[0];
+              setVoiceNow(_currentVoice!);
+            }
+          });
+        } catch (e) {
+          print(e);
+        }
+      });
+    }
   }
 
   void setVoiceN() {
@@ -119,7 +203,25 @@ double readerHeight=0;
     print(d);
   }
 
-  setVoice(Map voice) {
+  saveVoiceSettings() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setString('voiceSettings', jsonEncode(_voiceSettings));
+
+    String d = prefs.getString('voiceSettings').toString();
+    print(jsonDecode(d));
+  }
+
+  savePrefBbible(bible) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setString('prefBible', jsonEncode(bible));
+
+    String d = prefs.getString('prefBible').toString();
+    print(d);
+  }
+
+  setVoiceNow(Map voice) {
     _flutterTts.setVoice({'name': voice['name'], 'locale': voice['locale']});
   }
 
@@ -132,6 +234,7 @@ double readerHeight=0;
           ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
     }
   }
+
   getColouredVerses() async {
     data.clear();
     data2.clear();
@@ -148,8 +251,8 @@ double readerHeight=0;
               (json.decode(prefs.getString('savedColor').toString()))[x])));
         }
 
-        for(int d=0;data2.length>d;d++){
-          if(data2[d].color!='white'){
+        for (int d = 0; data2.length > d; d++) {
+          if (data2[d].color != 'white') {
             data.add(data2[d]);
           }
         }
@@ -160,6 +263,7 @@ double readerHeight=0;
     // print(data3);
     setState(() {});
   }
+
   bool checkbox1IsChecked = false;
 
   TimeOfDay selectedTime = TimeOfDay.now();
@@ -172,19 +276,23 @@ double readerHeight=0;
     _dateOfBirthController.dispose();
     _controller.dispose();
   }
+
   List<SaveColor> data = [];
   List<SaveColor> data2 = [];
   int indexNew = 0;
   List<String> selectedCourses = [];
   bool checkbox1IsChecked3 = false;
-  int selection = 1;
+  String selection = 'KJV';
   String chipSelected = "";
   String readerchipSelected = "Male";
   List<String> chipData = [
-    'Once',
-    'Hourly',
-    'Daily',
-    'Weekly',
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
   ];
 
   List<String> reader = [
@@ -236,475 +344,683 @@ double readerHeight=0;
           width: double.infinity,
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // SizedBox(
+                //   height: 25,
+                // ),
+                SizedBox(
+                  height: 90,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Select default bible version',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 Container(
-                  height: MediaQuery.of(context).size.height * .92,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 90,
-                      ),
-                      // Text(
-                      //   'Create an event',
-                      //   style: TextStyle(
-                      //       fontWeight: FontWeight.w800, fontSize: 18),
-                      // ),
-
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Select Preffered Reader',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w800, fontSize: 18),
-                          ),
-                          // Text(
-                          //   'select from enrolled courses',
-                          //   style: TextStyle(
-                          //       fontWeight: FontWeight.w500, fontSize: 14),
-                          // ),
-                        ],
-                      ),
-                      // Wrap(
-                      //     spacing: 5,
-                      //     children: readerDesc
-                      //         .map(
-                      //           (e) => InkWell(
-                      //             onTap: () async {
-                      //               if (e == 'Once') {
-
-                      //               }
-                      //               readerchipSelected = e.name;
-                      //            if(mounted)    setState(() {});
-                      //             },
-                      //             child: Chip(
-                      //                 labelPadding:
-                      //                     EdgeInsets.symmetric(horizontal: 16),
-                      //                 backgroundColor: readerchipSelected == e
-                      //                     ? Colors.green
-                      //                     : Colors.white,
-                      //                 label: Text(
-                      //                   e.toString(),
-                      //                   style: TextStyle(
-                      //                       color: readerchipSelected == e
-                      //                           ? Colors.white
-                      //                           : Colors.black,
-                      //                       fontSize: 12),
-                      //                 )),
-                      //           ),
-                      //         )
-                      //         .toList()),
-
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        color: Colors.white,
-                        child: DropdownButton(
-                            isExpanded: true,
-                            value: selectedReader,
-                            items: readerDesc
-                                .map(
-                                  (e) => DropdownMenuItem(
-                                    child: Text(
-                                      'Name: ${e.name}    Gender: ${e.gender}',
-                                    
-                                    ),
-                                    value: e.name,
-                                    onTap: () {
-                                      myReader.gender = e.gender;
-                                      myReader.name = e.name;
-                                      myReader.identifier = e.identifier;
-                                      myReader.locale = e.locale;
-                                      savePrefVoice();
-                                      _flutterTts.stop();
-                                      _flutterTts.setVoice(
-                                          {'name': e.name, 'locale': e.locale});
-                                      _flutterTts.speak(playVoice);
-                                  readerHeight=100;setState(() {
-                                    
-                                  });  },
-                                  ),
-                                )
-                                .toList(),
-
-                            //  [
-
-                            //   DropdownMenuItem(
-                            //     child: Text('5 minutes before event'),
-                            //     value: 5,
-                            //   ),
-                            //   DropdownMenuItem(
-                            //     child: Text('30 minutes before event'),
-                            //     value: 30,
-                            //   ),
-                            // ],
-                            onChanged: (value) {
-                              selectedReader = value!;
-                              if (mounted) setState(() {});
-                            }),
-                      ),
-                    
-                      AnimatedContainer(duration: Duration(seconds: 1),
-                        padding: EdgeInsets.all(20),
-                        height: readerHeight,
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(.2),
-                            borderRadius: BorderRadius.circular(12)),
-                        // child: Text(playVoice),
-                        child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                  text: _currentlyPlayingSentence == playVoice
-                                      ? playVoice.substring(
-                                          0, _currentWordStart)
-                                      : playVoice,
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 16)),
-                              if (_currentWordStart != null &&
-                                  _currentlyPlayingSentence == playVoice)
-                                TextSpan(
-                                  text: playVoice.substring(
-                                      _currentWordStart!, _currentWordEnd),
-                                  style: TextStyle(
-                                      backgroundColor: Colors.white,
-                                      color: Colors.black,
-                                      fontSize: 16),
-                                ),
-                              if (_currentWordEnd != null &&
-                                  _currentlyPlayingSentence == playVoice)
-                                TextSpan(
-                                    text: playVoice.substring(
-                                      _currentWordEnd!,
-                                    ),
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 16)),
-                            ],
-                          ),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  color: Colors.white,
+                  child: DropdownButton(
+                      isExpanded: true,
+                      value: selection,
+                      items: [
+                        DropdownMenuItem(
+                          child: Text('King James Version (KJV)'),
+                          value: 'KJV',
                         ),
-                      ),
-
-                      Text(
-                        'Set frequency',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w800),
-                      ),
-                      Wrap(
-                          spacing: 5,
-                          children: chipData
-                              .map(
-                                (e) => InkWell(
-                                  onTap: () async {
-                                    if (e == 'Once') {
-                                      final TimeOfDay? time =
-                                          await showTimePicker(
-                                              context: context,
-                                              initialTime: selectedTime,
-                                              initialEntryMode:
-                                                  TimePickerEntryMode.dial);
-                                      // if(time!=null){selectedTime=time;setState(() {
-                                      //   print(selectedTime);
-                                      // });}
-
-                                      print(time);
-                                      print(TimeOfDay.now());
-                                      // print(TimeOfDay.fromDateTime(DateTime.now().subtract(Duration(minutes: 10))));
-                                      print(DateTime.now().difference(
-                                          DateTime.now().add(
-                                              Duration(days: 0, minutes: 0))));
-                                    }
-                                    chipSelected = e;
-                                    if (mounted) setState(() {});
-                                  },
-                                  child: Chip(
-                                      labelPadding:
-                                          EdgeInsets.symmetric(horizontal: 16),
-                                      backgroundColor: chipSelected == e
-                                          ? Colors.green
-                                          : Colors.white,
-                                      label: Text(
-                                        e.toString(),
-                                        style: TextStyle(
-                                            color: chipSelected == e
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontSize: 12),
-                                      )),
+                        DropdownMenuItem(
+                          child: Text('Amplified (AMP)'),
+                          value: 'AMP',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('New International Version (NIV)'),
+                          value: 'NIV',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('New Living Translation (NLT)'),
+                          value: 'NLT',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('Message Bible (MSG)'),
+                          value: 'MSG',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('Revised Standard Version (RSV)'),
+                          value: 'RSV',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('Derby Bible (DBY)'),
+                          value: 'DBY',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('Basic Bible Editin (BBE)'),
+                          value: 'BBE',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('American Standard Version (ASV)'),
+                          value: 'ASV',
+                        ),
+                        DropdownMenuItem(
+                          child: Text('Bishop Bible (BISHOP)'),
+                          value: 'BISHOP',
+                        ),
+                      ],
+                      onChanged: (value) {
+                        selection = value!;
+                        print(value);
+                        savePrefBbible(value);
+                        if (mounted) setState(() {});
+                      }),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Select Preferred Reader',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: 18),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                if (Platform.isIOS)
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    color: Colors.white,
+                    child: DropdownButton(
+                        isExpanded: true,
+                        value: selectedReader,
+                        items: readerDesc
+                            .map(
+                              (e) => DropdownMenuItem(
+                                child: Text(
+                                  'Name: ${e.name}    Gender: ${e.gender}',
                                 ),
-                              )
-                              .toList()),
-                      // TextFormField(
-                      //   readOnly: true,
-                      //   controller: _dateOfBirthController,
-                      //   decoration: InputDecoration(
-                      //     fillColor: Colors.white,
-                      //     filled: true,
-                      //     suffixIcon: InkWell(
-                      //         onTap: () {
-                      //           pickDate();
-                      //         },
-                      //         child: Icon(Icons.calendar_view_day_rounded)),
-                      //     isDense: true,
-                      //     hintText: dob.isNotEmpty ? dob.toString() : 'date',
-                      //     border: OutlineInputBorder(
-                      //         borderSide: BorderSide(color: Colors.black)),
-                      //   ),
-                      //   validator: (value) {
-                      //     if (value == null) {
-                      //       return 'Please enter some text';
-                      //     }
-                      //     return null;
-                      //   },
-                      // ),
-                      Text(
-                        'Reminder notification',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w800),
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        color: Colors.white,
-                        child: DropdownButton(
-                            isExpanded: true,
-                            value: selection,
-                            items: [
-                              DropdownMenuItem(
-                                child: Text('1 minute before event'),
-                                value: 1,
+                                value: e.name,
+                                onTap: () async {
+                                  myReader.gender = e.gender;
+                                  myReader.name = e.name;
+                                  myReader.identifier = e.identifier;
+                                  myReader.locale = e.locale;
+                                  savePrefVoice();
+                                  _flutterTts.stop();
+                                  _flutterTts.setVoice(
+                                      {'name': e.name, 'locale': e.locale});
+                                  await _flutterTts.setVolume(volume);
+                                  await _flutterTts.setSpeechRate(rate);
+                                  await _flutterTts.setPitch(pitch);
+                                  _flutterTts.speak(playVoice);
+                                  readerHeight = 100;
+                                  setState(() {});
+                                },
                               ),
-                              DropdownMenuItem(
-                                child: Text('5 minutes before event'),
-                                value: 5,
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          selectedReader = value!;
+                          if (mounted) setState(() {});
+                        }),
+                  ),
+
+                if (Platform.isAndroid)
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    color: Colors.white,
+                    child: DropdownButton(
+                        isExpanded: true,
+                        value: selectedReaderAndroid,
+                        items: readerDesc
+                            .mapIndexed(
+                              (index, e) => DropdownMenuItem(
+                                child: Text('Voice ${index + 1}'),
+                                // child: Text(e.name),
+                                // Text(
+                                //   'Name: ${e.name}    Gender: ${e.gender}',
+                                // ),
+                                value: e.name,
+                                onTap: () {
+                                  myReader.gender = e.gender;
+                                  myReader.name = e.name;
+                                  myReader.identifier = e.identifier;
+                                  myReader.locale = e.locale;
+                                  savePrefVoice();
+                                  _flutterTts.stop();
+                                  _flutterTts.setVoice(
+                                      {'name': e.locale, 'locale': e.name});
+                                  _flutterTts.speak(playVoice);
+                                  readerHeight = 100;
+                                  setState(() {});
+                                },
                               ),
-                              DropdownMenuItem(
-                                child: Text('30 minutes before event'),
-                                value: 30,
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          selectedReaderAndroid = value!;
+                          if (mounted) setState(() {});
+                        }),
+                  ),
+                SizedBox(
+                  height: 15,
+                ),
+                AnimatedContainer(
+                  duration: Duration(seconds: 1),
+                  padding: EdgeInsets.all(20),
+                  height: readerHeight,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(.2),
+                      borderRadius: BorderRadius.circular(12)),
+                  // child: Text(playVoice),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                            text: _currentlyPlayingSentence == playVoice
+                                ? playVoice.substring(0, _currentWordStart)
+                                : playVoice,
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 16)),
+                        if (_currentWordStart != null &&
+                            _currentlyPlayingSentence == playVoice)
+                          TextSpan(
+                            text: playVoice.substring(
+                                _currentWordStart!, _currentWordEnd),
+                            style: TextStyle(
+                                backgroundColor: Colors.white,
+                                color: Colors.black,
+                                fontSize: 16),
+                          ),
+                        if (_currentWordEnd != null &&
+                            _currentlyPlayingSentence == playVoice)
+                          TextSpan(
+                              text: playVoice.substring(
+                                _currentWordEnd!,
+                              ),
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16)),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(.2),
+                        borderRadius: BorderRadius.circular(12)),
+                    child: _buildSliders()),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Set Notification Frequency',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                Wrap(
+                  spacing: 20,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        if (freqheight == 140) {
+                          freqheight = 0;
+                          setState(() {});
+                        } else {
+                          freqheight = 140;
+                          setState(() {});
+                        }
+                      },
+                      child: Chip(
+                          backgroundColor: (saturdayelected == true &&
+                                  sundaySelected == true &&
+                                  mondaySelected == true &&
+                                  tuesdaySelected == true &&
+                                  wednesdaySelected == true &&
+                                  thursdaySelected == true &&
+                                  fridaySelected == true)
+                              ? Colors.green
+                              : Colors.orange,
+                          label: Text(
+                            'Days/Daily',
+                            style: TextStyle(color: Colors.white, fontSize: 14),
+                          )),
+                    ),
+                    // Chip(label: Text('Select Days')),
+                    Chip(
+                        backgroundColor: Colors.green,
+                        label: Wrap(
+                          runAlignment: WrapAlignment.center,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.timelapse,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              ' Time',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 14),
+                            ),
+                          ],
+                        )),
+                  ],
+                ),
+
+                AnimatedContainer(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(.2),
+                      borderRadius: BorderRadius.circular(12)),
+                  duration: Duration(milliseconds: 500),
+                  height: freqheight,
+                  child: AnimatedOpacity(
+                    duration: Duration(milliseconds: 800),
+                    opacity: freqheight == 140 ? 1 : 0,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('set preferred days to be notified to take devotional'),
+                        Wrap(spacing: 5, children: [
+                          ChoiceChip(
+                            selectedColor:
+                                sundaySelected ? Colors.green : Colors.grey,
+                            label: Text(
+                              "Sunday",
+                              style: TextStyle(
+                                  color: sundaySelected
+                                      ? Colors.white
+                                      : Colors.black),
+                            ),
+                            selected: sundaySelected,
+                            onSelected: (selected) {
+                              setState(() {
+                                sundaySelected = selected;
+                              });
+                            },
+                          ),
+                          ChoiceChip(
+                            selectedColor:
+                                mondaySelected ? Colors.green : Colors.grey,
+                            label: Text(
+                              "Monday",
+                              style: TextStyle(
+                                  color: mondaySelected
+                                      ? Colors.white
+                                      : Colors.black),
+                            ),
+                            selected: mondaySelected,
+                            onSelected: (selected) {
+                              setState(() {
+                                mondaySelected = selected;
+                              });
+                            },
+                          ),
+                          ChoiceChip(
+                            selectedColor:
+                                tuesdaySelected ? Colors.green : Colors.grey,
+                            label: Text(
+                              "Tuesday",
+                              style: TextStyle(
+                                  color: tuesdaySelected
+                                      ? Colors.white
+                                      : Colors.black),
+                            ),
+                            selected: tuesdaySelected,
+                            onSelected: (selected) {
+                              setState(() {
+                                tuesdaySelected = selected;
+                              });
+                            },
+                          ),
+                          ChoiceChip(
+                            selectedColor:
+                                wednesdaySelected ? Colors.green : Colors.grey,
+                            label: Text(
+                              "Wednesday",
+                              style: TextStyle(
+                                  color: wednesdaySelected
+                                      ? Colors.white
+                                      : Colors.black),
+                            ),
+                            selected: wednesdaySelected,
+                            onSelected: (selected) {
+                              setState(() {
+                                wednesdaySelected = selected;
+                              });
+                            },
+                          ),
+                          ChoiceChip(
+                            selectedColor:
+                                thursdaySelected ? Colors.green : Colors.grey,
+                            label: Text(
+                              "Thursday",
+                              style: TextStyle(
+                                  color: thursdaySelected
+                                      ? Colors.white
+                                      : Colors.black),
+                            ),
+                            selected: thursdaySelected,
+                            onSelected: (selected) {
+                              setState(() {
+                                thursdaySelected = selected;
+                              });
+                            },
+                          ),
+                          ChoiceChip(
+                            selectedColor:
+                                fridaySelected ? Colors.green : Colors.grey,
+                            label: Text(
+                              "Friday",
+                              style: TextStyle(
+                                  color: fridaySelected
+                                      ? Colors.white
+                                      : Colors.black),
+                            ),
+                            selected: fridaySelected,
+                            onSelected: (selected) {
+                              setState(() {
+                                fridaySelected = selected;
+                              });
+                            },
+                          ),
+                          ChoiceChip(
+                            selectedColor:
+                                saturdayelected ? Colors.green : Colors.grey,
+                            label: Text(
+                              "Saturday",
+                              style: TextStyle(
+                                  color: saturdayelected
+                                      ? Colors.white
+                                      : Colors.black),
+                            ),
+                            selected: saturdayelected,
+                            onSelected: (selected) {
+                              setState(() {
+                                saturdayelected = selected;
+                              });
+                            },
+                          ),
+                        ]),
+                      ],
+                    ),
+                  ),
+                ),
+
+                SizedBox(
+                  height: 20,
+                ),
+
+                InkWell(
+                  onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DevorionScreen()))
+                      .then((value) => getColouredVerses()),
+                  child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 4),
+                    height: 80,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black,
+                            offset: Offset(
+                              -2,
+                              2,
+                            ),
+                            blurRadius: 1,
+                            spreadRadius: 1)
+                      ],
+                      gradient: LinearGradient(colors: const [
+                        Color.fromARGB(255, 237, 78, 136),
+                        Color.fromARGB(246, 1, 32, 206)
+                      ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: double.infinity,
+                          margin: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset('assets/images/7.webp')),
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 4),
+                          width: MediaQuery.of(context).size.width - 200,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                'Devotionals',
+                                style: TextStyle(
+                                    fontSize: Platform.isAndroid ? 18 : 20,
+                                    color: Colors.white),
+                              ),
+                              Text(
+                                textAlign: TextAlign.center,
+                                'Check all available devotionals',
+                                style: TextStyle(
+                                    fontSize: Platform.isAndroid ? 16 : 18,
+                                    color: Colors.white),
                               ),
                             ],
-                            onChanged: (value) {
-                              selection = value!;
-                              if (mounted) setState(() {});
-                            }),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-
-                         InkWell(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>DevorionScreen())).then((value) => getColouredVerses()),
-                 child: Container(
-                             margin: EdgeInsets.symmetric(vertical: 4),
-                             height: 100,
-                             width: double.infinity,
-                             decoration: BoxDecoration(border: Border.all(),
-                             boxShadow: [
-                      BoxShadow(
-                          color: Colors.black,
-                          offset: Offset(
-                            -2,
-                            2,
                           ),
-                          blurRadius: 1,
-                          spreadRadius: 1)
-                    ],    gradient: LinearGradient(colors: const [
-                      Color.fromARGB(255, 237, 78, 136),
-                      Color.fromARGB(246, 1, 32, 206)
-                    ], begin: Alignment.topRight, end: Alignment.bottomLeft),
-                    borderRadius: BorderRadius.circular(12),
+                        )
+                      ],
                     ),
-                             child: Row(
-                  children: [
-                    Container(
-                      height: double.infinity,
-                      margin: EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset('assets/images/7.webp')),
-                    ),
-                    SizedBox(
-                      width: 4,
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 4),
-                      width: MediaQuery.of(context).size.width - 200,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            'Devotionals',
-                            style: TextStyle(fontSize:Platform.isAndroid?  18:20, color: Colors.white),
-                          ),
-                          Text(
-                            textAlign: TextAlign.center,
-                            'Check all available devotionals',
-                            style: TextStyle(fontSize:Platform.isAndroid?  16:18, color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                             ),
-                           ),
-               ),
-            InkWell(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>SavedScriptures())).then((value) => getColouredVerses()),
-
-              child: Container(
-                margin: EdgeInsets.symmetric(vertical: 4),
-                height: 100,
-                width: double.infinity,
-                decoration: BoxDecoration(border: Border.all(),
-                 boxShadow: [
-                      BoxShadow(
-                          color: Colors.black,
-                          offset: Offset(
-                            -2,
-                            2,
-                          ),
-                          blurRadius: 1,
-                          spreadRadius: 1)
-                    ],   gradient: LinearGradient(colors: const [
-                      Color.fromARGB(255, 65, 215, 15),
-                      Color.fromARGB(246, 1, 32, 206)
-                    ], begin: Alignment.topRight, end: Alignment.bottomLeft),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                child: Row(
-                  children: [
-                    Container(
-                      height: double.infinity,
-                      margin: EdgeInsets.all(3),
-                      decoration: BoxDecoration(border: Border.all(),
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.red),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset('assets/images/9.webp')),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 4),
-                      width: MediaQuery.of(context).size.width - 200,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            'Marked Scriptures',
-                            style: TextStyle(fontSize:Platform.isAndroid?  18:20, color: Colors.white),
-                          ),
-                          // Text(
-                          //   '',
-                          //   style: TextStyle(fontSize: 18, color: Colors.white),
-                          // ),
-                       data.isNotEmpty?   Text(textAlign:TextAlign.center,
-                            'Check all ${data.length} marked scriptures',
-                            style: TextStyle(fontSize:Platform.isAndroid?  16:18, color: Colors.white),
-                          ): Text(textAlign:TextAlign.center,
-                            'No marked scriptures available',
-                            style: TextStyle(fontSize: Platform.isAndroid? 16:18, color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),  
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     Navigator.pop(context);
-                      //     // MyNotificatinApi.cancelAll();
-                      //   },
-                      //   child: Text(
-                      //     'Check All Devvotional',
-                      //     style: TextStyle(color: Colors.white),
-                      //   ),
-                      //   style: ElevatedButton.styleFrom(
-                      //       fixedSize: Size(
-                      //           MediaQuery.of(context).size.width - 20, 50),
-                      //       backgroundColor: Colors.green,
-                      //       shape: ContinuousRectangleBorder(
-                      //           borderRadius: BorderRadius.circular(12))),
-                      // ),
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     MyNotificatinApi.showScheduledNotification(
-                      //       title: 'test',
-                      //       body: 'we testing',
-                      //       payload: 'payload',
-                      //     );
-                      //   },
-                      //   child: Text(
-                      //     'Creat periodic',
-                      //     style: TextStyle(color: Colors.white),
-                      //   ),
-                      //   style: ElevatedButton.styleFrom(
-                      //       fixedSize: Size(
-                      //           MediaQuery.of(context).size.width - 20, 50),
-                      //       backgroundColor: Provider.of<UserProvider>(context,
-                      //                   listen: false)
-                      //               .isChildren
-                      //           ? Colors.green
-                      //           : myColor,
-                      //       shape: ContinuousRectangleBorder(
-                      //           borderRadius: BorderRadius.circular(12))),
-                      // ),
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     MyNotificatinApi.runOnce(
-                      //         title: 'Reminder for ${_controller.text}',
-                      //         body: selectedCourses.toString(),
-                      //         payload: 'payload',
-                      //         duration: 1);
-                      //   },
-                      //   child: Text(
-                      //     'Run once',
-                      //     style: TextStyle(color: Colors.white),
-                      //   ),
-                      //   style: ElevatedButton.styleFrom(
-                      //       fixedSize: Size(
-                      //           MediaQuery.of(context).size.width - 20, 50),
-                      //       backgroundColor: Provider.of<UserProvider>(context,
-                      //                   listen: false)
-                      //               .isChildren
-                      //           ? Colors.green
-                      //           : myColor,
-                      //       shape: ContinuousRectangleBorder(
-                      //           borderRadius: BorderRadius.circular(12))),
-                      // ),
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     MyNotificatinApi.showNotification(
-                      //         title: 'Reminder for ${_controller.text}',
-                      //         body: selectedCourses.toString(),
-                      //         payload: 'payload');
-                      //   },
-                      //   child: Text(
-                      //     'Create now',
-                      //     style: TextStyle(color: Colors.white),
-                      //   ),
-                      //   style: ElevatedButton.styleFrom(
-                      //       fixedSize: Size(
-                      //           MediaQuery.of(context).size.width - 20, 50),
-                      //       backgroundColor: Provider.of<UserProvider>(context,
-                      //                   listen: false)
-                      //               .isChildren
-                      //           ? Colors.green
-                      //           : myColor,
-                      //       shape: ContinuousRectangleBorder(
-                      //           borderRadius: BorderRadius.circular(12))),
-                      // ),
-                    ],
                   ),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SavedScriptures()))
+                      .then((value) => getColouredVerses()),
+                  child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 4),
+                    height: 80,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black,
+                            offset: Offset(
+                              -2,
+                              2,
+                            ),
+                            blurRadius: 1,
+                            spreadRadius: 1)
+                      ],
+                      gradient: LinearGradient(colors: const [
+                        Color.fromARGB(255, 65, 215, 15),
+                        Color.fromARGB(246, 1, 32, 206)
+                      ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: double.infinity,
+                          margin: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.red),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                'assets/images/9.webp',
+                                height: 70,
+                              )),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 4),
+                          width: MediaQuery.of(context).size.width - 200,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                'Marked Scriptures',
+                                style: TextStyle(
+                                    fontSize: Platform.isAndroid ? 18 : 20,
+                                    color: Colors.white),
+                              ),
+                              // Text(
+                              //   '',
+                              //   style: TextStyle(fontSize: 18, color: Colors.white),
+                              // ),
+                              data.isNotEmpty
+                                  ? Text(
+                                      textAlign: TextAlign.center,
+                                      'Check all ${data.length} marked scriptures',
+                                      style: TextStyle(
+                                          fontSize:
+                                              Platform.isAndroid ? 16 : 18,
+                                          color: Colors.white),
+                                    )
+                                  : Text(
+                                      textAlign: TextAlign.center,
+                                      'No marked scriptures available',
+                                      style: TextStyle(
+                                          fontSize:
+                                              Platform.isAndroid ? 16 : 18,
+                                          color: Colors.white),
+                                    ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 40,
+                )
               ],
             ),
           ),
         ));
+  }
+
+  Widget _buildSliders() {
+    return Column(
+      children: [_volume(), _pitch(), _rate()],
+    );
+  }
+
+  Widget _volume() {
+    return Column(
+      children: [
+        Text('Reader volume ${volume.toStringAsFixed(1)}'),
+        Slider(
+          value: volume,
+          onChanged: (newVolume) async {
+            setState(() => volume = newVolume);
+            _flutterTts.stop();
+
+            await _flutterTts.setVolume(volume);
+            await _flutterTts.setSpeechRate(rate);
+            await _flutterTts.setPitch(pitch);
+            _flutterTts.speak(playVoice);
+            readerHeight = 100;
+            _voiceSettings.volume = newVolume;
+            saveVoiceSettings();
+            setState(() {});
+          },
+          min: 0.1,
+          max: 1.0,
+          divisions: 10,
+          label: "Volume: $volume",
+          activeColor: Colors.green,
+        ),
+      ],
+    );
+  }
+
+  Widget _pitch() {
+    return Column(
+      children: [
+        Text('Reader pitch ${pitch.toStringAsFixed(1)}'),
+        Slider(
+          value: pitch,
+          onChanged: (newPitch) async {
+            setState(() => pitch = newPitch);
+            _flutterTts.stop();
+
+            await _flutterTts.setVolume(volume);
+            await _flutterTts.setSpeechRate(rate);
+            await _flutterTts.setPitch(pitch);
+            _flutterTts.speak(playVoice);
+            _voiceSettings.pitch = newPitch;
+            saveVoiceSettings();
+            readerHeight = 100;
+            setState(() {});
+          },
+          min: 0.5,
+          max: 2.0,
+          divisions: 15,
+          label: "Pitch: $pitch",
+          activeColor: Colors.red,
+        ),
+      ],
+    );
+  }
+
+  Widget _rate() {
+    return Column(
+      children: [
+        Text('Reader word rate ${rate}'),
+        Slider(
+          value: rate,
+          onChanged: (newRate) async {
+            setState(() => rate = newRate);
+            _flutterTts.stop();
+
+            await _flutterTts.setVolume(volume);
+            await _flutterTts.setSpeechRate(rate);
+            await _flutterTts.setPitch(pitch);
+            _flutterTts.speak(playVoice);
+            readerHeight = 100;
+            _voiceSettings.rate = newRate;
+            saveVoiceSettings();
+            setState(() {});
+          },
+          min: 0.0,
+          max: 1.0,
+          divisions: 10,
+          label: "Rate: $rate",
+          activeColor: Colors.blue,
+        ),
+      ],
+    );
   }
 }

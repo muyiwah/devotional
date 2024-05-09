@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:mivdevotional/core/model/dail_verse.dart';
+import 'package:mivdevotional/model/dail_verse.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 

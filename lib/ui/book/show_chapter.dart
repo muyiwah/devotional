@@ -1,12 +1,14 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:mivdevotional/core/model/bible.model.dart';
-import 'package:mivdevotional/core/model/reader_model.dart';
-import 'package:mivdevotional/core/model/save_color.dart';
+import 'package:mivdevotional/model/bible.model.dart';
+import 'package:mivdevotional/model/reader_model.dart';
+import 'package:mivdevotional/model/save_color.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
+import 'package:mivdevotional/model/voiceSettings.dart';
 import 'package:mivdevotional/ui/book/search_screen.dart';
 import 'package:mivdevotional/ui/constants/constant_widgets.dart';
 import 'package:floating_overlay/floating_overlay.dart';
@@ -23,7 +25,11 @@ class ShowChapter extends StatefulWidget {
   int verse;
   final bool fromSearch;
 
-  ShowChapter({required this.bookName, required this.chapter, this.verse = -1, required  this.fromSearch});
+  ShowChapter(
+      {required this.bookName,
+      required this.chapter,
+      this.verse = -1,
+      required this.fromSearch});
 
   @override
   State<ShowChapter> createState() => _ShowChapterState();
@@ -35,13 +41,21 @@ class _ShowChapterState extends State<ShowChapter> {
     // TODO: implement initState
     super.initState();
     getColouredVerses();
+    getPrefBibleVersion();
     initTts();
+    if (Platform.isAndroid) {
+      _getDefaultEngine();
+      _getDefaultVoice();
+    }
     getSavedVoice();
+    getSaveVoiceSettings();
     Future.delayed(Duration(seconds: 1), () {
       if (widget.verse != -1) goToVerse();
     });
   }
-ReaderModel _readerModel =ReaderModel(name: '', gender: '', identifier: '', locale: '');
+
+  ReaderModel _readerModel =
+      ReaderModel(name: '', gender: '', identifier: '', locale: '');
   String currentlyPlayingSentence = '';
   FlutterTts _flutterTts = FlutterTts();
   Map? _currentVoice;
@@ -49,60 +63,165 @@ ReaderModel _readerModel =ReaderModel(name: '', gender: '', identifier: '', loca
   int audioPlayIndex = 0;
   int? _currentWordStart, _currentWordEnd;
   List<String> _voicesString = ['Melina'];
+  bool prefBibleDone = false;
+  VoiceSettings _voiceSettings = VoiceSettings(
+    volume: .7,
+    rate: .5,
+    pitch: .5,
+  );
 
-   void setVoiceN() {
-    _flutterTts.setVoice({'name':_readerModel.name, 'locale':_readerModel.locale});
+  Future<void> _getDefaultEngine() async {
+    var engine = await _flutterTts.getDefaultEngine;
+    if (engine != null) {
+      // print(engine);
+    }
   }
-  initTts() async{
-    _flutterTts.setProgressHandler((text, start, end, word) {
-      int x=0;
+
+  Future<void> _getDefaultVoice() async {
+    var voice = await _flutterTts.getDefaultVoice;
+    if (voice != null) {
+      // print(voice);
+    }
+  }
+
+  void setVoiceN() {
+    print(_readerModel);
+
+    _flutterTts
+        .setVoice({'name': _readerModel.name, 'locale': _readerModel.locale});
+  }
+
+  getPrefBibleVersion() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+//
+    if (prefs.containsKey('prefBible')) {
+      selection = prefs.getString('prefBible').toString();
+      prefBibleDone = true;
+      print(jsonDecode(selection));
+      selection = jsonDecode(selection);
+      setState(() {});
+    }
+  }
+
+  getSaveVoiceSettings() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('voiceSettings')) {
+      String d = (prefs.getString('voiceSettings').toString());
+
+      _voiceSettings = VoiceSettings.fromJsonJson(jsonEncode(jsonDecode(d)));
+
+      print((_voiceSettings.volume));
+    }
+  }
+
+  int y = 0;
+
+  initTts() async {
+    _flutterTts.setProgressHandler((text, start, end, word) async {
+      int x = 0;
+      // print(word);
+      // print(start);
+      // print(end);
+      // print(currentlyPlayingSentence);
+      // if (word=='service'){
+      //   print('enmds wit service');
+      //   print(currentlyPlayingSentence);
+      // print(text.endsWith('${word}.'));
+// await _flutterTts.awaitSpeakCompletion(true);
+// if(Platform.isIOS){
       currentlyPlayingSentence = text;
-     if(currentlyPlayingSentence.endsWith(word))
-    { x=(chapterVerses2.indexWhere((element) => element.text==currentlyPlayingSentence));
-      
-      if(x.isEven)
-     {  scollToVerse(x);}
-       }
+
+      if (currentlyPlayingSentence.endsWith(word) 
+      ||
+          currentlyPlayingSentence.endsWith('${word}.') ||
+          currentlyPlayingSentence.endsWith('${word},') ||
+          currentlyPlayingSentence.endsWith('${word}:') ||
+          currentlyPlayingSentence.endsWith('${word};') ||
+          currentlyPlayingSentence.endsWith('${word}?')
+          ) {
+     
+        // print(text);
+
+        x = (chapterVerses2
+            .indexWhere((element) => element.text == currentlyPlayingSentence));
+
+        if (x.isEven) {
+          scollToVerse(x);
+        }
+      }
+      // }
+      // else{
+        // print(y);
+
+
+// // currentlyPlayingSentence=chapterVerses2[y].text.toString();
+//  if (currentlyPlayingSentence.endsWith(word) 
+//       ||
+//           currentlyPlayingSentence.endsWith('${word}.') ||
+//           currentlyPlayingSentence.endsWith('${word},') ||
+//           currentlyPlayingSentence.endsWith('${word}:') ||
+//           currentlyPlayingSentence.endsWith('${word};') ||
+//           currentlyPlayingSentence.endsWith('${word}?')
+//           ) {
+//      y++;
+//         print('`sssssssssssssssss');
+//         print(chapterVerses2[y].text);
+//                           await _flutterTts.speak(allScripture[1]);
+
+// currentlyPlayingSentence=chapterVerses2[1].text;
+// print(currentlyPlayingSentence);
+//         x = (chapterVerses2
+//             .indexWhere((element) => element.text == currentlyPlayingSentence));
+
+//         if (x.isEven) {
+//           scollToVerse(x);
+//         }
+//       }
+
+//       }
       setState(() {
         _currentWordStart = start;
         _currentWordEnd = end;
-
       });
     });
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-
-       if (prefs.containsKey('savedReader')) {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+// prefBible
+    if (prefs.containsKey('savedReader')) {
       String d = prefs.getString('savedReader').toString();
-ReaderModel _readerModel=ReaderModel.fromJsonJson( jsonEncode(jsonDecode(d)));
- setVoiceN();
-       }
-
-       else{
-    _flutterTts.getVoices.then((data) {
-      try {
-        _voicesString.clear();
-        _voices = List<Map>.from(data);
-        setState(() {
-          _voices.where((_voice) => _voice['name'].contains('en')).toList();
-          _voices.forEach(
-            (voi) => _voicesString.add(voi['name']),
-          );
-          // print(_voicesString);
-          _currentVoice = _voices[8];
-          setVoice2();
-        });
-      } catch (e) {
-        print(e);
-      }
-    });
-  }}
-setVoice2() {
-    _flutterTts.setVoice({'name':  _voices[8]['name'], 'locale':  _voices[8]['locale']});
+      ReaderModel _readerModel =
+          ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
+      setVoiceN();
+    } else {
+      _flutterTts.getVoices.then((data) {
+        try {
+          _voicesString.clear();
+          _voices = List<Map>.from(data);
+          setState(() {
+            _voices = _voices
+                .where((_voice) => _voice['name'].contains('en'))
+                .toList();
+            // _voices.forEach(
+            //   (voi) => _voicesString.add(voi['name']),
+            // );
+            print(_voices);
+            _currentVoice = _voices[2];
+            setVoice2();
+          });
+        } catch (e) {
+          print(e);
+        }
+      });
+    }
   }
 
+  setVoice2() {
+    print(_currentVoice);
+    _flutterTts.setVoice(
+        {'name': _currentVoice!['name'], 'locale': _currentVoice!['locale']});
+  }
 
   List<String> allScripture = [];
-  String selection = 'Kjv';
+  String selection = 'KJV';
 
   bool kjv = true;
   List chapterVerses2 = [];
@@ -164,16 +283,16 @@ setVoice2() {
   List<SaveColor> data2 = [];
   List<int> data3 = [];
 
-  getSavedVoice()async{
+  getSavedVoice() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-       if (prefs.containsKey('savedReader')) {
+    if (prefs.containsKey('savedReader')) {
       String d = prefs.getString('savedReader').toString();
-ReaderModel _readerModel=ReaderModel.fromJsonJson( jsonEncode(jsonDecode(d)));
-
-
-       }
+      ReaderModel _readerModel =
+          ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
+    }
   }
+
   getColouredVerses() async {
     data.clear();
     data2.clear();
@@ -211,18 +330,22 @@ ReaderModel _readerModel=ReaderModel.fromJsonJson( jsonEncode(jsonDecode(d)));
 
   scollToVerse(pos) {
     itemScrollController.scrollTo(
-        index:pos,
+        index: pos,
         duration: Duration(seconds: 2),
         curve: Curves.easeInOutCubic);
   }
+
   List<String> _list = [
-    'Kjv',
-    'Niv',
-    'Nlt',
-    'Msg',
-    'Amp',
-    'Asv',
-    'Bishop',
+    'KJV',
+    'NIV',
+    'NLT',
+    'MSG',
+    'AMP',
+    'ASV',
+    'DBY',
+    'BBE',
+    'RSV',
+    'BISHOP',
   ];
 
   @override
@@ -236,11 +359,13 @@ ReaderModel _readerModel=ReaderModel.fromJsonJson( jsonEncode(jsonDecode(d)));
         ),
         centerTitle: true,
         actions: [
+          // if(prefBibleDone)
+
           Container(
             width: 100,
-            margin: EdgeInsets.only(right: 20),
+            margin: EdgeInsets.only(right: 20, top: 4),
             child: CustomDropdown<String>(
-              maxlines: 2,
+              maxlines: 1,
               closedHeaderPadding: EdgeInsets.all(10),
               decoration: CustomDropdownDecoration(
                   hintStyle: TextStyle(color: Colors.blue),
@@ -248,7 +373,7 @@ ReaderModel _readerModel=ReaderModel.fromJsonJson( jsonEncode(jsonDecode(d)));
                   listItemStyle: TextStyle(color: Colors.blue, fontSize: 17)),
               hintText: '',
               items: _list,
-              initialItem: _list[0],
+              initialItem: selection,
               onChanged: (value) {
                 controller.hide();
                 selection = value;
@@ -496,53 +621,71 @@ ReaderModel _readerModel=ReaderModel.fromJsonJson( jsonEncode(jsonDecode(d)));
             ],
           ),
           child: Consumer<BibleModel>(builder: (context, bibleModel, child) {
-            List chapterVerses = selection == 'Kjv'
+            List chapterVerses = selection == 'KJV'
                 ? bibleModel.bible
                     .where((bibleData) =>
                         (bibleData.book == widget.bookName) &&
                         (bibleData.chapter == widget.chapter))
                     .toList()
-                : selection == "Amp"
+                : selection == "AMP"
                     ? bibleModel.bibleAmp
                         .where((bibleData) =>
                             (bibleData.book == widget.bookName) &&
                             (bibleData.chapter == widget.chapter))
                         .toList()
-                    : selection == "Niv"
+                    : selection == "NIV"
                         ? bibleModel.bibleNiv
                             .where((bibleData) =>
                                 (bibleData.book == widget.bookName) &&
                                 (bibleData.chapter == widget.chapter))
                             .toList()
-                        : selection == "Msg"
+                        : selection == "MSG"
                             ? bibleModel.bibleMsg
                                 .where((bibleData) =>
                                     (bibleData.book == widget.bookName) &&
                                     (bibleData.chapter == widget.chapter))
                                 .toList()
-                            : selection == "Bishop"
+                            : selection == "BISHOP"
                                 ? bibleModel.bibleBishop
                                     .where((bibleData) =>
                                         (bibleData.book == widget.bookName) &&
                                         (bibleData.chapter == widget.chapter))
                                     .toList()
-                                : selection == "Nlt"
+                                : selection == "NLT"
                                     ? bibleModel.bibleNlt
                                         .where((bibleData) =>
-                                            (bibleData.book ==
-                                                widget.bookName) &&
+                                            (bibleData.book == widget.bookName) &&
                                             (bibleData.chapter ==
                                                 widget.chapter))
                                         .toList()
-                                    : bibleModel.bibleAsv
-                                        .where((bibleData) =>
-                                            (bibleData.book ==
-                                                widget.bookName) &&
-                                            (bibleData.chapter ==
-                                                widget.chapter))
-                                        .toList();
+                                    : selection == "RSV"
+                                        ? bibleModel.bibleRsv
+                                            .where((bibleData) =>
+                                                (bibleData.book == widget.bookName) &&
+                                                (bibleData.chapter ==
+                                                    widget.chapter))
+                                            .toList()
+                                        : selection == "DBY"
+                                            ? bibleModel.bibleDby
+                                                .where((bibleData) =>
+                                                    (bibleData.book ==
+                                                        widget.bookName) &&
+                                                    (bibleData.chapter ==
+                                                        widget.chapter))
+                                                .toList()
+                                            : selection == "BBE"
+                                                ? bibleModel.bibleBbe
+                                                    .where((bibleData) =>
+                                                        (bibleData.book ==
+                                                            widget.bookName) &&
+                                                        (bibleData.chapter ==
+                                                            widget.chapter))
+                                                    .toList()
+                                                : bibleModel.bibleAsv
+                                                    .where((bibleData) => (bibleData.book == widget.bookName) && (bibleData.chapter == widget.chapter))
+                                                    .toList();
             chapterVerses2 = chapterVerses;
-            return ScrollablePositionedList.builder(   
+            return ScrollablePositionedList.builder(
                 itemScrollController: itemScrollController,
                 scrollOffsetController: scrollOffsetController,
                 itemPositionsListener: itemPositionsListener,
@@ -719,45 +862,76 @@ ReaderModel _readerModel=ReaderModel.fromJsonJson( jsonEncode(jsonDecode(d)));
           })),
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: widget.fromSearch==false?  Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-          FloatingActionButton.small(
-                heroTag: '1',
-                child: Icon(
-                   (_currentWordStart != null &&_currentWordStart! !=0)? Icons.stop:Icons.volume_mute),
-                onPressed: () {
-              
-                  if (_currentWordStart != null &&_currentWordStart! !=0) {
-                    _flutterTts.stop();_currentWordStart=0;setState(() {
-                      
-                    });
-                  } else {
-                    allScripture.clear();
-                    for (int x = 0; chapterVerses2.length > x; x++) {
-                      _flutterTts.speak(chapterVerses2[x].text);
-                      allScripture.add(chapterVerses2[x].text);
-                      // print(allScripture[x]);
-                      audioPlayIndex = x;
-                    }setState(() {
-                      
-                    });
-                  }
-                },),
-            FloatingActionButton(
-                heroTag: '2',
-                child: Icon(Icons.search),
-                onPressed: () {
-                  if (controller.isFloating) {
-                    controller.toggle();
-                  }
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => SearchScreen())));
-                }),
-          ],
-        ):SizedBox.shrink(),
+        child: widget.fromSearch == false
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FloatingActionButton.small(
+                    heroTag: '1',
+                    child: Icon(
+                        (_currentWordStart != null && _currentWordStart! != 0)
+                            ? Icons.stop
+                            : Icons.volume_mute),
+                    onPressed: () async {
+                      if (_currentWordStart != null &&
+                          _currentWordStart! != 0) {
+                            // _flutterTts.setCompletionHandler(() { })
+                     await   _flutterTts.stop();
+                        _currentWordStart = 0;
+                        setState(() {});
+                      } else {
+                        print('speak');
+                        allScripture.clear();
+
+                        if (Platform.isAndroid) {
+                          for (int x = 0; chapterVerses2.length > x; x++) {
+                                    await _flutterTts.setVolume(_voiceSettings.volume);
+                                        await _flutterTts.setSpeechRate(_voiceSettings.rate);
+                                        await _flutterTts.setPitch(_voiceSettings.pitch);
+                                        await _flutterTts.awaitSpeakCompletion(true);
+                            await _flutterTts.speak(chapterVerses2[x].text);
+                            allScripture.add(chapterVerses2[x].text);
+                            audioPlayIndex = x;
+                          }
+                          y = 0;
+                          // await _flutterTts.setVolume(_voiceSettings.volume);
+                          // await _flutterTts.setSpeechRate(_voiceSettings.rate);
+                          // await _flutterTts.setPitch(_voiceSettings.pitch);
+                          // await _flutterTts.speak(allScripture[0]);
+                        //  currentlyPlayingSentence=chapterVerses2[0].text.toString();
+                          setState(() {});
+                        }
+                        if (Platform.isIOS) {
+                          for (int x = 0; chapterVerses2.length > x; x++) {
+                            await _flutterTts.setVolume(_voiceSettings.volume);
+                            await _flutterTts
+                                .setSpeechRate(_voiceSettings.rate);
+                            await _flutterTts.setPitch(_voiceSettings.pitch);
+                            _flutterTts.speak(chapterVerses2[x].text);
+                            allScripture.add(chapterVerses2[x].text);
+                            // print(allScripture[x]);
+                            audioPlayIndex = x;
+                          }
+                          setState(() {});
+                        }
+                      }
+                    },
+                  ),
+                  FloatingActionButton(
+                      heroTag: '2',
+                      child: Icon(Icons.search),
+                      onPressed: () {
+                        if (controller.isFloating) {
+                          controller.toggle();
+                        }
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => SearchScreen())));
+                      }),
+                ],
+              )
+            : SizedBox.shrink(),
       ),
     );
     //       options: [

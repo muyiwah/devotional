@@ -1,4 +1,4 @@
-import 'package:mivdevotional/core/model/bible.model.dart';
+import 'package:mivdevotional/model/bible.model.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/core/utility/config.dart';
 import 'package:mivdevotional/ui/home/widgets/show_testament_books.dart';
@@ -36,20 +36,33 @@ class _HomeScreenState extends State<HomeScreen> {
     if (bibleProvider.bible.isEmpty) {
       bibleProvider.getBibleText();
     }
- if (bibleProvider.bibleAsv.isEmpty) {
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getAsvText();
     }
-     if (bibleProvider.bibleAsv.isEmpty) {
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getNivText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getNltText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getMsgText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getBishopText();
     }
-     if (bibleProvider.bibleAmp.isEmpty) {
+    if (bibleProvider.bibleAmp.isEmpty) {
       bibleProvider.getBishopText();
+    }
+    if (bibleProvider.bibleRsv.isEmpty) {
+      bibleProvider.getRsvText();
+    }
+
+    if (bibleProvider.bibleBbe.isEmpty) {
+      bibleProvider.getBbeText();
+    }
+    if (bibleProvider.bibleDby.isEmpty) {
+      bibleProvider.getDbyText();
     }
     return Scaffold(
       body: SafeArea(

@@ -1,8 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+ <!-- <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/> -->
 <queries>
   <intent>
-    <action android:name="android.intent.action.TTS_SERVICE" />
+    <action android:name="android.intent.action.TTS_SERVICE"/>
   </intent>
 </queries>
     <application android:label="MivDevotional" android:name="${applicationName}" android:icon="@mipmap/launcher_icon">

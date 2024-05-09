@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:mivdevotional/core/model/devorion_model.dart';
+import 'package:mivdevotional/model/devorion_model.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/ui/book/daily_verse.dart';
 import 'package:mivdevotional/ui/book/show_chapter.dart';

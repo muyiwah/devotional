@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mivdevotional/core/model/save_color.dart';
+import 'package:mivdevotional/model/save_color.dart';
 import 'package:mivdevotional/devotion_screen.dart';
 import 'package:mivdevotional/ui/home/saved_scriptures.dart';
 import 'package:mivdevotional/ui/home/word_clinic_screen.dart';

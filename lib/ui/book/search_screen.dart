@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mivdevotional/core/model/bible.model.dart';
+import 'package:mivdevotional/model/bible.model.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/ui/book/show_chapter.dart';
 import 'package:provider/provider.dart';

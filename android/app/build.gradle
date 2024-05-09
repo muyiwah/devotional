@@ -28,7 +28,7 @@ if (flutterVersionName == null) {
    }
 android {
     namespace "com.miv.devotional"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {

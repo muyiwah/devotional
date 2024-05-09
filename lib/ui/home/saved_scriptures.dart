@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:mivdevotional/core/model/save_color.dart';
+import 'package:mivdevotional/model/save_color.dart';
 import 'package:mivdevotional/ui/book/show_chapter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

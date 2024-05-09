@@ -1,5 +1,5 @@
 import 'package:custom_floating_action_button/custom_floating_action_button.dart';
-import 'package:mivdevotional/core/model/devorion_model.dart';
+import 'package:mivdevotional/model/devorion_model.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/core/utility/get_week.dart';
 import 'package:mivdevotional/ui/book/show_chapter.dart';
@@ -33,18 +33,19 @@ class _DevorionScreenState extends State<DevorionScreen> {
 
     if (newDate != null) {
       print(newDate.weekOfMonth);
-      thisMonth=(newDate.month);
-thisDay=newDate.day;
-    todayDevotional =
-        (allDevotional.firstWhere((element) => element.date == refineDate()));
-    indexofToday = allDevotional.indexOf(todayDevotional);
-    print(todayDevotional.thought);
+      thisMonth = (newDate.month);
+      thisDay = newDate.day;
+      todayDevotional =
+          (allDevotional.firstWhere((element) => element.date == refineDate()));
+      indexofToday = allDevotional.indexOf(todayDevotional);
+      print(todayDevotional.thought);
 
-    setState(() {});
-    _controller.jumpToPage(indexofToday);
+      setState(() {});
+      _controller.jumpToPage(indexofToday);
     }
     if (mounted) setState(() {});
   }
+
   int indexofToday = 0;
   PageController _controller = PageController();
   List<DevotionModel> allDevotional = [];
@@ -59,8 +60,9 @@ thisDay=newDate.day;
       text: '',
       date: '');
 
-        String y = '';
-  String getVerse(e) {print(e);
+  String y = '';
+  String getVerse(e) {
+    print(e);
     if (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) {
       y = e.split(' ')[2].split(':')[1];
     } else {
@@ -77,6 +79,7 @@ thisDay=newDate.day;
     print(y);
     return y;
   }
+
   getAllDevotional() async {
     allDevotional =
         await Provider.of<BibleModel>(context, listen: false).getDevotional();
@@ -143,236 +146,261 @@ thisDay=newDate.day;
     if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getAsvText();
     }
-      if (bibleProvider.bibleAsv.isEmpty) {
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getNivText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getNltText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getMsgText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getBishopText();
     }
 
     if (bibleProvider.bibleAmp.isEmpty) {
       bibleProvider.getAmpText();
     }
+
+    if (bibleProvider.bibleRsv.isEmpty) {
+      bibleProvider.getRsvText();
+    }
+
+    if (bibleProvider.bibleBbe.isEmpty) {
+      bibleProvider.getBbeText();
+    }
+    if (bibleProvider.bibleDby.isEmpty) {
+      bibleProvider.getDbyText();
+    }
     return CustomFloatingActionButton(
-      body: Scaffold(
-        appBar: AppBar(
-          title: Text('All Devotional'),
-          centerTitle: true,
-        ),
-        body: Stack(
-          children: [
-            PageView.builder(
-                controller: _controller,
-                physics: ClampingScrollPhysics(),
-                itemCount: allDevotional.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  selectedIndex = index;
-                  return Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Text(
-                              allDevotional[index].date,
-                              style: TextStyle(fontWeight: FontWeight.w600),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              allDevotional[index].title,
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w100),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            if (allDevotional[index].reference.isNotEmpty)
-                              InkWell(
-                                  onTap: () {
-                                    // print(allDevotional[index]
-                                    //                   .reference
-                                    //                   .split(' ')[0]
-                                    //                   .toString());
-                                    //                   print(int.parse(allDevotional[index].reference.split(' ')[1].split(':')[0]));
-                                    //                   print( int.parse(getVerse(allDevotional[index].reference)));
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => ShowChapter(fromSearch: false,
-                                              bookName: (allDevotional[index]
-                                                          .reference
-                                                          .startsWith('1') ||
-                                                      allDevotional[index]
-                                                          .reference
-                                                          .startsWith('2') ||
-                                                      allDevotional[index]
-                                                          .reference
-                                                          .startsWith('3'))
-                                                  ? ('${allDevotional[index].reference.split(' ')[0]} ${allDevotional[index].reference.split(' ')[1]}')
-                                                  : allDevotional[index]
-                                                      .reference
-                                                      .split(' ')[0]
-                                                      .toString(),
-                                              chapter: (allDevotional[index]
-                                                          .reference
-                                                          .startsWith('1') ||
-                                                      allDevotional[index]
-                                                          .reference
-                                                          .startsWith('2') ||
-                                                      allDevotional[index]
-                                                          .reference
-                                                          .startsWith('3'))
-                                                  ? int.parse(allDevotional[index]
-                                                      .reference
-                                                      .split(' ')[2]
-                                                      .split(':')[0])
-                                                  : int.parse(allDevotional[index].reference.split(' ')[1].split(':')[0]),
-                                                  verse: int.parse(getVerse(allDevotional[index].reference)),),),
-                                    );
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.all(6),
-                                    color: Colors.amberAccent,
-                                    child: Text(
-                                      allDevotional[index].reference,
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  )),
-                            Text(
-                              allDevotional[index].scripture,
-                              style: TextStyle(fontSize: 15),
-                            ),
-                            SizedBox(
-                              height: 18,
-                            ),
-                            Text(
-                              allDevotional[index].text,
-                              style: TextStyle(fontSize: 16, height: 1.6),
-                            ),
-                            if (allDevotional[index].thought.isNotEmpty)
-                              Container(
-                                margin: EdgeInsets.only(top: 8),
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 4.0),
-                                child: RichText(
-                                    text: TextSpan(children: [
-                                  TextSpan(
-                                      text: 'Thought of the day: ',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          height: 1.6)),
-                                  TextSpan(
-                                      text: allDevotional[index].thought,
-                                      style: TextStyle(
-                                        color: Colors.black87,
-                                        height: 1.6,
-                                        fontSize: 16,
-                                      ))
-                                ])),
+        body: Scaffold(
+          appBar: AppBar(
+            title: Text('All Devotional'),
+            centerTitle: true,
+          ),
+          body: Stack(
+            children: [
+              PageView.builder(
+                  controller: _controller,
+                  physics: ClampingScrollPhysics(),
+                  itemCount: allDevotional.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    selectedIndex = index;
+                    return Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Text(
+                                allDevotional[index].date,
+                                style: TextStyle(fontWeight: FontWeight.w600),
                               ),
-                            if (allDevotional[index].action_plan.isNotEmpty)
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 4.0),
-                                child: RichText(
-                                    text: TextSpan(children: [
-                                  TextSpan(
-                                      text: 'Action Plan: ',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                allDevotional[index].title,
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w100),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              if (allDevotional[index].reference.isNotEmpty)
+                                InkWell(
+                                    onTap: () {
+                                      // print(allDevotional[index]
+                                      //                   .reference
+                                      //                   .split(' ')[0]
+                                      //                   .toString());
+                                      //                   print(int.parse(allDevotional[index].reference.split(' ')[1].split(':')[0]));
+                                      //                   print( int.parse(getVerse(allDevotional[index].reference)));
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => ShowChapter(
+                                            fromSearch: false,
+                                            bookName: (allDevotional[index]
+                                                        .reference
+                                                        .startsWith('1') ||
+                                                    allDevotional[index]
+                                                        .reference
+                                                        .startsWith('2') ||
+                                                    allDevotional[index]
+                                                        .reference
+                                                        .startsWith('3'))
+                                                ? ('${allDevotional[index].reference.split(' ')[0]} ${allDevotional[index].reference.split(' ')[1]}')
+                                                : allDevotional[index]
+                                                    .reference
+                                                    .split(' ')[0]
+                                                    .toString(),
+                                            chapter: (allDevotional[index]
+                                                        .reference
+                                                        .startsWith('1') ||
+                                                    allDevotional[index]
+                                                        .reference
+                                                        .startsWith('2') ||
+                                                    allDevotional[index]
+                                                        .reference
+                                                        .startsWith('3'))
+                                                ? int.parse(allDevotional[index]
+                                                    .reference
+                                                    .split(' ')[2]
+                                                    .split(':')[0])
+                                                : int.parse(allDevotional[index]
+                                                    .reference
+                                                    .split(' ')[1]
+                                                    .split(':')[0]),
+                                            verse: int.parse(getVerse(
+                                                allDevotional[index]
+                                                    .reference)),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(6),
+                                      color: Colors.amberAccent,
+                                      child: Text(
+                                        allDevotional[index].reference,
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    )),
+                              Text(
+                                allDevotional[index].scripture,
+                                style: TextStyle(fontSize: 15),
+                              ),
+                              SizedBox(
+                                height: 18,
+                              ),
+                              Text(
+                                allDevotional[index].text,
+                                style: TextStyle(fontSize: 16, height: 1.6),
+                              ),
+                              if (allDevotional[index].thought.isNotEmpty)
+                                Container(
+                                  margin: EdgeInsets.only(top: 8),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 4.0),
+                                  child: RichText(
+                                      text: TextSpan(children: [
+                                    TextSpan(
+                                        text: 'Thought for the day: ',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            height: 1.6)),
+                                    TextSpan(
+                                        text: allDevotional[index].thought,
+                                        style: TextStyle(
+                                          color: Colors.black87,
                                           height: 1.6,
-                                          fontWeight: FontWeight.w500)),
-                                  TextSpan(
-                                      text: allDevotional[index].action_plan,
-                                      style: TextStyle(
-                                        height: 1.6,
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                      ))
-                                ])),
-                              ),
-                            if (allDevotional[index].prayer.isNotEmpty)
-                              Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 4),
-                                child: RichText(
-                                    text: TextSpan(children: [
-                                  TextSpan(
-                                      text: 'Prayer: ',
-                                      style: TextStyle(
+                                          fontSize: 16,
+                                        ))
+                                  ])),
+                                ),
+                              if (allDevotional[index].action_plan.isNotEmpty)
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 4.0),
+                                  child: RichText(
+                                      text: TextSpan(children: [
+                                    TextSpan(
+                                        text: 'Action Plan: ',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            height: 1.6,
+                                            fontWeight: FontWeight.w500)),
+                                    TextSpan(
+                                        text: allDevotional[index].action_plan,
+                                        style: TextStyle(
+                                          height: 1.6,
                                           color: Colors.black,
                                           fontSize: 16,
+                                        ))
+                                  ])),
+                                ),
+                              if (allDevotional[index].prayer.isNotEmpty)
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 4),
+                                  child: RichText(
+                                      text: TextSpan(children: [
+                                    TextSpan(
+                                        text: 'Prayer: ',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            height: 1.6,
+                                            fontWeight: FontWeight.w500)),
+                                    TextSpan(
+                                        text: allDevotional[index].prayer,
+                                        style: TextStyle(
+                                          color: Colors.black,
                                           height: 1.6,
-                                          fontWeight: FontWeight.w500)),
-                                  TextSpan(
-                                      text: allDevotional[index].prayer,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        height: 1.6,
-                                        fontSize: 16,
-                                      ))
-                                ])),
-                              ),
-                          ],
+                                          fontSize: 16,
+                                        ))
+                                  ])),
+                                ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }),
-            Positioned(
-              left: 20,right: 20,
-              bottom: 160,
-              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () => _controller.previousPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeOutSine),
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      size: 32,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                      onTap: () => _controller.nextPage(
+                    );
+                  }),
+              Positioned(
+                left: 20,
+                right: 20,
+                bottom: 160,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () => _controller.previousPage(
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeOutSine),
                       child: const Icon(
-                        Icons.arrow_forward_ios,
+                        Icons.arrow_back_ios,
                         size: 32,
-                      )),
-                ],
-              ),
-            )
-          ],
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    InkWell(
+                        onTap: () => _controller.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeOutSine),
+                        child: const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 32,
+                        )),
+                  ],
+                ),
+              )
+            ],
+          ),
+          //     floatingActionButton: FloatingActionButton(
+          //       onPressed: () async {
+          //         final result = await Share.share(
+          //           'Awakening Word Today\nThe Men of Issachar Vision\n\n ${allDevotional[selectedIndex].date}\n\n${allDevotional[selectedIndex].title}\n${allDevotional[selectedIndex].reference}\n\n${allDevotional[selectedIndex].scripture}\n\n ${allDevotional[selectedIndex].text}\n\nAction plan: ${allDevotional[selectedIndex].action_plan}\n\nThought of the day: ${allDevotional[selectedIndex].thought}\n\nprayer: ${allDevotional[selectedIndex].prayer}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com',
+          //         );
+
+          // // if (result.status == ShareResultStatus.success) {
+          // //     print('Thank you for sharing my website!');
+          // // }
+          //       },
+          //       child: Icon(
+          //         Icons.share,
+          //       ),
+          //     ),
         ),
-    //     floatingActionButton: FloatingActionButton(
-    //       onPressed: () async {
-    //         final result = await Share.share(
-    //           'Awakening Word Today\nThe Men of Issachar Vision\n\n ${allDevotional[selectedIndex].date}\n\n${allDevotional[selectedIndex].title}\n${allDevotional[selectedIndex].reference}\n\n${allDevotional[selectedIndex].scripture}\n\n ${allDevotional[selectedIndex].text}\n\nAction plan: ${allDevotional[selectedIndex].action_plan}\n\nThought of the day: ${allDevotional[selectedIndex].thought}\n\nprayer: ${allDevotional[selectedIndex].prayer}\n\n@The Men of Issachar Vision Inc\n  download app for more https://www.menofissacharvision.com',
-    //         );
-    
-    // // if (result.status == ShareResultStatus.success) {
-    // //     print('Thank you for sharing my website!');
-    // // }
-    //       },
-    //       child: Icon(
-    //         Icons.share,
-    //       ),
-    //     ),
-      ),
-      options: [
+        options: [
           InkWell(
             onTap: () {
               pickDate();
@@ -383,11 +411,9 @@ thisDay=newDate.day;
           ),
           InkWell(
             onTap: () async {
-
-               final result = await Share.share(
-            '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${allDevotional[selectedIndex].date}, 2024*\n\n*${allDevotional[selectedIndex].title}*\n\n*${allDevotional[selectedIndex].reference}*\n\n*${allDevotional[selectedIndex].scripture}*\n\n ${allDevotional[selectedIndex].text}\n\n*Action plan:* ${allDevotional[selectedIndex].action_plan}\n\n*Thought of the day:* ${allDevotional[selectedIndex].thought}\n\n*prayer:* ${allDevotional[selectedIndex].prayer}\n\nDownload app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
-          );
-           
+              final result = await Share.share(
+                '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${allDevotional[selectedIndex].date}, 2024*\n\n*${allDevotional[selectedIndex].title}*\n\n*${allDevotional[selectedIndex].reference}*\n\n*${allDevotional[selectedIndex].scripture}*\n\n ${allDevotional[selectedIndex].text}\n\n*Action plan:* ${allDevotional[selectedIndex].action_plan}\n\n*Thought for the day:* ${allDevotional[selectedIndex].thought}\n\n*Prayer:* ${allDevotional[selectedIndex].prayer}\n\nDownload app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
+              );
             },
             child: CircleAvatar(
               child: Icon(Icons.share),
@@ -413,10 +439,9 @@ thisDay=newDate.day;
           // ),
         ],
         type: CustomFloatingActionButtonType.horizontal,
-        spaceFromBottom: 50,spaceFromRight: 30,
+        spaceFromBottom: 50,
+        spaceFromRight: 30,
         openFloatingActionButton: const Icon(Icons.add),
-        closeFloatingActionButton: const Icon(Icons.close)
-    );
-    
+        closeFloatingActionButton: const Icon(Icons.close));
   }
 }

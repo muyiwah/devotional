@@ -1,4 +1,4 @@
-import 'package:mivdevotional/core/model/dail_verse.dart';
+import 'package:mivdevotional/model/dail_verse.dart';
 
 class DailyVerse {
   List<DailyVerseModel> verses = [

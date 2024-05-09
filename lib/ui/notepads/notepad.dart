@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:mivdevotional/core/model/notepad_model.dart';
+import 'package:mivdevotional/model/notepad_model.dart';
 import 'package:mivdevotional/ui/notepads/note_edit.dart';
 import 'package:mivdevotional/ui/notepads/notes_Screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
