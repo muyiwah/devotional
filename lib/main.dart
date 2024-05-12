@@ -1,4 +1,6 @@
 // import 'package:firebase_core/firebase_core.dart';
+import 'dart:io';
+
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/devotion_screen.dart';
 import 'package:mivdevotional/ui/home/dashboard.dart';
@@ -71,6 +73,11 @@ class MyApp extends StatelessWidget {
         // home: HomeScreen(),
         // home: MySilverScreen(),
         home: Welcome(),
+         builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaleFactor: Platform.isAndroid ? .9 : 1,
+          ),
+          child: child!),
       ),
     );
   }

@@ -7,7 +7,19 @@ class ShowBook extends StatelessWidget {
   final BibleBookWithChapters book;
 
   const ShowBook({required this.book});
-
+autoGotoNextChapter(context,index){
+    Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) =>    ShowChapter(fromSearch: false,
+                          bookName: book.name,
+                          chapter: index+1,autoRead:true
+                        ))).then((value) {
+                          if(value.contains('next') && int.parse( value.split(' ')[1])<book.chapters){
+                      autoGotoNextChapter(context, index+1);
+                          }
+                        }); 
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +41,13 @@ class ShowBook extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (_) => ShowChapter(fromSearch: false,
-                          bookName: book.name,
-                          chapter: index,
-                        ))),
+                          bookName: book.name,lastChapter:book.chapters,
+                          chapter: index,autoRead: false,
+                        ))).then((value) {
+                          if(value.contains('next') && int.parse( value.split(' ')[1])<book.chapters){
+                      autoGotoNextChapter(context, index);
+                          }
+                        }),
             child: Card(
               child: Center(
                   child: Text(

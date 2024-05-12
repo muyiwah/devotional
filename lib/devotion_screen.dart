@@ -221,7 +221,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => ShowChapter(
+                                          builder: (context) => ShowChapter(autoRead: false,
                                             fromSearch: false,
                                             bookName: (allDevotional[index]
                                                         .reference

@@ -147,7 +147,7 @@ String refineDate() {
                                 onTap: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => ShowChapter(fromSearch: false,
+                                        builder: (context) => ShowChapter(fromSearch: false,autoRead: false,
                                             bookName: (e.startsWith('1') ||
                                                     e.startsWith('2') ||
                                                     e.startsWith('3'))
@@ -310,7 +310,7 @@ String refineDate() {
                                                               Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
-                                                              builder: (context) => ShowChapter(fromSearch: false,
+                                                              builder: (context) => ShowChapter(fromSearch: false,autoRead: false,
                                                                   bookName: (e.startsWith('1') ||
                                                                           e.startsWith(
                                                                               '2') ||

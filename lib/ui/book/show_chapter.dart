@@ -24,12 +24,15 @@ class ShowChapter extends StatefulWidget {
   final int chapter;
   int verse;
   final bool fromSearch;
-
+  final bool autoRead;
+  int lastChapter;
   ShowChapter(
       {required this.bookName,
       required this.chapter,
       this.verse = -1,
-      required this.fromSearch});
+      required this.fromSearch,
+      required this.autoRead,
+      this.lastChapter = 0});
 
   @override
   State<ShowChapter> createState() => _ShowChapterState();
@@ -38,6 +41,7 @@ class ShowChapter extends StatefulWidget {
 class _ShowChapterState extends State<ShowChapter> {
   @override
   void initState() {
+    print(widget.lastChapter);
     // TODO: implement initState
     super.initState();
     getColouredVerses();
@@ -47,8 +51,13 @@ class _ShowChapterState extends State<ShowChapter> {
       _getDefaultEngine();
       _getDefaultVoice();
     }
-    getSavedVoice();
+    // getSavedVoice();
     getSaveVoiceSettings();
+    if (widget.autoRead) {
+      Future.delayed(Duration(seconds: 1), () {
+        readBibleAutomatically();
+      });
+    }
     Future.delayed(Duration(seconds: 1), () {
       if (widget.verse != -1) goToVerse();
     });
@@ -81,6 +90,67 @@ class _ShowChapterState extends State<ShowChapter> {
     var voice = await _flutterTts.getDefaultVoice;
     if (voice != null) {
       // print(voice);
+    }
+  }
+
+  readBibleAutomatically() async {
+    allScripture.clear();
+
+    if (Platform.isAndroid) {
+      await _flutterTts.setVolume(_voiceSettings.volume);
+      await _flutterTts.setSpeechRate(_voiceSettings.rate);
+      await _flutterTts.setPitch(_voiceSettings.pitch);
+      if (widget.bookName.contains('1')) {
+        await _flutterTts.speak(
+            'first ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+      } else if (widget.bookName.contains('2')) {
+        await _flutterTts.speak(
+            'second ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+      } else if (widget.bookName.contains('3')) {
+        await _flutterTts.speak(
+            'third ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+      } else {
+        await _flutterTts.speak('${widget.bookName} chapter ${widget.chapter}');
+      }
+      // await _flutterTts.speak('chapter');
+      // await _flutterTts.speak(widget.chapter.toString());
+      for (int x = 0; chapterVerses2.length > x; x++) {
+        await _flutterTts.setVolume(_voiceSettings.volume);
+        // await _flutterTts.setSpeechRate(_voiceSettings.rate);
+        // await _flutterTts.setPitch(_voiceSettings.pitch);
+        await _flutterTts.awaitSpeakCompletion(true);
+        await _flutterTts.speak(chapterVerses2[x].text);
+        allScripture.add(chapterVerses2[x].text);
+        audioPlayIndex = x;
+      }
+      y = 0;
+    }
+    if (Platform.isIOS) {
+      await _flutterTts.setVolume(_voiceSettings.volume);
+      await _flutterTts.setSpeechRate(_voiceSettings.rate);
+      await _flutterTts.setPitch(_voiceSettings.pitch);
+      if (widget.bookName.contains('1')) {
+        await _flutterTts.speak('first');
+        await _flutterTts.speak(widget.bookName.split(' ')[1]);
+      } else if (widget.bookName.contains('2')) {
+        await _flutterTts.speak('second');
+        await _flutterTts.speak(widget.bookName.split(' ')[1]);
+      } else if (widget.bookName.contains('3')) {
+        await _flutterTts.speak('third');
+        await _flutterTts.speak(widget.bookName.split(' ')[1]);
+      } else {
+        await _flutterTts.speak(widget.bookName);
+      }
+      await _flutterTts.speak('chapter');
+      await _flutterTts.speak(widget.chapter.toString());
+
+      for (int x = 0; chapterVerses2.length > x; x++) {
+        _flutterTts.speak(chapterVerses2[x].text);
+        allScripture.add(chapterVerses2[x].text);
+        // print(allScripture[x]);
+        audioPlayIndex = x;
+      }
+      setState(() {});
     }
   }
 
@@ -119,7 +189,7 @@ class _ShowChapterState extends State<ShowChapter> {
   initTts() async {
     _flutterTts.setProgressHandler((text, start, end, word) async {
       int x = 0;
-      // print(word);
+      print(word);
       // print(start);
       // print(end);
       // print(currentlyPlayingSentence);
@@ -131,15 +201,16 @@ class _ShowChapterState extends State<ShowChapter> {
 // if(Platform.isIOS){
       currentlyPlayingSentence = text;
 
-      if (currentlyPlayingSentence.endsWith(word) 
-      ||
+      if (currentlyPlayingSentence.endsWith(word) ||
           currentlyPlayingSentence.endsWith('${word}.') ||
+          currentlyPlayingSentence.endsWith('${word})') ||
+          currentlyPlayingSentence.endsWith('${word}!') ||
+          currentlyPlayingSentence.endsWith('${word}"') ||
+          currentlyPlayingSentence.endsWith('${word}".') ||
           currentlyPlayingSentence.endsWith('${word},') ||
           currentlyPlayingSentence.endsWith('${word}:') ||
           currentlyPlayingSentence.endsWith('${word};') ||
-          currentlyPlayingSentence.endsWith('${word}?')
-          ) {
-     
+          currentlyPlayingSentence.endsWith('${word}?')) {
         // print(text);
 
         x = (chapterVerses2
@@ -148,14 +219,66 @@ class _ShowChapterState extends State<ShowChapter> {
         if (x.isEven) {
           scollToVerse(x);
         }
+        print(chapterVerses2[chapterVerses2.length - 1].text);
+        print(currentlyPlayingSentence);
+        print(chapterVerses2[chapterVerses2.length - 1].text ==
+            currentlyPlayingSentence);
+        print(widget.verse);
+        print(widget.chapter != widget.lastChapter);
+        if (Platform.isAndroid) {
+          if (mounted &&
+              chapterVerses2[chapterVerses2.length - 1].text ==
+                  currentlyPlayingSentence &&
+              widget.chapter != widget.lastChapter &&
+              widget.verse == -1) {
+            if (currentlyPlayingSentence.endsWith(word) ||
+                currentlyPlayingSentence.endsWith('${word}.') ||
+                currentlyPlayingSentence.endsWith('${word}!') ||
+                currentlyPlayingSentence.endsWith('${word})') ||
+                currentlyPlayingSentence.endsWith('${word}"') ||
+                currentlyPlayingSentence.endsWith('${word}".') ||
+                currentlyPlayingSentence.endsWith('${word},') ||
+                currentlyPlayingSentence.endsWith('${word}:') ||
+                currentlyPlayingSentence.endsWith('${word};') ||
+                currentlyPlayingSentence.endsWith('${word}?')) {
+              print('hererre now');
+              Future.delayed(Duration(seconds: 2), () async {
+                await _flutterTts.speak('Next chapter');
+                await _flutterTts.stop();
+                Navigator.pop(context, 'next ${widget.chapter}');
+              });
+            }
+          }
+          setState(() {});
+        } else {
+          if (mounted &&
+              allScripture.last == currentlyPlayingSentence &&
+              widget.chapter != widget.lastChapter &&
+              widget.verse == -1) {
+            if (currentlyPlayingSentence.endsWith(word) ||
+                currentlyPlayingSentence.endsWith('${word}.') ||
+                currentlyPlayingSentence.endsWith('${word},') ||
+                currentlyPlayingSentence.endsWith('${word}"') ||
+                currentlyPlayingSentence.endsWith('${word}".') ||
+                currentlyPlayingSentence.endsWith('${word}:') ||
+                currentlyPlayingSentence.endsWith('${word};') ||
+                currentlyPlayingSentence.endsWith('${word}?')) {
+              Future.delayed(Duration(seconds: 3), () async {
+                await _flutterTts.speak('Next chapter');
+                await _flutterTts.stop();
+                Navigator.pop(context, 'next ${widget.chapter}');
+              });
+            }
+          }
+          setState(() {});
+        }
       }
       // }
       // else{
-        // print(y);
-
+      // print(y);
 
 // // currentlyPlayingSentence=chapterVerses2[y].text.toString();
-//  if (currentlyPlayingSentence.endsWith(word) 
+//  if (currentlyPlayingSentence.endsWith(word)
 //       ||
 //           currentlyPlayingSentence.endsWith('${word}.') ||
 //           currentlyPlayingSentence.endsWith('${word},') ||
@@ -188,8 +311,7 @@ class _ShowChapterState extends State<ShowChapter> {
 // prefBible
     if (prefs.containsKey('savedReader')) {
       String d = prefs.getString('savedReader').toString();
-      ReaderModel _readerModel =
-          ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
+      _readerModel = ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
       setVoiceN();
     } else {
       _flutterTts.getVoices.then((data) {
@@ -352,7 +474,8 @@ class _ShowChapterState extends State<ShowChapter> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: InkWell(child: back, onTap: () => Navigator.pop(context)),
+        leading:
+            InkWell(child: back, onTap: () => Navigator.pop(context, 'nill')),
         title: Text(
           '${widget.bookName}   ${widget.chapter}',
           style: TextStyle(fontSize: 18),
@@ -362,15 +485,15 @@ class _ShowChapterState extends State<ShowChapter> {
           // if(prefBibleDone)
 
           Container(
-            width: 100,
-            margin: EdgeInsets.only(right: 20, top: 4),
+            width: 90,
+            margin: EdgeInsets.only(right: 20, top: 6),
             child: CustomDropdown<String>(
               maxlines: 1,
               closedHeaderPadding: EdgeInsets.all(10),
               decoration: CustomDropdownDecoration(
-                  hintStyle: TextStyle(color: Colors.blue),
+                  headerStyle: TextStyle(color: Colors.black, fontSize: 14),
                   closedFillColor: Colors.blue,
-                  listItemStyle: TextStyle(color: Colors.blue, fontSize: 17)),
+                  listItemStyle: TextStyle(color: Colors.blue, fontSize: 14)),
               hintText: '',
               items: _list,
               initialItem: selection,
@@ -381,61 +504,6 @@ class _ShowChapterState extends State<ShowChapter> {
               },
             ),
           ),
-          // if (_voicesString.isNotEmpty)
-          //   Container(
-          //     width: 100,
-          //     margin: EdgeInsets.only(right: 20),
-          //     child: CustomDropdown<String>(
-          //       maxlines: 2,
-          //       closedHeaderPadding: EdgeInsets.all(10),
-          //       decoration: CustomDropdownDecoration(
-          //           hintStyle: TextStyle(color: Colors.blue),
-          //           closedFillColor: Colors.blue,
-          //           listItemStyle: TextStyle(color: Colors.blue, fontSize: 17)),
-          //       hintText: '',
-          //       items: _voicesString,
-          //       initialItem: _voicesString[0],
-          //       onChanged: (value) {
-          //         controller.hide();
-          //       },
-          //     ),
-          //   ),
-          // Container(width: 50,
-          //   child: DropdownButton(
-          //       isExpanded: true,
-          //        value: selection,
-          //       items: [
-          //         DropdownMenuItem(
-          //           child: Text('Kjv'),
-          //           value: 'Kjv',
-          //         ),
-          //         DropdownMenuItem(
-          //           child: Text('Niv'),
-          //           value: 'Niv',
-          //         ),
-          //         DropdownMenuItem(
-          //           child: Text('Nlt'),
-          //           value: 'Nlt',
-          //         ),
-          //       DropdownMenuItem(
-          //           child: Text('Amp'),
-          //           value: 'Amp',
-          //         ), DropdownMenuItem(
-          //           child: Text('Msg'),
-          //           value: 'Msg',
-          //         ), DropdownMenuItem(
-          //           child: Text('Nasb'),
-          //           value: 'Nasb',
-          //         ),
-          //         DropdownMenuItem(
-          //           child: Text('Bishop'),
-          //           value: 'Bishop',
-          //         ),  ],
-          //       onChanged: (value) {
-          //         selection = value!;
-          //      if(mounted)    setState(() {});
-          //       }),
-          // ),
         ],
       ),
       body: FloatingOverlay(
@@ -875,8 +943,8 @@ class _ShowChapterState extends State<ShowChapter> {
                     onPressed: () async {
                       if (_currentWordStart != null &&
                           _currentWordStart! != 0) {
-                            // _flutterTts.setCompletionHandler(() { })
-                     await   _flutterTts.stop();
+                        // _flutterTts.setCompletionHandler(() { })
+                        await _flutterTts.stop();
                         _currentWordStart = 0;
                         setState(() {});
                       } else {
@@ -884,29 +952,58 @@ class _ShowChapterState extends State<ShowChapter> {
                         allScripture.clear();
 
                         if (Platform.isAndroid) {
+                          await _flutterTts.setVolume(_voiceSettings.volume);
+                          await _flutterTts.setSpeechRate(_voiceSettings.rate);
+                          await _flutterTts.setPitch(_voiceSettings.pitch);
+                          if (widget.bookName.contains('1')) {
+                            await _flutterTts.speak(
+                                'first ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+                          } else if (widget.bookName.contains('2')) {
+                            await _flutterTts.speak(
+                                'second ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+                          } else if (widget.bookName.contains('3')) {
+                            await _flutterTts.speak(
+                                'third ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+                          } else {
+                            await _flutterTts.speak(
+                                '${widget.bookName} chapter ${widget.chapter}');
+                          }
+                          // await _flutterTts.speak('chapter');
+                          // await _flutterTts.speak(widget.chapter.toString());
                           for (int x = 0; chapterVerses2.length > x; x++) {
-                                    await _flutterTts.setVolume(_voiceSettings.volume);
-                                        await _flutterTts.setSpeechRate(_voiceSettings.rate);
-                                        await _flutterTts.setPitch(_voiceSettings.pitch);
-                                        await _flutterTts.awaitSpeakCompletion(true);
-                            await _flutterTts.speak(chapterVerses2[x].text);
+                            await _flutterTts.setVolume(_voiceSettings.volume);
+                            // await _flutterTts.setSpeechRate(_voiceSettings.rate);
+                            // await _flutterTts.setPitch(_voiceSettings.pitch);
+                            await _flutterTts.awaitSpeakCompletion(true);
                             allScripture.add(chapterVerses2[x].text);
+                            await _flutterTts.speak(chapterVerses2[x].text);
                             audioPlayIndex = x;
                           }
                           y = 0;
-                          // await _flutterTts.setVolume(_voiceSettings.volume);
-                          // await _flutterTts.setSpeechRate(_voiceSettings.rate);
-                          // await _flutterTts.setPitch(_voiceSettings.pitch);
-                          // await _flutterTts.speak(allScripture[0]);
-                        //  currentlyPlayingSentence=chapterVerses2[0].text.toString();
-                          setState(() {});
                         }
                         if (Platform.isIOS) {
-                          for (int x = 0; chapterVerses2.length > x; x++) {
-                            await _flutterTts.setVolume(_voiceSettings.volume);
+                          await _flutterTts.setVolume(_voiceSettings.volume);
+                          await _flutterTts.setSpeechRate(_voiceSettings.rate);
+                          await _flutterTts.setPitch(_voiceSettings.pitch);
+                          if (widget.bookName.contains('1')) {
+                            await _flutterTts.speak('first');
                             await _flutterTts
-                                .setSpeechRate(_voiceSettings.rate);
-                            await _flutterTts.setPitch(_voiceSettings.pitch);
+                                .speak(widget.bookName.split(' ')[1]);
+                          } else if (widget.bookName.contains('2')) {
+                            await _flutterTts.speak('second');
+                            await _flutterTts
+                                .speak(widget.bookName.split(' ')[1]);
+                          } else if (widget.bookName.contains('3')) {
+                            await _flutterTts.speak('third');
+                            await _flutterTts
+                                .speak(widget.bookName.split(' ')[1]);
+                          } else {
+                            await _flutterTts.speak(widget.bookName);
+                          }
+                          await _flutterTts.speak('chapter');
+                          await _flutterTts.speak(widget.chapter.toString());
+
+                          for (int x = 0; chapterVerses2.length > x; x++) {
                             _flutterTts.speak(chapterVerses2[x].text);
                             allScripture.add(chapterVerses2[x].text);
                             // print(allScripture[x]);

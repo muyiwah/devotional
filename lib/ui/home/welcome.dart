@@ -54,7 +54,7 @@ class Welcome extends StatelessWidget {
                               color: Color.fromARGB(255, 15, 179, 18).withOpacity(.5)),
                           child: Text(
                             'Continue',
-                            style: TextStyle(color: Colors.white, fontSize: 25,fontWeight: FontWeight.w200,),
+                            style: TextStyle(color: Colors.white, fontSize: 22,fontWeight: FontWeight.w200,),
                           ),
                         ),
                       ),

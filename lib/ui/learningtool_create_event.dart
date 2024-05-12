@@ -28,9 +28,9 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
       _getDefaultEngine();
       _getDefaultVoice();
     }
+    getSaveVoiceSettings();
   }
 
- 
   bool sundaySelected = true;
   bool mondaySelected = true;
   bool tuesdaySelected = true;
@@ -39,12 +39,13 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
   bool fridaySelected = true;
   bool saturdayelected = true;
 
-  VoiceSettings _voiceSettings = VoiceSettings(volume: .5, rate: .5, pitch: .5);
+  VoiceSettings _voiceSettings =
+      VoiceSettings(volume: .5, rate: .5, pitch: 1.0);
   double volume = 0.5;
   double pitch = 1.0;
   double rate = 0.5;
   double freqheight = 0;
-Future<void> _getDefaultEngine() async {
+  Future<void> _getDefaultEngine() async {
     var engine = await _flutterTts.getDefaultEngine;
     if (engine != null) {
       print(engine);
@@ -55,6 +56,21 @@ Future<void> _getDefaultEngine() async {
     var voice = await _flutterTts.getDefaultVoice;
     if (voice != null) {
       print(voice);
+    }
+  }
+ getSaveVoiceSettings() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('voiceSettings')) {
+      String d = (prefs.getString('voiceSettings').toString());
+print(VoiceSettings.fromJsonJson(jsonEncode(jsonDecode(d))));
+      _voiceSettings = VoiceSettings.fromJsonJson(jsonEncode(jsonDecode(d)));
+      volume=_voiceSettings.volume;
+      pitch=_voiceSettings.pitch;
+      rate=_voiceSettings.rate;
+setState(() {
+  
+});
+      print((_voiceSettings.volume));
     }
   }
   String selectedReader = "Karen";
@@ -108,7 +124,7 @@ Future<void> _getDefaultEngine() async {
             _voices = _voices
                 .where((_voice) => _voice['locale'].contains('en'))
                 .toList();
-            print(_voices);
+            // print(_voices);
             _voices = _voices
                 .where((voice) =>
                     voice['name'] != 'Trinoids' &&
@@ -149,9 +165,10 @@ Future<void> _getDefaultEngine() async {
           _voices = List<Map>.from(data);
           setState(() {
             _voices = _voices
-                .where((_voice) => _voice['name'].contains('en-gb'))
+                .where((_voice) => _voice['name'].contains('en'))
                 .toList();
             print(_voices);
+            print(_voices.length);
             _voices = _voices
                 .where((voice) =>
                     voice['name'] != 'Trinoids' &&
@@ -173,7 +190,7 @@ Future<void> _getDefaultEngine() async {
             // );
             _voices.forEach((element) =>
                 readerDesc.add(ReaderModel.fromJson(jsonEncode(element))));
-            // print(_voices);
+            print(readerDesc);
             print(_voices.length);
             if (prefs.containsKey('savedReader')) {
             } else {
@@ -196,7 +213,7 @@ Future<void> _getDefaultEngine() async {
 
   savePrefVoice() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
+    print(myReader);
     prefs.setString('savedReader', jsonEncode(myReader));
 
     String d = prefs.getString('savedReader').toString();
@@ -496,7 +513,7 @@ Future<void> _getDefaultEngine() async {
                                   savePrefVoice();
                                   _flutterTts.stop();
                                   _flutterTts.setVoice(
-                                      {'name': e.locale, 'locale': e.name});
+                                      {'name': e.name, 'locale': e.locale});
                                   _flutterTts.speak(playVoice);
                                   readerHeight = 100;
                                   setState(() {});
@@ -560,205 +577,205 @@ Future<void> _getDefaultEngine() async {
                         color: Colors.grey.withOpacity(.2),
                         borderRadius: BorderRadius.circular(12)),
                     child: _buildSliders()),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'Set Notification Frequency',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
+                // SizedBox(
+                //   height: 20,
+                // ),
+                // Text(
+                //   'Set Notification Frequency',
+                //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                // ),
+                // SizedBox(
+                //   height: 10,
+                // ),
 
-                Wrap(
-                  spacing: 20,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        if (freqheight == 140) {
-                          freqheight = 0;
-                          setState(() {});
-                        } else {
-                          freqheight = 140;
-                          setState(() {});
-                        }
-                      },
-                      child: Chip(
-                          backgroundColor: (saturdayelected == true &&
-                                  sundaySelected == true &&
-                                  mondaySelected == true &&
-                                  tuesdaySelected == true &&
-                                  wednesdaySelected == true &&
-                                  thursdaySelected == true &&
-                                  fridaySelected == true)
-                              ? Colors.green
-                              : Colors.orange,
-                          label: Text(
-                            'Days/Daily',
-                            style: TextStyle(color: Colors.white, fontSize: 14),
-                          )),
-                    ),
-                    // Chip(label: Text('Select Days')),
-                    Chip(
-                        backgroundColor: Colors.green,
-                        label: Wrap(
-                          runAlignment: WrapAlignment.center,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.timelapse,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              ' Time',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 14),
-                            ),
-                          ],
-                        )),
-                  ],
-                ),
+                // Wrap(
+                //   spacing: 20,
+                //   children: [
+                //     InkWell(
+                //       onTap: () {
+                //         if (freqheight == 140) {
+                //           freqheight = 0;
+                //           setState(() {});
+                //         } else {
+                //           freqheight = 140;
+                //           setState(() {});
+                //         }
+                //       },
+                //       child: Chip(
+                //           backgroundColor: (saturdayelected == true &&
+                //                   sundaySelected == true &&
+                //                   mondaySelected == true &&
+                //                   tuesdaySelected == true &&
+                //                   wednesdaySelected == true &&
+                //                   thursdaySelected == true &&
+                //                   fridaySelected == true)
+                //               ? Colors.green
+                //               : Colors.orange,
+                //           label: Text(
+                //             'Days/Daily',
+                //             style: TextStyle(color: Colors.white, fontSize: 14),
+                //           )),
+                //     ),
+                //     // Chip(label: Text('Select Days')),
+                //     Chip(
+                //         backgroundColor: Colors.green,
+                //         label: Wrap(
+                //           runAlignment: WrapAlignment.center,
+                //           crossAxisAlignment: WrapCrossAlignment.center,
+                //           children: [
+                //             Icon(
+                //               Icons.timelapse,
+                //               color: Colors.white,
+                //             ),
+                //             Text(
+                //               ' Time',
+                //               style:
+                //                   TextStyle(color: Colors.white, fontSize: 14),
+                //             ),
+                //           ],
+                //         )),
+                //   ],
+                // ),
 
-                AnimatedContainer(
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(.2),
-                      borderRadius: BorderRadius.circular(12)),
-                  duration: Duration(milliseconds: 500),
-                  height: freqheight,
-                  child: AnimatedOpacity(
-                    duration: Duration(milliseconds: 800),
-                    opacity: freqheight == 140 ? 1 : 0,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('set preferred days to be notified to take devotional'),
-                        Wrap(spacing: 5, children: [
-                          ChoiceChip(
-                            selectedColor:
-                                sundaySelected ? Colors.green : Colors.grey,
-                            label: Text(
-                              "Sunday",
-                              style: TextStyle(
-                                  color: sundaySelected
-                                      ? Colors.white
-                                      : Colors.black),
-                            ),
-                            selected: sundaySelected,
-                            onSelected: (selected) {
-                              setState(() {
-                                sundaySelected = selected;
-                              });
-                            },
-                          ),
-                          ChoiceChip(
-                            selectedColor:
-                                mondaySelected ? Colors.green : Colors.grey,
-                            label: Text(
-                              "Monday",
-                              style: TextStyle(
-                                  color: mondaySelected
-                                      ? Colors.white
-                                      : Colors.black),
-                            ),
-                            selected: mondaySelected,
-                            onSelected: (selected) {
-                              setState(() {
-                                mondaySelected = selected;
-                              });
-                            },
-                          ),
-                          ChoiceChip(
-                            selectedColor:
-                                tuesdaySelected ? Colors.green : Colors.grey,
-                            label: Text(
-                              "Tuesday",
-                              style: TextStyle(
-                                  color: tuesdaySelected
-                                      ? Colors.white
-                                      : Colors.black),
-                            ),
-                            selected: tuesdaySelected,
-                            onSelected: (selected) {
-                              setState(() {
-                                tuesdaySelected = selected;
-                              });
-                            },
-                          ),
-                          ChoiceChip(
-                            selectedColor:
-                                wednesdaySelected ? Colors.green : Colors.grey,
-                            label: Text(
-                              "Wednesday",
-                              style: TextStyle(
-                                  color: wednesdaySelected
-                                      ? Colors.white
-                                      : Colors.black),
-                            ),
-                            selected: wednesdaySelected,
-                            onSelected: (selected) {
-                              setState(() {
-                                wednesdaySelected = selected;
-                              });
-                            },
-                          ),
-                          ChoiceChip(
-                            selectedColor:
-                                thursdaySelected ? Colors.green : Colors.grey,
-                            label: Text(
-                              "Thursday",
-                              style: TextStyle(
-                                  color: thursdaySelected
-                                      ? Colors.white
-                                      : Colors.black),
-                            ),
-                            selected: thursdaySelected,
-                            onSelected: (selected) {
-                              setState(() {
-                                thursdaySelected = selected;
-                              });
-                            },
-                          ),
-                          ChoiceChip(
-                            selectedColor:
-                                fridaySelected ? Colors.green : Colors.grey,
-                            label: Text(
-                              "Friday",
-                              style: TextStyle(
-                                  color: fridaySelected
-                                      ? Colors.white
-                                      : Colors.black),
-                            ),
-                            selected: fridaySelected,
-                            onSelected: (selected) {
-                              setState(() {
-                                fridaySelected = selected;
-                              });
-                            },
-                          ),
-                          ChoiceChip(
-                            selectedColor:
-                                saturdayelected ? Colors.green : Colors.grey,
-                            label: Text(
-                              "Saturday",
-                              style: TextStyle(
-                                  color: saturdayelected
-                                      ? Colors.white
-                                      : Colors.black),
-                            ),
-                            selected: saturdayelected,
-                            onSelected: (selected) {
-                              setState(() {
-                                saturdayelected = selected;
-                              });
-                            },
-                          ),
-                        ]),
-                      ],
-                    ),
-                  ),
-                ),
+                // AnimatedContainer(
+                //   padding: EdgeInsets.all(12),
+                //   decoration: BoxDecoration(
+                //       color: Colors.grey.withOpacity(.2),
+                //       borderRadius: BorderRadius.circular(12)),
+                //   duration: Duration(milliseconds: 500),
+                //   height: freqheight,
+                //   child: AnimatedOpacity(
+                //     duration: Duration(milliseconds: 800),
+                //     opacity: freqheight == 140 ? 1 : 0,
+                //     child: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text('set preferred days to be notified to take devotional'),
+                //         Wrap(spacing: 5, children: [
+                //           ChoiceChip(
+                //             selectedColor:
+                //                 sundaySelected ? Colors.green : Colors.grey,
+                //             label: Text(
+                //               "Sunday",
+                //               style: TextStyle(
+                //                   color: sundaySelected
+                //                       ? Colors.white
+                //                       : Colors.black),
+                //             ),
+                //             selected: sundaySelected,
+                //             onSelected: (selected) {
+                //               setState(() {
+                //                 sundaySelected = selected;
+                //               });
+                //             },
+                //           ),
+                //           ChoiceChip(
+                //             selectedColor:
+                //                 mondaySelected ? Colors.green : Colors.grey,
+                //             label: Text(
+                //               "Monday",
+                //               style: TextStyle(
+                //                   color: mondaySelected
+                //                       ? Colors.white
+                //                       : Colors.black),
+                //             ),
+                //             selected: mondaySelected,
+                //             onSelected: (selected) {
+                //               setState(() {
+                //                 mondaySelected = selected;
+                //               });
+                //             },
+                //           ),
+                //           ChoiceChip(
+                //             selectedColor:
+                //                 tuesdaySelected ? Colors.green : Colors.grey,
+                //             label: Text(
+                //               "Tuesday",
+                //               style: TextStyle(
+                //                   color: tuesdaySelected
+                //                       ? Colors.white
+                //                       : Colors.black),
+                //             ),
+                //             selected: tuesdaySelected,
+                //             onSelected: (selected) {
+                //               setState(() {
+                //                 tuesdaySelected = selected;
+                //               });
+                //             },
+                //           ),
+                //           ChoiceChip(
+                //             selectedColor:
+                //                 wednesdaySelected ? Colors.green : Colors.grey,
+                //             label: Text(
+                //               "Wednesday",
+                //               style: TextStyle(
+                //                   color: wednesdaySelected
+                //                       ? Colors.white
+                //                       : Colors.black),
+                //             ),
+                //             selected: wednesdaySelected,
+                //             onSelected: (selected) {
+                //               setState(() {
+                //                 wednesdaySelected = selected;
+                //               });
+                //             },
+                //           ),
+                //           ChoiceChip(
+                //             selectedColor:
+                //                 thursdaySelected ? Colors.green : Colors.grey,
+                //             label: Text(
+                //               "Thursday",
+                //               style: TextStyle(
+                //                   color: thursdaySelected
+                //                       ? Colors.white
+                //                       : Colors.black),
+                //             ),
+                //             selected: thursdaySelected,
+                //             onSelected: (selected) {
+                //               setState(() {
+                //                 thursdaySelected = selected;
+                //               });
+                //             },
+                //           ),
+                //           ChoiceChip(
+                //             selectedColor:
+                //                 fridaySelected ? Colors.green : Colors.grey,
+                //             label: Text(
+                //               "Friday",
+                //               style: TextStyle(
+                //                   color: fridaySelected
+                //                       ? Colors.white
+                //                       : Colors.black),
+                //             ),
+                //             selected: fridaySelected,
+                //             onSelected: (selected) {
+                //               setState(() {
+                //                 fridaySelected = selected;
+                //               });
+                //             },
+                //           ),
+                //           ChoiceChip(
+                //             selectedColor:
+                //                 saturdayelected ? Colors.green : Colors.grey,
+                //             label: Text(
+                //               "Saturday",
+                //               style: TextStyle(
+                //                   color: saturdayelected
+                //                       ? Colors.white
+                //                       : Colors.black),
+                //             ),
+                //             selected: saturdayelected,
+                //             onSelected: (selected) {
+                //               setState(() {
+                //                 saturdayelected = selected;
+                //               });
+                //             },
+                //           ),
+                //         ]),
+                //       ],
+                //     ),
+                //   ),
+                // ),
 
                 SizedBox(
                   height: 20,

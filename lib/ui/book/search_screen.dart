@@ -84,7 +84,7 @@ bool isSearched=false;
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ShowChapter(bookName:result[index].book ,fromSearch:true,
-                                  chapter: result[index].chapter,verse: result[index].verse,)));
+                                  chapter: result[index].chapter,verse: result[index].verse,autoRead: false,)));
                   },
                     child: Container(padding: EdgeInsets.all(8),
                           margin: EdgeInsets.all(4),

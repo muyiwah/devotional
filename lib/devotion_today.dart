@@ -209,7 +209,7 @@ class _DevotionTodayState extends State<DevotionToday> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ShowChapter(fromSearch: false,
+                                  builder: (context) => ShowChapter(fromSearch: false,autoRead: false,
                                       bookName: (widget
                                                   .todayDevotional.reference
                                                   .startsWith('1') ||

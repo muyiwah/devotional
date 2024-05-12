@@ -66,11 +66,12 @@ class _WordClinicPageState extends State<WordClinicPage> {
     wordClinicToday = (allWordClinickkk.firstWhere((element) =>
         (element.week == DateTime.now().weekOfMonth &&
             element.date == refineDate())));
+            // if(wordClinicToday.title==null){wordClinicToday=allWordClinickkk[0];}
     _discussion = (allWordClinickkk[indexofToday].discussion)!;
     indexofToday = allWordClinickkk.indexOf(wordClinicToday);
     setState(() {});
     print(wordClinicToday.week);
-    print('indexofToday======$indexofToday');
+    print('indexofToday======`$indexofToday');
 
     Future.delayed(const Duration(milliseconds: 500), () {
       goToToday();
@@ -200,7 +201,7 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                             onTap: () => Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                    builder: (context) => ShowChapter(fromSearch: false,
+                                                    builder: (context) => ShowChapter(fromSearch: false,autoRead: false,
                                                         bookName: (e.startsWith(
                                                                     '1') ||
                                                                 e.startsWith(
@@ -410,7 +411,7 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                                                               Navigator.push(
                                                                             context,
                                                                             MaterialPageRoute(
-                                                                              builder: (context) => ShowChapter(fromSearch: false,
+                                                                              builder: (context) => ShowChapter(fromSearch: false,autoRead: false,
                                                                                 bookName: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? ('${e.split(' ')[0]} ${e.split(' ')[1]}') : e.split(' ')[0].toString(), chapter: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? int.parse(e.split(' ')[2].split(':')[0]) : int.parse(e.split(' ')[1].split(':')[0]), verse: int.parse(getVerse(e))),
                                                                             ),
                                                                           ),

@@ -81,7 +81,7 @@ class _SavedScripturesState extends State<SavedScriptures> {
 
                         return InkWell(
                           onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                          ShowChapter(fromSearch: false,
+                          ShowChapter(fromSearch: false,autoRead: false,
                             bookName: data[index].book,
                             chapter: data[index].chapter,
                             verse: data[index].verse,
