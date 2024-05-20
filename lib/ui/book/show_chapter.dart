@@ -15,6 +15,7 @@ import 'package:floating_overlay/floating_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:animated_floating_buttons/animated_floating_buttons.dart';
 import 'package:custom_floating_action_button/custom_floating_action_button.dart';
@@ -62,6 +63,8 @@ class _ShowChapterState extends State<ShowChapter> {
       if (widget.verse != -1) goToVerse();
     });
   }
+
+  int currentIndex = 0;
 
   ReaderModel _readerModel =
       ReaderModel(name: '', gender: '', identifier: '', locale: '');
@@ -119,6 +122,9 @@ class _ShowChapterState extends State<ShowChapter> {
         // await _flutterTts.setSpeechRate(_voiceSettings.rate);
         // await _flutterTts.setPitch(_voiceSettings.pitch);
         await _flutterTts.awaitSpeakCompletion(true);
+        if (x % 10 == 0) {
+          await _flutterTts.speak('verse ${x + 1}');
+        }
         await _flutterTts.speak(chapterVerses2[x].text);
         allScripture.add(chapterVerses2[x].text);
         audioPlayIndex = x;
@@ -145,6 +151,9 @@ class _ShowChapterState extends State<ShowChapter> {
       await _flutterTts.speak(widget.chapter.toString());
 
       for (int x = 0; chapterVerses2.length > x; x++) {
+        if (x % 10 == 0) {
+          await _flutterTts.speak('verse ${x + 1}');
+        }
         _flutterTts.speak(chapterVerses2[x].text);
         allScripture.add(chapterVerses2[x].text);
         // print(allScripture[x]);
@@ -189,7 +198,7 @@ class _ShowChapterState extends State<ShowChapter> {
   initTts() async {
     _flutterTts.setProgressHandler((text, start, end, word) async {
       int x = 0;
-      print(word);
+      // print(word);
       // print(start);
       // print(end);
       // print(currentlyPlayingSentence);
@@ -215,16 +224,13 @@ class _ShowChapterState extends State<ShowChapter> {
 
         x = (chapterVerses2
             .indexWhere((element) => element.text == currentlyPlayingSentence));
-
-        if (x.isEven) {
+        print('xxxxxxxxxxxxx=$x');
+        if ((x.isEven && (x < chapterVerses2.length - 5))) {
           scollToVerse(x);
         }
-        print(chapterVerses2[chapterVerses2.length - 1].text);
-        print(currentlyPlayingSentence);
-        print(chapterVerses2[chapterVerses2.length - 1].text ==
-            currentlyPlayingSentence);
-        print(widget.verse);
-        print(widget.chapter != widget.lastChapter);
+        if ((x==-1)) {
+          scollToVerse(0);
+        }
         if (Platform.isAndroid) {
           if (mounted &&
               chapterVerses2[chapterVerses2.length - 1].text ==
@@ -491,9 +497,11 @@ class _ShowChapterState extends State<ShowChapter> {
               maxlines: 1,
               closedHeaderPadding: EdgeInsets.all(10),
               decoration: CustomDropdownDecoration(
-                  headerStyle: TextStyle(color: Colors.black, fontSize: 14),
-                  closedFillColor: Colors.blue,
-                  listItemStyle: TextStyle(color: Colors.blue, fontSize: 14)),
+                // expandedFillColor: Colors.white,
+                // headerStyle: TextStyle(color: Colors.white, fontSize: 14),
+                closedFillColor: Colors.blue,
+                listItemStyle: TextStyle(color: Colors.blue, fontSize: 14),
+              ),
               hintText: '',
               items: _list,
               initialItem: selection,
@@ -760,6 +768,7 @@ class _ShowChapterState extends State<ShowChapter> {
                 scrollOffsetListener: scrollOffsetListener,
                 itemCount: chapterVerses.length,
                 itemBuilder: (BuildContext context, index) {
+                  currentIndex = index + 1;
                   Color color = Colors.transparent;
                   if (data3.isNotEmpty && data3.contains(index)) {
                     String my = data2[data3.indexOf(index)].color;
@@ -777,8 +786,11 @@ class _ShowChapterState extends State<ShowChapter> {
                   }
 
                   return InkWell(
-                    onLongPress: () {
-                      // _flutterTts.speak(chapterVerses[index].text);
+                    onLongPress: () async {
+                      print(chapterVerses[index].text);
+                      await Share.share(
+                        '${widget.bookName} ${widget.chapter}:${chapterVerses[index].verse}  ($selection)\n${chapterVerses[index].text}\nhttps://play.google.com/store/apps/details?id=com.miv.devotional',
+                      );
                     },
                     onTap: () {
                       controller.toggle();
@@ -945,6 +957,9 @@ class _ShowChapterState extends State<ShowChapter> {
                           _currentWordStart! != 0) {
                         // _flutterTts.setCompletionHandler(() { })
                         await _flutterTts.stop();
+                        await _flutterTts.speak('');
+                        await _flutterTts.stop();
+
                         _currentWordStart = 0;
                         setState(() {});
                       } else {
@@ -976,6 +991,9 @@ class _ShowChapterState extends State<ShowChapter> {
                             // await _flutterTts.setPitch(_voiceSettings.pitch);
                             await _flutterTts.awaitSpeakCompletion(true);
                             allScripture.add(chapterVerses2[x].text);
+                            if (x % 10 == 0) {
+                              await _flutterTts.speak('verse ${x + 1}');
+                            }
                             await _flutterTts.speak(chapterVerses2[x].text);
                             audioPlayIndex = x;
                           }
@@ -1004,6 +1022,9 @@ class _ShowChapterState extends State<ShowChapter> {
                           await _flutterTts.speak(widget.chapter.toString());
 
                           for (int x = 0; chapterVerses2.length > x; x++) {
+                            if (x % 10 == 0) {
+                              await _flutterTts.speak('verse ${x + 1}');
+                            }
                             _flutterTts.speak(chapterVerses2[x].text);
                             allScripture.add(chapterVerses2[x].text);
                             // print(allScripture[x]);

@@ -221,7 +221,8 @@ class _DevorionScreenState extends State<DevorionScreen> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => ShowChapter(autoRead: false,
+                                          builder: (context) => ShowChapter(
+                                            autoRead: false,
                                             fromSearch: false,
                                             bookName: (allDevotional[index]
                                                         .reference
@@ -412,7 +413,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
           InkWell(
             onTap: () async {
               final result = await Share.share(
-                '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${allDevotional[selectedIndex].date}, 2024*\n\n*${allDevotional[selectedIndex].title}*\n\n*${allDevotional[selectedIndex].reference}*\n\n*${allDevotional[selectedIndex].scripture}*\n\n ${allDevotional[selectedIndex].text}\n\n*Action plan:* ${allDevotional[selectedIndex].action_plan}\n\n*Thought for the day:* ${allDevotional[selectedIndex].thought}\n\n*Prayer:* ${allDevotional[selectedIndex].prayer}\n\nDownload app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
+                '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${allDevotional[selectedIndex].date}, 2024*\n\n*${allDevotional[selectedIndex].title}*\n\n*${allDevotional[selectedIndex].reference}*\n\n*${allDevotional[selectedIndex].scripture}*\n\n ${allDevotional[selectedIndex].text}\n\n*Action plan:* ${allDevotional[selectedIndex].action_plan}\n\n*Thought for the day:* ${allDevotional[selectedIndex].thought}\n\n*Prayer:* ${allDevotional[selectedIndex].prayer}\n\nDownload Android app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\nDownload IOS app for more\nhttps://apps.apple.com/us/app/miv-devotional/id6502105645\n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
               );
             },
             child: CircleAvatar(

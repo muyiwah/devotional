@@ -247,7 +247,7 @@ setState(() {
 
     if (prefs.containsKey('savedReader')) {
       String d = prefs.getString('savedReader').toString();
-      ReaderModel _readerModel =
+       _readerModel =
           ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
     }
   }

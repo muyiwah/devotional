@@ -66,7 +66,7 @@ class _WordClinicPageState extends State<WordClinicPage> {
     wordClinicToday = (allWordClinickkk.firstWhere((element) =>
         (element.week == DateTime.now().weekOfMonth &&
             element.date == refineDate())));
-            // if(wordClinicToday.title==null){wordClinicToday=allWordClinickkk[0];}
+            if(wordClinicToday.title==null){wordClinicToday=allWordClinickkk[0];}
     _discussion = (allWordClinickkk[indexofToday].discussion)!;
     indexofToday = allWordClinickkk.indexOf(wordClinicToday);
     setState(() {});
@@ -598,8 +598,8 @@ class _WordClinicPageState extends State<WordClinicPage> {
           ),
           InkWell(
             onTap: () async {
-              final result = await Share.share(
-                'Wordclinic Today\nThe Men of Issachar Vision\n\nTHEME        ${allWordClinickkk[selectedindex].title}      ${allWordClinickkk[selectedindex].date}\n\nTOPIC:        ${allWordClinickkk[selectedindex].subtitle}\n\nTEXT        ${allWordClinickkk[selectedindex].scriptures}\n\nMEMORY VERSE:  ${allWordClinickkk[selectedindex].memoryVerse}\n\nOBJECTIVE: ${allWordClinickkk[selectedindex].objective}\n\nINTRODUCTION\n${allWordClinickkk[selectedindex].iNTRODUCTION}\n\nDISCUSSION\n${allWordClinickkk[selectedindex].discussion!.mapIndexed((index, element) => '${'-'}' + element.title + '${element.scriptures.map((e) => e).toList()}' + '\n').toList()}\n\nCONCLUSION\n${allWordClinickkk[selectedindex].conclusion}\n\nDownload app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
+              await Share.share(
+                'Wordclinic Today\nThe Men of Issachar Vision\n\nTHEME        ${allWordClinickkk[selectedindex].title}      ${allWordClinickkk[selectedindex].date}\n\nTOPIC:        ${allWordClinickkk[selectedindex].subtitle}\n\nTEXT        ${allWordClinickkk[selectedindex].scriptures}\n\nMEMORY VERSE:  ${allWordClinickkk[selectedindex].memoryVerse}\n\nOBJECTIVE: ${allWordClinickkk[selectedindex].objective}\n\nINTRODUCTION\n${allWordClinickkk[selectedindex].iNTRODUCTION}\n\nDISCUSSION\n${allWordClinickkk[selectedindex].discussion!.mapIndexed((index, element) => '${'-'}' + element.title + '${element.scriptures.map((e) => e).toList()}' + '\n').toList()}\n\nCONCLUSION\n${allWordClinickkk[selectedindex].conclusion}\n\nDownload Android app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\nDownload IOS app for more\nhttps://apps.apple.com/us/app/miv-devotional/id6502105645\n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
               );
             },
             child: CircleAvatar(

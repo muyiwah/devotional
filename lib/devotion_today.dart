@@ -500,7 +500,7 @@ class _DevotionTodayState extends State<DevotionToday> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final result = await Share.share(
-            '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${widget.todayDevotional.date}, 2024*\n\n*${widget.todayDevotional.title}*\n\n*${widget.todayDevotional.reference}*\n\n*${widget.todayDevotional.scripture}*\n\n ${widget.todayDevotional.text}\n\n*Action plan:* ${widget.todayDevotional.action_plan}\n\n*Thought for the day:* ${widget.todayDevotional.thought}\n\n*Prayer:* ${widget.todayDevotional.prayer}\n\nDownload app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
+            '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${widget.todayDevotional.date}, 2024*\n\n*${widget.todayDevotional.title}*\n\n*${widget.todayDevotional.reference}*\n\n*${widget.todayDevotional.scripture}*\n\n ${widget.todayDevotional.text}\n\n*Action plan:* ${widget.todayDevotional.action_plan}\n\n*Thought for the day:* ${widget.todayDevotional.thought}\n\n*Prayer:* ${widget.todayDevotional.prayer}\n\nDownload Android app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\nDownload IOS app for more\nhttps://apps.apple.com/us/app/miv-devotional/id6502105645\n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
           );
 
 // if (result.status == ShareResultStatus.success) {
