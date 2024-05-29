@@ -8,6 +8,8 @@ import 'package:mivdevotional/ui/home/home_screen.dart';
 import 'package:mivdevotional/ui/home/sliver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mivdevotional/ui/test/settings.dart';
+import 'package:mivdevotional/ui/test/tts.dart';
 import 'package:mivdevotional/ui/home/welcome.dart';
 import 'package:provider/provider.dart';
 
@@ -71,7 +73,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         // home: HomeScreen(),
-        // home: MySilverScreen(),
+        // home: Settings(),
         home: Welcome(),
          builder: (context, child) => MediaQuery(
           data: MediaQuery.of(context).copyWith(

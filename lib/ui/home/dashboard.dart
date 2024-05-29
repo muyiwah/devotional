@@ -5,7 +5,7 @@ import 'package:mivdevotional/devotion_screen.dart';
 import 'package:mivdevotional/devotion_today.dart';
 import 'package:mivdevotional/ui/book/show_book.dart';
 import 'package:mivdevotional/ui/home/others.dart';
-import 'package:mivdevotional/ui/home/tts.dart';
+import 'package:mivdevotional/ui/test/tts.dart';
 import 'package:mivdevotional/ui/learningtool_create_event.dart';
 import 'package:mivdevotional/ui/notepads/notepad.dart';
 import 'package:mivdevotional/ui/notepads/notes_Screen.dart';

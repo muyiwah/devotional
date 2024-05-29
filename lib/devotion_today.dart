@@ -30,6 +30,7 @@ class _DevotionTodayState extends State<DevotionToday> {
 
   int ran = Random().nextInt(3) + 5;
   String y = '';
+  String z = '';
   bool thoughtFocused = false;
   bool actionPlanFocused = false;
   bool prayerFocused = false;
@@ -94,6 +95,7 @@ class _DevotionTodayState extends State<DevotionToday> {
   // }
 
   String getVerse() {
+    z = '-1';
     print(widget.todayDevotional.reference);
     print('herer');
     if (widget.todayDevotional.reference.startsWith('1') ||
@@ -110,15 +112,18 @@ class _DevotionTodayState extends State<DevotionToday> {
     }
     if (y.contains('-')) {
       print(y);
-      y = y.split('-')[0];
+      z = y.split('-')[1];
 
+      y = y.split('-')[0];
       print('splitteed $y');
     } else if (y.contains(',')) {
+      // z = y.split(',')[1];
       y = y.split(',')[0];
     } else {
       y = y;
     }
     print('this is itfffffff$y');
+    print('this is izzzzzzzzz$z');
 
     return y;
   }
@@ -138,19 +143,22 @@ class _DevotionTodayState extends State<DevotionToday> {
     if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getAsvText();
     }
-     if (bibleProvider.bibleAsv.isEmpty) {
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getNivText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getNltText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getMsgText();
-    }  if (bibleProvider.bibleAsv.isEmpty) {
+    }
+    if (bibleProvider.bibleAsv.isEmpty) {
       bibleProvider.getBishopText();
     }
- if (bibleProvider.bibleAmp.isEmpty) {
+    if (bibleProvider.bibleAmp.isEmpty) {
       bibleProvider.getAmpText();
     }
-       if (bibleProvider.bibleRsv.isEmpty) {
+    if (bibleProvider.bibleRsv.isEmpty) {
       bibleProvider.getRsvText();
     }
 
@@ -209,7 +217,9 @@ class _DevotionTodayState extends State<DevotionToday> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ShowChapter(fromSearch: false,autoRead: false,
+                                  builder: (context) => ShowChapter(
+                                      fromSearch: false,
+                                      autoRead: false,
                                       bookName: (widget
                                                   .todayDevotional.reference
                                                   .startsWith('1') ||
@@ -229,7 +239,8 @@ class _DevotionTodayState extends State<DevotionToday> {
                                                   .startsWith('3'))
                                           ? int.parse(widget.todayDevotional.reference.split(' ')[2].split(':')[0])
                                           : int.parse(widget.todayDevotional.reference.split(' ')[1].split(':')[0]),
-                                      verse: int.parse(y)),
+                                      verse: int.parse(y),
+                                      verseEnd: int.parse(z)),
                                 ),
                               );
                             },
@@ -275,19 +286,19 @@ class _DevotionTodayState extends State<DevotionToday> {
                           ),
                         InkWell(
                           onTap: () {
-                               actionPlanFocused = false;
-                                  thoughtFocused = false;
-                                  prayerFocused = false;
-                                  setState(() {
-                                    
-                                  });
+                            actionPlanFocused = false;
+                            thoughtFocused = false;
+                            prayerFocused = false;
+                            setState(() {});
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SelectableText(
                               widget.todayDevotional.text,
                               style: TextStyle(
-                                  fontSize: 16, color: Colors.black, height: 1.6),
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  height: 1.6),
                             ),
                           ),
                         ),
@@ -297,22 +308,21 @@ class _DevotionTodayState extends State<DevotionToday> {
                             child: InkWell(
                               onTap: () {
                                 thoughtFocused = true;
-                                  actionPlanFocused = false;
-                           prayerFocused = false;
+                                actionPlanFocused = false;
+                                prayerFocused = false;
                                 setState(() {});
                               },
                               onTapCancel: () {
                                 thoughtFocused = false;
-                                  actionPlanFocused = false;
-                           prayerFocused = false;
+                                actionPlanFocused = false;
+                                prayerFocused = false;
                                 setState(() {});
                               },
                               onLongPress: () {
                                 actionPlanFocused = false;
-                                  thoughtFocused = true;
-                                  prayerFocused = false;setState(() {
-                                    
-                                  });
+                                thoughtFocused = true;
+                                prayerFocused = false;
+                                setState(() {});
                                 Clipboard.setData(ClipboardData(
                                         text: widget.todayDevotional.thought))
                                     .then((_) {
@@ -361,12 +371,11 @@ class _DevotionTodayState extends State<DevotionToday> {
                             padding: const EdgeInsets.all(8.0),
                             child: InkWell(
                               onLongPress: () {
-                              actionPlanFocused = true;
-                                  thoughtFocused = false;
-                                  prayerFocused = false;
-                                  setState(() {
-                                    
-                                  });  Clipboard.setData(ClipboardData(
+                                actionPlanFocused = true;
+                                thoughtFocused = false;
+                                prayerFocused = false;
+                                setState(() {});
+                                Clipboard.setData(ClipboardData(
                                         text:
                                             widget.todayDevotional.action_plan))
                                     .then((_) {
@@ -392,12 +401,12 @@ class _DevotionTodayState extends State<DevotionToday> {
                               child: InkWell(
                                 onTap: () {
                                   actionPlanFocused = true;
-                           prayerFocused = false;
+                                  prayerFocused = false;
                                   thoughtFocused = false;
                                   setState(() {});
                                 },
                                 onTapCancel: () {
-                           prayerFocused = false;
+                                  prayerFocused = false;
                                   actionPlanFocused = false;
                                   thoughtFocused = false;
                                   setState(() {});
@@ -427,12 +436,10 @@ class _DevotionTodayState extends State<DevotionToday> {
                         if (widget.todayDevotional.prayer.isNotEmpty)
                           InkWell(
                             onLongPress: () {
-
                               actionPlanFocused = false;
-                                  thoughtFocused = false;
-                                  prayerFocused = true;setState(() {
-                                    
-                                  });
+                              thoughtFocused = false;
+                              prayerFocused = true;
+                              setState(() {});
                               Clipboard.setData(ClipboardData(
                                       text: widget.todayDevotional.prayer))
                                   .then((_) {
@@ -479,7 +486,10 @@ class _DevotionTodayState extends State<DevotionToday> {
                                           fontWeight: FontWeight.w500)),
                                   TextSpan(
                                       text: widget.todayDevotional.prayer,
-                                      style: TextStyle(backgroundColor: prayerFocused?Colors.blue.withOpacity(.2):Colors.transparent,
+                                      style: TextStyle(
+                                        backgroundColor: prayerFocused
+                                            ? Colors.blue.withOpacity(.2)
+                                            : Colors.transparent,
                                         height: 1.6,
                                         color: Colors.black,
                                         fontSize: 16,
@@ -514,4 +524,3 @@ class _DevotionTodayState extends State<DevotionToday> {
     );
   }
 }
-

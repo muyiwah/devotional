@@ -61,8 +61,11 @@ class _DevorionScreenState extends State<DevorionScreen> {
       date: '');
 
   String y = '';
+  String z = '';
+
   String getVerse(e) {
-    print(e);
+      z = '-1';
+
     if (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) {
       y = e.split(' ')[2].split(':')[1];
     } else {
@@ -70,8 +73,11 @@ class _DevorionScreenState extends State<DevorionScreen> {
       print(y);
     }
     if (y.contains('-')) {
+      z = y.split('-')[1];
+
       y = y.split('-')[0];
     } else if (y.contains(',')) {
+      // z = y.split(',')[1];
       y = y.split(',')[0];
     } else {
       y = y;
@@ -257,7 +263,8 @@ class _DevorionScreenState extends State<DevorionScreen> {
                                                     .split(':')[0]),
                                             verse: int.parse(getVerse(
                                                 allDevotional[index]
-                                                    .reference)),
+                                                    .reference),),
+                                                    verseEnd: int.parse(z)
                                           ),
                                         ),
                                       );

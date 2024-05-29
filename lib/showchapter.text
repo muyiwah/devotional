@@ -82,17 +82,17 @@ class _ShowChapterState extends State<ShowChapter> {
 
   _getLang() async {
     await _getLanguages();
-    // var data = await _getLanguages2();
+    var data = await _getLanguages2();
     // print(data);
     // _controller.text = data.toString();
     setState(() {});
   }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   _flutterTts.stop();
-  // }
+  @override
+  void dispose() {
+    super.dispose();
+    _flutterTts.stop();
+  }
 
   dynamic initTts2() {
     _flutterTts = FlutterTts();
@@ -146,7 +146,7 @@ class _ShowChapterState extends State<ShowChapter> {
       });
     });
     _getLang();
-    inti2();
+inti2();
     initTts();
   }
 
@@ -159,7 +159,6 @@ class _ShowChapterState extends State<ShowChapter> {
     await _flutterTts.awaitSpeakCompletion(true);
   }
 
-  bool usingDefaultReader = true;
   bool isCurrentLanguageInstalled = false;
   late FlutterTts _flutterTts;
   String? language;
@@ -177,7 +176,7 @@ class _ShowChapterState extends State<ShowChapter> {
   bool get isWeb => kIsWeb;
 
   int currentIndex = 0;
-  bool voiceFound = false;
+  bool voiceFound = true;
   ReaderModel _readerModel =
       ReaderModel(name: '', gender: '', identifier: '', locale: '');
   String currentlyPlayingSentence = '';
@@ -268,22 +267,6 @@ class _ShowChapterState extends State<ShowChapter> {
       }
       setState(() {});
     }
-  }
-
-  showNote() {
-    ScaffoldMessenger.of(context)
-      ..removeCurrentSnackBar()
-      ..showSnackBar(SnackBar(
-          duration: Duration(seconds: 4),
-          backgroundColor: Colors.red.withOpacity(.8),
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height * .1,
-              left: 10,
-              right: 10),
-          content: Center(
-              child: Text(
-                  "You are currently using the default voice settings, you can select other voices in the 'Others' menu"))));
   }
 
   void setVoiceN() {
@@ -420,7 +403,7 @@ class _ShowChapterState extends State<ShowChapter> {
 //       }
 
 //       }
-   if(mounted)   setState(() {
+      setState(() {
         _currentWordStart = start;
         _currentWordEnd = end;
       });
@@ -428,17 +411,14 @@ class _ShowChapterState extends State<ShowChapter> {
   }
 
   inti2() async {
-    print('i am herererer');
     SharedPreferences prefs = await SharedPreferences.getInstance();
 // prefBible
-    // print(prefs.containsKey('savedReader'));
+    print(prefs.containsKey('savedReader'));
     if (prefs.containsKey('savedReader')) {
-      usingDefaultReader = false;
-      // print('found saved voiceeeeeeeee');
+      print('found saved voiceeeeeeeee');
       String d = prefs.getString('savedReader').toString();
       _readerModel = ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
-    var data=  await _getLanguages2;
-     if(data.toString().isNotEmpty){ setVoiceN();}
+      setVoiceN();
     } else {
       await _flutterTts.getVoices.then((data) {
         try {
@@ -452,10 +432,8 @@ class _ShowChapterState extends State<ShowChapter> {
             //   (voi) => _voicesString.add(voi['name']),
             // );
             print(_voices);
-            if (_voices.isNotEmpty) {
-              _currentVoice = _voices[_voices.length>20? 20:0];
-              setVoice2();
-            }
+            _currentVoice = _voices[2];
+            setVoice2();
           });
         } catch (e) {
           print(e);
@@ -467,7 +445,7 @@ class _ShowChapterState extends State<ShowChapter> {
   setVoice2() {
     print(_currentVoice);
     print('cannnnooootttttttt found savvvvvvvvvvvreeeeed');
-    print(_voiceSettings);
+
     _flutterTts.setVoice(
         {'name': _currentVoice!['name'], 'locale': _currentVoice!['locale']});
     voiceFound = true;
@@ -537,15 +515,15 @@ class _ShowChapterState extends State<ShowChapter> {
   List<SaveColor> data2 = [];
   List<int> data3 = [];
 
-  // getSavedVoice() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  getSavedVoice() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  //   if (prefs.containsKey('savedReader')) {
-  //     String d = prefs.getString('savedReader').toString();
-  //     ReaderModel _readerModel =
-  //         ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
-  //   }
-  // }
+    if (prefs.containsKey('savedReader')) {
+      String d = prefs.getString('savedReader').toString();
+      ReaderModel _readerModel =
+          ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
+    }
+  }
 
   getColouredVerses() async {
     data.clear();
@@ -1096,8 +1074,7 @@ class _ShowChapterState extends State<ShowChapter> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   (voiceFound)
-                      ? FloatingActionButton.small(backgroundColor:(_currentWordStart != null &&
-                                _currentWordStart! != 0)? Colors.orange.withOpacity(.9):Colors.teal,
+                      ? FloatingActionButton.small(
                           heroTag: '1',
                           child: Icon((_currentWordStart != null &&
                                   _currentWordStart! != 0)
@@ -1128,9 +1105,7 @@ class _ShowChapterState extends State<ShowChapter> {
                             } else {
                               print('speak');
                               allScripture.clear();
-                              if (usingDefaultReader) {
-                                showNote();
-                              }
+
                               if (Platform.isAndroid) {
                                 await _flutterTts
                                     .setVolume(_voiceSettings.volume);
@@ -1171,7 +1146,6 @@ class _ShowChapterState extends State<ShowChapter> {
                                   audioPlayIndex = x;
                                 }
                                 y = 0;
-                                print(allScripture.length);
                               }
                               if (Platform.isIOS) {
                                 await _flutterTts
@@ -1229,12 +1203,7 @@ class _ShowChapterState extends State<ShowChapter> {
                             context,
                             MaterialPageRoute(
                                 builder: ((context) => SearchScreen())));
-                      })
-                      .animate()
-                      .fadeIn(
-                          delay: Duration(seconds: 2),
-                          duration: Duration(seconds: 1))
-                      .slideX(begin: -10),
+                      }),
                 ],
               )
             : SizedBox.shrink(),
@@ -1273,5 +1242,5 @@ class _ShowChapterState extends State<ShowChapter> {
     //       openFloatingActionButton: const Icon(Icons.add),
     //       closeFloatingActionButton: const Icon(Icons.close));
     // }
-  }
-}
+  //}
+//}

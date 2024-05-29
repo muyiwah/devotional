@@ -36,20 +36,20 @@ class _WordClinicPageState extends State<WordClinicPage> {
 
     if (newDate != null) {
       print(newDate.weekOfMonth);
-      thisMonth=(newDate.month);
+      thisMonth = (newDate.month);
 
       wordClinicToday = (allWordClinickkk.firstWhere((element) =>
-        (element.week == newDate.weekOfMonth &&
-            element.date == refineDate())));
-    _discussion = (allWordClinickkk[indexofToday].discussion)!;
-    indexofToday = allWordClinickkk.indexOf(wordClinicToday);
-    setState(() {});
-    print(wordClinicToday.week);
-    print('indexofToday======$indexofToday');
+          (element.week == newDate.weekOfMonth &&
+              element.date == refineDate())));
+      _discussion = (allWordClinickkk[indexofToday].discussion)!;
+      indexofToday = allWordClinickkk.indexOf(wordClinicToday);
+      setState(() {});
+      print(wordClinicToday.week);
+      print('indexofToday======$indexofToday');
 
-    Future.delayed(const Duration(milliseconds: 500), () {
-      goToToday();
-    });
+      Future.delayed(const Duration(milliseconds: 500), () {
+        goToToday();
+      });
     }
     if (mounted) setState(() {});
   }
@@ -63,10 +63,25 @@ class _WordClinicPageState extends State<WordClinicPage> {
   getAllWordClinic() async {
     allWordClinickkk =
         await Provider.of<BibleModel>(context, listen: false).getWordClinic();
-    wordClinicToday = (allWordClinickkk.firstWhere((element) =>
-        (element.week == DateTime.now().weekOfMonth &&
-            element.date == refineDate())));
-            if(wordClinicToday.title==null){wordClinicToday=allWordClinickkk[0];}
+    print(allWordClinickkk.length);
+    try {
+      wordClinicToday = (allWordClinickkk.firstWhere((element) =>
+          (element.week == DateTime.now().weekOfMonth &&
+              element.date == refineDate())));
+    } catch (e) {
+      print(e);
+    }
+    if (wordClinicToday.title == null) {
+      try {
+        wordClinicToday = (allWordClinickkk.firstWhere((element) =>
+            (element.week == DateTime.now().weekOfMonth - 1 &&
+                element.date == refineDate())));
+      } catch (e) {
+        print(e);
+      }
+    } else if (wordClinicToday.title == null) {
+      wordClinicToday = allWordClinickkk[0];
+    }
     _discussion = (allWordClinickkk[indexofToday].discussion)!;
     indexofToday = allWordClinickkk.indexOf(wordClinicToday);
     setState(() {});
@@ -115,14 +130,20 @@ class _WordClinicPageState extends State<WordClinicPage> {
     _controller.jumpToPage(indexofToday);
   }
 
+  String z = '-1';
   String y = '';
   String getVerse(e) {
+     z = '-1';
+    print(e);
     if (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) {
       y = e.split(' ')[2].split(':')[1];
     } else {
       y = e.split(' ')[1].split(':')[1];
     }
     if (y.contains('-')) {
+      print(y);
+      z = y.split('-')[1];
+
       y = y.split('-')[0];
     } else if (y.contains(',')) {
       y = y.split(',')[0];
@@ -201,28 +222,30 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                             onTap: () => Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                    builder: (context) => ShowChapter(fromSearch: false,autoRead: false,
-                                                        bookName: (e.startsWith(
-                                                                    '1') ||
-                                                                e.startsWith(
-                                                                    '2') ||
-                                                                e.startsWith(
-                                                                    '3'))
-                                                            ? ('${e.split(' ')[0]} ${e.split(' ')[1]}')
-                                                            : e
-                                                                .split(' ')[0]
-                                                                .toString(),
-                                                        chapter: (e.startsWith('1') ||
-                                                                e.startsWith(
-                                                                    '2') ||
-                                                                e.startsWith(
-                                                                    '3'))
-                                                            ? int.parse(e
-                                                                .split(' ')[2]
-                                                                .split(':')[0])
-                                                            : int.parse(e.split(' ')[1].split(':')[0]),
-                                                        verse: int.parse(getVerse(e))),
-                                                  ),
+                                                      builder: (context) => ShowChapter(
+                                                          fromSearch: false,
+                                                          autoRead: false,
+                                                          bookName: (e.startsWith('1') ||
+                                                                  e.startsWith(
+                                                                      '2') ||
+                                                                  e.startsWith(
+                                                                      '3'))
+                                                              ? ('${e.split(' ')[0]} ${e.split(' ')[1]}')
+                                                              : e
+                                                                  .split(' ')[0]
+                                                                  .toString(),
+                                                          chapter: (e.startsWith(
+                                                                      '1') ||
+                                                                  e.startsWith(
+                                                                      '2') ||
+                                                                  e.startsWith(
+                                                                      '3'))
+                                                              ? int.parse(e
+                                                                  .split(' ')[2]
+                                                                  .split(':')[0])
+                                                              : int.parse(e.split(' ')[1].split(':')[0]),
+                                                          verse: int.parse(getVerse(e)),
+                                                          verseEnd: int.parse(z))),
                                                 ),
                                             child: Container(
                                                 padding: EdgeInsets.all(3),
@@ -407,14 +430,23 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                                                             borderRadius: BorderRadius.circular(5)),
                                                                         child:
                                                                             InkWell(
-                                                                          onTap: () =>
-                                                                              Navigator.push(
-                                                                            context,
-                                                                            MaterialPageRoute(
-                                                                              builder: (context) => ShowChapter(fromSearch: false,autoRead: false,
-                                                                                bookName: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? ('${e.split(' ')[0]} ${e.split(' ')[1]}') : e.split(' ')[0].toString(), chapter: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? int.parse(e.split(' ')[2].split(':')[0]) : int.parse(e.split(' ')[1].split(':')[0]), verse: int.parse(getVerse(e))),
-                                                                            ),
-                                                                          ),
+                                                                          onTap:
+                                                                              () {
+                                                                            getVerse(e);
+                                                                            print(z);
+                                                                                Navigator.push(
+                                                                              context,
+                                                                              MaterialPageRoute(
+                                                                                builder: (context) => ShowChapter(
+                                                                                  fromSearch: false,
+                                                                                  autoRead: false,
+                                                                                  bookName: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? ('${e.split(' ')[0]} ${e.split(' ')[1]}') : e.split(' ')[0].toString(),
+                                                                                  chapter: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? int.parse(e.split(' ')[2].split(':')[0]) : int.parse(e.split(' ')[1].split(':')[0]),
+                                                                                  verse: int.parse(getVerse(e))
+                                                                             ,verseEnd:int.parse(z)   ),
+                                                                              ),
+                                                                            );
+                                                                          },
                                                                           child:
                                                                               Text(
                                                                             e,
@@ -535,21 +567,25 @@ class _WordClinicPageState extends State<WordClinicPage> {
                           },
                         ),
                         Positioned(
-                           left: 20,right: 20,
-              bottom: 160,
+                            left: 20,
+                            right: 20,
+                            bottom: 160,
                             child: Container(
                               padding: const EdgeInsets.all(4),
                               // color: Colors.white.withOpacity(3),
-                              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   InkWell(
                                     onTap: () => _controller.previousPage(
                                         duration:
                                             const Duration(milliseconds: 500),
                                         curve: Curves.easeOutSine),
-                                    child:  Icon(
+                                    child: Icon(
                                       Icons.arrow_back_ios,
-                                     color: Colors.black.withOpacity(.5), size: 32,
+                                      color: Colors.black.withOpacity(.5),
+                                      size: 32,
                                     ),
                                   ),
                                   const SizedBox(
@@ -560,8 +596,9 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                           duration:
                                               const Duration(milliseconds: 500),
                                           curve: Curves.easeOutSine),
-                                      child:  Icon(
-                                        Icons.arrow_forward_ios,color: Colors.black.withOpacity(.5),
+                                      child: Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Colors.black.withOpacity(.5),
                                         size: 32,
                                       )),
                                 ],
@@ -626,11 +663,9 @@ class _WordClinicPageState extends State<WordClinicPage> {
           // ),
         ],
         type: CustomFloatingActionButtonType.horizontal,
-               spaceFromBottom: 50,spaceFromRight: 30,
-
+        spaceFromBottom: 50,
+        spaceFromRight: 30,
         openFloatingActionButton: const Icon(Icons.add),
-        closeFloatingActionButton: const Icon(Icons.close)
-        
-        );
+        closeFloatingActionButton: const Icon(Icons.close));
   }
 }

@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-
 class MyApp2 extends StatefulWidget {
   @override
   _MyApp2State createState() => _MyApp2State();
@@ -22,7 +21,8 @@ class _MyApp2State extends State<MyApp2> {
   double rate = 0.5;
   bool isCurrentLanguageInstalled = false;
 
-  String _newVoiceText='this is an example text reading to test, the name of the lord is a strong tower the righteous run into it and they are saved. this is an example text reading to test, the name of the lord is a strong tower the righeous run into it and they are saved this is an example text reading to test, the name of the lord is a strong tower the righeous run into it and they are saved';
+  String _newVoiceText =
+      'this is an example text reading to test, the name of the lord is a strong tower the righteous run into it and they are saved.';
   int? _inputLength;
 
   TtsState ttsState = TtsState.stopped;
@@ -112,8 +112,7 @@ class _MyApp2State extends State<MyApp2> {
   Future<void> _getDefaultVoice() async {
     var voice = await flutterTts.getDefaultVoice;
     if (voice != null) {
-    print(voice);
-
+      print(voice);
     }
   }
 
@@ -122,11 +121,17 @@ class _MyApp2State extends State<MyApp2> {
     await flutterTts.setSpeechRate(rate);
     await flutterTts.setPitch(pitch);
 
-    if (_newVoiceText != null) {
-      print(_newVoiceText);
-      if (_newVoiceText!.isNotEmpty) {
-        await flutterTts.speak(_newVoiceText!);
-      }
+    if (_newVoiceText.isNotEmpty) {
+      await flutterTts.speak(_newVoiceText);
+      await flutterTts.speak('this is the second text');
+      await flutterTts.speak('this is the third text');
+      await flutterTts.speak('this is the fourth text');
+      await flutterTts.speak('this is the fifth text');
+      await flutterTts.speak('this is the sixth text');
+      await flutterTts.speak('this is the seventh text');
+      await flutterTts.speak('this is the eight text');
+      await flutterTts.speak('this is the ninth text');
+      await flutterTts.speak('this is the tenth text');
     }
   }
 
@@ -236,13 +241,13 @@ class _MyApp2State extends State<MyApp2> {
     } else
       return Container(width: 0, height: 0);
   }
-      _getLang()async{
-        var data= await _getLanguages2();
-        // print(data);
-          _controller.text=data.toString();setState(() {
-        
-      });
-      }
+
+  _getLang() async {
+    var data = await _getLanguages2();
+    // print(data);
+    _controller.text = data.toString();
+    setState(() {});
+  }
 
   Widget _futureBuilder() => FutureBuilder<dynamic>(
       future: _getLanguages(),
@@ -254,11 +259,12 @@ class _MyApp2State extends State<MyApp2> {
         } else
           return Text('Loading Languages...');
       });
-final _controller =TextEditingController();
+  final _controller = TextEditingController();
   Widget _inputSection() => Container(
       alignment: Alignment.topCenter,
       padding: EdgeInsets.only(top: 25.0, left: 25.0, right: 25.0),
-      child: TextField(controller: _controller,
+      child: TextField(
+        controller: _controller,
         maxLines: 11,
         minLines: 6,
         onChanged: (String value) {
