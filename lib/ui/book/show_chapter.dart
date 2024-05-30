@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:mivdevotional/model/bible.model.dart';
+// import 'package:mivdevotional/model/bible.model.dart';
 import 'package:mivdevotional/model/reader_model.dart';
 import 'package:mivdevotional/model/save_color.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
@@ -20,16 +20,16 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:animated_floating_buttons/animated_floating_buttons.dart';
-import 'package:custom_floating_action_button/custom_floating_action_button.dart';
+// import 'package:custom_floating_action_button/custom_floating_action_button.dart';
 
 class ShowChapter extends StatefulWidget {
   final String bookName;
   final int chapter;
-  int verse;
-  int verseEnd;
+  final int verse;
+  final int verseEnd;
   final bool fromSearch;
   final bool autoRead;
-  int lastChapter;
+  final int lastChapter;
   ShowChapter(
       {required this.bookName,
       required this.chapter,
@@ -48,8 +48,8 @@ enum TtsState { playing, stopped, paused, continued }
 class _ShowChapterState extends State<ShowChapter> {
   @override
   void initState() {
-    print('nmnmnmnnmnmnmnmnnmnmnmnmnmnnm');
-    print(widget.verseEnd);
+    // print('nmnmnmnnmnmnmnmnnmnmnmnmnmnnm');
+    // print(widget.verseEnd);
     // TODO: implement initState
     super.initState();
     getColouredVerses();
@@ -85,7 +85,7 @@ class _ShowChapterState extends State<ShowChapter> {
     // var data = await _getLanguages2();
     // print(data);
     // _controller.text = data.toString();
-    setState(() {});
+     if(mounted)   setState(() {});
   }
 
   // @override
@@ -105,43 +105,43 @@ class _ShowChapterState extends State<ShowChapter> {
     }
 
     _flutterTts.setStartHandler(() {
-      setState(() {
-        print("Playing");
+      if(mounted)    setState(() {
+        // print("Playing");
         ttsState = TtsState.playing;
       });
     });
 
     _flutterTts.setCompletionHandler(() {
-      setState(() {
-        print("Complete");
+     if(mounted)     setState(() {
+        // print("Complete");
         ttsState = TtsState.stopped;
       });
     });
 
     _flutterTts.setCancelHandler(() {
-      setState(() {
-        print("Cancel");
+     if(mounted)     setState(() {
+        // print("Cancel");
         ttsState = TtsState.stopped;
       });
     });
 
     _flutterTts.setPauseHandler(() {
-      setState(() {
-        print("Paused");
+    if(mounted)      setState(() {
+        // print("Paused");
         ttsState = TtsState.paused;
       });
     });
 
     _flutterTts.setContinueHandler(() {
-      setState(() {
-        print("Continued");
+      if(mounted)    setState(() {
+        // print("Continued");
         ttsState = TtsState.continued;
       });
     });
 
     _flutterTts.setErrorHandler((msg) {
-      setState(() {
-        print("error: $msg");
+      if(mounted)    setState(() {
+        // print("error: $msg");
         ttsState = TtsState.stopped;
       });
     });
@@ -266,7 +266,7 @@ class _ShowChapterState extends State<ShowChapter> {
         allScripture.add(chapterVerses2[x].text);
         audioPlayIndex = x;
       }
-      setState(() {});
+       if(mounted)   setState(() {});
     }
   }
 
@@ -293,7 +293,7 @@ class _ShowChapterState extends State<ShowChapter> {
     _flutterTts
         .setVoice({'name': _readerModel.name, 'locale': _readerModel.locale});
     voiceFound = true;
-    setState(() {});
+     if(mounted)   setState(() {});
   }
 
   getPrefBibleVersion() async {
@@ -304,7 +304,7 @@ class _ShowChapterState extends State<ShowChapter> {
       prefBibleDone = true;
       print(jsonDecode(selection));
       selection = jsonDecode(selection);
-      setState(() {});
+     if(mounted)     setState(() {});
     }
   }
 
@@ -371,10 +371,11 @@ class _ShowChapterState extends State<ShowChapter> {
               });
             }
           }
-          setState(() {});
+      if(mounted)    setState(() {});
         } else {
           if (mounted &&
-              allScripture.last == currentlyPlayingSentence &&
+              chapterVerses2[chapterVerses2.length - 1].text ==
+                  currentlyPlayingSentence &&
               widget.chapter != widget.lastChapter &&
               widget.verse == -1) {
             if (currentlyPlayingSentence.endsWith(word) ||
@@ -392,7 +393,7 @@ class _ShowChapterState extends State<ShowChapter> {
               });
             }
           }
-          setState(() {});
+         if(mounted)     setState(() {});
         }
       }
       // }
@@ -444,7 +445,7 @@ class _ShowChapterState extends State<ShowChapter> {
         try {
           _voicesString.clear();
           _voices = List<Map>.from(data);
-          setState(() {
+          if(mounted)    setState(() {
             _voices = _voices
                 .where((_voice) => _voice['name'].contains('en'))
                 .toList();
@@ -471,7 +472,7 @@ class _ShowChapterState extends State<ShowChapter> {
     _flutterTts.setVoice(
         {'name': _currentVoice!['name'], 'locale': _currentVoice!['locale']});
     voiceFound = true;
-    setState(() {});
+     if(mounted)   setState(() {});
   }
 
   List<String> allScripture = [];
@@ -568,7 +569,7 @@ class _ShowChapterState extends State<ShowChapter> {
         }
       }
 
-      setState(() {});
+      if(mounted)    setState(() {});
     }
   }
 
@@ -583,7 +584,7 @@ class _ShowChapterState extends State<ShowChapter> {
   }
 
   scollToVerse(pos) {
-    itemScrollController.scrollTo(
+   if(mounted) itemScrollController.scrollTo(
         index: pos,
         duration: Duration(seconds: 2),
         curve: Curves.easeInOutCubic);
@@ -634,7 +635,7 @@ class _ShowChapterState extends State<ShowChapter> {
               onChanged: (value) {
                 controller.hide();
                 selection = value;
-                setState(() {});
+              if(mounted)      setState(() {});
               },
             ),
           ),
@@ -921,7 +922,7 @@ class _ShowChapterState extends State<ShowChapter> {
                     onTap: () {
                       controller.toggle();
                       selected = true;
-                      setState(() {
+                   if(mounted)       setState(() {
                         selectedIndex = index;
                         selectedScripture = chapterVerses[index].text;
                       });
@@ -1124,7 +1125,7 @@ class _ShowChapterState extends State<ShowChapter> {
                                 });
                               }
 
-                              setState(() {});
+                            if(mounted)      setState(() {});
                             } else {
                               print('speak');
                               allScripture.clear();
@@ -1210,7 +1211,7 @@ class _ShowChapterState extends State<ShowChapter> {
                                   allScripture.add(chapterVerses2[x].text);
                                   audioPlayIndex = x;
                                 }
-                                setState(() {});
+                              if(mounted)      setState(() {});
                               }
                             }
                           },
