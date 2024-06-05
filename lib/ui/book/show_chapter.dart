@@ -85,7 +85,7 @@ class _ShowChapterState extends State<ShowChapter> {
     // var data = await _getLanguages2();
     // print(data);
     // _controller.text = data.toString();
-     if(mounted)   setState(() {});
+    if (mounted) setState(() {});
   }
 
   // @override
@@ -105,45 +105,51 @@ class _ShowChapterState extends State<ShowChapter> {
     }
 
     _flutterTts.setStartHandler(() {
-      if(mounted)    setState(() {
-        // print("Playing");
-        ttsState = TtsState.playing;
-      });
+      if (mounted)
+        setState(() {
+          // print("Playing");
+          ttsState = TtsState.playing;
+        });
     });
 
     _flutterTts.setCompletionHandler(() {
-     if(mounted)     setState(() {
-        // print("Complete");
-        ttsState = TtsState.stopped;
-      });
+      if (mounted)
+        setState(() {
+          // print("Complete");
+          ttsState = TtsState.stopped;
+        });
     });
 
     _flutterTts.setCancelHandler(() {
-     if(mounted)     setState(() {
-        // print("Cancel");
-        ttsState = TtsState.stopped;
-      });
+      if (mounted)
+        setState(() {
+          // print("Cancel");
+          ttsState = TtsState.stopped;
+        });
     });
 
     _flutterTts.setPauseHandler(() {
-    if(mounted)      setState(() {
-        // print("Paused");
-        ttsState = TtsState.paused;
-      });
+      if (mounted)
+        setState(() {
+          // print("Paused");
+          ttsState = TtsState.paused;
+        });
     });
 
     _flutterTts.setContinueHandler(() {
-      if(mounted)    setState(() {
-        // print("Continued");
-        ttsState = TtsState.continued;
-      });
+      if (mounted)
+        setState(() {
+          // print("Continued");
+          ttsState = TtsState.continued;
+        });
     });
 
     _flutterTts.setErrorHandler((msg) {
-      if(mounted)    setState(() {
-        // print("error: $msg");
-        ttsState = TtsState.stopped;
-      });
+      if (mounted)
+        setState(() {
+          // print("error: $msg");
+          ttsState = TtsState.stopped;
+        });
     });
     _getLang();
     inti2();
@@ -266,7 +272,7 @@ class _ShowChapterState extends State<ShowChapter> {
         allScripture.add(chapterVerses2[x].text);
         audioPlayIndex = x;
       }
-       if(mounted)   setState(() {});
+      if (mounted) setState(() {});
     }
   }
 
@@ -293,7 +299,7 @@ class _ShowChapterState extends State<ShowChapter> {
     _flutterTts
         .setVoice({'name': _readerModel.name, 'locale': _readerModel.locale});
     voiceFound = true;
-     if(mounted)   setState(() {});
+    if (mounted) setState(() {});
   }
 
   getPrefBibleVersion() async {
@@ -304,7 +310,7 @@ class _ShowChapterState extends State<ShowChapter> {
       prefBibleDone = true;
       print(jsonDecode(selection));
       selection = jsonDecode(selection);
-     if(mounted)     setState(() {});
+      if (mounted) setState(() {});
     }
   }
 
@@ -371,7 +377,7 @@ class _ShowChapterState extends State<ShowChapter> {
               });
             }
           }
-      if(mounted)    setState(() {});
+          if (mounted) setState(() {});
         } else {
           if (mounted &&
               chapterVerses2[chapterVerses2.length - 1].text ==
@@ -393,7 +399,7 @@ class _ShowChapterState extends State<ShowChapter> {
               });
             }
           }
-         if(mounted)     setState(() {});
+          if (mounted) setState(() {});
         }
       }
       // }
@@ -421,10 +427,11 @@ class _ShowChapterState extends State<ShowChapter> {
 //       }
 
 //       }
-   if(mounted)   setState(() {
-        _currentWordStart = start;
-        _currentWordEnd = end;
-      });
+      if (mounted)
+        setState(() {
+          _currentWordStart = start;
+          _currentWordEnd = end;
+        });
     });
   }
 
@@ -438,26 +445,29 @@ class _ShowChapterState extends State<ShowChapter> {
       // print('found saved voiceeeeeeeee');
       String d = prefs.getString('savedReader').toString();
       _readerModel = ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
-    var data=  await _getLanguages2;
-     if(data.toString().isNotEmpty){ setVoiceN();}
+      var data = await _getLanguages2;
+      if (data.toString().isNotEmpty) {
+        setVoiceN();
+      }
     } else {
       await _flutterTts.getVoices.then((data) {
         try {
           _voicesString.clear();
           _voices = List<Map>.from(data);
-          if(mounted)    setState(() {
-            _voices = _voices
-                .where((_voice) => _voice['name'].contains('en'))
-                .toList();
-            // _voices.forEach(
-            //   (voi) => _voicesString.add(voi['name']),
-            // );
-            print(_voices);
-            if (_voices.isNotEmpty) {
-              _currentVoice = _voices[_voices.length>20? 20:0];
-              setVoice2();
-            }
-          });
+          if (mounted)
+            setState(() {
+              _voices = _voices
+                  .where((_voice) => _voice['name'].contains('en'))
+                  .toList();
+              // _voices.forEach(
+              //   (voi) => _voicesString.add(voi['name']),
+              // );
+              print(_voices);
+              if (_voices.isNotEmpty) {
+                _currentVoice = _voices[_voices.length > 20 ? 20 : 0];
+                setVoice2();
+              }
+            });
         } catch (e) {
           print(e);
         }
@@ -472,7 +482,7 @@ class _ShowChapterState extends State<ShowChapter> {
     _flutterTts.setVoice(
         {'name': _currentVoice!['name'], 'locale': _currentVoice!['locale']});
     voiceFound = true;
-     if(mounted)   setState(() {});
+    if (mounted) setState(() {});
   }
 
   List<String> allScripture = [];
@@ -569,7 +579,7 @@ class _ShowChapterState extends State<ShowChapter> {
         }
       }
 
-      if(mounted)    setState(() {});
+      if (mounted) setState(() {});
     }
   }
 
@@ -584,10 +594,11 @@ class _ShowChapterState extends State<ShowChapter> {
   }
 
   scollToVerse(pos) {
-   if(mounted) itemScrollController.scrollTo(
-        index: pos,
-        duration: Duration(seconds: 2),
-        curve: Curves.easeInOutCubic);
+    if (mounted)
+      itemScrollController.scrollTo(
+          index: pos,
+          duration: Duration(seconds: 2),
+          curve: Curves.easeInOutCubic);
   }
 
   List<String> _list = [
@@ -605,419 +616,460 @@ class _ShowChapterState extends State<ShowChapter> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading:
-            InkWell(child: back, onTap: () => Navigator.pop(context, 'nill')),
-        title: Text(
-          '${widget.bookName}   ${widget.chapter}',
-          style: TextStyle(fontSize: 18),
-        ),
-        centerTitle: true,
-        actions: [
-          // if(prefBibleDone)
+    return WillPopScope(
+      onWillPop: () async {
+        print(selected);
+        if (selected == true) {
+          selected = false;
+                  controller.hide();
 
-          Container(
-            width: 90,
-            margin: EdgeInsets.only(right: 20, top: 6),
-            child: CustomDropdown<String>(
-              maxlines: 1,
-              closedHeaderPadding: EdgeInsets.all(10),
-              decoration: CustomDropdownDecoration(
-                // expandedFillColor: Colors.white,
-                // headerStyle: TextStyle(color: Colors.white, fontSize: 14),
-                closedFillColor: Colors.blue,
-                listItemStyle: TextStyle(color: Colors.blue, fontSize: 14),
+          setState(() {});
+        } else {
+          Navigator.pop(context);
+        }
+        //  await CourseProgress();
+
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading:
+              InkWell(child: back, onTap: () => Navigator.pop(context, 'nill')),
+          title: Text(
+            '${widget.bookName}   ${widget.chapter}',
+            style: TextStyle(fontSize: 18),
+          ),
+          centerTitle: true,
+          actions: [
+            // if(prefBibleDone)
+
+            Container(
+              width: 90,
+              margin: EdgeInsets.only(right: 20, top: 6),
+              child: CustomDropdown<String>(
+                maxlines: 1,
+                closedHeaderPadding: EdgeInsets.all(10),
+                decoration: CustomDropdownDecoration(
+                  // expandedFillColor: Colors.white,
+                  // headerStyle: TextStyle(color: Colors.white, fontSize: 14),
+                  closedFillColor: Colors.blue,
+                  listItemStyle: TextStyle(color: Colors.blue, fontSize: 14),
+                ),
+                hintText: '',
+                items: _list,
+                initialItem: selection,
+                onChanged: (value) {
+                  controller.hide();
+                  selection = value;
+                  if (mounted) setState(() {});
+                },
               ),
-              hintText: '',
-              items: _list,
-              initialItem: selection,
-              onChanged: (value) {
-                controller.hide();
-                selection = value;
-              if(mounted)      setState(() {});
-              },
             ),
-          ),
-        ],
-      ),
-      body: FloatingOverlay(
-          controller: controller,
-          floatingChild: Row(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 3),
-                height: 50,
-                width: 60,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 1.0,
-                  ),
-                ),
-                child: Material(
-                  child: InkWell(
-                    onTap: () {
-                      controller.hide();
-                      savePrefColor(selectedIndex, 'red');
-                    },
-                    child: Container(
-                      color: Colors.red,
-                      height: 50,
-                      width: 60,
+          ],
+        ),
+        body: FloatingOverlay(
+            controller: controller,
+            floatingChild: Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 3),
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 1.0,
                     ),
                   ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 3),
-                height: 50,
-                width: 60,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 1.0,
-                  ),
-                ),
-                child: Material(
-                  child: InkWell(
-                    onTap: () {
-                      controller.hide();
-                      savePrefColor(selectedIndex, 'blue');
-                    },
-                    child: Container(
-                      color: Colors.blue,
-                      height: 50,
-                      width: 60,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 3),
-                height: 50,
-                width: 60,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 1.0,
-                  ),
-                ),
-                child: Material(
-                  child: InkWell(
-                    onTap: () {
-                      controller.hide();
-                      savePrefColor(selectedIndex, 'green');
-                    },
-                    child: Container(
-                      color: Colors.green,
-                      height: 50,
-                      width: 60,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 3),
-                height: 50,
-                width: 60,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 1.0,
-                  ),
-                ),
-                child: Material(
-                  child: InkWell(
-                    onTap: () {
-                      controller.hide();
-                      savePrefColor(selectedIndex, 'purple');
-                      // tempSave(selectedIndex, 'purple');
-                    },
-                    child: Container(
-                      color: Colors.purple,
-                      height: 50,
-                      width: 60,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 3),
-                height: 50,
-                width: 60,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 1.0,
-                  ),
-                ),
-                child: Material(
-                  child: InkWell(
-                    onTap: () {
-                      controller.hide();
-                      savePrefColor(selectedIndex, 'white');
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      color: Colors.white,
-                      height: 50,
-                      width: 60,
-                      child: Text(
-                        'clear',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 3),
-                height: 50,
-                width: 60,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 1.0,
-                  ),
-                ),
-                child: Material(
-                  child: InkWell(
-                    onTap: () {
-                      controller.hide();
-
-                      Clipboard.setData(ClipboardData(
-                              text:
-                                  '${chapterVerses2[selectedIndex].text} ${widget.bookName} ${widget.chapter}:${selectedIndex + 1}'))
-                          .then((_) {
-                        ScaffoldMessenger.of(context)
-                          ..removeCurrentSnackBar()
-                          ..showSnackBar(SnackBar(
-                              duration: Duration(milliseconds: 1500),
-                              backgroundColor: Colors.green.withOpacity(.9),
-                              behavior: SnackBarBehavior.floating,
-                              margin: EdgeInsets.only(
-                                  bottom:
-                                      MediaQuery.of(context).size.height * .2,
-                                  left: 10,
-                                  right: 10),
-                              content: Center(
-                                  child: Text(
-                                      "${widget.bookName} ${widget.chapter}:${selectedIndex + 1} copied to clipboard"))));
-                      });
-                    },
-                    child: Container(
-                        alignment: Alignment.center,
-                        color: Colors.yellow,
+                  child: Material(
+                    child: InkWell(
+                      onTap: () {
+                        controller.hide();
+                        savePrefColor(selectedIndex, 'red');
+                      },
+                      child: Container(
+                        color: Colors.red,
                         height: 50,
-                        width: 60,
-                        child: Icon(Icons.copy_rounded)),
+                        width: 50,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          child: Consumer<BibleModel>(builder: (context, bibleModel, child) {
-            List chapterVerses = selection == 'KJV'
-                ? bibleModel.bible
-                    .where((bibleData) =>
-                        (bibleData.book == widget.bookName) &&
-                        (bibleData.chapter == widget.chapter))
-                    .toList()
-                : selection == "AMP"
-                    ? bibleModel.bibleAmp
-                        .where((bibleData) =>
-                            (bibleData.book == widget.bookName) &&
-                            (bibleData.chapter == widget.chapter))
-                        .toList()
-                    : selection == "NIV"
-                        ? bibleModel.bibleNiv
-                            .where((bibleData) =>
-                                (bibleData.book == widget.bookName) &&
-                                (bibleData.chapter == widget.chapter))
-                            .toList()
-                        : selection == "MSG"
-                            ? bibleModel.bibleMsg
-                                .where((bibleData) =>
-                                    (bibleData.book == widget.bookName) &&
-                                    (bibleData.chapter == widget.chapter))
-                                .toList()
-                            : selection == "BISHOP"
-                                ? bibleModel.bibleBishop
-                                    .where((bibleData) =>
-                                        (bibleData.book == widget.bookName) &&
-                                        (bibleData.chapter == widget.chapter))
-                                    .toList()
-                                : selection == "NLT"
-                                    ? bibleModel.bibleNlt
-                                        .where((bibleData) =>
-                                            (bibleData.book == widget.bookName) &&
-                                            (bibleData.chapter ==
-                                                widget.chapter))
-                                        .toList()
-                                    : selection == "RSV"
-                                        ? bibleModel.bibleRsv
-                                            .where((bibleData) =>
-                                                (bibleData.book == widget.bookName) &&
-                                                (bibleData.chapter ==
-                                                    widget.chapter))
-                                            .toList()
-                                        : selection == "DBY"
-                                            ? bibleModel.bibleDby
-                                                .where((bibleData) =>
-                                                    (bibleData.book ==
-                                                        widget.bookName) &&
-                                                    (bibleData.chapter ==
-                                                        widget.chapter))
-                                                .toList()
-                                            : selection == "BBE"
-                                                ? bibleModel.bibleBbe
-                                                    .where((bibleData) =>
-                                                        (bibleData.book ==
-                                                            widget.bookName) &&
-                                                        (bibleData.chapter ==
-                                                            widget.chapter))
-                                                    .toList()
-                                                : bibleModel.bibleAsv
-                                                    .where((bibleData) => (bibleData.book == widget.bookName) && (bibleData.chapter == widget.chapter))
-                                                    .toList();
-            chapterVerses2 = chapterVerses;
-            return ScrollablePositionedList.builder(
-                itemScrollController: itemScrollController,
-                scrollOffsetController: scrollOffsetController,
-                itemPositionsListener: itemPositionsListener,
-                scrollOffsetListener: scrollOffsetListener,
-                itemCount: chapterVerses.length,
-                itemBuilder: (BuildContext context, index) {
-                  currentIndex = index + 1;
-                  Color color = Colors.transparent;
-                  if (data3.isNotEmpty && data3.contains(index)) {
-                    String my = data2[data3.indexOf(index)].color;
-                    if (my == 'red') {
-                      color = Colors.red;
-                    } else if (my == 'blue') {
-                      color = Colors.blue;
-                    } else if (my == 'purple') {
-                      color = Colors.purple;
-                    } else if (my == 'green') {
-                      color = Colors.green;
-                    } else if (my == 'white') {
-                      color = Colors.transparent;
-                    }
-                  }
-
-                  return InkWell(
-                    onLongPress: () async {
-                      print(chapterVerses[index].text);
-                      await Share.share(
-                        '${widget.bookName} ${widget.chapter}:${chapterVerses[index].verse}  ($selection)\n${chapterVerses[index].text}\nhttps://play.google.com/store/apps/details?id=com.miv.devotional',
-                      );
-                    },
-                    onTap: () {
-                      controller.toggle();
-                      selected = true;
-                   if(mounted)       setState(() {
-                        selectedIndex = index;
-                        selectedScripture = chapterVerses[index].text;
-                      });
-                    },
-                    child:
-                        //  Container(
-                        //   decoration: BoxDecoration(
-                        //     border: Border.all(
-                        //       color: (widget.verse != -1 &&
-                        //               widget.verse == index + 1)
-                        //           ? Colors.red.withOpacity(.3)
-                        //           : Colors.transparent,
-                        //     ),
-                        //     color: (selected &&
-                        //             index == selectedIndex &&
-                        //             color == Colors.transparent)
-                        //         ? Colors.blue.withOpacity(.3)
-                        //         : color,
-                        //   ),
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: RichText(
-                        //     text: TextSpan(
-                        //       children: [
-                        //        TextSpan(
-                        //                 text:
-                        //                     '${chapterVerses[index].verse.toString()}. ',
-                        //                 style: TextStyle(color: Colors.black)),
-                        //         TextSpan(
-                        //           text:
-                        //               '${chapterVerses[index].text.toString()}',
-                        //           style: TextStyle(
-                        //               color: (color == Colors.purple ||
-                        //                       color == Colors.red ||
-                        //                       color == Colors.green ||
-                        //                       color == Colors.blue)
-                        //                   ? Colors.white
-                        //                   : Colors.black,
-                        //               fontSize: 16),
-                        //         ),
-
-                        //           TextSpan(
-                        //             text:
-                        //                 '${chapterVerses[index].text.toString().substring(_currentWordStart!, _currentWordEnd)}',
-                        //             style: TextStyle(
-                        //                 backgroundColor: Colors.yellow,
-                        //                 color: (color == Colors.purple ||
-                        //                         color == Colors.red ||
-                        //                         color == Colors.green ||
-                        //                         color == Colors.blue)
-                        //                     ? Colors.white
-                        //                     : Colors.black,
-                        //                 fontSize: 16),
-                        //           ),
-
-                        //           TextSpan(
-                        //             text:
-                        //                 '${chapterVerses[index].text.toString().substring(_currentWordEnd!)}',
-                        //             style: TextStyle(
-                        //                 color: (color == Colors.purple ||
-                        //                         color == Colors.red ||
-                        //                         color == Colors.green ||
-                        //                         color == Colors.blue)
-                        //                     ? Colors.white
-                        //                     : Colors.black,
-                        //                 fontSize: 16),
-                        //           ),
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),verseEnd
-                        Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: ((widget.verse != -1 &&
-                                      widget.verse == index + 1) ||
-                                  (widget.verseEnd != -1 &&
-                                      widget.verseEnd == index + 1))
-                              ? Colors.red.withOpacity(.3)
-                              : Colors.transparent,
-                        ),
-                        color: (selected &&
-                                index == selectedIndex &&
-                                color == Colors.transparent)
-                            ? Colors.blue.withOpacity(.3)
-                            : color,
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 3),
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Material(
+                    child: InkWell(
+                      onTap: () {
+                        controller.hide();
+                        savePrefColor(selectedIndex, 'blue');
+                      },
+                      child: Container(
+                        color: Colors.blue,
+                        height: 50,
+                        width: 50,
                       ),
-                      padding: const EdgeInsets.all(8.0),
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 3),
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Material(
+                    child: InkWell(
+                      onTap: () {
+                        controller.hide();
+                        savePrefColor(selectedIndex, 'green');
+                      },
+                      child: Container(
+                        color: Colors.green,
+                        height: 50,
+                        width: 50,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 3),
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Material(
+                    child: InkWell(
+                      onTap: () {
+                        controller.hide();
+                        savePrefColor(selectedIndex, 'purple');
+                        // tempSave(selectedIndex, 'purple');
+                      },
+                      child: Container(
+                        color: Colors.purple,
+                        height: 50,
+                        width: 50,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 3),
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Material(
+                    child: InkWell(
+                      onTap: () {
+                        controller.hide();
+                        savePrefColor(selectedIndex, 'white');
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        color: Colors.white,
+                        height: 50,
+                        width: 50,
+                        child: Text(
+                          'clear',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 3),
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Material(
+                    child: InkWell(
+                      onTap: () {
+                        controller.hide();
+
+                        Clipboard.setData(ClipboardData(
                                 text:
-                                    '${chapterVerses[index].verse.toString()}. ',
+                                    '${chapterVerses2[selectedIndex].text} ${widget.bookName} ${widget.chapter}:${selectedIndex + 1}'))
+                            .then((_) {
+                          ScaffoldMessenger.of(context)
+                            ..removeCurrentSnackBar()
+                            ..showSnackBar(SnackBar(
+                                duration: Duration(milliseconds: 1500),
+                                backgroundColor: Colors.green.withOpacity(.9),
+                                behavior: SnackBarBehavior.floating,
+                                margin: EdgeInsets.only(
+                                    bottom:
+                                        MediaQuery.of(context).size.height * .2,
+                                    left: 10,
+                                    right: 10),
+                                content: Center(
+                                    child: Text(
+                                        "${widget.bookName} ${widget.chapter}:${selectedIndex + 1} copied to clipboard"))));
+                        });
+                      },
+                      child: Container(
+                          alignment: Alignment.center,
+                          color: Colors.yellow,
+                          height: 50,
+                          width: 50,
+                          child: Icon(Icons.copy_rounded)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            child: Consumer<BibleModel>(builder: (context, bibleModel, child) {
+              List chapterVerses = selection == 'KJV'
+                  ? bibleModel.bible
+                      .where((bibleData) =>
+                          (bibleData.book == widget.bookName) &&
+                          (bibleData.chapter == widget.chapter))
+                      .toList()
+                  : selection == "AMP"
+                      ? bibleModel.bibleAmp
+                          .where((bibleData) =>
+                              (bibleData.book == widget.bookName) &&
+                              (bibleData.chapter == widget.chapter))
+                          .toList()
+                      : selection == "NIV"
+                          ? bibleModel.bibleNiv
+                              .where((bibleData) =>
+                                  (bibleData.book == widget.bookName) &&
+                                  (bibleData.chapter == widget.chapter))
+                              .toList()
+                          : selection == "MSG"
+                              ? bibleModel.bibleMsg
+                                  .where((bibleData) =>
+                                      (bibleData.book == widget.bookName) &&
+                                      (bibleData.chapter == widget.chapter))
+                                  .toList()
+                              : selection == "BISHOP"
+                                  ? bibleModel.bibleBishop
+                                      .where((bibleData) =>
+                                          (bibleData.book == widget.bookName) &&
+                                          (bibleData.chapter == widget.chapter))
+                                      .toList()
+                                  : selection == "NLT"
+                                      ? bibleModel.bibleNlt
+                                          .where((bibleData) =>
+                                              (bibleData.book == widget.bookName) &&
+                                              (bibleData.chapter ==
+                                                  widget.chapter))
+                                          .toList()
+                                      : selection == "RSV"
+                                          ? bibleModel.bibleRsv
+                                              .where((bibleData) =>
+                                                  (bibleData.book == widget.bookName) &&
+                                                  (bibleData.chapter ==
+                                                      widget.chapter))
+                                              .toList()
+                                          : selection == "DBY"
+                                              ? bibleModel.bibleDby
+                                                  .where((bibleData) =>
+                                                      (bibleData.book == widget.bookName) &&
+                                                      (bibleData.chapter ==
+                                                          widget.chapter))
+                                                  .toList()
+                                              : selection == "BBE"
+                                                  ? bibleModel.bibleBbe
+                                                      .where((bibleData) =>
+                                                          (bibleData.book == widget.bookName) &&
+                                                          (bibleData.chapter ==
+                                                              widget.chapter))
+                                                      .toList()
+                                                  : bibleModel.bibleAsv
+                                                      .where((bibleData) =>
+                                                          (bibleData.book == widget.bookName) &&
+                                                          (bibleData.chapter ==
+                                                              widget.chapter))
+                                                      .toList();
+              chapterVerses2 = chapterVerses;
+              return ScrollablePositionedList.builder(
+                  itemScrollController: itemScrollController,
+                  scrollOffsetController: scrollOffsetController,
+                  itemPositionsListener: itemPositionsListener,
+                  scrollOffsetListener: scrollOffsetListener,
+                  itemCount: chapterVerses.length,
+                  itemBuilder: (BuildContext context, index) {
+                    currentIndex = index + 1;
+                    Color color = Colors.transparent;
+                    if (data3.isNotEmpty && data3.contains(index)) {
+                      String my = data2[data3.indexOf(index)].color;
+                      if (my == 'red') {
+                        color = Colors.red;
+                      } else if (my == 'blue') {
+                        color = Colors.blue;
+                      } else if (my == 'purple') {
+                        color = Colors.purple;
+                      } else if (my == 'green') {
+                        color = Colors.green;
+                      } else if (my == 'white') {
+                        color = Colors.transparent;
+                      }
+                    }
+
+                    return InkWell(
+                      onLongPress: () async {
+                        print(chapterVerses[index].text);
+                        await Share.share(
+                          '${widget.bookName} ${widget.chapter}:${chapterVerses[index].verse}  ($selection)\n${chapterVerses[index].text}\nhttps://play.google.com/store/apps/details?id=com.miv.devotional',
+                        );
+                      },
+                      onTap: () {
+                        controller.toggle();
+                        selected = true;
+                        if (mounted)
+                          setState(() {
+                            selectedIndex = index;
+                            selectedScripture = chapterVerses[index].text;
+                          });
+                      },
+                      child:
+                          //  Container(
+                          //   decoration: BoxDecoration(
+                          //     border: Border.all(
+                          //       color: (widget.verse != -1 &&
+                          //               widget.verse == index + 1)
+                          //           ? Colors.red.withOpacity(.3)
+                          //           : Colors.transparent,
+                          //     ),
+                          //     color: (selected &&
+                          //             index == selectedIndex &&
+                          //             color == Colors.transparent)
+                          //         ? Colors.blue.withOpacity(.3)
+                          //         : color,
+                          //   ),
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: RichText(
+                          //     text: TextSpan(
+                          //       children: [
+                          //        TextSpan(
+                          //                 text:
+                          //                     '${chapterVerses[index].verse.toString()}. ',
+                          //                 style: TextStyle(color: Colors.black)),
+                          //         TextSpan(
+                          //           text:
+                          //               '${chapterVerses[index].text.toString()}',
+                          //           style: TextStyle(
+                          //               color: (color == Colors.purple ||
+                          //                       color == Colors.red ||
+                          //                       color == Colors.green ||
+                          //                       color == Colors.blue)
+                          //                   ? Colors.white
+                          //                   : Colors.black,
+                          //               fontSize: 16),
+                          //         ),
+
+                          //           TextSpan(
+                          //             text:
+                          //                 '${chapterVerses[index].text.toString().substring(_currentWordStart!, _currentWordEnd)}',
+                          //             style: TextStyle(
+                          //                 backgroundColor: Colors.yellow,
+                          //                 color: (color == Colors.purple ||
+                          //                         color == Colors.red ||
+                          //                         color == Colors.green ||
+                          //                         color == Colors.blue)
+                          //                     ? Colors.white
+                          //                     : Colors.black,
+                          //                 fontSize: 16),
+                          //           ),
+
+                          //           TextSpan(
+                          //             text:
+                          //                 '${chapterVerses[index].text.toString().substring(_currentWordEnd!)}',
+                          //             style: TextStyle(
+                          //                 color: (color == Colors.purple ||
+                          //                         color == Colors.red ||
+                          //                         color == Colors.green ||
+                          //                         color == Colors.blue)
+                          //                     ? Colors.white
+                          //                     : Colors.black,
+                          //                 fontSize: 16),
+                          //           ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),verseEnd
+                          Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: ((widget.verse != -1 &&
+                                        widget.verse == index + 1) ||
+                                    (widget.verseEnd != -1 &&
+                                        widget.verseEnd == index + 1))
+                                ? Colors.red.withOpacity(.3)
+                                : Colors.transparent,
+                          ),
+                          color: (selected &&
+                                  index == selectedIndex &&
+                                  color == Colors.transparent)
+                              ? Colors.blue.withOpacity(.3)
+                              : color,
+                        ),
+                        padding: const EdgeInsets.all(8.0),
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                  text:
+                                      '${chapterVerses[index].verse.toString()}. ',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      backgroundColor: ((widget.verse != -1 &&
+                                                  widget.verse == index + 1) ||
+                                              (widget.verseEnd != -1 &&
+                                                  widget.verseEnd ==
+                                                      index + 1) ||
+                                              (widget.verse != -1 &&
+                                                  widget.verseEnd != -1 &&
+                                                  widget.verse <= index + 1 &&
+                                                  widget.verseEnd >= index + 1))
+                                          ? Colors.green.withOpacity(.1)
+                                          : Colors.transparent)),
+                              TextSpan(
+                                text: currentlyPlayingSentence ==
+                                        chapterVerses[index].text
+                                    ? '${chapterVerses[index].text.toString().substring(0, _currentWordStart)}'
+                                    : '${chapterVerses[index].text.toString()}',
                                 style: TextStyle(
-                                    color: Colors.black,
+                                    color: (color == Colors.purple ||
+                                            color == Colors.red ||
+                                            color == Colors.green ||
+                                            color == Colors.blue)
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontSize: 16,
                                     backgroundColor: ((widget.verse != -1 &&
                                                 widget.verse == index + 1) ||
                                             (widget.verseEnd != -1 &&
@@ -1027,218 +1079,201 @@ class _ShowChapterState extends State<ShowChapter> {
                                                 widget.verse <= index + 1 &&
                                                 widget.verseEnd >= index + 1))
                                         ? Colors.green.withOpacity(.1)
-                                        : Colors.transparent)),
-                            TextSpan(
-                              text: currentlyPlayingSentence ==
-                                      chapterVerses[index].text
-                                  ? '${chapterVerses[index].text.toString().substring(0, _currentWordStart)}'
-                                  : '${chapterVerses[index].text.toString()}',
-                              style: TextStyle(
-                                  color: (color == Colors.purple ||
-                                          color == Colors.red ||
-                                          color == Colors.green ||
-                                          color == Colors.blue)
-                                      ? Colors.white
-                                      : Colors.black,
-                                  fontSize: 16,
-                                  backgroundColor: ((widget.verse != -1 &&
-                                              widget.verse == index + 1) ||
-                                          (widget.verseEnd != -1 &&
-                                              widget.verseEnd == index + 1) ||
-                                          (widget.verse != -1 &&
-                                              widget.verseEnd != -1 &&
-                                              widget.verse <= index + 1 &&
-                                              widget.verseEnd >= index + 1))
-                                      ? Colors.green.withOpacity(.1)
-                                      : Colors.transparent),
-                            ),
-                            if (_currentWordStart != null &&
-                                currentlyPlayingSentence ==
-                                    chapterVerses[index].text)
-                              TextSpan(
-                                text:
-                                    '${chapterVerses[index].text.toString().substring(_currentWordStart!, _currentWordEnd)}',
-                                style: TextStyle(
-                                    backgroundColor: Colors.yellow,
-                                    color: (color == Colors.purple ||
-                                            color == Colors.red ||
-                                            color == Colors.green ||
-                                            color == Colors.blue)
-                                        ? Colors.white
-                                        : Colors.black,
-                                    fontSize: 16),
+                                        : Colors.transparent),
                               ),
-                            if (_currentWordEnd != null &&
-                                currentlyPlayingSentence ==
-                                    chapterVerses[index].text)
-                              TextSpan(
-                                text:
-                                    '${chapterVerses[index].text.toString().substring(_currentWordEnd!)}',
-                                style: TextStyle(
-                                    color: (color == Colors.purple ||
-                                            color == Colors.red ||
-                                            color == Colors.green ||
-                                            color == Colors.blue)
-                                        ? Colors.white
-                                        : Colors.black,
-                                    fontSize: 16),
-                              ),
-                          ],
+                              if (_currentWordStart != null &&
+                                  currentlyPlayingSentence ==
+                                      chapterVerses[index].text)
+                                TextSpan(
+                                  text:
+                                      '${chapterVerses[index].text.toString().substring(_currentWordStart!, _currentWordEnd)}',
+                                  style: TextStyle(
+                                      backgroundColor: Colors.yellow,
+                                      color: (color == Colors.purple ||
+                                              color == Colors.red ||
+                                              color == Colors.green ||
+                                              color == Colors.blue)
+                                          ? Colors.white
+                                          : Colors.black,
+                                      fontSize: 16),
+                                ),
+                              if (_currentWordEnd != null &&
+                                  currentlyPlayingSentence ==
+                                      chapterVerses[index].text)
+                                TextSpan(
+                                  text:
+                                      '${chapterVerses[index].text.toString().substring(_currentWordEnd!)}',
+                                  style: TextStyle(
+                                      color: (color == Colors.purple ||
+                                              color == Colors.red ||
+                                              color == Colors.green ||
+                                              color == Colors.blue)
+                                          ? Colors.white
+                                          : Colors.black,
+                                      fontSize: 16),
+                                ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                });
-          })),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: widget.fromSearch == false
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  (voiceFound)
-                      ? FloatingActionButton.small(backgroundColor:(_currentWordStart != null &&
-                                _currentWordStart! != 0)? Colors.orange.withOpacity(.9):Colors.teal,
-                          heroTag: '1',
-                          child: Icon((_currentWordStart != null &&
-                                  _currentWordStart! != 0)
-                              ? Icons.stop
-                              : Icons.volume_mute),
-                          onPressed: () async {
-                            if (_currentWordStart != null &&
-                                _currentWordStart! != 0) {
-                              // _flutterTts.setCompletionHandler(() { })
-                              await _flutterTts.stop();
-                              await _flutterTts.speak('');
-                              await _flutterTts.stop();
+                    );
+                  });
+            })),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: widget.fromSearch == false
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    (voiceFound)
+                        ? FloatingActionButton.small(
+                            backgroundColor: (_currentWordStart != null &&
+                                    _currentWordStart! != 0)
+                                ? Colors.orange.withOpacity(.9)
+                                : Colors.teal,
+                            heroTag: '1',
+                            child: Icon((_currentWordStart != null &&
+                                    _currentWordStart! != 0)
+                                ? Icons.stop
+                                : Icons.volume_mute),
+                            onPressed: () async {
+                              if (_currentWordStart != null &&
+                                  _currentWordStart! != 0) {
+                                // _flutterTts.setCompletionHandler(() { })
+                                await _flutterTts.stop();
+                                await _flutterTts.speak('');
+                                await _flutterTts.stop();
 
-                              _currentWordStart = 0;
-                              if (Platform.isAndroid) {
-                                print('stooooooooooooooooooooooopiiiiing');
-                                await _flutterTts.awaitSpeakCompletion(false);
+                                _currentWordStart = 0;
+                                if (Platform.isAndroid) {
+                                  print('stooooooooooooooooooooooopiiiiing');
+                                  await _flutterTts.awaitSpeakCompletion(false);
 
-                                await _flutterTts.stop();
-                                await _flutterTts.stop();
-                                await _flutterTts.stop();
-                                Future.delayed(Duration(seconds: 1), () async {
                                   await _flutterTts.stop();
-                                });
-                              }
-
-                            if(mounted)      setState(() {});
-                            } else {
-                              print('speak');
-                              allScripture.clear();
-                              if (usingDefaultReader) {
-                                showNote();
-                              }
-                              if (Platform.isAndroid) {
-                                await _flutterTts
-                                    .setVolume(_voiceSettings.volume);
-                                await _flutterTts
-                                    .setSpeechRate(_voiceSettings.rate);
-                                await _flutterTts
-                                    .setPitch(_voiceSettings.pitch);
-
-                                if (widget.bookName.contains('1')) {
-                                  await _flutterTts.speak(
-                                      'first ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
-                                } else if (widget.bookName.contains('2')) {
-                                  await _flutterTts.speak(
-                                      'second ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
-                                } else if (widget.bookName.contains('3')) {
-                                  await _flutterTts.speak(
-                                      'third ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
-                                } else {
-                                  await _flutterTts.speak(
-                                      '${widget.bookName} chapter ${widget.chapter}');
+                                  await _flutterTts.stop();
+                                  await _flutterTts.stop();
+                                  Future.delayed(Duration(seconds: 1),
+                                      () async {
+                                    await _flutterTts.stop();
+                                  });
                                 }
-                                // await _flutterTts.speak('chapter');
-                                // await _flutterTts.speak(widget.chapter.toString());
-                                for (int x = 0;
-                                    chapterVerses2.length > x;
-                                    x++) {
+
+                                if (mounted) setState(() {});
+                              } else {
+                                print('speak');
+                                allScripture.clear();
+                                if (usingDefaultReader) {
+                                  showNote();
+                                }
+                                if (Platform.isAndroid) {
                                   await _flutterTts
                                       .setVolume(_voiceSettings.volume);
-                                  // await _flutterTts.setSpeechRate(_voiceSettings.rate);
-                                  // await _flutterTts.setPitch(_voiceSettings.pitch);
-                                  await _flutterTts.awaitSpeakCompletion(true);
-                                  allScripture.add(chapterVerses2[x].text);
-                                  if (x % 10 == 0) {
-                                    await _flutterTts.speak('verse ${x + 1}');
-                                  }
                                   await _flutterTts
-                                      .speak(chapterVerses2[x].text);
-                                  audioPlayIndex = x;
-                                }
-                                y = 0;
-                                print(allScripture.length);
-                              }
-                              if (Platform.isIOS) {
-                                await _flutterTts
-                                    .setVolume(_voiceSettings.volume);
-                                await _flutterTts
-                                    .setSpeechRate(_voiceSettings.rate);
-                                await _flutterTts
-                                    .setPitch(_voiceSettings.pitch);
-                                if (widget.bookName.contains('1')) {
-                                  await _flutterTts.speak('first');
+                                      .setSpeechRate(_voiceSettings.rate);
                                   await _flutterTts
-                                      .speak(widget.bookName.split(' ')[1]);
-                                } else if (widget.bookName.contains('2')) {
-                                  await _flutterTts.speak('second');
-                                  await _flutterTts
-                                      .speak(widget.bookName.split(' ')[1]);
-                                } else if (widget.bookName.contains('3')) {
-                                  await _flutterTts.speak('third');
-                                  await _flutterTts
-                                      .speak(widget.bookName.split(' ')[1]);
-                                } else {
-                                  await _flutterTts.speak(widget.bookName);
-                                }
-                                await _flutterTts.speak('chapter');
-                                await _flutterTts
-                                    .speak(widget.chapter.toString());
+                                      .setPitch(_voiceSettings.pitch);
 
-                                for (int x = 0;
-                                    chapterVerses2.length > x;
-                                    x++) {
-                                  if (x % 10 == 0) {
-                                    await _flutterTts.speak('verse ${x + 1}');
+                                  if (widget.bookName.contains('1')) {
+                                    await _flutterTts.speak(
+                                        'first ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+                                  } else if (widget.bookName.contains('2')) {
+                                    await _flutterTts.speak(
+                                        'second ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+                                  } else if (widget.bookName.contains('3')) {
+                                    await _flutterTts.speak(
+                                        'third ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+                                  } else {
+                                    await _flutterTts.speak(
+                                        '${widget.bookName} chapter ${widget.chapter}');
                                   }
-                                  await _flutterTts
-                                      .speak(chapterVerses2[x].text);
-                                  allScripture.add(chapterVerses2[x].text);
-                                  audioPlayIndex = x;
+                                  // await _flutterTts.speak('chapter');
+                                  // await _flutterTts.speak(widget.chapter.toString());
+                                  for (int x = 0;
+                                      chapterVerses2.length > x;
+                                      x++) {
+                                    await _flutterTts
+                                        .setVolume(_voiceSettings.volume);
+                                    // await _flutterTts.setSpeechRate(_voiceSettings.rate);
+                                    // await _flutterTts.setPitch(_voiceSettings.pitch);
+                                    await _flutterTts
+                                        .awaitSpeakCompletion(true);
+                                    allScripture.add(chapterVerses2[x].text);
+                                    if (x % 10 == 0) {
+                                      await _flutterTts.speak('verse ${x + 1}');
+                                    }
+                                    await _flutterTts
+                                        .speak(chapterVerses2[x].text);
+                                    audioPlayIndex = x;
+                                  }
+                                  y = 0;
+                                  print(allScripture.length);
                                 }
-                              if(mounted)      setState(() {});
+                                if (Platform.isIOS) {
+                                  await _flutterTts
+                                      .setVolume(_voiceSettings.volume);
+                                  await _flutterTts
+                                      .setSpeechRate(_voiceSettings.rate);
+                                  await _flutterTts
+                                      .setPitch(_voiceSettings.pitch);
+                                  if (widget.bookName.contains('1')) {
+                                    await _flutterTts.speak('first');
+                                    await _flutterTts
+                                        .speak(widget.bookName.split(' ')[1]);
+                                  } else if (widget.bookName.contains('2')) {
+                                    await _flutterTts.speak('second');
+                                    await _flutterTts
+                                        .speak(widget.bookName.split(' ')[1]);
+                                  } else if (widget.bookName.contains('3')) {
+                                    await _flutterTts.speak('third');
+                                    await _flutterTts
+                                        .speak(widget.bookName.split(' ')[1]);
+                                  } else {
+                                    await _flutterTts.speak(widget.bookName);
+                                  }
+                                  await _flutterTts.speak('chapter');
+                                  await _flutterTts
+                                      .speak(widget.chapter.toString());
+
+                                  for (int x = 0;
+                                      chapterVerses2.length > x;
+                                      x++) {
+                                    if (x % 10 == 0) {
+                                      await _flutterTts.speak('verse ${x + 1}');
+                                    }
+                                    await _flutterTts
+                                        .speak(chapterVerses2[x].text);
+                                    allScripture.add(chapterVerses2[x].text);
+                                    audioPlayIndex = x;
+                                  }
+                                  if (mounted) setState(() {});
+                                }
                               }
-                            }
-                          },
-                        ).animate().fadeIn(
-                          delay: Duration(seconds: 1),
-                          duration: Duration(seconds: 1))
-                      : SizedBox.shrink(),
-                  FloatingActionButton(
-                      heroTag: '2',
-                      child: Icon(Icons.search),
-                      onPressed: () {
-                        if (controller.isFloating) {
-                          controller.toggle();
-                        }
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => SearchScreen())));
-                      })
-                      .animate()
-                      .fadeIn(
-                          delay: Duration(seconds: 2),
-                          duration: Duration(seconds: 1))
-                      .slideX(begin: -10),
-                ],
-              )
-            : SizedBox.shrink(),
+                            },
+                          ).animate().fadeIn(
+                            delay: Duration(seconds: 1),
+                            duration: Duration(seconds: 1))
+                        : SizedBox.shrink(),
+                    FloatingActionButton(
+                            heroTag: '2',
+                            child: Icon(Icons.search),
+                            onPressed: () {
+                              if (controller.isFloating) {
+                                controller.toggle();
+                              }
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => SearchScreen())));
+                            })
+                        .animate()
+                        .fadeIn(
+                            delay: Duration(seconds: 1),
+                            duration: Duration(seconds: 1))
+                        .slideX(begin: 10),
+                  ],
+                )
+              : SizedBox.shrink(),
+        ),
       ),
     );
     //       options: [
