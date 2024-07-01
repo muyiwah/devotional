@@ -38,7 +38,7 @@ if( _notesController.text.isNotEmpty || _titleController.text.isNotEmpty)
         data.add(NotepadModel.fromJsonJson(jsonEncode(
             (json.decode(prefs.getString('savedNote').toString()))[x])));
       }
-      data.add(notepadModel);
+      data.insert(0,notepadModel);
       prefs.setString('savedNote', jsonEncode(data));
     } else {
       data.add(notepadModel);

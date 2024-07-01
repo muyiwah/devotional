@@ -7,19 +7,65 @@ class ShowBook extends StatelessWidget {
   final BibleBookWithChapters book;
 
   const ShowBook({required this.book});
-autoGotoNextChapter(context,index){
+  autoGotoNextChapter(context, index) {
     Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) =>    ShowChapter(fromSearch: false,
-                          bookName: book.name,
-                          chapter: index+1,autoRead:true
-                        ))).then((value) {
-                          if(value.contains('next') && int.parse( value.split(' ')[1])<book.chapters){
-                      autoGotoNextChapter(context, index+1);
-                          }
-                        }); 
-}
+        context,
+        MaterialPageRoute(
+            builder: (_) => ShowChapter(
+                fromSearch: false,
+                bookName: book.name,
+                chapter: index + 1,
+                autoRead: true))).then((value) {
+      if (value.contains('next') &&
+          int.parse(value.split(' ')[1]) < book.chapters) {
+        autoGotoNextChapter(context, index + 1);
+      }
+    });
+  }
+
+  nextChapterRead(context, index) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => ShowChapter(
+                fromSearch: false,
+                notfFomSwipe: true,
+                bookName: book.name,
+                chapter: index + 1,
+                autoRead: false))).then((value) {
+      print(value);
+      if (value.contains('forward') &&
+          int.parse(value.split(' ')[1]) < book.chapters) {
+        nextChapterRead(context, index + 1);
+      }else   if (value.contains('backward') &&
+          int.parse(value.split(' ')[1]) < book.chapters) {
+              previousChapterRead(context, index +1);
+
+      }
+    });
+  }
+
+  previousChapterRead(context, index) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => ShowChapter(
+                fromSearch: false,
+                notfFomSwipe: true,
+                bookName: book.name,
+                chapter: index - 1,
+                autoRead: false))).then((value) {
+      print(value);
+      if (value.contains('backward') && int.parse(value.split(' ')[1]) > 0) {
+        previousChapterRead(context, index - 1);
+      }else if (value.contains('forward') &&
+          int.parse(value.split(' ')[1]) > 0) {
+          nextChapterRead(context, index -1);
+
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,14 +86,25 @@ autoGotoNextChapter(context,index){
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (_) => ShowChapter(fromSearch: false,
-                          bookName: book.name,lastChapter:book.chapters,
-                          chapter: index,autoRead: false,
+                    builder: (_) => ShowChapter(
+                          fromSearch: false,
+                          bookName: book.name,
+                          lastChapter: book.chapters,
+                          chapter: index,
+                          autoRead: false,
                         ))).then((value) {
-                          if(value.contains('next') && int.parse( value.split(' ')[1])<book.chapters){
-                      autoGotoNextChapter(context, index);
-                          }
-                        }),
+              print(value);
+              if (value.contains('next') &&
+                  int.parse(value.split(' ')[1]) < book.chapters) {
+                autoGotoNextChapter(context, index);
+              } else if (value.contains('forward') &&
+                  int.parse(value.split(' ')[1]) < book.chapters) {
+                nextChapterRead(context, index);
+              } else if (value.contains('backward') &&
+                  int.parse(value.split(' ')[1]) > 0) {
+                previousChapterRead(context, index);
+              }
+            }),
             child: Card(
               child: Center(
                   child: Text(

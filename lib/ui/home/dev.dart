@@ -17,6 +17,7 @@ import 'package:mivdevotional/ui/home/dailyverse_full.dart';
 import 'package:mivdevotional/ui/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:typewritertext/typewritertext.dart';
 // import 'package:firebase_database/firebase_database.dart';
 
@@ -34,6 +35,7 @@ class _MyWidgetState extends State<MyWidget> {
     super.initState();
     getAllDevotional();
     getAllWordClinic();
+    getFontSize();
     // fetchUsers();
   }
 
@@ -64,6 +66,17 @@ class _MyWidgetState extends State<MyWidget> {
       prayer: '',
       text: '',
       date: '');
+
+  double appfontSize = 0;
+
+  getFontSize() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('fontSize')) {
+      appfontSize = prefs.getDouble('fontSize') ?? 0;
+      setState(() {});
+    }
+  }
+
   getAllDevotional() async {
     allDevotional =
         await Provider.of<BibleModel>(context, listen: false).getDevotional();
@@ -142,11 +155,13 @@ class _MyWidgetState extends State<MyWidget> {
                   minWidth: constraints.maxWidth,
                   minHeight: constraints.maxHeight),
               child: IntrinsicHeight(
-                
                 child: Column(
-               mainAxisSize: MainAxisSize.max,
-                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [SizedBox(height: 20,),
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
                     if (todayDevotional.date.isNotEmpty)
                       InkWell(
                         onTap: () {
@@ -173,14 +188,15 @@ class _MyWidgetState extends State<MyWidget> {
                                   todayDevotional.date,
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16,
+                                      fontSize: 16+ appfontSize,
                                       fontWeight: FontWeight.w200),
                                 ),
                                 Text(
+                                  maxLines:2,
                                   todayDevotional.title,
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 17,
+                                      fontSize: 17+ appfontSize,
                                       fontWeight: FontWeight.w700),
                                 ),
                                 TypeWriterText(
@@ -189,7 +205,7 @@ class _MyWidgetState extends State<MyWidget> {
                                       maxLines: 3,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: Platform.isAndroid ? 16 : 17,
+                                        fontSize: Platform.isAndroid ? 16+ appfontSize : 17+ appfontSize,
                                       ),
                                     ),
                                     duration: Duration(milliseconds: 50)),
@@ -211,7 +227,7 @@ class _MyWidgetState extends State<MyWidget> {
                                     maxLines: 3,
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 20,
+                                        fontSize: 20+ appfontSize,
                                         fontWeight: FontWeight.w500),
                                   ).animate().fadeIn(
                                       delay: Duration(seconds: 4),
@@ -224,8 +240,8 @@ class _MyWidgetState extends State<MyWidget> {
                       onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  DailverseFullScreen(DailyVerse().verses[ran]))),
+                              builder: (context) => DailverseFullScreen(
+                                  DailyVerse().verses[ran]))),
                       child: Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -254,13 +270,14 @@ class _MyWidgetState extends State<MyWidget> {
                             Container(
                               width: MediaQuery.of(context).size.width - 180,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
                                     'Daily Verse',
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 18),
+                                        color: Colors.white, fontSize: 18+ appfontSize),
                                   ),
                                   SizedBox(
                                     height: 10,
@@ -269,7 +286,7 @@ class _MyWidgetState extends State<MyWidget> {
                                     DailyVerse().verses[ran].verse,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 16),
+                                        color: Colors.white, fontSize: 16+ appfontSize),
                                   ),
                                   Text(
                                     DailyVerse().verses[ran].ref,

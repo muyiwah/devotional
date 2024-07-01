@@ -7,6 +7,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DevorionScreen extends StatefulWidget {
   const DevorionScreen({super.key});
@@ -22,6 +23,17 @@ class _DevorionScreenState extends State<DevorionScreen> {
     super.initState();
     getAllDevotional();
     // controller = PageController(initialPage: 3);
+    getFontSize();
+  }
+
+  double appfontSize = 0;
+
+  getFontSize() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('fontSize')) {
+      appfontSize = prefs.getDouble('fontSize') ?? 0;
+      setState(() {});
+    }
   }
 
   void pickDate() async {
@@ -64,7 +76,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
   String z = '';
 
   String getVerse(e) {
-      z = '-1';
+    z = '-1';
 
     if (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) {
       y = e.split(' ')[2].split(':')[1];
@@ -180,6 +192,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
       bibleProvider.getDbyText();
     }
     return CustomFloatingActionButton(
+        floatinButtonColor: Colors.black.withOpacity(.2),
         body: Scaffold(
           appBar: AppBar(
             title: Text('All Devotional'),
@@ -202,7 +215,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
                             children: [
                               Text(
                                 allDevotional[index].date,
-                                style: TextStyle(fontWeight: FontWeight.w600),
+                                style: TextStyle(fontWeight: FontWeight.w600,fontSize: 14+ appfontSize),
                               ),
                               SizedBox(
                                 height: 8,
@@ -210,7 +223,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
                               Text(
                                 allDevotional[index].title,
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w100),
+                                    fontSize: 16+ appfontSize, fontWeight: FontWeight.w100),
                               ),
                               SizedBox(
                                 height: 8,
@@ -227,45 +240,44 @@ class _DevorionScreenState extends State<DevorionScreen> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => ShowChapter(
-                                            autoRead: false,
-                                            fromSearch: false,
-                                            bookName: (allDevotional[index]
-                                                        .reference
-                                                        .startsWith('1') ||
-                                                    allDevotional[index]
-                                                        .reference
-                                                        .startsWith('2') ||
-                                                    allDevotional[index]
-                                                        .reference
-                                                        .startsWith('3'))
-                                                ? ('${allDevotional[index].reference.split(' ')[0]} ${allDevotional[index].reference.split(' ')[1]}')
-                                                : allDevotional[index]
-                                                    .reference
-                                                    .split(' ')[0]
-                                                    .toString(),
-                                            chapter: (allDevotional[index]
-                                                        .reference
-                                                        .startsWith('1') ||
-                                                    allDevotional[index]
-                                                        .reference
-                                                        .startsWith('2') ||
-                                                    allDevotional[index]
-                                                        .reference
-                                                        .startsWith('3'))
-                                                ? int.parse(allDevotional[index]
-                                                    .reference
-                                                    .split(' ')[2]
-                                                    .split(':')[0])
-                                                : int.parse(allDevotional[index]
-                                                    .reference
-                                                    .split(' ')[1]
-                                                    .split(':')[0]),
-                                            verse: int.parse(getVerse(
-                                                allDevotional[index]
-                                                    .reference),),
-                                                    verseEnd: int.parse(z)
-                                          ),
+                                          builder: (context) => ShowChapter(fromWordClinic: true,
+                                              autoRead: false,
+                                              fromSearch: false,
+                                              bookName: (allDevotional[index]
+                                                          .reference
+                                                          .startsWith('1') ||
+                                                      allDevotional[index]
+                                                          .reference
+                                                          .startsWith('2') ||
+                                                      allDevotional[index]
+                                                          .reference
+                                                          .startsWith('3'))
+                                                  ? ('${allDevotional[index].reference.split(' ')[0]} ${allDevotional[index].reference.split(' ')[1]}')
+                                                  : allDevotional[index]
+                                                      .reference
+                                                      .split(' ')[0]
+                                                      .toString(),
+                                              chapter: (allDevotional[index].reference.startsWith('1') ||
+                                                      allDevotional[index]
+                                                          .reference
+                                                          .startsWith('2') ||
+                                                      allDevotional[index]
+                                                          .reference
+                                                          .startsWith('3'))
+                                                  ? int.parse(allDevotional[index]
+                                                      .reference
+                                                      .split(' ')[2]
+                                                      .split(':')[0])
+                                                  : int.parse(
+                                                      allDevotional[index]
+                                                          .reference
+                                                          .split(' ')[1]
+                                                          .split(':')[0]),
+                                              verse: int.parse(
+                                                getVerse(allDevotional[index]
+                                                    .reference),
+                                              ),
+                                              verseEnd: int.parse(z)),
                                         ),
                                       );
                                     },
@@ -274,19 +286,19 @@ class _DevorionScreenState extends State<DevorionScreen> {
                                       color: Colors.amberAccent,
                                       child: Text(
                                         allDevotional[index].reference,
-                                        style: TextStyle(fontSize: 16),
+                                        style: TextStyle(fontSize: 16+ appfontSize),
                                       ),
                                     )),
                               Text(
                                 allDevotional[index].scripture,
-                                style: TextStyle(fontSize: 15),
+                                style: TextStyle(fontSize: 15+ appfontSize),
                               ),
                               SizedBox(
                                 height: 18,
                               ),
                               Text(
                                 allDevotional[index].text,
-                                style: TextStyle(fontSize: 16, height: 1.6),
+                                style: TextStyle(fontSize: 16+ appfontSize, height: 1.6),
                               ),
                               if (allDevotional[index].thought.isNotEmpty)
                                 Container(
@@ -299,7 +311,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
                                         text: 'Thought for the day: ',
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 16,
+                                            fontSize: 16+ appfontSize,
                                             fontWeight: FontWeight.w500,
                                             height: 1.6)),
                                     TextSpan(
@@ -307,7 +319,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
                                         style: TextStyle(
                                           color: Colors.black87,
                                           height: 1.6,
-                                          fontSize: 16,
+                                          fontSize: 16+ appfontSize,
                                         ))
                                   ])),
                                 ),
@@ -321,7 +333,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
                                         text: 'Action Plan: ',
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 16,
+                                            fontSize: 16+ appfontSize,
                                             height: 1.6,
                                             fontWeight: FontWeight.w500)),
                                     TextSpan(
@@ -329,7 +341,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
                                         style: TextStyle(
                                           height: 1.6,
                                           color: Colors.black,
-                                          fontSize: 16,
+                                          fontSize: 16+ appfontSize,
                                         ))
                                   ])),
                                 ),
@@ -343,7 +355,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
                                         text: 'Prayer: ',
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 16,
+                                            fontSize: 16+ appfontSize,
                                             height: 1.6,
                                             fontWeight: FontWeight.w500)),
                                     TextSpan(
@@ -351,7 +363,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
                                         style: TextStyle(
                                           color: Colors.black,
                                           height: 1.6,
-                                          fontSize: 16,
+                                          fontSize: 16+ appfontSize,
                                         ))
                                   ])),
                                 ),
@@ -449,7 +461,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
         type: CustomFloatingActionButtonType.horizontal,
         spaceFromBottom: 50,
         spaceFromRight: 30,
-        openFloatingActionButton: const Icon(Icons.add),
+        openFloatingActionButton: const Icon(Icons.add,color: Colors.white,size: 35,),
         closeFloatingActionButton: const Icon(Icons.close));
   }
 }

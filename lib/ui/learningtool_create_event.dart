@@ -24,6 +24,7 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
     // TODO: implement initState
     super.initState();
     initTts();
+    getFontSize();
     if (Platform.isAndroid) {
       _getDefaultEngine();
       _getDefaultVoice();
@@ -52,27 +53,37 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
     }
   }
 
+  double appfontSize = 1;
+
+  getFontSize() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('fontSize')) {
+      appfontSize = prefs.getDouble('fontSize') ?? 0;
+      setState(() {});
+    }
+  }
+
   Future<void> _getDefaultVoice() async {
     var voice = await _flutterTts.getDefaultVoice;
     if (voice != null) {
       print(voice);
     }
   }
- getSaveVoiceSettings() async {
+
+  getSaveVoiceSettings() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.containsKey('voiceSettings')) {
       String d = (prefs.getString('voiceSettings').toString());
-print(VoiceSettings.fromJsonJson(jsonEncode(jsonDecode(d))));
+      print(VoiceSettings.fromJsonJson(jsonEncode(jsonDecode(d))));
       _voiceSettings = VoiceSettings.fromJsonJson(jsonEncode(jsonDecode(d)));
-      volume=_voiceSettings.volume;
-      pitch=_voiceSettings.pitch;
-      rate=_voiceSettings.rate;
-setState(() {
-  
-});
+      volume = _voiceSettings.volume;
+      pitch = _voiceSettings.pitch;
+      rate = _voiceSettings.rate;
+      setState(() {});
       print((_voiceSettings.volume));
     }
   }
+
   String selectedReader = "Karen";
   String selectedReaderAndroid = "en-gb-x-gba-network";
 
@@ -229,6 +240,12 @@ setState(() {
     print(jsonDecode(d));
   }
 
+  saveFontSize() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setDouble('fontSize', appfontSize);
+  }
+
   savePrefBbible(bible) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -247,8 +264,7 @@ setState(() {
 
     if (prefs.containsKey('savedReader')) {
       String d = prefs.getString('savedReader').toString();
-       _readerModel =
-          ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
+      _readerModel = ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
     }
   }
 
@@ -348,7 +364,8 @@ setState(() {
           centerTitle: true,
           title: Text(
             'Others',
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+            style: TextStyle(
+                fontWeight: FontWeight.w700, fontSize: 18 + appfontSize),
           ),
           // backgroundColor: mentorScreenBgc,
         ),
@@ -374,7 +391,8 @@ setState(() {
                 ),
                 Text(
                   'Select default bible version',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                  style: TextStyle(
+                      fontSize: 18 + appfontSize, fontWeight: FontWeight.w800),
                 ),
                 SizedBox(
                   height: 20,
@@ -437,13 +455,23 @@ setState(() {
                 SizedBox(
                   height: 20,
                 ),
+                Text(
+                  'Change App font size',
+                  style: TextStyle(
+                      fontSize: 18 + appfontSize, fontWeight: FontWeight.w600),
+                ),
+                _appFontSize(),
+                SizedBox(
+                  height: 20,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Select Preferred Reader',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w800, fontSize: 18),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 18 + appfontSize),
                     ),
                   ],
                 ),
@@ -544,8 +572,9 @@ setState(() {
                             text: _currentlyPlayingSentence == playVoice
                                 ? playVoice.substring(0, _currentWordStart)
                                 : playVoice,
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 16)),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16 + (appfontSize*.3))),
                         if (_currentWordStart != null &&
                             _currentlyPlayingSentence == playVoice)
                           TextSpan(
@@ -554,7 +583,7 @@ setState(() {
                             style: TextStyle(
                                 backgroundColor: Colors.white,
                                 color: Colors.black,
-                                fontSize: 16),
+                                fontSize: 16 + appfontSize),
                           ),
                         if (_currentWordEnd != null &&
                             _currentlyPlayingSentence == playVoice)
@@ -562,8 +591,9 @@ setState(() {
                               text: playVoice.substring(
                                 _currentWordEnd!,
                               ),
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16)),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16 + appfontSize)),
                       ],
                     ),
                   ),
@@ -812,7 +842,7 @@ setState(() {
                     child: Row(
                       children: [
                         Container(
-                          height: double.infinity,
+                          // height: double.infinity,
                           margin: EdgeInsets.all(3),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
@@ -834,14 +864,18 @@ setState(() {
                               Text(
                                 'Devotionals',
                                 style: TextStyle(
-                                    fontSize: Platform.isAndroid ? 18 : 20,
+                                    fontSize: Platform.isAndroid
+                                        ? 18 + appfontSize
+                                        : 20 + (appfontSize * .2),
                                     color: Colors.white),
                               ),
                               Text(
                                 textAlign: TextAlign.center,
                                 'Check all available devotionals',
                                 style: TextStyle(
-                                    fontSize: Platform.isAndroid ? 16 : 18,
+                                    fontSize: Platform.isAndroid
+                                        ? 16 + appfontSize
+                                        : 18 + (appfontSize * .2),
                                     color: Colors.white),
                               ),
                             ],
@@ -908,7 +942,9 @@ setState(() {
                               Text(
                                 'Marked Scriptures',
                                 style: TextStyle(
-                                    fontSize: Platform.isAndroid ? 18 : 20,
+                                    fontSize: Platform.isAndroid
+                                        ? 18 + appfontSize
+                                        : 20 + (appfontSize * .2),
                                     color: Colors.white),
                               ),
                               // Text(
@@ -920,16 +956,18 @@ setState(() {
                                       textAlign: TextAlign.center,
                                       'Check all ${data.length} marked scriptures',
                                       style: TextStyle(
-                                          fontSize:
-                                              Platform.isAndroid ? 16 : 18,
+                                          fontSize: Platform.isAndroid
+                                              ? 16 + appfontSize
+                                              : 18 + (appfontSize * .2),
                                           color: Colors.white),
                                     )
                                   : Text(
                                       textAlign: TextAlign.center,
                                       'No marked scriptures available',
                                       style: TextStyle(
-                                          fontSize:
-                                              Platform.isAndroid ? 16 : 18,
+                                          fontSize: Platform.isAndroid
+                                              ? 16 + (appfontSize * .2)
+                                              : 18 + (appfontSize * .2),
                                           color: Colors.white),
                                     ),
                             ],
@@ -954,10 +992,40 @@ setState(() {
     );
   }
 
+  Widget _appFontSize() {
+    return Column(
+      children: [
+        Text('App fontsize ${appfontSize.toStringAsFixed(1)}'),
+        Slider(
+          value: appfontSize,
+          onChanged: (newVolume) async {
+            setState(() => appfontSize = newVolume);
+
+            // await _flutterTts.setVolume(volume);
+            // await _flutterTts.setSpeechRate(rate);
+            // await _flutterTts.setPitch(pitch);
+            // _flutterTts.speak(playVoice);
+            // readerHeight = 100;
+            // _voiceSettings.volume = newVolume;
+            saveFontSize();
+          },
+          min: -2,
+          max: 3,
+          divisions: 10,
+          label: "Font Size: $appfontSize",
+          activeColor: Colors.deepPurple,
+        ),
+      ],
+    );
+  }
+
   Widget _volume() {
     return Column(
       children: [
-        Text('Reader volume ${volume.toStringAsFixed(1)}'),
+        Text(
+          'Reader volume ${volume.toStringAsFixed(1)}',
+          style: TextStyle(fontSize: 14 + appfontSize),
+        ),
         Slider(
           value: volume,
           onChanged: (newVolume) async {
@@ -986,7 +1054,9 @@ setState(() {
   Widget _pitch() {
     return Column(
       children: [
-        Text('Reader pitch ${pitch.toStringAsFixed(1)}'),
+        Text('Reader pitch ${pitch.toStringAsFixed(1)}',
+          style: TextStyle(fontSize: 14 + appfontSize),
+        ),
         Slider(
           value: pitch,
           onChanged: (newPitch) async {
@@ -1015,7 +1085,9 @@ setState(() {
   Widget _rate() {
     return Column(
       children: [
-        Text('Reader word rate ${rate}'),
+        Text('Reader word rate ${rate}',
+          style: TextStyle(fontSize: 14 + appfontSize),
+        ),
         Slider(
           value: rate,
           onChanged: (newRate) async {

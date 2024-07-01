@@ -2,16 +2,14 @@
 import 'dart:io';
 
 import 'package:mivdevotional/core/provider/bible.provider.dart';
-import 'package:mivdevotional/devotion_screen.dart';
-import 'package:mivdevotional/ui/home/dashboard.dart';
-import 'package:mivdevotional/ui/home/home_screen.dart';
-import 'package:mivdevotional/ui/home/sliver.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mivdevotional/ui/test/settings.dart';
-import 'package:mivdevotional/ui/test/tts.dart';
+
 import 'package:mivdevotional/ui/home/welcome.dart';
 import 'package:provider/provider.dart';
+
+bool showOnce=true;
 
 void main() async{
   //  WidgetsFlutterBinding.ensureInitialized();
@@ -72,8 +70,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.teal,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        // home: HomeScreen(),
-        // home: Settings(),
+        // home: Testexample(),
         home: Welcome(),
          builder: (context, child) => MediaQuery(
           data: MediaQuery.of(context).copyWith(

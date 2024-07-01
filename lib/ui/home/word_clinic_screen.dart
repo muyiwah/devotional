@@ -6,9 +6,11 @@ import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/core/utility/config.dart';
 import 'package:mivdevotional/core/utility/get_week.dart';
 import 'package:mivdevotional/ui/book/show_chapter.dart';
+import 'package:mivdevotional/ui/notepads/notes_Screen.dart';
 import 'package:provider/provider.dart';
 import 'package:collection/collection.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WordClinicPage extends StatefulWidget {
   const WordClinicPage({super.key});
@@ -23,12 +25,22 @@ class _WordClinicPageState extends State<WordClinicPage> {
     // TODO: implement initState
     super.initState();
     getAllWordClinic();
+    getFontSize();
+  }
+
+  double appfontSize = 0;
+  getFontSize() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('fontSize')) {
+      appfontSize = prefs.getDouble('fontSize') ?? 0;
+      setState(() {});
+    }
   }
 
   String dob = '';
 
   void pickDate() async {
-    DateTime? newDate = await showDatePicker(
+    DateTime? newDate = await showDatePicker(helpText: 'Select the word clinic date you will like to see',
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(1900),
@@ -133,7 +145,7 @@ class _WordClinicPageState extends State<WordClinicPage> {
   String z = '-1';
   String y = '';
   String getVerse(e) {
-     z = '-1';
+    z = '-1';
     print(e);
     if (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) {
       y = e.split(' ')[2].split(':')[1];
@@ -155,7 +167,7 @@ class _WordClinicPageState extends State<WordClinicPage> {
   }
 
   TextStyle myStyle =
-      const TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+       TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
@@ -173,9 +185,33 @@ class _WordClinicPageState extends State<WordClinicPage> {
     if (bibleProvider.bible.isEmpty) {
       bibleProvider.getBibleText();
     }
-    return CustomFloatingActionButton(
+    return CustomFloatingActionButton(floatinButtonColor: Colors.black.withOpacity(.2),
         body: Scaffold(
-          appBar: AppBar(
+          appBar: AppBar(leading:  InkWell(
+                        onTap: () => _controller.previousPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeOutSine),
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                          size: 28,
+                        ),
+                      ),
+            actions: [
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  // color: Colors.white.withOpacity(3),
+                  child: InkWell(
+                      onTap: () => _controller.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeOutSine),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                        size: 28,
+                      )),
+                )
+              ],
               centerTitle: true,
               title: InkWell(
                   onTap: () => _controller.jumpToPage(indexofToday),
@@ -197,32 +233,36 @@ class _WordClinicPageState extends State<WordClinicPage> {
                               child: Column(
                                 children: [
                                   Text(
-                                    '${allWordClinickkk[index].date} Week ${allWordClinickkk[index].week}',
+                                    '${allWordClinickkk[index].date} Week ${allWordClinickkk[index].week}',style: TextStyle(fontSize: 16+appfontSize),
                                   ),
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Text(
+                                  Text(textAlign:TextAlign.center,
                                     allWordClinickkk[index].title.toString(),
-                                    style: myStyle,
+                                    style: TextStyle(fontSize: 16+appfontSize, fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(
                                     height: 4,
                                   ),
                                   Text(allWordClinickkk[index]
                                       .subtitle
-                                      .toString()),
+                                      .toString(),
+                                      textAlign: TextAlign.center,
+                                    style:
+                                        TextStyle(fontSize: 16 + appfontSize),
+                                  ),
                                   const SizedBox(
                                     height: 4,
                                   ),
-                                  Wrap(
+                                  Wrap(alignment: WrapAlignment.center,
                                     children: allWordClinickkk[index]
                                         .scriptures!
                                         .map((e) => InkWell(
                                             onTap: () => Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                      builder: (context) => ShowChapter(
+                                                      builder: (context) => ShowChapter(fromWordClinic: true,
                                                           fromSearch: false,
                                                           autoRead: false,
                                                           bookName: (e.startsWith('1') ||
@@ -257,7 +297,7 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             4)),
-                                                child: Text('$e '))))
+                                                child: Text('$e ',style: TextStyle(fontSize: 16+appfontSize),))))
                                         .toList(),
                                   ),
                                   const SizedBox(
@@ -265,21 +305,21 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                   ),
                                   RichText(
                                       text: TextSpan(children: [
-                                    const TextSpan(
+                                     TextSpan(
                                         text: 'Objective: ',
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 16,
+                                            fontSize: 16+ appfontSize,
                                             fontWeight: FontWeight.w500,
                                             height: 1.6)),
                                     TextSpan(
                                         text: allWordClinickkk[index]
                                             .objective
                                             .toString(),
-                                        style: const TextStyle(
+                                        style:  TextStyle(
                                           color: Colors.black87,
                                           height: 1.6,
-                                          fontSize: 16,
+                                          fontSize: 16+ appfontSize,
                                         ))
                                   ])),
                                   const SizedBox(
@@ -287,21 +327,21 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                   ),
                                   RichText(
                                       text: TextSpan(children: [
-                                    const TextSpan(
+                                     TextSpan(
                                         text: 'Memory verse: ',
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 16,
+                                            fontSize: 16+appfontSize,
                                             fontWeight: FontWeight.w500,
                                             height: 1.6)),
                                     TextSpan(
                                         text: allWordClinickkk[index]
                                             .memoryVerse
                                             .toString(),
-                                        style: const TextStyle(
+                                        style:  TextStyle(
                                           color: Colors.black87,
                                           height: 1.6,
-                                          fontSize: 16,
+                                          fontSize: 16+ appfontSize,
                                         ))
                                   ])),
                                   const SizedBox(
@@ -309,21 +349,21 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                   ),
                                   RichText(
                                       text: TextSpan(children: [
-                                    const TextSpan(
+                                     TextSpan(
                                         text: 'Introduction: ',
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 16,
+                                            fontSize: 16+appfontSize,
                                             fontWeight: FontWeight.w500,
                                             height: 1.6)),
                                     TextSpan(
                                         text: allWordClinickkk[index]
                                             .iNTRODUCTION
                                             .toString(),
-                                        style: const TextStyle(
+                                        style:  TextStyle(
                                           color: Colors.black87,
                                           height: 1.6,
-                                          fontSize: 16,
+                                          fontSize: 16+ appfontSize,
                                         ))
                                   ])),
                                   const SizedBox(
@@ -334,21 +374,21 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                       .isNotEmpty)
                                     RichText(
                                         text: TextSpan(children: [
-                                      const TextSpan(
+                                       TextSpan(
                                           text: 'Discussion: ',
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 16,
+                                              fontSize: 16+appfontSize,
                                               fontWeight: FontWeight.w500,
                                               height: 1.6)),
                                       TextSpan(
                                           text: allWordClinickkk[index]
                                               .discussion_title
                                               .toString(),
-                                          style: const TextStyle(
+                                          style:  TextStyle(
                                             color: Colors.black87,
                                             height: 1.6,
-                                            fontSize: 16,
+                                            fontSize: 16+appfontSize,
                                           ))
                                     ])),
                                   Column(
@@ -383,7 +423,8 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                                                     color: Colors
                                                                         .black,
                                                                     fontSize:
-                                                                        16,
+                                                                        16+
+                                                                        appfontSize,
                                                                     fontWeight: e.title.contains(
                                                                             "*")
                                                                         ? FontWeight
@@ -434,16 +475,11 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                                                               () {
                                                                             getVerse(e);
                                                                             print(z);
-                                                                                Navigator.push(
+                                                                            Navigator.push(
                                                                               context,
                                                                               MaterialPageRoute(
-                                                                                builder: (context) => ShowChapter(
-                                                                                  fromSearch: false,
-                                                                                  autoRead: false,
-                                                                                  bookName: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? ('${e.split(' ')[0]} ${e.split(' ')[1]}') : e.split(' ')[0].toString(),
-                                                                                  chapter: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? int.parse(e.split(' ')[2].split(':')[0]) : int.parse(e.split(' ')[1].split(':')[0]),
-                                                                                  verse: int.parse(getVerse(e))
-                                                                             ,verseEnd:int.parse(z)   ),
+                                                                                builder: (context) => ShowChapter(fromWordClinic: true,
+                                                                                  fromSearch: false, autoRead: false, bookName: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? ('${e.split(' ')[0]} ${e.split(' ')[1]}') : e.split(' ')[0].toString(), chapter: (e.startsWith('1') || e.startsWith('2') || e.startsWith('3')) ? int.parse(e.split(' ')[2].split(':')[0]) : int.parse(e.split(' ')[1].split(':')[0]), verse: int.parse(getVerse(e)), verseEnd: int.parse(z)),
                                                                               ),
                                                                             );
                                                                           },
@@ -451,8 +487,8 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                                                               Text(
                                                                             e,
                                                                             style:
-                                                                                const TextStyle(
-                                                                              fontSize: 16,
+                                                                                 TextStyle(
+                                                                              fontSize: 16+ appfontSize,
                                                                             ),
                                                                           ),
                                                                         ),
@@ -543,21 +579,21 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                   ),
                                   RichText(
                                       text: TextSpan(children: [
-                                    const TextSpan(
+                                     TextSpan(
                                         text: 'Conclusion: ',
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 16,
+                                            fontSize: 16+appfontSize,
                                             fontWeight: FontWeight.w500,
                                             height: 1.6)),
                                     TextSpan(
                                         text: allWordClinickkk[index]
                                             .conclusion
                                             .toString(),
-                                        style: const TextStyle(
+                                        style:  TextStyle(
                                           color: Colors.black87,
                                           height: 1.6,
-                                          fontSize: 16,
+                                          fontSize: 16+appfontSize,
                                         ))
                                   ])),
                                   // Spacer()
@@ -566,44 +602,44 @@ class _WordClinicPageState extends State<WordClinicPage> {
                             );
                           },
                         ),
-                        Positioned(
-                            left: 20,
-                            right: 20,
-                            bottom: 160,
-                            child: Container(
-                              padding: const EdgeInsets.all(4),
-                              // color: Colors.white.withOpacity(3),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  InkWell(
-                                    onTap: () => _controller.previousPage(
-                                        duration:
-                                            const Duration(milliseconds: 500),
-                                        curve: Curves.easeOutSine),
-                                    child: Icon(
-                                      Icons.arrow_back_ios,
-                                      color: Colors.black.withOpacity(.5),
-                                      size: 32,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  InkWell(
-                                      onTap: () => _controller.nextPage(
-                                          duration:
-                                              const Duration(milliseconds: 500),
-                                          curve: Curves.easeOutSine),
-                                      child: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.black.withOpacity(.5),
-                                        size: 32,
-                                      )),
-                                ],
-                              ),
-                            ))
+                        // Positioned(
+                        //     left: 20,
+                        //     right: 20,
+                        //     bottom: 0,
+                            // child: Container(
+                            //   padding: const EdgeInsets.all(4),
+                            //   // color: Colors.white.withOpacity(3),
+                            //   child: Row(
+                            //     mainAxisAlignment:
+                            //         MainAxisAlignment.spaceBetween,
+                            //     children: [
+                            //       InkWell(
+                            //         onTap: () => _controller.previousPage(
+                            //             duration:
+                            //                 const Duration(milliseconds: 500),
+                            //             curve: Curves.easeOutSine),
+                            //         child: Icon(
+                            //           Icons.arrow_back_ios,
+                            //           color: Colors.black.withOpacity(.5),
+                            //           size: 32,
+                            //         ),
+                            //       ),
+                            //       const SizedBox(
+                            //         width: 20,
+                            //       ),
+                            //       InkWell(
+                            //           onTap: () => _controller.nextPage(
+                            //               duration:
+                            //                   const Duration(milliseconds: 500),
+                            //               curve: Curves.easeOutSine),
+                            //           child: Icon(
+                            //             Icons.arrow_forward_ios,
+                            //             color: Colors.black.withOpacity(.5),
+                            //             size: 32,
+                            //           )),
+                            //     ],
+                            //   ),
+                            // ))
                       ],
                     ),
                   ),
@@ -626,6 +662,17 @@ class _WordClinicPageState extends State<WordClinicPage> {
         ),
         options: [
           InkWell(
+            onTap: () {
+            Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NoteScreen(),
+                  ));
+            },
+            child: CircleAvatar(
+              child: Icon(Icons.note_add),
+            ),
+          ),   InkWell(
             onTap: () {
               pickDate();
             },
@@ -665,7 +712,7 @@ class _WordClinicPageState extends State<WordClinicPage> {
         type: CustomFloatingActionButtonType.horizontal,
         spaceFromBottom: 50,
         spaceFromRight: 30,
-        openFloatingActionButton: const Icon(Icons.add),
+        openFloatingActionButton: const Icon(Icons.add,color: Colors.white,size: 35,),
         closeFloatingActionButton: const Icon(Icons.close));
   }
 }

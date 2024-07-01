@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mivdevotional/model/notepad_model.dart';
 import 'package:mivdevotional/ui/notepads/note_edit.dart';
 import 'package:mivdevotional/ui/notepads/notes_Screen.dart';
@@ -22,10 +23,9 @@ class _NotespadState extends State<Notespad> {
     fetchNote();
   }
 
+  Color borderColor = Colors.teal;
   List<NotepadModel> data = [];
-  removeNotes(id) async{
-
- 
+  removeNotes(id) async {
     List<NotepadModel> data = [];
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool notEmpty = false;
@@ -38,19 +38,17 @@ class _NotespadState extends State<Notespad> {
             (json.decode(prefs.getString('savedNote').toString()))[x])));
       }
 
- for (int u = 0; data.length > u; u++) {print(data[u].id);
-        if (data[u].id ==id) {
+      for (int u = 0; data.length > u; u++) {
+        print(data[u].id);
+        if (data[u].id == id) {
           data.removeAt(u);
-          
+
           //  print(data);
-      prefs.setString('savedNote', jsonEncode(data));
+          prefs.setString('savedNote', jsonEncode(data));
         }
-  //  print('saved note not found');
+        //  print('saved note not found');
       }
-
-
     }
-  
   }
 
   void fetchNote() async {
@@ -74,30 +72,65 @@ class _NotespadState extends State<Notespad> {
     setState(() {});
   }
 
+  void SaveNote() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setString('savedNote', jsonEncode(data));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true,
-        title: Text('Notepad',),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'Notepad',
+        ),
       ),
       body: data.isNotEmpty
           ? Column(
-            children: [Row(mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical:8.0,horizontal: 10),
-                  child: Text('Slide note left to delete',
-                  style: TextStyle(color: Colors.red),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 10),
+                      child: Text(
+                        '',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    )
+                        .animate()
+                        .fadeIn(
+                            delay: Duration(milliseconds: 800),
+                            duration: Duration(milliseconds: 800))
+                        .slideX(begin: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 10),
+                      child: Text(
+                        'Slide note left to delete',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    )
+                        .animate()
+                        .fadeIn(
+                            delay: Duration(milliseconds: 500),
+                            duration: Duration(milliseconds: 500))
+                        .slideX(begin: 10),
+                  ],
                 ),
-              ],
-            ),
-              Expanded(
-                child: ListView.builder(
+                Expanded(
+                  child: ListView.builder(
+                    reverse: false,
                     itemCount: data.length,
                     itemBuilder: (context, index) {
                       var id = UId.getId();
-              
+                      var id2 = UId.getId();
+                      
                       return InkWell(
+                        key: Key(id2.toString()),
                         onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -151,15 +184,19 @@ class _NotespadState extends State<Notespad> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
-                                  color: Colors.green,
+                                  color: borderColor,
                                 )),
                             child: Column(children: [
                               Expanded(
                                 flex: 3,
-                                child: Align(alignment: Alignment.centerLeft,
-                                  child: Text(maxLines:2,
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    maxLines: 2,
                                     data[index].title,
-                                    style: TextStyle(fontSize: 18.0,),
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -169,7 +206,9 @@ class _NotespadState extends State<Notespad> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Text(
-                                        'Last Edited ${data[index].date.toString().split('.')[0]}',style: TextStyle(fontSize: 12),),
+                                      'Last Edited ${data[index].date.toString().split('.')[0]}',
+                                      style: TextStyle(fontSize: 12),
+                                    ),
                                   ],
                                 ),
                               )
@@ -177,10 +216,30 @@ class _NotespadState extends State<Notespad> {
                           ),
                         ),
                       );
-                    }),
-              ),
-            ],
-          )
+                    },
+                    // onReorderStart: (index) {
+                    //   print(index);
+                    //   borderColor = Colors.orange;
+                    //   setState(() {});
+                    // },
+                    // onReorderEnd: (index) {
+                    //   borderColor = Colors.teal;
+                    //   setState(() {});
+                    // },
+                    // onReorder: (oldIndex, newIndex) {
+                    //   setState(() {
+                    //     if (oldIndex < newIndex) {
+                    //       newIndex -= 1;
+                    //     }
+                    //     final item = data.removeAt(oldIndex);
+                    //     data.insert(newIndex, item);
+                    //     SaveNote();
+                    //   });
+                    // },
+                  ),
+                ),
+              ],
+            )
           : Center(
               child: Text('No saved note yet'),
             ),

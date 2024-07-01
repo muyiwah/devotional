@@ -5,6 +5,7 @@ import 'package:mivdevotional/ui/home/widgets/show_testament_books.dart';
 import 'package:mivdevotional/ui/home/widgets/testament_label.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -13,11 +14,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool isOldTestament = true;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getFontSize();
+  }
 
   void toggleTestament(bool isTrue) {
     setState(() {
       isOldTestament = isTrue;
     });
+  }
+
+  double appfontSize = 0;
+
+  getFontSize() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('fontSize')) {
+      appfontSize = prefs.getDouble('fontSize') ?? 0;
+      setState(() {});
+    }
   }
 
   @override
@@ -77,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Holy Bible',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: Config.screenWidth * 6),
+                      fontSize: Config.screenWidth * 6+ appfontSize),
                 )),
                 Padding(
                   padding: const EdgeInsets.only(top: 13.0),

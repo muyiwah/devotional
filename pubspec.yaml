@@ -44,7 +44,7 @@ dependencies:
   animated_floating_buttons: ^0.0.2 
   custom_floating_action_button: ^0.0.3
   floating_overlay: ^1.2.1
-  share_plus: ^7.2.1  
+  share_plus: ^6.3.4  
   scrollable_positioned_list: ^0.3.8  
   uid: ^0.0.2
   change_app_package_name: ^1.1.0
@@ -54,6 +54,9 @@ dependencies:
   path_provider: ^2.0.2
   animated_custom_dropdown: ^3.0.0
   flutter_tts: 
+  wakelock: ^0.6.2
+  swipe: ^0.0.1
+  animated_reorderable_list: ^1.0.6
   # flutter_local_notifications: ^17.1.1
   # awesome_notifications: ^0.9.3+1
    

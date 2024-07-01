@@ -42,14 +42,14 @@ print(widget.data.id);
     if (notEmpty) {
       String togetNote = prefs.getString('savedNote').toString();
       for (int x = 0; jsonDecode(togetNote).length > x; x++) {
-        data.add(NotepadModel.fromJsonJson(jsonEncode(
+        data.insert(0,NotepadModel.fromJsonJson(jsonEncode(
             (json.decode(prefs.getString('savedNote').toString()))[x])));
       }
 
  for (int u = 0; data.length > u; u++) {print(data[u].id);
         if (data[u].id == widget.data.id) {
           data.removeAt(u);
-           data.add(notepadModel);
+           data.insert(0,notepadModel);
           
           //  print(data);
       prefs.setString('savedNote', jsonEncode(data));
