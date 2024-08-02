@@ -682,8 +682,8 @@ class _ShowChapterState extends State<ShowChapter> {
                 initialItem: selection,
                 onChanged: (value) {
                   controller.hide();
-                  selection = value;
-                  if (mounted) setState(() {});
+                  selection = value.toString();
+                  if (mounted) setState(() {}); 
                 },
               ),
             ),

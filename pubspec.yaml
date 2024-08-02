@@ -2,7 +2,7 @@ name: mivdevotional
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -16,12 +16,12 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+2  
+version: 2.0.4+0 # this is for ios
 
-# version: 2.0.2+9  this is current android version
+# version: 2.0.2+10  # this is current android version
 
 environment:
-  sdk: '>=3.1.3 <4.0.0'
+  sdk: ">=3.1.3 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -33,35 +33,33 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  http:  
+  http:
   provider:
-  shared_preferences: 
+  shared_preferences:
   flutter_expandable_fab: ^2.0.0
-  animated_floating_buttons: ^0.0.2 
+  animated_floating_buttons: ^0.0.2
   custom_floating_action_button: ^0.0.3
   floating_overlay: ^1.2.1
-  share_plus: ^6.3.4  
-  scrollable_positioned_list: ^0.3.8  
+  share_plus: ^6.3.4
+  scrollable_positioned_list: ^0.3.8
   uid: ^0.0.2
   change_app_package_name: ^1.1.0
-  flutter_animate: ^4.2.0+1 
+  flutter_animate: ^4.2.0+1
   rename_app: ^1.3.2
   typewritertext: ^3.0.2
   path_provider: ^2.0.2
   animated_custom_dropdown: ^3.0.0
-  flutter_tts: 
+  flutter_tts:
   wakelock: ^0.6.2
   swipe: ^0.0.1
   animated_reorderable_list: ^1.0.6
   # flutter_local_notifications: ^17.1.1
   # awesome_notifications: ^0.9.3+1
-   
-    
-  # cloud_firestore: ^4.0.5 
+
+  # cloud_firestore: ^4.0.5
 
 dev_dependencies:
   flutter_test:
@@ -69,11 +67,10 @@ dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
 
 flutter_launcher_icons:
-  android: "launcher_icon" 
+  android: "launcher_icon"
   ios: true
   image_path: "assets/images/logo.jpeg"
   min_sdk_android: 21 # android min sdk min:16, default 21
- 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -87,7 +84,6 @@ flutter_launcher_icons:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -95,10 +91,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-      - assets/
-      - assets/images/
-      - assets/dailyimages/
-      - assets/bibleJson/ 
+    - assets/
+    - assets/images/
+    - assets/dailyimages/
+    - assets/bibleJson/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

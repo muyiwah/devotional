@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:mivdevotional/model/august_prayer.dart';
 import 'package:mivdevotional/model/bible.model.dart';
 import 'package:mivdevotional/model/devorion_model.dart';
 import 'package:mivdevotional/model/word_clinic.dart';
@@ -322,4 +323,22 @@ Future getNltText() async {
     return allWordClinic;
     // notifyListeners();
   }
+
+  Future<List<AugustPrayer>> getAllPrayerConference() async {
+    List<AugustPrayer> allWordClinic = [];
+
+    await _repository.getBible('${path}august_prayers.json').then((data) {
+      var decodedJson = jsonDecode(data);
+      for (int i = 0; decodedJson.length > i; i++) {
+        allWordClinic.add(AugustPrayer.fromMap(decodedJson[i]));
+      }
+      // print(decodedJson);
+      // print(allDevotional.firstWhere((element) => element.date=="March 23"));
+      return allWordClinic;
+    });
+
+    return allWordClinic;
+    // notifyListeners();
+  }
+
 }

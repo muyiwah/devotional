@@ -874,8 +874,8 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
                                 'Check all available devotionals',
                                 style: TextStyle(
                                     fontSize: Platform.isAndroid
-                                        ? 16 + appfontSize
-                                        : 18 + (appfontSize * .2),
+                                        ? 16 
+                                        : 16,
                                     color: Colors.white),
                               ),
                             ],
@@ -957,17 +957,15 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
                                       'Check all ${data.length} marked scriptures',
                                       style: TextStyle(
                                           fontSize: Platform.isAndroid
-                                              ? 16 + appfontSize
-                                              : 18 + (appfontSize * .2),
+                                              ? 16 
+                                              : 16 ,
                                           color: Colors.white),
                                     )
                                   : Text(
                                       textAlign: TextAlign.center,
                                       'No marked scriptures available',
                                       style: TextStyle(
-                                          fontSize: Platform.isAndroid
-                                              ? 16 + (appfontSize * .2)
-                                              : 18 + (appfontSize * .2),
+                                          fontSize: 16,
                                           color: Colors.white),
                                     ),
                             ],

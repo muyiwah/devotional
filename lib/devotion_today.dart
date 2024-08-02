@@ -195,7 +195,7 @@ class _DevotionTodayState extends State<DevotionToday> {
               title: Text(
                 widget.todayDevotional.title,
                 overflow: TextOverflow.visible,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15+ appfontSize),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15+ appfontSize,color: Colors.white),
               ),
               expandedHeight: 200.0,
               flexibleSpace: FlexibleSpaceBar(

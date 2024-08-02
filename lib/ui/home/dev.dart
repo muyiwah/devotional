@@ -16,6 +16,7 @@ import 'package:mivdevotional/ui/book/daily_verse.dart';
 import 'package:mivdevotional/ui/home/dailyverse_full.dart';
 import 'package:mivdevotional/ui/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:mivdevotional/ui/home/prayer_conference.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:typewritertext/typewritertext.dart';
@@ -199,16 +200,18 @@ class _MyWidgetState extends State<MyWidget> {
                                       fontSize: 17+ appfontSize,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                TypeWriterText(
-                                    text: Text(
-                                      todayDevotional.text,
-                                      maxLines: 3,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: Platform.isAndroid ? 16+ appfontSize : 17+ appfontSize,
+                                Container(
+                                  child: TypeWriterText(
+                                      text: Text(
+                                        todayDevotional.text,
+                                        maxLines: 4,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: Platform.isAndroid ? 16+ appfontSize : 17+ appfontSize,
+                                        ),
                                       ),
-                                    ),
-                                    duration: Duration(milliseconds: 50)),
+                                      duration: Duration(milliseconds: 50)),
+                                ),
                                 Container(
                                   width: double.infinity,
                                   height: 100,
@@ -236,7 +239,78 @@ class _MyWidgetState extends State<MyWidget> {
                               ],
                             )),
                       ),
-                    InkWell(
+                DateTime.now().month==8?  InkWell(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PrayerConference(
+                                 ))),
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 8, ),
+                        width: double.infinity,
+                        margin: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 1,
+                                spreadRadius: .7,
+                                offset: Offset(-2, 2),
+                                color: Colors.black.withOpacity(.9))
+                          ],
+                          gradient: LinearGradient(
+                              colors: const [
+                                Colors.black,
+                                Colors.orange,
+                                // Color.fromARGB(209, 1, 32, 206)
+                              ],
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width - 180,
+                              child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    'Prayer Bulletin',
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16+ appfontSize),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    'BECOMING A MAN OF PRAYER',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16+ appfontSize),
+                                  ),
+                                  Text(
+                                   'AUGUST 2024',
+                                    style: TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                            ),Spacer(),
+                            Container(
+                              margin: EdgeInsets.only(left:0),
+                              height: 80,
+                              width: 100,
+                              child: Image.asset('assets/images/candle.gif')
+                              // child: Image.asset('assets/images/bible.png'),
+                            )
+                          ],
+                        ),
+                      ),
+                    ).animate().fadeIn(duration: Duration(seconds: 3)).slide(
+                        duration: Duration(seconds: 2),
+                        begin: Offset(0, 0.5),
+                        curve: Curves.easeInOut) : InkWell(
                       onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
