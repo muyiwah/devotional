@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wakelock/wakelock.dart';
+// import 'package:wakelock/wakelock.dart';
 
 class DevotionToday extends StatefulWidget {
   DevotionToday(this.todayDevotional);
@@ -26,7 +26,7 @@ class _DevotionTodayState extends State<DevotionToday> {
     // controller = PageController(initialPage: 3);
     getVerse();
     getFontSize();
-    Wakelock.enable();
+    // Wakelock.enable();
   }
 
   PageController controller = PageController(initialPage: 22);

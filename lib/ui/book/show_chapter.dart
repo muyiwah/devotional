@@ -23,7 +23,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:animated_floating_buttons/animated_floating_buttons.dart';
 import 'package:swipe/swipe.dart';
-import 'package:wakelock/wakelock.dart';
+// import 'package:wakelock/wakelock.dart';
 // import 'package:custom_floating_action_button/custom_floating_action_button.dart';
 
 class ShowChapter extends StatefulWidget {
@@ -79,7 +79,7 @@ class _ShowChapterState extends State<ShowChapter> {
     // getSavedVoice();
     getSaveVoiceSettings();
     initTts2();
-    Wakelock.enable();
+    // Wakelock.enable();
 
     if (widget.autoRead) {
       Future.delayed(Duration(seconds: 1), () {
