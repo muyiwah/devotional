@@ -1,0 +1,102 @@
+[
+  {
+    "day": 1,
+    "readings": {
+      "old_testament_1": "Genesis 1",
+      "old_testament_2": "Genesis 2",
+      "new_testament": "Matthew 1",
+      "psalms": "Psalm 1",
+      "proverbs": "Proverbs 1"
+    }
+  },
+  {
+    "day": 2,
+    "readings": {
+      "old_testament_1": "Genesis 3",
+      "old_testament_2": "Genesis 4",
+      "new_testament": "Matthew 2",
+      "psalms": "Psalm 2",
+      "proverbs": "Proverbs 2"
+    }
+  },
+  {
+    "day": 3,
+    "readings": {
+      "old_testament_1": "Genesis 5",
+      "old_testament_2": "Genesis 6",
+      "new_testament": "Matthew 3",
+      "psalms": "Psalm 3",
+      "proverbs": "Proverbs 3"
+    }
+  },
+  {
+    "day": 4,
+    "readings": {
+      "old_testament_1": "Genesis 7",
+      "old_testament_2": "Genesis 8",
+      "new_testament": "Matthew 4",
+      "psalms": "Psalm 4",
+      "proverbs": "Proverbs 4"
+    }
+  },
+  {
+    "day": 5,
+    "readings": {
+      "old_testament_1": "Genesis 9",
+      "old_testament_2": "Genesis 10",
+      "new_testament": "Matthew 5",
+      "psalms": "Psalm 5",
+      "proverbs": "Proverbs 5"
+    }
+  },
+  {
+    "day": 6,
+    "readings": {
+      "old_testament_1": "Genesis 11",
+      "old_testament_2": "Genesis 12",
+      "new_testament": "Matthew 6",
+      "psalms": "Psalm 6",
+      "proverbs": "Proverbs 6"
+    }
+  },
+  {
+    "day": 7,
+    "readings": {
+      "old_testament_1": "Genesis 13",
+      "old_testament_2": "Genesis 14",
+      "new_testament": "Matthew 7",
+      "psalms": "Psalm 7",
+      "proverbs": "Proverbs 7"
+    }
+  },
+  {
+    "day": 8,
+    "readings": {
+      "old_testament_1": "Genesis 15",
+      "old_testament_2": "Genesis 16",
+      "new_testament": "Matthew 8",
+      "psalms": "Psalm 8",
+      "proverbs": "Proverbs 8"
+    }
+  },
+  {
+    "day": 9,
+    "readings": {
+      "old_testament_1": "Genesis 17",
+      "old_testament_2": "Genesis 18",
+      "new_testament": "Matthew 9",
+      "psalms": "Psalm 9",
+      "proverbs": "Proverbs 9"
+    }
+  },
+  {
+    "day": 28,
+    "readings": {
+      "old_testament_1": "Genesis 19",
+      "old_testament_2": "Genesis 20",
+      "new_testament": "Matthew 10",
+      "psalms": "Psalms 10",
+      "proverbs": "Proverbs 10"
+    }
+  }
+]

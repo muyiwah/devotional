@@ -9,9 +9,9 @@ class Bible {
   factory Bible.fromJson(Map<String, dynamic> json) {
     return Bible(
         book: json['Book'],
-        chapter: json['Chapter'],
-        verse: json['Verse'],
-        text: json['Text']);
+        chapter: json['Chapter']??0,
+        verse: json['Verse']??0,
+        text: json['Text']??'');
   }
 }
 

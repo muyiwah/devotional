@@ -59,6 +59,10 @@ dependencies:
   upgrader: ^10.3.0
   # flutter_local_notifications: ^17.1.1
   # awesome_notifications: ^0.9.3+1
+  alarm: ^4.0.12
+
+  table_calendar: ^3.0.6
+  
 
   # cloud_firestore: ^4.0.5
 
@@ -93,6 +97,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/audio/
     - assets/images/
     - assets/dailyimages/
     - assets/bibleJson/

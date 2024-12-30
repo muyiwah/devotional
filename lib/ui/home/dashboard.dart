@@ -3,7 +3,10 @@ import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/core/utility/config.dart';
 import 'package:mivdevotional/devotion_screen.dart';
 import 'package:mivdevotional/devotion_today.dart';
+import 'package:mivdevotional/reminder.dart';
 import 'package:mivdevotional/ui/book/show_book.dart';
+import 'package:mivdevotional/ui/daily_reading.dart';
+import 'package:mivdevotional/ui/home/daily_reading2.dart';
 import 'package:mivdevotional/ui/home/others.dart';
 import 'package:mivdevotional/ui/test/tts.dart';
 import 'package:mivdevotional/ui/learningtool_create_event.dart';
@@ -91,11 +94,13 @@ class _DashboardState extends State<Dashboard> {
 
   List screen = [
     MyWidget(),
+    DailyBiblePage2(),
     HomeScreen(),
     Notespad(),
     WordClinicPage(),
     // Others(),
     // MyApp2(),
+    ReminderScreen(),
     LearningToolCreateEvent()
   ];
   int selected = 0;
