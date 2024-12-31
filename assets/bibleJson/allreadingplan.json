@@ -1,0 +1,812 @@
+[
+    {
+      "day": 1,
+      "readings": {
+        "old_testament": "Genesis 1-2",
+        "new_testament": "Matthew 1",
+        "psalms": "Psalms 1",
+        "proverbs": "Proverbs 1:1-6"
+      }
+    },
+    {
+      "day": 2,
+      "readings": {
+        "old_testament": "Genesis 3-4",
+        "new_testament": "Matthew 2",
+        "psalms": "Psalms 2",
+        "proverbs": "Proverbs 1:7-19"
+      }
+    },
+    {
+      "day": 3,
+      "readings": {
+        "old_testament": "Genesis 5-6",
+        "new_testament": "Matthew 3",
+        "psalms": "Psalms 3",
+        "proverbs": "Proverbs 1:20-33"
+      }
+    },
+    {
+      "day": 4,
+      "readings": {
+        "old_testament": "Genesis 7-8",
+        "new_testament": "Matthew 4",
+        "psalms": "Psalms 4",
+        "proverbs": "Proverbs 2:1-15"
+      }
+    },
+    {
+      "day": 5,
+      "readings": {
+        "old_testament": "Genesis 9-10",
+        "new_testament": "Matthew 5:1-20",
+        "psalms": "Psalms 5",
+        "proverbs": "Proverbs 2:16-22"
+      }
+    },
+    {
+      "day": 6,
+      "readings": {
+        "old_testament": "Genesis 11-12",
+        "new_testament": "Matthew 5:21-48",
+        "psalms": "Psalms 6",
+        "proverbs": "Proverbs 3:1-10"
+      }
+    },
+    {
+      "day": 7,
+      "readings": {
+        "old_testament": "Genesis 13-14",
+        "new_testament": "Matthew 6:1-18",
+        "psalms": "Psalms 7",
+        "proverbs": "Proverbs 3:11-20"
+      }
+    },
+    {
+      "day": 8,
+      "readings": {
+        "old_testament": "Genesis 15-16",
+        "new_testament": "Matthew 6:19-34",
+        "psalms": "Psalms 8",
+        "proverbs": "Proverbs 3:21-35"
+      }
+    },
+    {
+      "day": 9,
+      "readings": {
+        "old_testament": "Genesis 17-18",
+        "new_testament": "Matthew 7",
+        "psalms": "Psalms 9",
+        "proverbs": "Proverbs 4:1-9"
+      }
+    },
+    {
+      "day": 10,
+      "readings": {
+        "old_testament": "Genesis 19-20",
+        "new_testament": "Matthew 8:1-17",
+        "psalms": "Psalms 10",
+        "proverbs": "Proverbs 4:10-19"
+      }
+    },
+    {
+      "day": 11,
+      "readings": {
+        "old_testament": "Genesis 21-22",
+        "new_testament": "Matthew 8:18-34",
+        "psalms": "Psalms 11",
+        "proverbs": "Proverbs 4:20-27"
+      }
+    },
+    {
+      "day": 12,
+      "readings": {
+        "old_testament": "Genesis 23-24",
+        "new_testament": "Matthew 9:1-17",
+        "psalms": "Psalms 12",
+        "proverbs": "Proverbs 5:1-14"
+      }
+    },
+    {
+      "day": 13,
+      "readings": {
+        "old_testament": "Genesis 25-26",
+        "new_testament": "Matthew 9:18-38",
+        "psalms": "Psalms 13",
+        "proverbs": "Proverbs 5:15-23"
+      }
+    },
+    {
+      "day": 14,
+      "readings": {
+        "old_testament": "Genesis 27-28",
+        "new_testament": "Matthew 10:1-20",
+        "psalms": "Psalms 14",
+        "proverbs": "Proverbs 6:1-11"
+      }
+    },
+    {
+      "day": 15,
+      "readings": {
+        "old_testament": "Genesis 29-30",
+        "new_testament": "Matthew 10:21-42",
+        "psalms": "Psalms 15",
+        "proverbs": "Proverbs 6:12-19"
+      }
+    },
+    {
+      "day": 16,
+      "readings": {
+        "old_testament": "Genesis 31-32",
+        "new_testament": "Matthew 11",
+        "psalms": "Psalms 16",
+        "proverbs": "Proverbs 6:20-29"
+      }
+    },
+    {
+      "day": 17,
+      "readings": {
+        "old_testament": "Genesis 33-34",
+        "new_testament": "Matthew 12:1-21",
+        "psalms": "Psalms 17",
+        "proverbs": "Proverbs 6:30-35"
+      }
+    },
+    {
+      "day": 18,
+      "readings": {
+        "old_testament": "Genesis 35-36",
+        "new_testament": "Matthew 12:22-50",
+        "psalms": "Psalms 18:1-15",
+        "proverbs": "Proverbs 7:1-5"
+      }
+    },
+    {
+      "day": 19,
+      "readings": {
+        "old_testament": "Genesis 37-38",
+        "new_testament": "Matthew 13:1-23",
+        "psalms": "Psalms 18:16-36",
+        "proverbs": "Proverbs 7:6-20"
+      }
+    },
+    {
+      "day": 20,
+      "readings": {
+        "old_testament": "Genesis 39-40",
+        "new_testament": "Matthew 13:24-46",
+        "psalms": "Psalms 18:37-50",
+        "proverbs": "Proverbs 7:21-27"
+      }
+    },
+    {
+      "day": 21,
+      "readings": {
+        "old_testament": "Genesis 41",
+        "new_testament": "Matthew 13:47-58",
+        "psalms": "Psalms 19",
+        "proverbs": "Proverbs 8:1-11"
+      }
+    },
+    {
+      "day": 22,
+      "readings": {
+        "old_testament": "Genesis 42-43",
+        "new_testament": "Matthew 14:1-21",
+        "psalms": "Psalms 20",
+        "proverbs": "Proverbs 8:12-21"
+      }
+    },
+    {
+      "day": 23,
+      "readings": {
+        "old_testament": "Genesis 44-45",
+        "new_testament": "Matthew 14:22-36",
+        "psalms": "Psalms 21",
+        "proverbs": "Proverbs 8:22-31"
+      }
+    },
+    {
+      "day": 24,
+      "readings": {
+        "old_testament": "Genesis 46-47",
+        "new_testament": "Matthew 15:1-20",
+        "psalms": "Psalms 22:1-18",
+        "proverbs": "Proverbs 8:32-36"
+      }
+    },
+    {
+      "day": 25,
+      "readings": {
+        "old_testament": "Genesis 48-49",
+        "new_testament": "Matthew 15:21-39",
+        "psalms": "Psalms 22:19-31",
+        "proverbs": "Proverbs 9:1-6"
+      }
+    },
+    {
+      "day": 26,
+      "readings": {
+        "old_testament": "Genesis 50",
+        "new_testament": "Matthew 16:1-12",
+        "psalms": "Psalms 23",
+        "proverbs": "Proverbs 9:7-12"
+      }
+    },
+    {
+      "day": 27,
+      "readings": {
+        "old_testament": "Exodus 1-2",
+        "new_testament": "Matthew 16:13-28",
+        "psalms": "Psalms 24",
+        "proverbs": "Proverbs 9:13-18"
+      }
+    },
+    {
+      "day": 28,
+      "readings": {
+        "old_testament": "Exodus 3-4",
+        "new_testament": "Matthew 17",
+        "psalms": "Psalms 25:1-15",
+        "proverbs": "Proverbs 10:1-5"
+      }
+    },
+    {
+      "day": 29,
+      "readings": {
+        "old_testament": "Exodus 5-6",
+        "new_testament": "Matthew 18:1-20",
+        "psalms": "Psalms 25:16-22",
+        "proverbs": "Proverbs 10:6-11"
+      }
+    },
+    {
+      "day": 30,
+      "readings": {
+        "old_testament": "Exodus 7-8",
+        "new_testament": "Matthew 18:21-35",
+        "psalms": "Psalms 26",
+        "proverbs": "Proverbs 10:12-16"
+      }
+    },
+    {
+      "day": 31,
+      "readings": {
+        "old_testament": "Exodus 9-10",
+        "new_testament": "Matthew 19:1-15",
+        "psalms": "Psalms 27:1-6",
+        "proverbs": "Proverbs 10:17-21"
+      }
+    },
+     {
+      "day": 32,
+      "readings": {
+        "old_testament": "Exodus 11-12",
+        "new_testament": "Matthew 19:16-30",
+        "psalms": "Psalms 27:7-14",
+        "proverbs": "Proverbs 10:22-26"
+      }
+    },
+    {
+      "day": 33,
+      "readings": {
+        "old_testament": "Exodus 13-14",
+        "new_testament": "Matthew 20:1-16",
+        "psalms": "Psalms 28",
+        "proverbs": "Proverbs 10:27-32"
+      }
+    },
+    {
+      "day": 34,
+      "readings": {
+        "old_testament": "Exodus 15-16",
+        "new_testament": "Matthew 20:17-34",
+        "psalms": "Psalms 29",
+        "proverbs": "Proverbs 11:1-5"
+      }
+    },
+    {
+      "day": 35,
+      "readings": {
+        "old_testament": "Exodus 17-18",
+        "new_testament": "Matthew 21:1-22",
+        "psalms": "Psalms 30",
+        "proverbs": "Proverbs 11:6-11"
+      }
+    },
+    {
+      "day": 36,
+      "readings": {
+        "old_testament": "Exodus 19-20",
+        "new_testament": "Matthew 21:23-46",
+        "psalms": "Psalms 31:1-8",
+        "proverbs": "Proverbs 11:12-15"
+      }
+    },
+    {
+      "day": 37,
+      "readings": {
+        "old_testament": "Exodus 21-22",
+        "new_testament": "Matthew 22:1-22",
+        "psalms": "Psalms 31:9-18",
+        "proverbs": "Proverbs 11:16-20"
+      }
+    },
+    {
+      "day": 38,
+      "readings": {
+        "old_testament": "Exodus 23-24",
+        "new_testament": "Matthew 22:23-46",
+        "psalms": "Psalms 31:19-24",
+        "proverbs": "Proverbs 11:21-24"
+      }
+    },
+    {
+      "day": 39,
+      "readings": {
+        "old_testament": "Exodus 25-26",
+        "new_testament": "Matthew 23:1-22",
+        "psalms": "Psalms 32",
+        "proverbs": "Proverbs 11:25-28"
+      }
+    },
+    {
+      "day": 40,
+      "readings": {
+        "old_testament": "Exodus 27-28",
+        "new_testament": "Matthew 23:23-39",
+        "psalms": "Psalms 33:1-11",
+        "proverbs": "Proverbs 11:29-31"
+      }
+    },
+    {
+      "day": 41,
+      "readings": {
+        "old_testament": "Exodus 29-30",
+        "new_testament": "Matthew 24:1-28",
+        "psalms": "Psalms 33:12-22",
+        "proverbs": "Proverbs 12:1-4"
+      }
+    },
+    {
+      "day": 42,
+      "readings": {
+        "old_testament": "Exodus 31-32",
+        "new_testament": "Matthew 24:29-51",
+        "psalms": "Psalms 34:1-10",
+        "proverbs": "Proverbs 12:5-8"
+      }
+    },
+    {
+      "day": 43,
+      "readings": {
+        "old_testament": "Exodus 33-34",
+        "new_testament": "Matthew 25:1-30",
+        "psalms": "Psalms 34:11-22",
+        "proverbs": "Proverbs 12:9-12"
+      }
+    },
+    {
+      "day": 44,
+      "readings": {
+        "old_testament": "Exodus 35-36",
+        "new_testament": "Matthew 25:31-46",
+        "psalms": "Psalms 35:1-16",
+        "proverbs": "Proverbs 12:13-16"
+      }
+    },
+    {
+      "day": 45,
+      "readings": {
+        "old_testament": "Exodus 37-38",
+        "new_testament": "Matthew 26:1-25",
+        "psalms": "Psalms 35:17-28",
+        "proverbs": "Proverbs 12:17-20"
+      }
+    },
+    {
+      "day": 46,
+      "readings": {
+        "old_testament": "Exodus 39-40",
+        "new_testament": "Matthew 26:26-46",
+        "psalms": "Psalms 36:1-12",
+        "proverbs": "Proverbs 12:21-23"
+      }
+    },
+    {
+      "day": 47,
+      "readings": {
+        "old_testament": "Leviticus 1-2",
+        "new_testament": "Matthew 26:47-68",
+        "psalms": "Psalms 37:1-11",
+        "proverbs": "Proverbs 12:24-28"
+      }
+    },
+    {
+      "day": 48,
+      "readings": {
+        "old_testament": "Leviticus 3-4",
+        "new_testament": "Matthew 26:69-75",
+        "psalms": "Psalms 37:12-29",
+        "proverbs": "Proverbs 13:1-3"
+      }
+    },
+    {
+      "day": 49,
+      "readings": {
+        "old_testament": "Leviticus 5-6",
+        "new_testament": "Matthew 27:1-26",
+        "psalms": "Psalms 37:30-40",
+        "proverbs": "Proverbs 13:4-6"
+      }
+    },
+    {
+      "day": 50,
+      "readings": {
+        "old_testament": "Leviticus 7-8",
+        "new_testament": "Matthew 27:27-44",
+        "psalms": "Psalms 38:1-11",
+        "proverbs": "Proverbs 13:7-8"
+      }
+    },
+    {
+      "day": 51,
+      "readings": {
+        "old_testament": "Leviticus 9-10",
+        "new_testament": "Matthew 27:45-66",
+        "psalms": "Psalms 38:12-22",
+        "proverbs": "Proverbs 13:9-10"
+      }
+    },
+    {
+      "day": 52,
+      "readings": {
+        "old_testament": "Leviticus 11-12",
+        "new_testament": "Matthew 28:1-20",
+        "psalms": "Psalms 39:1-13",
+        "proverbs": "Proverbs 13:11-12"
+      }
+    },
+    {
+      "day": 53,
+      "readings": {
+        "old_testament": "Leviticus 13",
+        "new_testament": "Mark 1:1-20",
+        "psalms": "Psalms 40:1-10",
+        "proverbs": "Proverbs 13:13-14"
+      }
+    },
+    {
+      "day": 54,
+      "readings": {
+        "old_testament": "Leviticus 14",
+        "new_testament": "Mark 1:21-45",
+        "psalms": "Psalms 40:11-17",
+        "proverbs": "Proverbs 13:15-16"
+      }
+    },
+    {
+      "day": 55,
+      "readings": {
+        "old_testament": "Leviticus 15-16",
+        "new_testament": "Mark 2:1-17",
+        "psalms": "Psalms 41:1-13",
+        "proverbs": "Proverbs 13:17-19"
+      }
+    },
+    {
+      "day": 56,
+      "readings": {
+        "old_testament": "Leviticus 17-18",
+        "new_testament": "Mark 2:18-28",
+        "psalms": "Psalms 42:1-11",
+        "proverbs": "Proverbs 13:20-23"
+      }
+    },
+    {
+      "day": 57,
+      "readings": {
+        "old_testament": "Leviticus 19-20",
+        "new_testament": "Mark 3:1-19",
+        "psalms": "Psalms 43:1-5",
+        "proverbs": "Proverbs 13:24-25"
+      }
+    },
+    {
+      "day": 58,
+      "readings": {
+        "old_testament": "Leviticus 21-22",
+        "new_testament": "Mark 3:20-35",
+        "psalms": "Psalms 44:1-8",
+        "proverbs": "Proverbs 14:1-2"
+      }
+    },
+    {
+      "day": 59,
+      "readings": {
+        "old_testament": "Leviticus 23-24",
+        "new_testament": "Mark 4:1-20",
+        "psalms": "Psalms 44:9-26",
+        "proverbs": "Proverbs 14:3-4"
+      }
+    },
+    {
+      "day": 60,
+      "readings": {
+        "old_testament": "Leviticus 25",
+        "new_testament": "Mark 4:21-41",
+        "psalms": "Psalms 45:1-9",
+        "proverbs": "Proverbs 14:5-7"
+      }
+    },
+    {
+      "day": 61,
+      "readings": {
+        "old_testament": "Leviticus 26-27",
+        "new_testament": "Mark 5:1-20",
+        "psalms": "Psalms 45:10-17",
+        "proverbs": "Proverbs 14:8-10"
+      }
+    },
+    {
+      "day": 62,
+      "readings": {
+        "old_testament": "Numbers 1-2",
+        "new_testament": "Mark 5:21-43",
+        "psalms": "Psalms 46",
+        "proverbs": "Proverbs 14:11-14"
+      }
+    },
+    {
+      "day": 63,
+      "readings": {
+        "old_testament": "Numbers 3-4",
+        "new_testament": "Mark 6:1-29",
+        "psalms": "Psalms 47",
+        "proverbs": "Proverbs 14:15-18"
+      }
+    },
+    {
+      "day": 64,
+      "readings": {
+        "old_testament": "Numbers 5-6",
+        "new_testament": "Mark 6:30-56",
+        "psalms": "Psalms 48",
+        "proverbs": "Proverbs 14:19-21"
+      }
+    },
+    {
+      "day": 65,
+      "readings": {
+        "old_testament": "Numbers 7",
+        "new_testament": "Mark 7:1-23",
+        "psalms": "Psalms 49:1-13",
+        "proverbs": "Proverbs 14:22-24"
+      }
+    },
+    {
+      "day": 66,
+      "readings": {
+        "old_testament": "Numbers 8-9",
+        "new_testament": "Mark 7:24-37",
+        "psalms": "Psalms 49:14-20",
+        "proverbs": "Proverbs 14:25-27"
+      }
+    },
+    {
+      "day": 67,
+      "readings": {
+        "old_testament": "Numbers 10-11",
+        "new_testament": "Mark 8:1-21",
+        "psalms": "Psalms 50:1-15",
+        "proverbs": "Proverbs 14:28-30"
+      }
+    },
+    {
+      "day": 68,
+      "readings": {
+        "old_testament": "Numbers 12-13",
+        "new_testament": "Mark 8:22-38",
+        "psalms": "Psalms 50:16-23",
+        "proverbs": "Proverbs 14:31-33"
+      }
+    },
+    {
+      "day": 69,
+      "readings": {
+        "old_testament": "Numbers 14-15",
+        "new_testament": "Mark 9:1-29",
+        "psalms": "Psalms 51:1-9",
+        "proverbs": "Proverbs 14:34-35"
+      }
+    },
+    {
+      "day": 70,
+      "readings": {
+        "old_testament": "Numbers 16-17",
+        "new_testament": "Mark 9:30-50",
+        "psalms": "Psalms 51:10-19",
+        "proverbs": "Proverbs 15:1-3"
+      }
+    },
+    {
+      "day": 71,
+      "readings": {
+        "old_testament": "Numbers 18-19",
+        "new_testament": "Mark 10:1-31",
+        "psalms": "Psalms 52",
+        "proverbs": "Proverbs 15:4-6"
+      }
+    },
+    {
+      "day": 72,
+      "readings": {
+        "old_testament": "Numbers 20-21",
+        "new_testament": "Mark 10:32-52",
+        "psalms": "Psalms 53",
+        "proverbs": "Proverbs 15:7-9"
+      }
+    },
+    {
+      "day": 73,
+      "readings": {
+        "old_testament": "Numbers 22-23",
+        "new_testament": "Mark 11:1-19",
+        "psalms": "Psalms 54",
+        "proverbs": "Proverbs 15:10-12"
+      }
+    },
+    {
+      "day": 74,
+      "readings": {
+        "old_testament": "Numbers 24-25",
+        "new_testament": "Mark 11:20-33",
+        "psalms": "Psalms 55:1-11",
+        "proverbs": "Proverbs 15:13-15"
+      }
+    },
+    {
+      "day": 75,
+      "readings": {
+        "old_testament": "Numbers 26-27",
+        "new_testament": "Mark 12:1-27",
+        "psalms": "Psalms 55:12-23",
+        "proverbs": "Proverbs 15:16-18"
+      }
+    },
+    {
+      "day": 76,
+      "readings": {
+        "old_testament": "Numbers 28-29",
+        "new_testament": "Mark 12:28-44",
+        "psalms": "Psalms 56",
+        "proverbs": "Proverbs 15:19-21"
+      }
+    },
+    {
+      "day": 77,
+      "readings": {
+        "old_testament": "Numbers 30-31",
+        "new_testament": "Mark 13:1-13",
+        "psalms": "Psalms 57",
+        "proverbs": "Proverbs 15:22-24"
+      }
+    },
+    {
+      "day": 78,
+      "readings": {
+        "old_testament": "Numbers 32-33",
+        "new_testament": "Mark 13:14-37",
+        "psalms": "Psalms 58",
+        "proverbs": "Proverbs 15:25-27"
+      }
+    },
+    {
+      "day": 79,
+      "readings": {
+        "old_testament": "Numbers 34-35",
+        "new_testament": "Mark 14:1-26",
+        "psalms": "Psalms 59:1-8",
+        "proverbs": "Proverbs 15:28-30"
+      }
+    },
+    {
+      "day": 80,
+      "readings": {
+        "old_testament": "Numbers 36",
+        "new_testament": "Mark 14:27-53",
+        "psalms": "Psalms 59:9-17",
+        "proverbs": "Proverbs 15:31-33"
+      }
+    },
+    {
+      "day": 81,
+      "readings": {
+        "old_testament": "Deuteronomy 1",
+        "new_testament": "Mark 14:54-72",
+        "psalms": "Psalms 60",
+        "proverbs": "Proverbs 16:1-3"
+      }
+    },
+    {
+      "day": 82,
+      "readings": {
+        "old_testament": "Deuteronomy 2-3",
+        "new_testament": "Mark 15:1-25",
+        "psalms": "Psalms 61",
+        "proverbs": "Proverbs 16:4-6"
+      }
+    },
+    {
+      "day": 83,
+      "readings": {
+        "old_testament": "Deuteronomy 4",
+        "new_testament": "Mark 15:26-47",
+        "psalms": "Psalms 62",
+        "proverbs": "Proverbs 16:7-9"
+      }
+    },
+    {
+      "day": 84,
+      "readings": {
+        "old_testament": "Deuteronomy 5-6",
+        "new_testament": "Mark 16",
+        "psalms": "Psalms 63",
+        "proverbs": "Proverbs 16:10-12"
+      }
+    },
+    {
+      "day": 85,
+      "readings": {
+        "old_testament": "Deuteronomy 7-8",
+        "new_testament": "Luke 1:1-20",
+        "psalms": "Psalms 64",
+        "proverbs": "Proverbs 16:13-15"
+      }
+    },
+    {
+      "day": 86,
+      "readings": {
+        "old_testament": "Deuteronomy 9-10",
+        "new_testament": "Luke 1:21-38",
+        "psalms": "Psalms 65",
+        "proverbs": "Proverbs 16:16-18"
+      }
+    },
+    {
+      "day": 87,
+      "readings": {
+        "old_testament": "Deuteronomy 11-12",
+        "new_testament": "Luke 1:39-56",
+        "psalms": "Psalms 66:1-12",
+        "proverbs": "Proverbs 16:19-21"
+      }
+    },
+    {
+      "day": 88,
+      "readings": {
+        "old_testament": "Deuteronomy 13-14",
+        "new_testament": "Luke 1:57-80",
+        "psalms": "Psalms 66:13-20",
+        "proverbs": "Proverbs 16:22-24"
+      }
+    },
+    {
+      "day": 89,
+      "readings": {
+        "old_testament": "Deuteronomy 15-16",
+        "new_testament": "Luke 2:1-24",
+        "psalms": "Psalms 67",
+        "proverbs": "Proverbs 16:25-27"
+      }
+    },
+    {
+      "day": 366,
+      "readings": {
+        "old_testament": "Deuteronomy 17-18",
+        "new_testament": "Luke 2:25-52",
+        "psalms": "Psalms 68:1-18",
+        "proverbs": "Proverbs 16:28-30"
+      }
+    }
+  ]

@@ -1,7 +1,12 @@
 import 'dart:convert';
+import 'package:alarm/alarm.dart';
+import 'package:circular_menu/circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mivdevotional/model/bible.model.dart';
+import 'package:mivdevotional/ui/home/cmenu.dart';
 import 'package:mivdevotional/ui/home/notification.dart';
 import 'package:mivdevotional/ui/home/word_clinic_today.dart';
 import 'package:collection/collection.dart';
@@ -14,24 +19,68 @@ class DailyBiblePage2 extends StatefulWidget {
 }
 
 class _DailyBiblePage2State extends State<DailyBiblePage2> {
+  final GlobalKey<CircularMenuState> circularMenuKey =
+      GlobalKey<CircularMenuState>();
   List<Bible>? bibleData;
   List<dynamic>? readingPlan;
   int completedDays = 0;
-
+  late ScrollController _scrollController;
+  var today;
   @override
   void initState() {
+    today = DateTime.now();
+
+    _scrollController = ScrollController();
+    _scrollController.addListener(_onScroll);
     super.initState();
     getDay(DateTime.now());
     loadResources();
   }
 
+  @override
+  void dispose() {
+    _scrollController.dispose(); // Dispose of the ScrollController
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.atEdge) {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        print('Scrolled to the last item!');
+        markAsCompleted();
+        // Add your logic here when the user reaches the last item
+      }
+    }
+    // if (isScrolledToTop(_scrollController)) {
+    //   top = true;
+
+    //   print("The screen is scrolled to the top.");
+    // }
+    // if (hasScrolledDown(_scrollController, 100.0)) {
+    // top = false;
+
+    //   print("Scrolled more than 100 pixels down from the top.");
+    // }
+  }
+
+  bool isScrolledToTop(ScrollController scrollController) {
+    return scrollController.offset <= 0;
+  }
+
+  bool hasScrolledDown(ScrollController scrollController, double threshold) {
+    return scrollController.offset > threshold;
+  }
+
+  bool top = false;
+  bool middle = false;
   DateTime selectedDate = DateTime.now();
   Map<String, String>? readingsForSelectedDay;
   Map<DateTime, bool> progressMap = {};
   Future<void> loadResources() async {
     bibleData = await loadBibleData();
     final planData =
-        await rootBundle.loadString('assets/bibleJson/monthfour.json');
+        await rootBundle.loadString('assets/bibleJson/allreadingplan.json');
     readingPlan = json.decode(planData);
 
     // Load progress
@@ -57,12 +106,27 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
 
   // Future<void> markAsCompleted(DateTime date) async {
   Future<void> markAsCompleted() async {
-    DateTime date = DateTime.now();
+    // DateTime date = DateTime.now();
+    DateTime currentDay = DateTime(today.year, today.month, today.day);
+
+    print('currentday=$currentDay'); // Normalize to midnight
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (currentDay == DateTime(today.year, 12, 31)) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ConfettiSample()));
+    }
+    // Check if the current day is already marked as completed
+    if (progressMap.containsKey(currentDay) &&
+        progressMap[currentDay] == true) {
+      print('Day already marked as completed: $currentDay');
+      return; // Exit the function early if already marked
+    }
+
     setState(() {
       completedDays += 1;
-      progressMap[date] = true;
+      progressMap[currentDay] = true;
     });
+
     await prefs.setInt('completedDays', completedDays);
     await prefs.setString(
       'progressMap',
@@ -70,7 +134,8 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
         (key, value) => MapEntry(key.toIso8601String(), value),
       )),
     );
-    print('marked completed $date');
+
+    print('Marked as completed: $currentDay');
   }
 
   int calculateMissedDays(Map<DateTime, bool> progressMap) {
@@ -159,15 +224,13 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
               endVerse != null &&
               entry.verse <= endVerse) {
             selectedVerses.add(entry);
-          }
-          // else if (endChapter != null &&
-          //     entry.chapter == endChapter &&
-          //     endVerse != null &&
-          //     entry.verse <= endVerse) {
-          //   selectedVerses.add(entry);
-          // }
-          //
-          else if (isChaptersOnly &&
+          } else if (end == null &&
+              startVerse == null &&
+              endChapter == null &&
+              endVerse == null &&
+              entry.chapter == startChapter) {
+            selectedVerses.add(entry);
+          } else if (isChaptersOnly &&
               entry.chapter >= startChapter &&
               (endChapter == null || entry.chapter <= endChapter)) {
             selectedVerses.add(entry);
@@ -230,9 +293,16 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
     return data;
   }
 
-  Map<String, dynamic>? getDailyReadings(List<dynamic> readingPlan, int day) {
-    return readingPlan.firstWhere((plan) => plan['day'] == day,
-        orElse: () => null);
+  Map<String, dynamic>? getDailyReadings(
+      List<dynamic> readingPlan, DateTime date) {
+    // Calculate the day of the year
+    int dayOfYear = int.parse(DateFormat("D").format(date));
+
+    // Find and return the reading plan for the specific day
+    return readingPlan.firstWhere(
+      (plan) => plan['day'] == dayOfYear,
+      orElse: () => null,
+    );
   }
 
   List<dynamic> _getEventsForDay(DateTime day) {
@@ -264,17 +334,16 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
 
   @override
   Widget build(BuildContext context) {
-    // final today = DateTime.now();
     // final day = today.day;
-
-    final dayPlan = getDailyReadings(readingPlan ?? [], day);
+    print('today =$today');
+    final dayPlan = getDailyReadings(readingPlan ?? [], today);
 
     if (bibleData == null || dayPlan == null) {
       return Scaffold(
-        appBar: AppBar(
+        appBar: AppBar(centerTitle: true,
           title: Text('Daily Bible Readings'),
         ),
-        body: Center(child: CircularProgressIndicator()),
+        body: Center(child: Text('No data for the day available')),
       );
     }
 
@@ -289,89 +358,136 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
     final missedDays = calculateMissedDays(progressMap);
     print(missedDays);
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (_) => ReminderScreen()));
-      }),
-      appBar: AppBar(
-        title: Text('Daily Bible Readings $day'),
-        actions: [
-          ElevatedButton(
-              onPressed: () {
-                markAsCompleted();
-             
-              },
-              child: Text('mark complte'))
+      floatingActionButton: CircularMenu(toggleButtonSize: 27,
+        radius: 140,
+        toggleButtonOnPressed: () {
+          print('object');
+        },
+        alignment: Alignment.bottomRight,
+        toggleButtonColor: Colors.pink.withOpacity(.2),
+        toggleButtonAnimatedIconData: AnimatedIcons.menu_home,
+        key: circularMenuKey,
+        items: [
+          CircularMenuItem(iconSize: 25,
+              icon: Icons.home,
+              color: Colors.green,
+              onTap: () {
+                circularMenuKey.currentState?.reverseAnimation();
+              }),
+          // CircularMenuItem(
+          //     icon: Icons.search,
+          //     color: Colors.blue,
+          //     onTap: () {
+          //       setState(() {
+          //         // _color = Colors.blue;
+          //         // _colorName = 'Blue';
+          //       });
+          //     }),
+          CircularMenuItem(
+             iconSize: 25, icon: Icons.settings, color: Colors.orange, onTap: () {}),
+
+          CircularMenuItem(
+            iconSize: 25,  icon: Icons.notifications,
+              color: Colors.brown,
+              onTap: () {
+                Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => ReminderScreen()))
+                    .then((onValue) =>
+                        circularMenuKey.currentState?.reverseAnimation());
+              }),
+          CircularMenuItem(
+            iconSize: 25,  icon: Icons.calendar_month,
+              color: Colors.purple,
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => TableCalendarScreen())).then((e) {
+                  if (e != null) {
+                    print('eeeee');
+                    print(e);
+                    today = e;
+                    setState(() {});
+                  }
+                });
+
+                circularMenuKey.currentState?.reverseAnimation();
+              }),
         ],
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                // Display progress bar
-                Text(
-                  'Progress: $completedDays / ${readingPlan?.length ?? 0} days completed',
-                  style: TextStyle(fontSize: 16),
+      // appBar: AppBar(
+      //   title: Text('Daily Bible Readings $day'),
+      //   // actions: [
+      //   //   ElevatedButton(
+      //   //       onPressed: () {
+      //   //         markAsCompleted();
+      //   //       },
+      //   //       child: Text('mark complte'))
+      //   // ],
+      // ),
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          SliverAppBar(
+            centerTitle: true,
+            pinned: true,
+            backgroundColor: Colors.deepPurple,
+            expandedHeight: 250.0,
+            flexibleSpace: FlexibleSpaceBar(
+              expandedTitleScale: 1.5,
+              centerTitle: true, // Centers the title in the middle of the image
+              title: Text(
+                'Daily Bible Reading (day${int.parse(DateFormat("D").format(DateTime.now()))})',
+                style: TextStyle(
+                  color: Colors
+                      .white, // Text color to make it visible on the image
+                  fontSize: 18, // Adjust font size
+                  fontWeight: FontWeight.bold,
                 ),
-                LinearProgressIndicator(
-                  value: (completedDays / (readingPlan?.length ?? 1))
-                      .clamp(0.0, 1.0),
-                  backgroundColor: Colors.grey[300],
-                  color: Colors.blue,
-                  minHeight: 8,
-                ),
-              ],
+                textAlign: TextAlign.center, // Ensures the text is centered
+              ),
+              background: Image.asset(
+                'assets/images/biblereading.jpg',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        
-          //       }
-          //     });
-          //   },
-          //   child: Text('mark complte')),
-          Expanded(
-            child: Scrollbar(
-              child: ListView(
-                children: readings.entries.mapIndexed((i, entry) {
-                  final category = entry.key.replaceAll('_', ' ').toUpperCase();
-                  final reference = entry.value['reference'] as String;
-                  Map startNo = entry.value['startNo'];
-                  final endChapter = entry.value['endChapter'];
-                  final verses = entry.value['verses'] as List<Bible>;
-                  int counter = 0;
-                  int firstOnlyChapterEndVerse = 0;
-                  // Combine reference and verses for display
-                  print(startNo['startVerse']);
-                  if (startNo['startVerse'] != null) {
-                    counter = int.parse(startNo['startVerse'].toString());
-                  } else if (startNo['endChapter'] != null) {
-                    counter = 1;
-                  }
-                  if (startNo['isChaptersOnly'] == true) {
-                    firstOnlyChapterEndVerse = int.parse(
-                        startNo['noOfVersesInStartChapter'].toString());
-                  }
-
-                  final versesText = verses.mapIndexed((count, verse) {
-                    // print(startNo['isChaptersOnly']);
-                    // print(startNo['noOfVersesInStartChapter']);
-                    if (startNo['isChaptersOnly'] == true &&
-                        (startNo['noOfVersesInStartChapter']) == count) {
-                      counter = -startNo['noOfVersesInStartChapter']+1;
-                      print('helllllloooooooo');
-                      print(count);
-                      print(counter);
-                    }
-
-                    return "${counter + count}. ${verse.text}";
-                  }).join('\n');
-
-                  return Column(
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            // markAsCompleted();
+                      Flexible(
+                        child: LinearProgressIndicator(
+                          value: (completedDays / (readingPlan?.length ?? 1))
+                              .clamp(0.0, 1.0),
+                          backgroundColor: Colors.green[100],
+                          color: Colors.blue,
+                          minHeight: 8,
+                        ),
+                      ),
+                      Lottie.asset(
+                          'assets/images/Animation - 1735562095675.json',width: 30,height: 30)
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        // '$completedDays / ${readingPlan?.length ?? 0} days completed ||',
+                        '$completedDays / 365 days completed',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '${calculateMissedDays(progressMap)} missed days',
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                      InkWell(
+                          onTap: () {
                             Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -380,46 +496,70 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                               if (e != null) {
                                 print('eeeee');
                                 print(e);
-                                day = e;
+                                today = e;
+
                                 setState(() {});
                               }
                             });
+
+                            circularMenuKey.currentState?.reverseAnimation();
                           },
-                          child: Text('check progress')),
-                      ListTile(
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              category,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              reference,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontStyle: FontStyle.italic,
-                                color: Colors.grey[700],
-                              ),
-                            ),
-                          ],
-                        ),
-                        subtitle: Text(
-                          versesText,
-                          style: TextStyle(fontSize: 18, height: 1.6),
-                        ),
-                      ),
+                          child: Icon(
+                            Icons.calendar_month,
+                            color: Colors.blue,
+                          ))
                     ],
-                  );
-                }).toList(),
+                  ),
+                ],
               ),
             ),
           ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final entry = readings.entries.elementAt(index);
+                final category = entry.key.replaceAll('_', ' ').toUpperCase();
+                final reference = entry.value['reference'] as String;
+                final verses = entry.value['verses'] as List<Bible>;
+                final versesText = verses.map((verse) {
+                  return "${verse.verse}. ${verse.text}";
+                }).join('\n');
 
-
+                return GestureDetector(
+                  onTap: () {
+                    circularMenuKey.currentState?.reverseAnimation();
+                  },
+                  child: ListTile(
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          category,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          reference,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontStyle: FontStyle.italic,
+                            color: Colors.grey[700],
+                          ),
+                        ),
+                      ],
+                    ),
+                    subtitle: Text(
+                      versesText,
+                      style: TextStyle(fontSize: 18, height: 1.6),
+                    ),
+                  ),
+                );
+              },
+              childCount: readings.length,
+            ),
+          ),
         ],
       ),
     );
@@ -466,67 +606,76 @@ class _TableCalendarScreenState extends State<TableCalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(centerTitle: true,
         title: Text('Bible Reading Calendar'),
       ),
-      body: TableCalendar(
-        firstDay: DateTime(DateTime.now().year, 1, 1),
-        lastDay: DateTime(DateTime.now().year, 12, 31),
-        focusedDay: DateTime.now(),
-        calendarFormat: CalendarFormat.month,
-        eventLoader: (day) => _isCompletedDay(day) ? ["Completed"] : [],
-        calendarBuilders: CalendarBuilders(
-          defaultBuilder: (context, day, focusedDay) {
-            if (_isMissedDay(day)) {
-              return Container(
-                margin: const EdgeInsets.all(6.0),
-                decoration: BoxDecoration(
-                  color: Colors.red.withOpacity(0.7),
+      body: Column(
+        children: [Text('You can read up missed days by tapping on the day'),
+          Expanded(
+            child: TableCalendar(
+              firstDay: DateTime(DateTime.now().year, 1, 1),
+              lastDay: DateTime(DateTime.now().year, 12, 31),
+              focusedDay: DateTime.now(),
+              calendarFormat: CalendarFormat.month,
+              eventLoader: (day) => _isCompletedDay(day) ? ["Completed"] : [],
+              calendarBuilders: CalendarBuilders(
+                defaultBuilder: (context, day, focusedDay) {
+                  if (_isMissedDay(day)) {
+                    return Container(
+                      margin: const EdgeInsets.all(6.0),
+                      decoration: BoxDecoration(
+                        color: Colors.red.withOpacity(0.7),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${day.day}',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    );
+                  }
+                  return null;
+                },
+                markerBuilder: (context, day, events) {
+                  if (_isCompletedDay(day)) {
+                    return 
+                    
+                    Container(padding: EdgeInsets.all(6),
+                      margin: const EdgeInsets.all(4.0),
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        shape: BoxShape.circle,
+                      ),
+                      width: 15.0,
+                      height: 15.0,
+                      alignment: Alignment.center,
+                   child: Icon(Icons.mark_chat_unread_outlined,color:Colors.white,size: 6,), );
+                  }
+                  return null;
+                },
+              ),
+              headerStyle: HeaderStyle(
+                formatButtonVisible: false,
+              ),
+              calendarStyle: CalendarStyle(
+                todayDecoration: BoxDecoration(
+                  color: Colors.blue,
                   shape: BoxShape.circle,
                 ),
-                child: Center(
-                  child: Text(
-                    '${day.day}',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              );
-            }
-            return null;
-          },
-          markerBuilder: (context, day, events) {
-            if (_isCompletedDay(day)) {
-              return Container(
-                margin: const EdgeInsets.all(4.0),
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  shape: BoxShape.circle,
-                ),
-                width: 8.0,
-                height: 8.0,
-              );
-            }
-            return null;
-          },
-        ),
-        headerStyle: HeaderStyle(
-          formatButtonVisible: false,
-        ),
-        calendarStyle: CalendarStyle(
-          todayDecoration: BoxDecoration(
-            color: Colors.blue,
-            shape: BoxShape.circle,
+                outsideDaysVisible: false,
+              ),
+              onDaySelected: (selectedDay, focusedDay) {
+                setState(() {
+                  selectedDate = selectedDay;
+                  Navigator.pop(context, selectedDate);
+                });
+                // Handle day selection here (e.g., fetch readings for the day)
+                print("Selected Date: $selectedDay");
+              },
+            ),
           ),
-          outsideDaysVisible: false,
-        ),
-        onDaySelected: (selectedDay, focusedDay) {
-          setState(() {
-            selectedDate = selectedDay;
-            Navigator.pop(context, selectedDate.day);
-          });
-          // Handle day selection here (e.g., fetch readings for the day)
-          print("Selected Date: $selectedDay");
-        },
+        ],
       ),
     );
   }

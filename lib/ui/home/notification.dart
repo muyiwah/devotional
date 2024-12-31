@@ -1,9 +1,12 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:alarm/alarm.dart';
 import 'package:alarm/model/alarm_settings.dart';
 import 'package:alarm/model/notification_settings.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 
 // class ReminderScreen extends StatelessWidget {
@@ -80,7 +83,27 @@ import 'package:flutter/material.dart';
 //     );
 //   }
 // }
-class ReminderScreen extends StatelessWidget {
+class ReminderScreen extends StatefulWidget {
+  @override
+  State<ReminderScreen> createState() => _ReminderScreenState();
+}
+
+class _ReminderScreenState extends State<ReminderScreen> {
+
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement initState
+    print('hasdfasdfasdfasdfsdfrer yuer');
+    Timer.periodic(Duration(milliseconds: 500), ((e) {
+      print('herer yuer');
+      checkUser();
+      e.cancel();
+    }));
+    super.didChangeDependencies();
+  }
+
+
   Future<void> scheduleDailyReminder(BuildContext context) async {
     // Allow user to pick a time for the alarm
     TimeOfDay? selectedTime = await showTimePicker(
@@ -129,17 +152,67 @@ class ReminderScreen extends StatelessWidget {
     }
   }
 
+
+
+checkUser() {
+    showCupertinoModalPopup(
+        context: context,
+        builder: (context) => Dialog(
+              child: Container(
+                padding: EdgeInsets.all(12),
+                height: 150,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                            textAlign: TextAlign.center,
+                            'Daily bible study reminder will be available shortly, you can check the playstore to know when update is available')
+                        .animate()
+                        .fadeIn(
+                            delay: Duration(milliseconds: 400),
+                            duration: Duration(milliseconds: 700)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 120,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.blue),
+                            child: Text(
+                              'Dismiss',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                       
+                      ],
+                    ).animate().fadeIn(
+                        delay: Duration(milliseconds: 900),
+                        duration: Duration(milliseconds: 1100))
+                  ],
+                ),
+              ),
+            ));
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.purple,
       appBar: AppBar(
-        title: Text('Bible Study Reminder'),
+        title: Text('Daily Bible Study Reminder'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () => scheduleDailyReminder(context),
-          child: Text('Set Daily Reminder'),
-        ),
+        // child: ElevatedButton(
+        //   onPressed: () => scheduleDailyReminder(context),
+        //   child: Text('Set Daily Reminder'),
+        // ),
       ),
     );
   }

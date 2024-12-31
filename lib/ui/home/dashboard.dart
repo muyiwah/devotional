@@ -6,6 +6,7 @@ import 'package:mivdevotional/devotion_today.dart';
 import 'package:mivdevotional/reminder.dart';
 import 'package:mivdevotional/ui/book/show_book.dart';
 import 'package:mivdevotional/ui/daily_reading.dart';
+import 'package:mivdevotional/ui/home/cmenu.dart';
 import 'package:mivdevotional/ui/home/daily_reading2.dart';
 import 'package:mivdevotional/ui/home/others.dart';
 import 'package:mivdevotional/ui/test/tts.dart';
@@ -94,8 +95,8 @@ class _DashboardState extends State<Dashboard> {
 
   List screen = [
     MyWidget(),
-    DailyBiblePage2(),
     HomeScreen(),
+    DailyBiblePage2(),
     Notespad(),
     WordClinicPage(),
     // Others(),
@@ -171,6 +172,7 @@ class _DashboardState extends State<Dashboard> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Devotional"),
           BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: "Bible"),
+          BottomNavigationBarItem(icon: Icon(Icons.read_more), label: "Read"),
           BottomNavigationBarItem(
               label: 'Notes', icon: Icon(Icons.message_rounded)),
           BottomNavigationBarItem(

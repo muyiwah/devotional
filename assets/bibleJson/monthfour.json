@@ -1,6 +1,6 @@
 [
   {
-    "day": 30,
+    "day": 6,
     "readings": {
       "old_testament": "Deuteronomy 1-2",
      "new_testament": "John 1:50-51",
@@ -9,9 +9,9 @@
     }
   },
   {
-    "day":28,
+    "day":366,
     "readings": {
-      "old_testament": "Deuteronomy 33-34",
+      "old_testament": "Deuteronomy 33",
       "new_testament": "Luke 3:1-22",
       "psalms": "Psalms 69:1-18",
       "proverbs": "Proverbs 23:15-21"
@@ -27,7 +27,7 @@
     }
   },
   {
-    "day": 94,
+    "day": 1,
     "readings": {
       "old_testament": "Joshua 3-4",
       "new_testament": "Luke 4:1-30",
@@ -36,7 +36,7 @@
     }
   },
   {
-    "day": 95,
+    "day": 2,
     "readings": {
       "old_testament": "Joshua 5-6",
       "new_testament": "Luke 4:31-44",
