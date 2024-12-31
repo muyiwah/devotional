@@ -65,6 +65,7 @@ dependencies:
   table_calendar: ^3.0.6
   confetti: ^0.8.0
   intl: ^0.18.0
+  
 
   # cloud_firestore: ^4.0.5
 

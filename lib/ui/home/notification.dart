@@ -166,7 +166,7 @@ checkUser() {
                   children: [
                     Text(
                             textAlign: TextAlign.center,
-                            'Daily bible study reminder will be available shortly, you can check the playstore to know when update is available')
+                            'Daily bible study reminder will be available shortly, you can check the playstore/appstore to know when update is available')
                         .animate()
                         .fadeIn(
                             delay: Duration(milliseconds: 400),

@@ -641,16 +641,7 @@ class _TableCalendarScreenState extends State<TableCalendarScreen> {
                   if (_isCompletedDay(day)) {
                     return 
                     
-                    Container(padding: EdgeInsets.all(6),
-                      margin: const EdgeInsets.all(4.0),
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        shape: BoxShape.circle,
-                      ),
-                      width: 15.0,
-                      height: 15.0,
-                      alignment: Alignment.center,
-                   child: Icon(Icons.mark_chat_unread_outlined,color:Colors.white,size: 6,), );
+                    Image.asset('assets/images/mark.png');
                   }
                   return null;
                 },

@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:mivdevotional/ui/home/welcome.dart';
 import 'package:provider/provider.dart';
 import 'package:alarm/alarm.dart';
+import 'package:upgrader/upgrader.dart';
 bool showOnce=true;
 
 void main() async{
@@ -73,7 +74,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         // home: Testexample(),
-        home: Welcome(),
+        home: UpgradeAlert(child: Welcome()),
          builder: (context, child) => MediaQuery(
           data: MediaQuery.of(context).copyWith(
             textScaleFactor: Platform.isAndroid ? .9 : 1,
