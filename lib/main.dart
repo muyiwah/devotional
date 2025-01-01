@@ -8,13 +8,12 @@ import 'package:flutter/services.dart';
 
 import 'package:mivdevotional/ui/home/welcome.dart';
 import 'package:provider/provider.dart';
-import 'package:alarm/alarm.dart';
 import 'package:upgrader/upgrader.dart';
 bool showOnce=true;
 
 void main() async{
    WidgetsFlutterBinding.ensureInitialized();
-    await Alarm.init();
+    // await Alarm.init();
   // await Firebase.initializeApp();
   
    ErrorWidget.builder = (FlutterErrorDetails details) {

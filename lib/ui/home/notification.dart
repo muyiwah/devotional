@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:alarm/alarm.dart';
-import 'package:alarm/model/alarm_settings.dart';
-import 'package:alarm/model/notification_settings.dart';
+// import 'package:alarm/alarm.dart';
+// import 'package:alarm/model/alarm_settings.dart';
+// import 'package:alarm/model/notification_settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -122,27 +122,27 @@ class _ReminderScreenState extends State<ReminderScreen> {
       );
 
       // Schedule the alarm
-      final alarmSettings = AlarmSettings(
-        id: 42, // Unique alarm ID
-        dateTime: alarmTime,
-        assetAudioPath:
-            'assets/audio/synthesis.wav', // Replace with your custom sound file
-        loopAudio: true,
-        vibrate: true,
-        volume: 0.8,
-        fadeDuration: 3.0,
-        warningNotificationOnKill: Platform.isIOS, // Specific for iOS
-        androidFullScreenIntent: true,
-        notificationSettings: const NotificationSettings(
-          title: 'Bible Study Reminder',
-          body: 'It’s time for your daily Bible study!',
-          stopButton: 'Stop the alarm',
-          icon: 'notification_icon', // Replace with your notification icon
-        ),
-      );
+      // final alarmSettings = AlarmSettings(
+      //   id: 42, // Unique alarm ID
+      //   dateTime: alarmTime,
+      //   assetAudioPath:
+      //       'assets/audio/synthesis.wav', // Replace with your custom sound file
+      //   loopAudio: true,
+      //   vibrate: true,
+      //   volume: 0.8,
+      //   fadeDuration: 3.0,
+      //   warningNotificationOnKill: Platform.isIOS, // Specific for iOS
+      //   androidFullScreenIntent: true,
+      //   notificationSettings: const NotificationSettings(
+      //     title: 'Bible Study Reminder',
+      //     body: 'It’s time for your daily Bible study!',
+      //     stopButton: 'Stop the alarm',
+      //     icon: 'notification_icon', // Replace with your notification icon
+      //   ),
+      // );
 
       // Set the alarm
-      Alarm.set(alarmSettings: alarmSettings);
+      // Alarm.set(alarmSettings: alarmSettings);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

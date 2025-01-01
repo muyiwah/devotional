@@ -1,0 +1,854 @@
+[
+ {
+      "day": 1,
+      "theme": "Creation and New Creation",
+      "readings": {
+        "old_testament": "Genesis 1-2",
+        "new_testament": "John 1:1-18",
+        "psalms": "Psalms 104",
+        "proverbs": "Proverbs 8:22-31"
+      }
+    },
+    {
+      "day": 2,
+      "theme": "God's Promises",
+      "readings": {
+        "old_testament": "Genesis 12:1-9",
+        "new_testament": "Galatians 3:15-29",
+        "psalms": "Psalms 105:1-15",
+        "proverbs": "Proverbs 3:1-12"
+      }
+    },
+    {
+      "day": 3,
+      "theme": "Exodus and Salvation",
+      "readings": {
+        "old_testament": "Exodus 14:1-31",
+        "new_testament": "1 Corinthians 10:1-13",
+        "psalms": "Psalms 106:1-12",
+        "proverbs": "Proverbs 2:6-15"
+      }
+    },
+    {
+      "day": 4,
+      "theme": "Leadership and Service",
+      "readings": {
+        "old_testament": "Joshua 1:1-9",
+        "new_testament": "Mark 10:35-45",
+        "psalms": "Psalms 78:70-72",
+        "proverbs": "Proverbs 16:10-15"
+      }
+    },
+    {
+      "day": 5,
+      "theme": "Wisdom and Understanding",
+      "readings": {
+        "old_testament": "1 Kings 3:3-28",
+        "new_testament": "James 1:2-18",
+        "psalms": "Psalms 111",
+        "proverbs": "Proverbs 4:1-9"
+      }
+    },
+    {
+      "day": 6,
+      "theme": "Faith and Trust",
+      "readings": {
+        "old_testament": "Daniel 3:1-30",
+        "new_testament": "Hebrews 11:1-16",
+        "psalms": "Psalms 91",
+        "proverbs": "Proverbs 3:5-8"
+      }
+    },
+    {
+      "day": 7,
+      "theme": "Worship and Praise",
+      "readings": {
+        "old_testament": "2 Chronicles 5:2-14",
+        "new_testament": "Revelation 4:1-11",
+        "psalms": "Psalms 150",
+        "proverbs": "Proverbs 15:8-9"
+      }
+    },
+     {
+      "day": 8,
+      "theme": "God's Sovereignty",
+      "readings": {
+        "old_testament": "Job 38-39",
+        "new_testament": "Romans 9:1-24",
+        "psalms": "Psalms 93",
+        "proverbs": "Proverbs 21:1-3"
+      }
+    },
+    {
+      "day": 9,
+      "theme": "Redemption",
+      "readings": {
+        "old_testament": "Ruth 1-4",
+        "new_testament": "Ephesians 1:3-14",
+        "psalms": "Psalms 103",
+        "proverbs": "Proverbs 23:10-12"
+      }
+    },
+    {
+      "day": 10,
+      "theme": "Spiritual Warfare",
+      "readings": {
+        "old_testament": "2 Kings 6:8-23",
+        "new_testament": "Ephesians 6:10-20",
+        "psalms": "Psalms 144",
+        "proverbs": "Proverbs 21:22-23"
+      }
+    },
+    {
+      "day": 11,
+      "theme": "God's Provision",
+      "readings": {
+        "old_testament": "1 Kings 17:1-24",
+        "new_testament": "Matthew 6:25-34",
+        "psalms": "Psalms 37:23-40",
+        "proverbs": "Proverbs 3:9-10"
+      }
+    },
+    {
+      "day": 12,
+      "theme": "Repentance",
+      "readings": {
+        "old_testament": "2 Samuel 12:1-25",
+        "new_testament": "Acts 2:36-41",
+        "psalms": "Psalms 51",
+        "proverbs": "Proverbs 28:13-14"
+      }
+    },
+    {
+      "day": 13,
+      "theme": "God's Justice",
+      "readings": {
+        "old_testament": "Amos 5:1-24",
+        "new_testament": "Romans 2:1-16",
+        "psalms": "Psalms 9",
+        "proverbs": "Proverbs 29:26-27"
+      }
+    },
+    {
+      "day": 14,
+      "theme": "Unity in Christ",
+      "readings": {
+        "old_testament": "Ezekiel 37:15-28",
+        "new_testament": "Ephesians 4:1-16",
+        "psalms": "Psalms 133",
+        "proverbs": "Proverbs 6:16-19"
+      }
+    },
+    {
+      "day": 15,
+      "theme": "Divine Healing",
+      "readings": {
+        "old_testament": "2 Kings 5:1-19",
+        "new_testament": "James 5:13-18",
+        "psalms": "Psalms 30",
+        "proverbs": "Proverbs 4:20-22"
+      }
+    },
+     {
+      "day": 16,
+      "theme": "Faith Under Trial",
+      "readings": {
+        "old_testament": "Daniel 6:1-28",
+        "new_testament": "1 Peter 1:3-9",
+        "psalms": "Psalms 34:1-22",
+        "proverbs": "Proverbs 24:10-12"
+      }
+    },
+    {
+      "day": 17,
+      "theme": "God's Calling",
+      "readings": {
+        "old_testament": "Jeremiah 1:1-19",
+        "new_testament": "Acts 9:1-22",
+        "psalms": "Psalms 139:1-24",
+        "proverbs": "Proverbs 3:5-6"
+      }
+    },
+    {
+      "day": 18,
+      "theme": "Spiritual Renewal",
+      "readings": {
+        "old_testament": "2 Chronicles 34:1-33",
+        "new_testament": "Titus 3:1-11",
+        "psalms": "Psalms 51:10-19",
+        "proverbs": "Proverbs 28:13"
+      }
+    },
+    {
+      "day": 19,
+      "theme": "Divine Protection",
+      "readings": {
+        "old_testament": "Esther 4:1-17",
+        "new_testament": "2 Thessalonians 3:1-18",
+        "psalms": "Psalms 91:1-16",
+        "proverbs": "Proverbs 18:10"
+      }
+    },
+    {
+      "day": 20,
+      "theme": "Wisdom's Value",
+      "readings": {
+        "old_testament": "1 Kings 3:3-28",
+        "new_testament": "James 3:13-18",
+        "psalms": "Psalms 119:97-104",
+        "proverbs": "Proverbs 8:10-21"
+      }
+    },
+     {
+      "day": 21,
+      "theme": "God's Holiness",
+      "readings": {
+        "old_testament": "Isaiah 6:1-13",
+        "new_testament": "Revelation 4:1-11",
+        "psalms": "Psalms 99:1-9",
+        "proverbs": "Proverbs 9:10"
+      }
+    },
+    {
+      "day": 22,
+      "theme": "Spiritual Leadership",
+      "readings": {
+        "old_testament": "Nehemiah 1:1-11",
+        "new_testament": "1 Timothy 3:1-16",
+        "psalms": "Psalms 78:70-72",
+        "proverbs": "Proverbs 16:10-15"
+      }
+    },
+    {
+      "day": 23,
+      "theme": "God's Faithfulness",
+      "readings": {
+        "old_testament": "Joshua 21:43-45",
+        "new_testament": "2 Timothy 2:11-13",
+        "psalms": "Psalms 89:1-8",
+        "proverbs": "Proverbs 28:20"
+      }
+    },
+    {
+      "day": 24,
+      "theme": "Spiritual Warfare",
+      "readings": {
+        "old_testament": "1 Samuel 17:1-58",
+        "new_testament": "2 Corinthians 10:3-6",
+        "psalms": "Psalms 18:31-42",
+        "proverbs": "Proverbs 21:22"
+      }
+    },
+    {
+      "day": 25,
+      "theme": "Divine Guidance",
+      "readings": {
+        "old_testament": "Exodus 13:17-22",
+        "new_testament": "John 16:12-15",
+        "psalms": "Psalms 32:8-11",
+        "proverbs": "Proverbs 3:5-6"
+      }
+    },
+     {
+      "day": 26,
+      "theme": "Forgiveness",
+      "readings": {
+        "old_testament": "Genesis 45:1-15",
+        "new_testament": "Matthew 18:21-35",
+        "psalms": "Psalms 32:1-7",
+        "proverbs": "Proverbs 17:9"
+      }
+    },
+    {
+      "day": 27,
+      "theme": "Prayer",
+      "readings": {
+        "old_testament": "1 Kings 8:22-53",
+        "new_testament": "Luke 11:1-13",
+        "psalms": "Psalms 5:1-12",
+        "proverbs": "Proverbs 15:8"
+      }
+    },
+    {
+      "day": 28,
+      "theme": "God's Power",
+      "readings": {
+        "old_testament": "Exodus 14:15-31",
+        "new_testament": "Acts 12:1-19",
+        "psalms": "Psalms 77:11-20",
+        "proverbs": "Proverbs 21:30-31"
+      }
+    },
+    {
+      "day": 29,
+      "theme": "Humility",
+      "readings": {
+        "old_testament": "Daniel 4:28-37",
+        "new_testament": "Philippians 2:1-11",
+        "psalms": "Psalms 131",
+        "proverbs": "Proverbs 11:2"
+      }
+    },
+    {
+      "day": 30,
+      "theme": "Hope",
+      "readings": {
+        "old_testament": "Isaiah 40:27-31",
+        "new_testament": "Romans 8:18-30",
+        "psalms": "Psalms 42",
+        "proverbs": "Proverbs 23:17-18"
+      }
+    },
+      {
+      "day": 31,
+      "theme": "God's Presence",
+      "readings": {
+        "old_testament": "Exodus 33:12-23",
+        "new_testament": "John 14:15-26",
+        "psalms": "Psalms 16",
+        "proverbs": "Proverbs 8:17"
+      }
+    },
+    {
+      "day": 32,
+      "theme": "Courage",
+      "readings": {
+        "old_testament": "Joshua 1:1-9",
+        "new_testament": "Acts 4:13-31",
+        "psalms": "Psalms 27:1-6",
+        "proverbs": "Proverbs 28:1"
+      }
+    },
+    {
+      "day": 33,
+      "theme": "Worship",
+      "readings": {
+        "old_testament": "2 Chronicles 7:1-10",
+        "new_testament": "Revelation 5:1-14",
+        "psalms": "Psalms 95",
+        "proverbs": "Proverbs 15:8-9"
+      }
+    },
+    {
+      "day": 34,
+      "theme": "Perseverance",
+      "readings": {
+        "old_testament": "Job 1:13-22",
+        "new_testament": "James 1:2-12",
+        "psalms": "Psalms 40:1-5",
+        "proverbs": "Proverbs 24:16"
+      }
+    },
+    {
+      "day": 35,
+      "theme": "God's Word",
+      "readings": {
+        "old_testament": "Deuteronomy 6:1-9",
+        "new_testament": "2 Timothy 3:14-17",
+        "psalms": "Psalms 119:9-16",
+        "proverbs": "Proverbs 30:5-6"
+      }
+    },
+     {
+      "day": 36,
+      "theme": "Spiritual Gifts",
+      "readings": {
+        "old_testament": "Numbers 11:16-30",
+        "new_testament": "1 Corinthians 12:1-31",
+        "psalms": "Psalms 68:1-18",
+        "proverbs": "Proverbs 25:14"
+      }
+    },
+    {
+      "day": 37,
+      "theme": "God's Mercy",
+      "readings": {
+        "old_testament": "Jonah 3:1-10",
+        "new_testament": "Luke 15:11-32",
+        "psalms": "Psalms 103:1-14",
+        "proverbs": "Proverbs 28:13"
+      }
+    },
+    {
+      "day": 38,
+      "theme": "Spiritual Warfare",
+      "readings": {
+        "old_testament": "1 Samuel 17:32-51",
+        "new_testament": "Ephesians 6:10-20",
+        "psalms": "Psalms 144:1-10",
+        "proverbs": "Proverbs 21:31"
+      }
+    },
+    {
+      "day": 39,
+      "theme": "Joy in Trials",
+      "readings": {
+        "old_testament": "Habakkuk 3:17-19",
+        "new_testament": "1 Peter 1:3-9",
+        "psalms": "Psalms 30:1-12",
+        "proverbs": "Proverbs 15:13"
+      }
+    },
+    {
+      "day": 40,
+      "theme": "God's Protection",
+      "readings": {
+        "old_testament": "Daniel 6:16-23",
+        "new_testament": "Acts 12:1-19",
+        "psalms": "Psalms 91:1-16",
+        "proverbs": "Proverbs 18:10"
+      }
+    },
+     {
+      "day": 41,
+      "theme": "Spiritual Growth",
+      "readings": {
+        "old_testament": "Jeremiah 17:5-10",
+        "new_testament": "2 Peter 1:3-11",
+        "psalms": "Psalms 1:1-6",
+        "proverbs": "Proverbs 4:20-27"
+      }
+    },
+    {
+      "day": 42,
+      "theme": "Divine Healing",
+      "readings": {
+        "old_testament": "2 Kings 5:1-14",
+        "new_testament": "Mark 5:21-43",
+        "psalms": "Psalms 103:1-5",
+        "proverbs": "Proverbs 4:20-22"
+      }
+    },
+    {
+      "day": 43,
+      "theme": "Obedience",
+      "readings": {
+        "old_testament": "1 Samuel 15:10-23",
+        "new_testament": "John 14:15-24",
+        "psalms": "Psalms 119:33-40",
+        "proverbs": "Proverbs 19:16"
+      }
+    },
+    {
+      "day": 44,
+      "theme": "God's Promises",
+      "readings": {
+        "old_testament": "Joshua 21:43-45",
+        "new_testament": "2 Corinthians 1:18-22",
+        "psalms": "Psalms 145:13-21",
+        "proverbs": "Proverbs 15:22-23"
+      }
+    },
+    {
+      "day": 45,
+      "theme": "Spiritual Discernment",
+      "readings": {
+        "old_testament": "1 Kings 3:5-15",
+        "new_testament": "1 John 4:1-6",
+        "psalms": "Psalms 119:65-72",
+        "proverbs": "Proverbs 2:1-5"
+      }
+    },
+     {
+      "day": 46,
+      "theme": "Contentment",
+      "readings": {
+        "old_testament": "Ecclesiastes 5:10-20",
+        "new_testament": "Philippians 4:10-20",
+        "psalms": "Psalms 16:1-11",
+        "proverbs": "Proverbs 30:7-9"
+      }
+    },
+    {
+      "day": 47,
+      "theme": "God's Timing",
+      "readings": {
+        "old_testament": "Esther 4:1-17",
+        "new_testament": "Acts 1:4-11",
+        "psalms": "Psalms 31:14-15",
+        "proverbs": "Proverbs 16:9"
+      }
+    },
+    {
+      "day": 48,
+      "theme": "Spiritual Legacy",
+      "readings": {
+        "old_testament": "Deuteronomy 6:4-9",
+        "new_testament": "2 Timothy 1:3-14",
+        "psalms": "Psalms 78:1-8",
+        "proverbs": "Proverbs 13:22"
+      }
+    },
+    {
+      "day": 49,
+      "theme": "Divine Guidance",
+      "readings": {
+        "old_testament": "Isaiah 30:19-21",
+        "new_testament": "John 16:12-15",
+        "psalms": "Psalms 25:4-10",
+        "proverbs": "Proverbs 3:5-6"
+      }
+    },
+    {
+      "day": 50,
+      "theme": "Restoration",
+      "readings": {
+        "old_testament": "Joel 2:21-32",
+        "new_testament": "Acts 3:17-26",
+        "psalms": "Psalms 126:1-6",
+        "proverbs": "Proverbs 24:16"
+      }
+    },
+      {
+      "day": 51,
+      "theme": "Spiritual Authority",
+      "readings": {
+        "old_testament": "2 Chronicles 20:1-30",
+        "new_testament": "Matthew 8:5-13",
+        "psalms": "Psalms 2:1-12",
+        "proverbs": "Proverbs 29:2"
+      }
+    },
+    {
+      "day": 52,
+      "theme": "God's Faithfulness",
+      "readings": {
+        "old_testament": "Lamentations 3:19-26",
+        "new_testament": "2 Timothy 2:11-13",
+        "psalms": "Psalms 36:5-10",
+        "proverbs": "Proverbs 28:20"
+      }
+    },
+    {
+      "day": 53,
+      "theme": "Spiritual Hunger",
+      "readings": {
+        "old_testament": "Amos 8:11-14",
+        "new_testament": "Matthew 5:6",
+        "psalms": "Psalms 42:1-11",
+        "proverbs": "Proverbs 27:7"
+      }
+    },
+    {
+      "day": 54,
+      "theme": "Unity",
+      "readings": {
+        "old_testament": "Psalms 133:1-3",
+        "new_testament": "Ephesians 4:1-6",
+        "psalms": "Psalms 122:1-9",
+        "proverbs": "Proverbs 6:16-19"
+      }
+    },
+    {
+      "day": 55,
+      "theme": "Divine Purpose",
+      "readings": {
+        "old_testament": "Jeremiah 29:11-14",
+        "new_testament": "Romans 8:28-30",
+        "psalms": "Psalms 138:1-8",
+        "proverbs": "Proverbs 19:21"
+      }
+    },
+     {
+      "day": 56,
+      "theme": "Spiritual Discipline",
+      "readings": {
+        "old_testament": "Daniel 1:8-21",
+        "new_testament": "1 Corinthians 9:24-27",
+        "psalms": "Psalms 119:9-16",
+        "proverbs": "Proverbs 25:28"
+      }
+    },
+    {
+      "day": 57,
+      "theme": "God's Comfort",
+      "readings": {
+        "old_testament": "Isaiah 40:1-11",
+        "new_testament": "2 Corinthians 1:3-7",
+        "psalms": "Psalms 23:1-6",
+        "proverbs": "Proverbs 15:4"
+      }
+    },
+    {
+      "day": 58,
+      "theme": "Spiritual Vision",
+      "readings": {
+        "old_testament": "2 Kings 6:8-23",
+        "new_testament": "Revelation 1:9-20",
+        "psalms": "Psalms 119:17-24",
+        "proverbs": "Proverbs 29:18"
+      }
+    },
+    {
+      "day": 59,
+      "theme": "Divine Peace",
+      "readings": {
+        "old_testament": "Isaiah 26:1-9",
+        "new_testament": "John 14:27-31",
+        "psalms": "Psalms 29:1-11",
+        "proverbs": "Proverbs 14:30"
+      }
+    },
+    {
+      "day": 60,
+      "theme": "Spiritual Fruit",
+      "readings": {
+        "old_testament": "Isaiah 5:1-7",
+        "new_testament": "Galatians 5:22-26",
+        "psalms": "Psalms 1:1-6",
+        "proverbs": "Proverbs 11:30-31"
+      }
+    },
+     {
+      "day": 61,
+      "theme": "God's Grace",
+      "readings": {
+        "old_testament": "Exodus 34:1-9",
+        "new_testament": "Ephesians 2:1-10",
+        "psalms": "Psalms 84:1-12",
+        "proverbs": "Proverbs 3:34"
+      }
+    },
+    {
+      "day": 62,
+      "theme": "Spiritual Renewal",
+      "readings": {
+        "old_testament": "Ezekiel 36:25-27",
+        "new_testament": "Titus 3:3-7",
+        "psalms": "Psalms 51:7-12",
+        "proverbs": "Proverbs 20:9"
+      }
+    },
+    {
+      "day": 63,
+      "theme": "Divine Victory",
+      "readings": {
+        "old_testament": "Joshua 6:1-20",
+        "new_testament": "1 John 5:1-5",
+        "psalms": "Psalms 44:1-8",
+        "proverbs": "Proverbs 21:31"
+      }
+    },
+    {
+      "day": 64,
+      "theme": "God's Wisdom",
+      "readings": {
+        "old_testament": "Proverbs 8:1-21",
+        "new_testament": "James 3:13-18",
+        "psalms": "Psalms 111:1-10",
+        "proverbs": "Proverbs 2:6-8"
+      }
+    },
+    {
+      "day": 65,
+      "theme": "Spiritual Service",
+      "readings": {
+        "old_testament": "Isaiah 6:1-8",
+        "new_testament": "Romans 12:1-8",
+        "psalms": "Psalms 100:1-5",
+        "proverbs": "Proverbs 15:33"
+      }
+    },
+     {
+      "day": 66,
+      "theme": "Divine Guidance",
+      "readings": {
+        "old_testament": "Psalms 25:4-15",
+        "new_testament": "John 16:12-15",
+        "psalms": "Psalms 32:8-11",
+        "proverbs": "Proverbs 16:9"
+      }
+    },
+    {
+      "day": 67,
+      "theme": "Spiritual Growth",
+      "readings": {
+        "old_testament": "Hosea 14:4-9",
+        "new_testament": "2 Peter 3:14-18",
+        "psalms": "Psalms 92:12-15",
+        "proverbs": "Proverbs 4:18"
+      }
+    },
+    {
+      "day": 68,
+      "theme": "God's Presence",
+      "readings": {
+        "old_testament": "Exodus 40:34-38",
+        "new_testament": "Revelation 21:1-7",
+        "psalms": "Psalms 46:1-11",
+        "proverbs": "Proverbs 15:29"
+      }
+    },
+    {
+      "day": 69,
+      "theme": "Faith and Works",
+      "readings": {
+        "old_testament": "Genesis 22:1-19",
+        "new_testament": "James 2:14-26",
+        "psalms": "Psalms 37:3-6",
+        "proverbs": "Proverbs 3:27-28"
+      }
+    },
+    {
+      "day": 70,
+      "theme": "Divine Protection",
+      "readings": {
+        "old_testament": "2 Kings 19:14-35",
+        "new_testament": "2 Thessalonians 3:1-5",
+        "psalms": "Psalms 121:1-8",
+        "proverbs": "Proverbs 30:5"
+      }
+    },
+     {
+      "day": 71,
+      "theme": "Spiritual Warfare",
+      "readings": {
+        "old_testament": "2 Chronicles 20:1-30",
+        "new_testament": "Ephesians 6:10-20",
+        "psalms": "Psalms 144:1-2",
+        "proverbs": "Proverbs 21:31"
+      }
+    },
+    {
+      "day": 72,
+      "theme": "God's Mercy",
+      "readings": {
+        "old_testament": "Micah 7:18-20",
+        "new_testament": "Luke 15:11-32",
+        "psalms": "Psalms 103:8-14",
+        "proverbs": "Proverbs 28:13"
+      }
+    },
+    {
+      "day": 73,
+      "theme": "Spiritual Authority",
+      "readings": {
+        "old_testament": "1 Kings 18:20-40",
+        "new_testament": "Matthew 28:16-20",
+        "psalms": "Psalms 110:1-7",
+        "proverbs": "Proverbs 29:2"
+      }
+    },
+    {
+      "day": 74,
+      "theme": "Divine Purpose",
+      "readings": {
+        "old_testament": "Isaiah 43:1-13",
+        "new_testament": "Ephesians 2:10",
+        "psalms": "Psalms 138:7-8",
+        "proverbs": "Proverbs 19:21"
+      }
+    },
+    {
+      "day": 75,
+      "theme": "Worship",
+      "readings": {
+        "old_testament": "1 Chronicles 16:23-36",
+        "new_testament": "John 4:19-24",
+        "psalms": "Psalms 96:1-13",
+        "proverbs": "Proverbs 15:8"
+      }
+    },
+     {
+      "day": 76,
+      "theme": "Spiritual Discipline",
+      "readings": {
+        "old_testament": "Daniel 6:1-10",
+        "new_testament": "1 Timothy 4:7-16",
+        "psalms": "Psalms 119:57-64",
+        "proverbs": "Proverbs 25:28"
+      }
+    },
+    {
+      "day": 77,
+      "theme": "God's Promises",
+      "readings": {
+        "old_testament": "Isaiah 55:6-13",
+        "new_testament": "2 Peter 1:3-11",
+        "psalms": "Psalms 119:49-56",
+        "proverbs": "Proverbs 3:5-6"
+      }
+    },
+    {
+      "day": 78,
+      "theme": "Divine Healing",
+      "readings": {
+        "old_testament": "Isaiah 53:4-6",
+        "new_testament": "James 5:13-16",
+        "psalms": "Psalms 147:1-6",
+        "proverbs": "Proverbs 17:22"
+      }
+    },
+    {
+      "day": 79,
+      "theme": "Spiritual Vision",
+      "readings": {
+        "old_testament": "Numbers 13:26-33",
+        "new_testament": "Hebrews 11:23-29",
+        "psalms": "Psalms 119:17-24",
+        "proverbs": "Proverbs 29:18"
+      }
+    },
+    {
+      "day": 80,
+      "theme": "God's Grace",
+      "readings": {
+        "old_testament": "Zechariah 4:1-10",
+        "new_testament": "2 Corinthians 12:7-10",
+        "psalms": "Psalms 84:11-12",
+        "proverbs": "Proverbs 3:34"
+      }
+    },
+     {
+      "day": 81,
+      "theme": "Spiritual Fruit",
+      "readings": {
+        "old_testament": "Jeremiah 17:5-8",
+        "new_testament": "Galatians 5:22-26",
+        "psalms": "Psalms 1:1-6",
+        "proverbs": "Proverbs 11:30"
+      }
+    },
+    {
+      "day": 82,
+      "theme": "Divine Peace",
+      "readings": {
+        "old_testament": "Isaiah 26:1-9",
+        "new_testament": "Philippians 4:4-9",
+        "psalms": "Psalms 29:11",
+        "proverbs": "Proverbs 14:30"
+      }
+    },
+    {
+      "day": 83,
+      "theme": "God's Word",
+      "readings": {
+        "old_testament": "Psalms 119:89-96",
+        "new_testament": "Hebrews 4:12-13",
+        "psalms": "Psalms 19:7-14",
+        "proverbs": "Proverbs 30:5-6"
+      }
+    },
+    {
+      "day": 84,
+      "theme": "Spiritual Service",
+      "readings": {
+        "old_testament": "Isaiah 6:1-8",
+        "new_testament": "1 Peter 4:10-11",
+        "psalms": "Psalms 100:1-5",
+        "proverbs": "Proverbs 15:33"
+      }
+    },
+    {
+      "day": 85,
+      "theme": "Divine Victory",
+      "readings": {
+        "old_testament": "2 Chronicles 20:14-22",
+        "new_testament": "1 John 5:1-5",
+        "psalms": "Psalms 18:1-3",
+        "proverbs": "Proverbs 21:31"
+      }
+    }
+
+
+]

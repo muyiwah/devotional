@@ -1,13 +1,9 @@
 PODS:
-  - alarm (0.0.1):
-    - Flutter
   - custom_floating_action_button (0.0.1):
     - Flutter
   - device_info_plus (0.0.1):
     - Flutter
   - Flutter (1.0.0)
-  - flutter_fgbg (0.0.1):
-    - Flutter
   - flutter_tts (0.0.1):
     - Flutter
   - package_info_plus (0.4.5):
@@ -24,11 +20,9 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - alarm (from `.symlinks/plugins/alarm/ios`)
   - custom_floating_action_button (from `.symlinks/plugins/custom_floating_action_button/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
-  - flutter_fgbg (from `.symlinks/plugins/flutter_fgbg/ios`)
   - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -37,16 +31,12 @@ DEPENDENCIES:
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 EXTERNAL SOURCES:
-  alarm:
-    :path: ".symlinks/plugins/alarm/ios"
   custom_floating_action_button:
     :path: ".symlinks/plugins/custom_floating_action_button/ios"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
     :path: Flutter
-  flutter_fgbg:
-    :path: ".symlinks/plugins/flutter_fgbg/ios"
   flutter_tts:
     :path: ".symlinks/plugins/flutter_tts/ios"
   package_info_plus:
@@ -61,11 +51,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  alarm: 6c1f6a9688f94cd6bf8f104c67cc26e78c9d8d13
   custom_floating_action_button: d1676bb7a5380db43a9510dfa05c559d265e6c96
   device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_fgbg: 31c0d1140a131daea2d342121808f6aa0dcd879d
   flutter_tts: 0f492aab6accf87059b72354fcb4ba934304771d
   package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46

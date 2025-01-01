@@ -101,12 +101,17 @@ class _DashboardState extends State<Dashboard> {
     WordClinicPage(),
     // Others(),
     // MyApp2(),
-    ReminderScreen(),
+    // ReminderScreen(),
     LearningToolCreateEvent()
   ];
   int selected = 0;
   @override
   Widget build(BuildContext context) {
+    int navProvider = Provider.of<BibleModel>(context).selectedTab;
+if (navProvider != 0) {
+      selected = navProvider;
+    }
+
     var screenSize = MediaQuery.of(context).size;
     Config.setScreenSize(screenSize.height / 100, screenSize.width / 100);
 
@@ -160,6 +165,7 @@ class _DashboardState extends State<Dashboard> {
         selectedItemColor: Colors.green,
         currentIndex: selected,
         onTap: (value) {
+            Provider.of<BibleModel>(context, listen: false).updateSelectedTab(0); 
           setState(() {
             selected = value;
           });

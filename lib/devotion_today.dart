@@ -29,6 +29,7 @@ class _DevotionTodayState extends State<DevotionToday> {
     // Wakelock.enable();
   }
 
+  DateTime today = DateTime.now();
   PageController controller = PageController(initialPage: 22);
   List<DevotionModel> allDevotional = [];
 
@@ -195,7 +196,10 @@ class _DevotionTodayState extends State<DevotionToday> {
               title: Text(
                 widget.todayDevotional.title,
                 overflow: TextOverflow.visible,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15+ appfontSize,color: Colors.white),
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15 + appfontSize,
+                    color: Colors.white),
               ),
               expandedHeight: 200.0,
               flexibleSpace: FlexibleSpaceBar(
@@ -232,7 +236,8 @@ class _DevotionTodayState extends State<DevotionToday> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ShowChapter(fromWordClinic: true,
+                                  builder: (context) => ShowChapter(
+                                      fromWordClinic: true,
                                       fromSearch: false,
                                       autoRead: false,
                                       bookName: (widget
@@ -270,7 +275,8 @@ class _DevotionTodayState extends State<DevotionToday> {
                                   Text(
                                     widget.todayDevotional.reference,
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 16+ appfontSize),
+                                        color: Colors.white,
+                                        fontSize: 16 + appfontSize),
                                   ),
                                   Icon(
                                     Icons.arrow_forward_ios,
@@ -284,7 +290,8 @@ class _DevotionTodayState extends State<DevotionToday> {
                         Text(
                           widget.todayDevotional.date,
                           style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 16+appfontSize),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16 + appfontSize),
                         ),
                         // Text(widget.todayDevotional.title),
                         if (widget.todayDevotional.scripture.isNotEmpty)
@@ -294,7 +301,7 @@ class _DevotionTodayState extends State<DevotionToday> {
                               widget.todayDevotional.scripture,
                               style: TextStyle(
                                   fontWeight: FontWeight.w200,
-                                  fontSize: 16+appfontSize,
+                                  fontSize: 16 + appfontSize,
                                   color: Colors.blue,
                                   height: 1.6),
                             ),
@@ -311,7 +318,7 @@ class _DevotionTodayState extends State<DevotionToday> {
                             child: SelectableText(
                               widget.todayDevotional.text,
                               style: TextStyle(
-                                  fontSize: 18+appfontSize,
+                                  fontSize: 18 + appfontSize,
                                   color: Colors.black,
                                   height: 1.6),
                             ),
@@ -366,7 +373,7 @@ class _DevotionTodayState extends State<DevotionToday> {
                                     text: 'Thought for the day: ',
                                     style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 16+ appfontSize,
+                                        fontSize: 16 + appfontSize,
                                         fontWeight: FontWeight.w500)),
                                 TextSpan(
                                     text: widget.todayDevotional.thought,
@@ -376,7 +383,7 @@ class _DevotionTodayState extends State<DevotionToday> {
                                           : Colors.transparent,
                                       height: 1.6,
                                       color: Colors.black87,
-                                      fontSize: 16+ appfontSize,
+                                      fontSize: 16 + appfontSize,
                                     ))
                               ])),
                             ),
@@ -432,7 +439,7 @@ class _DevotionTodayState extends State<DevotionToday> {
                                       text: 'Action Plan: ',
                                       style: TextStyle(
                                           color: Colors.black,
-                                          fontSize: 16+appfontSize,
+                                          fontSize: 16 + appfontSize,
                                           fontWeight: FontWeight.w500)),
                                   TextSpan(
                                       text: widget.todayDevotional.action_plan,
@@ -442,7 +449,7 @@ class _DevotionTodayState extends State<DevotionToday> {
                                             : Colors.transparent,
                                         height: 1.6,
                                         color: Colors.black,
-                                        fontSize: 16+ appfontSize,
+                                        fontSize: 16 + appfontSize,
                                       ))
                                 ])),
                               ),
@@ -497,7 +504,7 @@ class _DevotionTodayState extends State<DevotionToday> {
                                       text: 'Prayer: ',
                                       style: TextStyle(
                                           color: Colors.black,
-                                          fontSize: 16+appfontSize,
+                                          fontSize: 16 + appfontSize,
                                           fontWeight: FontWeight.w500)),
                                   TextSpan(
                                       text: widget.todayDevotional.prayer,
@@ -507,7 +514,7 @@ class _DevotionTodayState extends State<DevotionToday> {
                                             : Colors.transparent,
                                         height: 1.6,
                                         color: Colors.black,
-                                        fontSize: 16+appfontSize,
+                                        fontSize: 16 + appfontSize,
                                       ))
                                 ])),
                               ),
@@ -526,7 +533,7 @@ class _DevotionTodayState extends State<DevotionToday> {
         backgroundColor: Colors.teal.withOpacity(.3),
         onPressed: () async {
           final result = await Share.share(
-            '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${widget.todayDevotional.date}, 2024*\n\n*${widget.todayDevotional.title}*\n\n*${widget.todayDevotional.reference}*\n\n*${widget.todayDevotional.scripture}*\n\n ${widget.todayDevotional.text}\n\n*Action plan:* ${widget.todayDevotional.action_plan}\n\n*Thought for the day:* ${widget.todayDevotional.thought}\n\n*Prayer:* ${widget.todayDevotional.prayer}\n\nDownload Android app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\nDownload IOS app for more\nhttps://apps.apple.com/us/app/miv-devotional/id6502105645\n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
+            '*Awakening Word Today*\n*The Men of Issachar Vision Inc*\n\n*${widget.todayDevotional.date}, ${today.year}*\n\n*${widget.todayDevotional.title}*\n\n*${widget.todayDevotional.reference}*\n\n*${widget.todayDevotional.scripture}*\n\n ${widget.todayDevotional.text}\n\n*Action plan:* ${widget.todayDevotional.action_plan}\n\n*Thought for the day:* ${widget.todayDevotional.thought}\n\n*Prayer:* ${widget.todayDevotional.prayer}\n\nDownload Android app for more\nhttps://play.google.com/store/apps/details?id=com.miv.devotional \n\nDownload IOS app for more\nhttps://apps.apple.com/us/app/miv-devotional/id6502105645\n\n@The Men of Issachar Vision Inc\n https://www.menofissacharvision.com',
           );
 
 // if (result.status == ShareResultStatus.success) {

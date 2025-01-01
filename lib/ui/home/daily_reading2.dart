@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:alarm/alarm.dart';
+// import 'package:alarm/alarm.dart';
 import 'package:circular_menu/circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -80,7 +80,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
   Future<void> loadResources() async {
     bibleData = await loadBibleData();
     final planData =
-        await rootBundle.loadString('assets/bibleJson/allreadingplan.json');
+        await rootBundle.loadString('assets/bibleJson/allreaddynamic.json');
     readingPlan = json.decode(planData);
 
     // Load progress

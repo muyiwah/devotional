@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
@@ -40,23 +41,119 @@ class _MyWidgetState extends State<MyWidget> {
     // fetchUsers();
   }
 
+  @override
+  void didChangeDependencies() {
+    // TODO: implement initState
+    print('hasdfasdfasdfasdfsdfrer yuer');
+    Timer.periodic(Duration(milliseconds: 500), ((e) {
+      print('herer yuer');
+
+      showPrompt();
+      e.cancel();
+    }));
+    super.didChangeDependencies();
+  }
+
+  showPrompt() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // if (prefs.containsKey('prompt')) {
+      bool show = prefs.getBool('show') ?? true;
+      if (show) {
+        checkUser();
+      // }
+    }
+  }
+
 // final db = FirebaseFirestore.instance;
   int df = DateTime.now().month;
   int dfd = DateTime.now().weekOfMonth;
   List<DevotionModel> allDevotional = [];
   List<WordClinicModel> allWordClinickkk = [];
-
-// Future<void> fetchUsers() {
-//   CollectionReference users = FirebaseFirestore.instance.collection('devotional');
-
-//   return users.get()
-//     .then((QuerySnapshot snapshot) {
-//       snapshot.docs.forEach((doc) {
-//         print('${doc.id} => ${doc.data()}');
-//       });
-//     })
-//     .catchError((error) => print("Failed to fetch users: $error"));
-// }
+  checkUser() {
+    showCupertinoModalPopup(
+        context: context,
+        builder: (context) => Dialog(
+              backgroundColor: Colors.grey.withOpacity(.9),
+              child: Container(
+                padding: EdgeInsets.all(10),
+                height: 250,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Stack(
+                      children: [
+                        ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset('assets/images/readbible.png')),
+                        Positioned(
+                          bottom: 2,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(.5),
+                                borderRadius: BorderRadius.circular(5)),
+                            padding: EdgeInsets.all(3),
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              'You can now easily read the bible in a year',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                            Provider.of<BibleModel>(context, listen: false)
+                                .updateSelectedTab(2);
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 120,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.blue),
+                            child: Text(
+                              'Try It',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            Navigator.pop(context);
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setBool('show', false);
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 120,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.blue),
+                            child: Text(
+                              'Don\'nt show again',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ).animate().fadeIn(
+                        delay: Duration(milliseconds: 400),
+                        duration: Duration(milliseconds: 600))
+                  ],
+                ),
+              ),
+            ));
+  }
 
   DevotionModel todayDevotional = DevotionModel(
       title: '',
@@ -189,15 +286,15 @@ class _MyWidgetState extends State<MyWidget> {
                                   todayDevotional.date,
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16+ appfontSize,
+                                      fontSize: 16 + appfontSize,
                                       fontWeight: FontWeight.w200),
                                 ),
                                 Text(
-                                  maxLines:2,
+                                  maxLines: 2,
                                   todayDevotional.title,
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 17+ appfontSize,
+                                      fontSize: 17 + appfontSize,
                                       fontWeight: FontWeight.w700),
                                 ),
                                 Container(
@@ -207,7 +304,9 @@ class _MyWidgetState extends State<MyWidget> {
                                         maxLines: 4,
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: Platform.isAndroid ? 16+ appfontSize : 17+ appfontSize,
+                                          fontSize: Platform.isAndroid
+                                              ? 16 + appfontSize
+                                              : 17 + appfontSize,
                                         ),
                                       ),
                                       duration: Duration(milliseconds: 50)),
@@ -230,7 +329,7 @@ class _MyWidgetState extends State<MyWidget> {
                                     maxLines: 3,
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 20+ appfontSize,
+                                        fontSize: 20 + appfontSize,
                                         fontWeight: FontWeight.w500),
                                   ).animate().fadeIn(
                                       delay: Duration(seconds: 4),
@@ -239,154 +338,176 @@ class _MyWidgetState extends State<MyWidget> {
                               ],
                             )),
                       ),
-                DateTime.now().month==8?  InkWell(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PrayerConference(
-                                 ))),
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, ),
-                        width: double.infinity,
-                        margin: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 1,
-                                spreadRadius: .7,
-                                offset: Offset(-2, 2),
-                                color: Colors.black.withOpacity(.9))
-                          ],
-                          gradient: LinearGradient(
-                              colors: const [
-                                Colors.black,
-                                Colors.orange,
-                                // Color.fromARGB(209, 1, 32, 206)
-                              ],
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width - 180,
-                              child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    'Prayer Bulletin',
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16+ appfontSize),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'BECOMING A MAN OF PRAYER',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16+ appfontSize),
-                                  ),
-                                  Text(
-                                   'AUGUST 2024',
-                                    style: TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight.w600),
-                                  ),
-                                ],
+                    DateTime.now().month == 8
+                        ? InkWell(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PrayerConference())),
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 8,
                               ),
-                            ),Spacer(),
-                            Container(
-                              margin: EdgeInsets.only(left:0),
-                              height: 80,
-                              width: 100,
-                              child: Image.asset('assets/images/candle.gif')
-                              // child: Image.asset('assets/images/bible.png'),
-                            )
-                          ],
-                        ),
-                      ),
-                    ).animate().fadeIn(duration: Duration(seconds: 3)).slide(
-                        duration: Duration(seconds: 2),
-                        begin: Offset(0, 0.5),
-                        curve: Curves.easeInOut) : InkWell(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DailverseFullScreen(
-                                  DailyVerse().verses[ran]))),
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                        width: double.infinity,
-                        margin: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 1,
-                                spreadRadius: .7,
-                                offset: Offset(-2, 2),
-                                color: Colors.black.withOpacity(.9))
-                          ],
-                          gradient: LinearGradient(
-                              colors: const [
-                                Colors.black,
-                                Color.fromARGB(255, 124, 217, 31),
-                                // Color.fromARGB(209, 1, 32, 206)
-                              ],
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width - 180,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                              width: double.infinity,
+                              margin: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 1,
+                                      spreadRadius: .7,
+                                      offset: Offset(-2, 2),
+                                      color: Colors.black.withOpacity(.9))
+                                ],
+                                gradient: LinearGradient(
+                                    colors: const [
+                                      Colors.black,
+                                      Colors.orange,
+                                      // Color.fromARGB(209, 1, 32, 206)
+                                    ],
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    'Daily Verse',
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 18+ appfontSize),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width - 180,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          'Prayer Bulletin',
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16 + appfontSize),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'BECOMING A MAN OF PRAYER',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16 + appfontSize),
+                                        ),
+                                        Text(
+                                          'AUGUST 2024',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    DailyVerse().verses[ran].verse,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16+ appfontSize),
-                                  ),
-                                  Text(
-                                    DailyVerse().verses[ran].ref,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                                  Spacer(),
+                                  Container(
+                                      margin: EdgeInsets.only(left: 0),
+                                      height: 80,
+                                      width: 100,
+                                      child: Image.asset(
+                                          'assets/images/candle.gif')
+                                      // child: Image.asset('assets/images/bible.png'),
+                                      )
                                 ],
                               ),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(left: 5),
-                              height: 80,
-                              width: 100,
-                              child: Icon(
-                                CupertinoIcons.heart_fill,
-                                color: Colors.white,
-                                size: 50,
+                          )
+                            .animate()
+                            .fadeIn(duration: Duration(seconds: 3))
+                            .slide(
+                                duration: Duration(seconds: 2),
+                                begin: Offset(0, 0.5),
+                                curve: Curves.easeInOut)
+                        : InkWell(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DailverseFullScreen(
+                                        DailyVerse().verses[ran]))),
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 15),
+                              width: double.infinity,
+                              margin: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 1,
+                                      spreadRadius: .7,
+                                      offset: Offset(-2, 2),
+                                      color: Colors.black.withOpacity(.9))
+                                ],
+                                gradient: LinearGradient(
+                                    colors: const [
+                                      Colors.black,
+                                      Color.fromARGB(255, 124, 217, 31),
+                                      // Color.fromARGB(209, 1, 32, 206)
+                                    ],
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft),
+                                borderRadius: BorderRadius.circular(12),
                               ),
-                              // child: Image.asset('assets/images/bible.png'),
-                            )
-                          ],
-                        ),
-                      ),
-                    ).animate().fadeIn(duration: Duration(seconds: 3)).slide(
-                        duration: Duration(seconds: 2),
-                        begin: Offset(0, 0.5),
-                        curve: Curves.easeInOut),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width - 180,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          'Daily Verse',
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18 + appfontSize),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          DailyVerse().verses[ran].verse,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16 + appfontSize),
+                                        ),
+                                        Text(
+                                          DailyVerse().verses[ran].ref,
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 5),
+                                    height: 80,
+                                    width: 100,
+                                    child: Icon(
+                                      CupertinoIcons.heart_fill,
+                                      color: Colors.white,
+                                      size: 50,
+                                    ),
+                                    // child: Image.asset('assets/images/bible.png'),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                            .animate()
+                            .fadeIn(duration: Duration(seconds: 3))
+                            .slide(
+                                duration: Duration(seconds: 2),
+                                begin: Offset(0, 0.5),
+                                curve: Curves.easeInOut),
                     // Container(height: 20,) ,
                   ],
                 ),
