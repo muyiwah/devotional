@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 // import 'package:alarm/alarm.dart';
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 import 'package:circular_menu/circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/model/bible.model.dart';
 import 'package:mivdevotional/ui/bibleplanselect.dart';
 import 'package:mivdevotional/ui/home/cmenu.dart';
@@ -14,6 +15,7 @@ import 'package:mivdevotional/ui/home/notification.dart';
 import 'package:mivdevotional/ui/home/word_clinic_today.dart';
 import 'package:collection/collection.dart';
 import 'package:mivdevotional/utils/snack.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -30,7 +32,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
   int completedDays = 0;
   late ScrollController _scrollController;
   var today;
-    AudioPlayer? audioPlayer;
+  // AudioPlayer? audioPlayer;
   bool isPlaying = false;
   @override
   void initState() {
@@ -66,15 +68,16 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
       Navigator.push(
               context, MaterialPageRoute(builder: (_) => Bibleplanselect()))
           .then((e) {
-            if(e!=null) {  showsnack(context, Colors.green, '${e} plan selected');}
+        if (e != null) {
+          showsnack(context, Colors.green, '${e} plan selected');
+        }
         loadResources();
-        setState(() {
-          
-        });
+        setState(() {});
       });
       // }
     }
   }
+
   String selection = 'KJV';
   bool prefBibleDone = false;
 
@@ -86,9 +89,11 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
       prefBibleDone = true;
       // print(jsonDecode(selection));
       selection = jsonDecode(selection);
+      print('selection $selection');
       if (mounted) setState(() {});
     }
   }
+
   @override
   void dispose() {
     _scrollController.dispose(); // Dispose of the ScrollController
@@ -123,6 +128,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
   bool hasScrolledDown(ScrollController scrollController, double threshold) {
     return scrollController.offset > threshold;
   }
+
   // void toggleAudio() async {
   //   if (isPlaying) {
   //     await audioPlayer?.stop();
@@ -251,9 +257,61 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
   }
 
   Future<List<Bible>> loadBibleData() async {
-    final data = await rootBundle.loadString('assets/bibleJson/asv.json');
-    final jsonData = json.decode(data) as List<dynamic>;
-    return jsonData.map((entry) => Bible.fromJson(entry)).toList();
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+//
+    if (prefs.containsKey('prefBible')) {
+      selection = prefs.getString('prefBible').toString();
+      prefBibleDone = true;
+      // print(jsonDecode(selection));
+      selection = jsonDecode(selection);
+      print('selection $selection');
+      if (mounted) setState(() {});
+    }
+    print('see selection $selection');
+    if (selection == 'KJV') {
+      final data = await rootBundle.loadString('assets/bibleJson/bible.json');
+      final jsonData = json.decode(data) as List<dynamic>;
+      return jsonData.map((entry) => Bible.fromJson(entry)).toList();
+    } else if (selection == 'AMP') {
+      final data =
+          await rootBundle.loadString('assets/bibleJson/amplified.json');
+      final jsonData = json.decode(data) as List<dynamic>;
+      return jsonData.map((entry) => Bible.fromJson(entry)).toList();
+    } else if (selection == 'DBY') {
+      final data = await rootBundle.loadString('assets/bibleJson/dby.json');
+      final jsonData = json.decode(data) as List<dynamic>;
+      return jsonData.map((entry) => Bible.fromJson(entry)).toList();
+    } else if (selection == 'MSG') {
+      final data =
+          await rootBundle.loadString('assets/bibleJson/msgBible.json');
+      final jsonData = json.decode(data) as List<dynamic>;
+      return jsonData.map((entry) => Bible.fromJson(entry)).toList();
+    } else if (selection == 'BBE') {
+      final data = await rootBundle.loadString('assets/bibleJson/bbe.json');
+      final jsonData = json.decode(data) as List<dynamic>;
+      return jsonData.map((entry) => Bible.fromJson(entry)).toList();
+    } else if (selection == 'BISHOP') {
+      final data = await rootBundle.loadString('assets/bibleJson/bishop.json');
+      final jsonData = json.decode(data) as List<dynamic>;
+      return jsonData.map((entry) => Bible.fromJson(entry)).toList();
+    } else if (selection == 'RSV') {
+      final data = await rootBundle.loadString('assets/bibleJson/rsv.json');
+      final jsonData = json.decode(data) as List<dynamic>;
+      return jsonData.map((entry) => Bible.fromJson(entry)).toList();
+    } else if (selection == 'NIV') {
+      final data = await rootBundle.loadString('assets/bibleJson/niv.json');
+      final jsonData = json.decode(data) as List<dynamic>;
+      return jsonData.map((entry) => Bible.fromJson(entry)).toList();
+    } else if (selection == 'NLT') {
+      final data = await rootBundle.loadString('assets/bibleJson/nlt.json');
+      final jsonData = json.decode(data) as List<dynamic>;
+      return jsonData.map((entry) => Bible.fromJson(entry)).toList();
+    } else {
+      final data = await rootBundle.loadString('assets/bibleJson/asv.json');
+      final jsonData = json.decode(data) as List<dynamic>;
+      return jsonData.map((entry) => Bible.fromJson(entry)).toList();
+    }
   }
 
   // Function to extract verses based on reading format
@@ -471,8 +529,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
               icon: Icons.settings,
               color: Colors.orange,
               onTap: () {
-
-                  Navigator.push(context,
+                Navigator.push(context,
                         MaterialPageRoute(builder: (_) => Bibleplanselect()))
                     .then((e) {
                   if (e != null) {
@@ -481,7 +538,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                   loadResources();
                   setState(() {});
                 });
-                 circularMenuKey.currentState?.reverseAnimation();
+                circularMenuKey.currentState?.reverseAnimation();
               }),
 
           CircularMenuItem(
@@ -537,7 +594,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
               expandedTitleScale: 1.5,
               centerTitle: true, // Centers the title in the middle of the image
               title: Text(
-                'Daily Bible Reading (Day ${int.parse(DateFormat("D").format(DateTime.now()))})',
+                'Daily Bible Reading (Day ${int.parse(DateFormat("D").format(today))})',
                 style: TextStyle(
                   color: Colors
                       .white, // Text color to make it visible on the image

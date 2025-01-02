@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
  void showsnack(BuildContext context,color, String text) {
    ScaffoldMessenger.of(context)
     ..removeCurrentSnackBar()
-    ..showSnackBar(SnackBar(
+    ..showSnackBar(SnackBar(duration: Duration(seconds: 2),
         backgroundColor: color,
         behavior: SnackBarBehavior.floating,
         margin: EdgeInsets.only(

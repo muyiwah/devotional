@@ -27,6 +27,7 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
     super.initState();
     initTts();
     getFontSize();
+    getPreferredBible();
     if (Platform.isAndroid) {
       _getDefaultEngine();
       _getDefaultVoice();
@@ -64,7 +65,17 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
       setState(() {});
     }
   }
-
+getPreferredBible()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+//
+    if (prefs.containsKey('prefBible')) {
+      selection = prefs.getString('prefBible').toString();
+      // print(jsonDecode(selection));
+      selection = jsonDecode(selection);
+      print('selection $selection');
+      if (mounted) setState(() {});
+    }
+}
   Future<void> _getDefaultVoice() async {
     var voice = await _flutterTts.getDefaultVoice;
     if (voice != null) {
@@ -850,7 +861,7 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
                       .then((value) => getColouredVerses()),
                   child: Container(
                     margin: EdgeInsets.symmetric(vertical: 4),
-                    height: 80,
+                    height: 90,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(),
@@ -925,7 +936,7 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
                       .then((value) => getColouredVerses()),
                   child: Container(
                     margin: EdgeInsets.symmetric(vertical: 4),
-                    height: 80,
+                    height: 90,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(),
