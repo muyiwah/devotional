@@ -7,7 +7,9 @@ import 'package:mivdevotional/model/reader_model.dart';
 import 'package:mivdevotional/model/save_color.dart';
 import 'package:mivdevotional/devotion_screen.dart';
 import 'package:mivdevotional/model/voiceSettings.dart';
+import 'package:mivdevotional/ui/bibleplanselect.dart';
 import 'package:mivdevotional/ui/home/saved_scriptures.dart';
+import 'package:mivdevotional/utils/snack.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LearningToolCreateEvent extends StatefulWidget {
@@ -460,10 +462,39 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
                   style: TextStyle(
                       fontSize: 18 + appfontSize, fontWeight: FontWeight.w600),
                 ),
+
                 _appFontSize(),
                 SizedBox(
                   height: 20,
                 ),
+
+                // Center(
+                //   child: ElevatedButton(
+                //       style: ElevatedButton.styleFrom(
+                //           backgroundColor: Colors.deepPurple.withOpacity(.3),
+                //           minimumSize:
+                //               Size(MediaQuery.sizeOf(context).width * .7, 50)),
+                //       onPressed: () {
+                //         Navigator.push(
+                //             context,
+                //             MaterialPageRoute(
+                //                 builder: (_) => Bibleplanselect())).then((e) {
+                //           print(e);
+                //                      if (e != null) {
+                //             showsnack(
+                //                 context, Colors.green, '${e} plan selected');
+                //           }
+
+                //         });
+                //       },
+                //       child: Text(
+                //         'Daily Reading Plan',
+                //         style: TextStyle(color: Colors.white),
+                //       )),
+                // ),
+                // SizedBox(
+                //   height: 35,
+                // ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -574,7 +605,7 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
                                 : playVoice,
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 16 + (appfontSize*.3))),
+                                fontSize: 16 + (appfontSize * .3))),
                         if (_currentWordStart != null &&
                             _currentlyPlayingSentence == playVoice)
                           TextSpan(
@@ -873,9 +904,7 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
                                 textAlign: TextAlign.center,
                                 'Check all available devotionals',
                                 style: TextStyle(
-                                    fontSize: Platform.isAndroid
-                                        ? 16 
-                                        : 16,
+                                    fontSize: Platform.isAndroid ? 16 : 16,
                                     color: Colors.white),
                               ),
                             ],
@@ -956,17 +985,15 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
                                       textAlign: TextAlign.center,
                                       'Check all ${data.length} marked scriptures',
                                       style: TextStyle(
-                                          fontSize: Platform.isAndroid
-                                              ? 16 
-                                              : 16 ,
+                                          fontSize:
+                                              Platform.isAndroid ? 16 : 16,
                                           color: Colors.white),
                                     )
                                   : Text(
                                       textAlign: TextAlign.center,
                                       'No marked scriptures available',
                                       style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.white),
+                                          fontSize: 16, color: Colors.white),
                                     ),
                             ],
                           ),
@@ -1052,7 +1079,8 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
   Widget _pitch() {
     return Column(
       children: [
-        Text('Reader pitch ${pitch.toStringAsFixed(1)}',
+        Text(
+          'Reader pitch ${pitch.toStringAsFixed(1)}',
           style: TextStyle(fontSize: 14 + appfontSize),
         ),
         Slider(
@@ -1083,7 +1111,8 @@ class _LearningToolCreateEventState extends State<LearningToolCreateEvent> {
   Widget _rate() {
     return Column(
       children: [
-        Text('Reader word rate ${rate}',
+        Text(
+          'Reader word rate ${rate}',
           style: TextStyle(fontSize: 14 + appfontSize),
         ),
         Slider(

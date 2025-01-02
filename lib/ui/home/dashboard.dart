@@ -4,6 +4,7 @@ import 'package:mivdevotional/core/utility/config.dart';
 import 'package:mivdevotional/devotion_screen.dart';
 import 'package:mivdevotional/devotion_today.dart';
 import 'package:mivdevotional/reminder.dart';
+import 'package:mivdevotional/ui/bibleplanselect.dart';
 import 'package:mivdevotional/ui/book/show_book.dart';
 import 'package:mivdevotional/ui/daily_reading.dart';
 import 'package:mivdevotional/ui/home/cmenu.dart';
@@ -102,6 +103,7 @@ class _DashboardState extends State<Dashboard> {
     // Others(),
     // MyApp2(),
     // ReminderScreen(),
+    // Bibleplanselect(),
     LearningToolCreateEvent()
   ];
   int selected = 0;

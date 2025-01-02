@@ -1,15 +1,19 @@
+import 'dart:async';
 import 'dart:convert';
 // import 'package:alarm/alarm.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:circular_menu/circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mivdevotional/model/bible.model.dart';
+import 'package:mivdevotional/ui/bibleplanselect.dart';
 import 'package:mivdevotional/ui/home/cmenu.dart';
 import 'package:mivdevotional/ui/home/notification.dart';
 import 'package:mivdevotional/ui/home/word_clinic_today.dart';
 import 'package:collection/collection.dart';
+import 'package:mivdevotional/utils/snack.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -26,6 +30,8 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
   int completedDays = 0;
   late ScrollController _scrollController;
   var today;
+    AudioPlayer? audioPlayer;
+  bool isPlaying = false;
   @override
   void initState() {
     today = DateTime.now();
@@ -33,10 +39,56 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
     super.initState();
+    getPrefBibleVersion();
+
     getDay(DateTime.now());
     loadResources();
   }
 
+  @override
+  void didChangeDependencies() {
+    // TODO: implement initState
+    print('hasdfasdfasdfasdfsdfrer yuer');
+    Timer.periodic(Duration(milliseconds: 500), ((e) {
+      print('herer yuer');
+
+      showPrompt();
+      e.cancel();
+    }));
+    super.didChangeDependencies();
+  }
+
+  showPrompt() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // if (prefs.containsKey('prompt')) {
+    bool showChoice = prefs.getBool('showChoice') ?? true;
+    if (showChoice) {
+      Navigator.push(
+              context, MaterialPageRoute(builder: (_) => Bibleplanselect()))
+          .then((e) {
+            if(e!=null) {  showsnack(context, Colors.green, '${e} plan selected');}
+        loadResources();
+        setState(() {
+          
+        });
+      });
+      // }
+    }
+  }
+  String selection = 'KJV';
+  bool prefBibleDone = false;
+
+  getPrefBibleVersion() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+//
+    if (prefs.containsKey('prefBible')) {
+      selection = prefs.getString('prefBible').toString();
+      prefBibleDone = true;
+      // print(jsonDecode(selection));
+      selection = jsonDecode(selection);
+      if (mounted) setState(() {});
+    }
+  }
   @override
   void dispose() {
     _scrollController.dispose(); // Dispose of the ScrollController
@@ -71,7 +123,23 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
   bool hasScrolledDown(ScrollController scrollController, double threshold) {
     return scrollController.offset > threshold;
   }
-
+  // void toggleAudio() async {
+  //   if (isPlaying) {
+  //     await audioPlayer?.stop();
+  //     setState(() {
+  //       isPlaying = false;
+  //     });
+  //   } else {
+  //     final result =
+  //         await audioPlayer?.play(AssetSource('audio/background_song.mp3'));
+  //     if (result == PlayerState.playing) {
+  //       setState(() {
+  //         isPlaying = true;
+  //       });
+  //     }
+  //   }
+  // }
+  var theme;
   bool top = false;
   bool middle = false;
   DateTime selectedDate = DateTime.now();
@@ -81,10 +149,18 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
     bibleData = await loadBibleData();
     final planData =
         await rootBundle.loadString('assets/bibleJson/allreaddynamic.json');
-    readingPlan = json.decode(planData);
+    final planDataAll =
+        await rootBundle.loadString('assets/bibleJson/allreadingplan.json');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String plan = prefs.getString('plan') ?? '';
+    if (plan.isNotEmpty && plan == 'Thematic') {
+      readingPlan = json.decode(planData);
+    } else {
+      readingPlan = json.decode(planDataAll);
+    }
 
     // Load progress
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       completedDays = prefs.getInt('completedDays') ?? 0;
       final progress = prefs.getString('progressMap');
@@ -340,7 +416,8 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
 
     if (bibleData == null || dayPlan == null) {
       return Scaffold(
-        appBar: AppBar(centerTitle: true,
+        appBar: AppBar(
+          centerTitle: true,
           title: Text('Daily Bible Readings'),
         ),
         body: Center(child: Text('No data for the day available')),
@@ -349,7 +426,11 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
 
     final readings = <String, Map<String, dynamic>>{};
     dayPlan['readings'].forEach((key, value) {
+      print('---------');
+      theme = dayPlan['theme'] ?? '';
+      print(dayPlan['theme']);
       readings[key] = {
+        // 'theme': theme,
         'startNo': startNo(bibleData!, value),
         'reference': value,
         'verses': getVerses(bibleData!, value),
@@ -358,7 +439,8 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
     final missedDays = calculateMissedDays(progressMap);
     print(missedDays);
     return Scaffold(
-      floatingActionButton: CircularMenu(toggleButtonSize: 27,
+      floatingActionButton: CircularMenu(
+        toggleButtonSize: 27,
         radius: 140,
         toggleButtonOnPressed: () {
           print('object');
@@ -368,7 +450,8 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
         toggleButtonAnimatedIconData: AnimatedIcons.menu_home,
         key: circularMenuKey,
         items: [
-          CircularMenuItem(iconSize: 25,
+          CircularMenuItem(
+              iconSize: 25,
               icon: Icons.home,
               color: Colors.green,
               onTap: () {
@@ -384,10 +467,26 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
           //       });
           //     }),
           CircularMenuItem(
-             iconSize: 25, icon: Icons.settings, color: Colors.orange, onTap: () {}),
+              iconSize: 25,
+              icon: Icons.settings,
+              color: Colors.orange,
+              onTap: () {
+
+                  Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => Bibleplanselect()))
+                    .then((e) {
+                  if (e != null) {
+                    showsnack(context, Colors.green, '${e} plan selected');
+                  }
+                  loadResources();
+                  setState(() {});
+                });
+                 circularMenuKey.currentState?.reverseAnimation();
+              }),
 
           CircularMenuItem(
-            iconSize: 25,  icon: Icons.notifications,
+              iconSize: 25,
+              icon: Icons.notifications,
               color: Colors.brown,
               onTap: () {
                 Navigator.push(context,
@@ -396,7 +495,8 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                         circularMenuKey.currentState?.reverseAnimation());
               }),
           CircularMenuItem(
-            iconSize: 25,  icon: Icons.calendar_month,
+              iconSize: 25,
+              icon: Icons.calendar_month,
               color: Colors.purple,
               onTap: () {
                 Navigator.push(
@@ -437,7 +537,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
               expandedTitleScale: 1.5,
               centerTitle: true, // Centers the title in the middle of the image
               title: Text(
-                'Daily Bible Reading (day${int.parse(DateFormat("D").format(DateTime.now()))})',
+                'Daily Bible Reading (Day ${int.parse(DateFormat("D").format(DateTime.now()))})',
                 style: TextStyle(
                   color: Colors
                       .white, // Text color to make it visible on the image
@@ -458,7 +558,8 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(crossAxisAlignment: CrossAxisAlignment.center,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Flexible(
                         child: LinearProgressIndicator(
@@ -470,7 +571,9 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                         ),
                       ),
                       Lottie.asset(
-                          'assets/images/Animation - 1735562095675.json',width: 30,height: 30)
+                          'assets/images/Animation - 1735562095675.json',
+                          width: 30,
+                          height: 30)
                     ],
                   ),
                   SizedBox(height: 8),
@@ -510,6 +613,20 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                           ))
                     ],
                   ),
+                  if (theme.toString().isNotEmpty)
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          'Theme: ${theme}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Colors.blue),
+                        ),
+                      ),
+                    )
                 ],
               ),
             ),
@@ -606,11 +723,13 @@ class _TableCalendarScreenState extends State<TableCalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true,
+      appBar: AppBar(
+        centerTitle: true,
         title: Text('Bible Reading Calendar'),
       ),
       body: Column(
-        children: [Text('You can read up missed days by tapping on the day'),
+        children: [
+          Text('You can read up missed days by tapping on the day'),
           Expanded(
             child: TableCalendar(
               firstDay: DateTime(DateTime.now().year, 1, 1),
@@ -639,9 +758,7 @@ class _TableCalendarScreenState extends State<TableCalendarScreen> {
                 },
                 markerBuilder: (context, day, events) {
                   if (_isCompletedDay(day)) {
-                    return 
-                    
-                    Image.asset('assets/images/mark.png');
+                    return Image.asset('assets/images/mark.png');
                   }
                   return null;
                 },
