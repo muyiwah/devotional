@@ -263,6 +263,7 @@ class _NoteScreenState extends State<NoteScreen> {
                   InkWell(
                     onTap: () {
                       Navigator.pop(context);
+                       canPop = true;
                     },
                     child: Container(
                       alignment: Alignment.center,

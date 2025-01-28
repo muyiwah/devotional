@@ -30,6 +30,8 @@ class MyWidget extends StatefulWidget {
   State<MyWidget> createState() => _MyWidgetState();
 }
 
+bool showOnce = true;
+
 class _MyWidgetState extends State<MyWidget> {
   @override
   void initState() {
@@ -44,7 +46,6 @@ class _MyWidgetState extends State<MyWidget> {
   @override
   void didChangeDependencies() {
     // TODO: implement initState
-    print('hasdfasdfasdfasdfsdfrer yuer');
     Timer.periodic(Duration(milliseconds: 500), ((e) {
       print('herer yuer');
 
@@ -57,9 +58,10 @@ class _MyWidgetState extends State<MyWidget> {
   showPrompt() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // if (prefs.containsKey('prompt')) {
-      bool show = prefs.getBool('show') ?? true;
-      if (show) {
-        checkUser();
+    bool show = prefs.getBool('show') ?? true;
+    if (show && showOnce) {
+      showOnce = false;
+      checkUser();
       // }
     }
   }
@@ -140,7 +142,7 @@ class _MyWidgetState extends State<MyWidget> {
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.blue),
                             child: Text(
-                              'Don\'nt show again',
+                              'Don\'t show again',
                               style: TextStyle(color: Colors.white),
                             ),
                           ),

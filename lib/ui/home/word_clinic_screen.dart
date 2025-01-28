@@ -187,13 +187,15 @@ class _WordClinicPageState extends State<WordClinicPage> {
     }
     return CustomFloatingActionButton(floatinButtonColor: Colors.black.withOpacity(.2),
         body: Scaffold(
-          appBar: AppBar(leading:  InkWell(
+          appBar: AppBar(
+            
+            leading:  InkWell(
                         onTap: () => _controller.previousPage(
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.easeOutSine),
                         child: Icon(
                           Icons.arrow_back_ios,
-                          color: Colors.white,
+                          color: Colors.grey.withOpacity(.4),
                           size: 28,
                         ),
                       ),
@@ -207,7 +209,8 @@ class _WordClinicPageState extends State<WordClinicPage> {
                           curve: Curves.easeOutSine),
                       child: Icon(
                         Icons.arrow_forward_ios,
-                        color: Colors.white,
+                                              color: Colors.grey.withOpacity(.4),
+
                         size: 28,
                       )),
                 )
@@ -303,25 +306,27 @@ class _WordClinicPageState extends State<WordClinicPage> {
                                   const SizedBox(
                                     height: 6,
                                   ),
-                                  RichText(
-                                      text: TextSpan(children: [
-                                     TextSpan(
-                                        text: 'Objective: ',
-                                        style: TextStyle(
-                                            color: Colors.black,
+                                  Align(alignment: Alignment.centerLeft,
+                                    child: RichText(
+                                        text: TextSpan(children: [
+                                       TextSpan(
+                                          text: 'Objective: ',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16+ appfontSize,
+                                              fontWeight: FontWeight.w500,
+                                              height: 1.6)),
+                                      TextSpan(
+                                          text: allWordClinickkk[index]
+                                              .objective
+                                              .toString(),
+                                          style:  TextStyle(
+                                            color: Colors.black87,
+                                            height: 1.6,
                                             fontSize: 16+ appfontSize,
-                                            fontWeight: FontWeight.w500,
-                                            height: 1.6)),
-                                    TextSpan(
-                                        text: allWordClinickkk[index]
-                                            .objective
-                                            .toString(),
-                                        style:  TextStyle(
-                                          color: Colors.black87,
-                                          height: 1.6,
-                                          fontSize: 16+ appfontSize,
-                                        ))
-                                  ])),
+                                          ))
+                                    ])),
+                                  ),
                                   const SizedBox(
                                     height: 6,
                                   ),

@@ -39,71 +39,14 @@ class _DashboardState extends State<Dashboard> {
     // controller = PageController(initialPage: 3);
   }
 
-  // List<DevotionModel> allDevotional = [];
-  // DevotionModel todayDevotional = DevotionModel(
-  //     title: '',
-  //     reference: '',
-  //     scripture: '',
-  //     action_plan: '',
-  //     thought: '',
-  //     prayer: '',
-  //     text: '',
-  //     date: '');
-  // getAllDevotional() async {
-  //   allDevotional =
-  //       await Provider.of<BibleModel>(context, listen: false).getDevotional();
-  //   todayDevotional =
-  //       (allDevotional.firstWhere((element) => element.date == refineDate()));
-
-  //   setState(() {});
-  // }
-
-  // DateTime date = DateTime.now();
-
-  // String today = '';
-
-  // String refineDate() {
-  //   String month = '';
-  //   today = (date.toString().split(' ')[0].split('-')[1].toString() +
-  //       {date.toString().split(' ')[0].split('-')[2]}.toString());
-  //   if (date.toString().split(' ')[0].split('-')[1].toString() == '01') {
-  //     month = 'January ${date.toString().split(' ')[0].split('-')[2]}';
-  //   } else if (date.toString().split(' ')[0].split('-')[1].toString() == '02') {
-  //     month = 'February ${date.toString().split(' ')[0].split('-')[2]}';
-  //   } else if (date.toString().split(' ')[0].split('-')[1].toString() == '03') {
-  //     month = 'March ${date.toString().split(' ')[0].split('-')[2]}';
-  //   } else if (date.toString().split(' ')[0].split('-')[1].toString() == '04') {
-  //     month = 'April ${date.toString().split(' ')[0].split('-')[2]}';
-  //   } else if (date.toString().split(' ')[0].split('-')[1].toString() == '05') {
-  //     month = 'May ${date.toString().split(' ')[0].split('-')[2]}';
-  //   } else if (date.toString().split(' ')[0].split('-')[1].toString() == '06') {
-  //     month = 'June ${date.toString().split(' ')[0].split('-')[2]}';
-  //   } else if (date.toString().split(' ')[0].split('-')[1].toString() == '07') {
-  //     month = 'July ${date.toString().split(' ')[0].split('-')[2]}';
-  //   } else if (date.toString().split(' ')[0].split('-')[1].toString() == '08') {
-  //     month = 'August ${date.toString().split(' ')[0].split('-')[2]}';
-  //   } else if (date.toString().split(' ')[0].split('-')[1].toString() == '09') {
-  //     month = 'September ${date.toString().split(' ')[0].split('-')[2]}';
-  //   } else if (date.toString().split(' ')[0].split('-')[1].toString() == '10') {
-  //     month = 'October ${date.toString().split(' ')[0].split('-')[2]}';
-  //   } else if (date.toString().split(' ')[0].split('-')[1].toString() == '11') {
-  //     month = 'November ${date.toString().split(' ')[0].split('-')[2]}';
-  //   } else if (date.toString().split(' ')[0].split('-')[1].toString() == '12') {
-  //     month = 'December ${date.toString().split(' ')[0].split('-')[2]}';
-  //   }
-  //   return month;
-  // }
-
+ 
   List screen = [
     MyWidget(),
     HomeScreen(),
     DailyBiblePage2(),
     Notespad(),
     WordClinicPage(),
-    // Others(),
-    // MyApp2(),
-    // ReminderScreen(),
-    // Bibleplanselect(),
+   
     LearningToolCreateEvent()
   ];
   int selected = 0;

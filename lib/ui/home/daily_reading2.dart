@@ -643,8 +643,8 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                         style: TextStyle(fontSize: 16),
                       ),
                       Text(
-                        '${calculateMissedDays(progressMap)} missed days',
-                        style: TextStyle(color: Colors.black, fontSize: 16),
+                        '${calculateMissedDays(progressMap)} missed day(s)',
+                        style: TextStyle(color: Colors.red, fontSize: 16),
                       ),
                       InkWell(
                           onTap: () {
@@ -670,6 +670,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                           ))
                     ],
                   ),
+
                   if (theme.toString().isNotEmpty)
                     Center(
                       child: Padding(
@@ -707,12 +708,18 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                     title: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          category,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              category,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                 SizedBox(width: 10,), Text('(${selection})'),
+
+                          ],
                         ),
                         Text(
                           reference,
