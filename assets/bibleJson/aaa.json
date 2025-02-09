@@ -1,0 +1,4028 @@
+[
+  {
+    "day": 1,
+    "theme": "Creation and New Creation",
+    "readings": {
+      "old_testament": "Genesis 1-2",
+      "new_testament": "John 1:1-18",
+      "psalms": "Psalms 104",
+      "proverbs": "Proverbs 8:22-31",
+      "additional_reading": "Leviticus 1"
+    }
+  },
+  {
+    "day": 2,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Genesis 3-4",
+      "new_testament": "John 1:19-34",
+      "psalms": "Psalms 105",
+      "proverbs": "Proverbs 8:32-36",
+      "additional_reading": "Leviticus 2"
+    }
+  },
+  {
+    "day": 3,
+    "theme": "Exodus and Salvation",
+    "readings": {
+      "old_testament": "Genesis 5-6",
+      "new_testament": "John 1:35-51",
+      "psalms": "Psalms 106",
+      "proverbs": "Proverbs 9:1-6",
+      "additional_reading": "Leviticus 3"
+    }
+  },
+  {
+    "day": 4,
+    "theme": "Leadership and Service",
+    "readings": {
+      "old_testament": "Genesis 7-8",
+      "new_testament": "John 2:1-12",
+      "psalms": "Psalms 107",
+      "proverbs": "Proverbs 9:7-12",
+      "additional_reading": "Leviticus 4"
+    }
+  },
+  {
+    "day": 5,
+    "theme": "Wisdom and Understanding",
+    "readings": {
+      "old_testament": "Genesis 9-10",
+      "new_testament": "John 2:13-25",
+      "psalms": "Psalms 108",
+      "proverbs": "Proverbs 9:13-18",
+      "additional_reading": "Leviticus 5"
+    }
+  },
+  {
+    "day": 6,
+    "theme": "Faith and Obedience",
+    "readings": {
+      "old_testament": "Genesis 11-12",
+      "new_testament": "John 3:1-21",
+      "psalms": "Psalms 109",
+      "proverbs": "Proverbs 10:1-5",
+      "additional_reading": "Leviticus 6"
+    }
+  },
+  {
+    "day": 7,
+    "theme": "God's Covenant",
+    "readings": {
+      "old_testament": "Genesis 13-14",
+      "new_testament": "John 3:22-36",
+      "psalms": "Psalms 110",
+      "proverbs": "Proverbs 10:6-12",
+      "additional_reading": "Leviticus 7"
+    }
+  },
+  {
+    "day": 8,
+    "theme": "The Promised Land",
+    "readings": {
+      "old_testament": "Genesis 15-16",
+      "new_testament": "John 4:1-26",
+      "psalms": "Psalms 111",
+      "proverbs": "Proverbs 10:13-20",
+      "additional_reading": "Leviticus 8"
+    }
+  },
+  {
+    "day": 9,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Genesis 17-18",
+      "new_testament": "John 4:27-42",
+      "psalms": "Psalms 112",
+      "proverbs": "Proverbs 10:21-32",
+      "additional_reading": "Leviticus 9"
+    }
+  },
+  {
+    "day": 10,
+    "theme": "Judgment and Mercy",
+    "readings": {
+      "old_testament": "Genesis 19-20",
+      "new_testament": "John 4:43-54",
+      "psalms": "Psalms 113",
+      "proverbs": "Proverbs 11:1-9",
+      "additional_reading": "Leviticus 10"
+    }
+  },
+  {
+    "day": 11,
+    "theme": "Obedience and Blessing",
+    "readings": {
+      "old_testament": "Genesis 21-22",
+      "new_testament": "John 5:1-15",
+      "psalms": "Psalms 114",
+      "proverbs": "Proverbs 11:10-15",
+      "additional_reading": "Leviticus 11"
+    }
+  },
+  {
+    "day": 12,
+    "theme": "God's Provision",
+    "readings": {
+      "old_testament": "Genesis 23-24",
+      "new_testament": "John 5:16-30",
+      "psalms": "Psalms 115",
+      "proverbs": "Proverbs 11:16-21",
+      "additional_reading": "Leviticus 12"
+    }
+  },
+  {
+    "day": 13,
+    "theme": "Faithfulness and Integrity",
+    "readings": {
+      "old_testament": "Genesis 25-26",
+      "new_testament": "John 5:31-47",
+      "psalms": "Psalms 116",
+      "proverbs": "Proverbs 11:22-31",
+      "additional_reading": "Leviticus 13"
+    }
+  },
+  {
+    "day": 14,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "Genesis 27-28",
+      "new_testament": "John 6:1-15",
+      "psalms": "Psalms 117",
+      "proverbs": "Proverbs 12:1-7",
+      "additional_reading": "Leviticus 14"
+    }
+  },
+  {
+    "day": 15,
+    "theme": "Struggles and Triumphs",
+    "readings": {
+      "old_testament": "Genesis 29-30",
+      "new_testament": "John 6:16-40",
+      "psalms": "Psalms 118",
+      "proverbs": "Proverbs 12:8-14",
+      "additional_reading": "Leviticus 15"
+    }
+  },
+  {
+    "day": 16,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Genesis 31-32",
+      "new_testament": "John 6:41-59",
+      "psalms": "Psalms 119:1-16",
+      "proverbs": "Proverbs 12:15-23",
+      "additional_reading": "Leviticus 16"
+    }
+  },
+  {
+    "day": 17,
+    "theme": "Forgiveness and Reconciliation",
+    "readings": {
+      "old_testament": "Genesis 33-34",
+      "new_testament": "John 6:60-71",
+      "psalms": "Psalms 119:17-32",
+      "proverbs": "Proverbs 12:24-28",
+      "additional_reading": "Leviticus 17"
+    }
+  },
+  {
+    "day": 18,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Genesis 35-36",
+      "new_testament": "John 7:1-24",
+      "psalms": "Psalms 119:33-48",
+      "proverbs": "Proverbs 13:1-6",
+      "additional_reading": "Leviticus 18"
+    }
+  },
+  {
+    "day": 19,
+    "theme": "Dreams and Visions",
+    "readings": {
+      "old_testament": "Genesis 37-38",
+      "new_testament": "John 7:25-53",
+      "psalms": "Psalms 119:49-64",
+      "proverbs": "Proverbs 13:7-12",
+      "additional_reading": "Leviticus 19"
+    }
+  },
+  {
+    "day": 20,
+    "theme": "God's Providence",
+    "readings": {
+      "old_testament": "Genesis 39-40",
+      "new_testament": "John 8:1-20",
+      "psalms": "Psalms 119:65-80",
+      "proverbs": "Proverbs 13:13-18",
+      "additional_reading": "Leviticus 20"
+    }
+  },
+  {
+    "day": 21,
+    "theme": "Faithfulness in Trials",
+    "readings": {
+      "old_testament": "Genesis 41-42",
+      "new_testament": "John 8:21-36",
+      "psalms": "Psalms 119:81-96",
+      "proverbs": "Proverbs 13:19-25",
+      "additional_reading": "Leviticus 21"
+    }
+  },
+  {
+    "day": 22,
+    "theme": "Forgiveness and Restoration",
+    "readings": {
+      "old_testament": "Genesis 43-44",
+      "new_testament": "John 8:37-59",
+      "psalms": "Psalms 119:97-112",
+      "proverbs": "Proverbs 14:1-7",
+      "additional_reading": "Leviticus 22"
+    }
+  },
+  {
+    "day": 23,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Genesis 45-46",
+      "new_testament": "John 9:1-12",
+      "psalms": "Psalms 119:113-128",
+      "proverbs": "Proverbs 14:8-14",
+      "additional_reading": "Leviticus 23"
+    }
+  },
+  {
+    "day": 24,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "Genesis 47-48",
+      "new_testament": "John 9:13-34",
+      "psalms": "Psalms 119:129-144",
+      "proverbs": "Proverbs 14:15-21",
+      "additional_reading": "Leviticus 24"
+    }
+  },
+  {
+    "day": 25,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Genesis 49-50",
+      "new_testament": "John 9:35-41",
+      "psalms": "Psalms 119:145-160",
+      "proverbs": "Proverbs 14:22-28",
+      "additional_reading": "Leviticus 25"
+    }
+  },
+  {
+    "day": 26,
+    "theme": "God's Deliverance",
+    "readings": {
+      "old_testament": "Exodus 1-2",
+      "new_testament": "John 10:1-10",
+      "psalms": "Psalms 119:161-176",
+      "proverbs": "Proverbs 14:29-35",
+      "additional_reading": "Leviticus 26"
+    }
+  },
+  {
+    "day": 27,
+    "theme": "God's Power",
+    "readings": {
+      "old_testament": "Exodus 3-4",
+      "new_testament": "John 10:11-21",
+      "psalms": "Psalms 120",
+      "proverbs": "Proverbs 15:1-7",
+      "additional_reading": "Leviticus 27"
+    }
+  },
+  {
+    "day": 28,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Exodus 5-6",
+      "new_testament": "John 10:22-42",
+      "psalms": "Psalms 121",
+      "proverbs": "Proverbs 15:8-15",
+      "additional_reading": "Numbers 1"
+    }
+  },
+  {
+    "day": 29,
+    "theme": "God's Miracles",
+    "readings": {
+      "old_testament": "Exodus 7-8",
+      "new_testament": "John 11:1-16",
+      "psalms": "Psalms 122",
+      "proverbs": "Proverbs 15:16-21",
+      "additional_reading": "Numbers 2"
+    }
+  },
+  {
+    "day": 30,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Exodus 9-10",
+      "new_testament": "John 11:17-37",
+      "psalms": "Psalms 123",
+      "proverbs": "Proverbs 15:22-29",
+      "additional_reading": "Numbers 3"
+    }
+  }
+,
+  {
+    "day": 31,
+    "theme": "God's Power and Glory",
+    "readings": {
+      "old_testament": "Exodus 11-12",
+      "new_testament": "John 11:38-57",
+      "psalms": "Psalms 124",
+      "proverbs": "Proverbs 15:30-33",
+      "additional_reading": "Numbers 4"
+    }
+  },
+  {
+    "day": 32,
+    "theme": "Deliverance and Redemption",
+    "readings": {
+      "old_testament": "Exodus 13-14",
+      "new_testament": "John 12:1-11",
+      "psalms": "Psalms 125",
+      "proverbs": "Proverbs 16:1-7",
+      "additional_reading": "Numbers 5"
+    }
+  },
+  {
+    "day": 33,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "Exodus 15-16",
+      "new_testament": "John 12:12-19",
+      "psalms": "Psalms 126",
+      "proverbs": "Proverbs 16:8-15",
+      "additional_reading": "Numbers 6"
+    }
+  },
+  {
+    "day": 34,
+    "theme": "God's Provision",
+    "readings": {
+      "old_testament": "Exodus 17-18",
+      "new_testament": "John 12:20-36",
+      "psalms": "Psalms 127",
+      "proverbs": "Proverbs 16:16-24",
+      "additional_reading": "Numbers 7"
+    }
+  },
+  {
+    "day": 35,
+    "theme": "God's Presence",
+    "readings": {
+      "old_testament": "Exodus 19-20",
+      "new_testament": "John 12:37-50",
+      "psalms": "Psalms 128",
+      "proverbs": "Proverbs 16:25-33",
+      "additional_reading": "Numbers 8"
+    }
+  },
+  {
+    "day": 36,
+    "theme": "God's Law",
+    "readings": {
+      "old_testament": "Exodus 21-22",
+      "new_testament": "John 13:1-17",
+      "psalms": "Psalms 129",
+      "proverbs": "Proverbs 17:1-6",
+      "additional_reading": "Numbers 9"
+    }
+  },
+  {
+    "day": 37,
+    "theme": "Justice and Mercy",
+    "readings": {
+      "old_testament": "Exodus 23-24",
+      "new_testament": "John 13:18-30",
+      "psalms": "Psalms 130",
+      "proverbs": "Proverbs 17:7-14",
+      "additional_reading": "Numbers 10"
+    }
+  },
+  {
+    "day": 38,
+    "theme": "God's Dwelling",
+    "readings": {
+      "old_testament": "Exodus 25-26",
+      "new_testament": "John 13:31-38",
+      "psalms": "Psalms 131",
+      "proverbs": "Proverbs 17:15-21",
+      "additional_reading": "Numbers 11"
+    }
+  },
+  {
+    "day": 39,
+    "theme": "Worship and Obedience",
+    "readings": {
+      "old_testament": "Exodus 27-28",
+      "new_testament": "John 14:1-14",
+      "psalms": "Psalms 132",
+      "proverbs": "Proverbs 17:22-28",
+      "additional_reading": "Numbers 12"
+    }
+  },
+  {
+    "day": 40,
+    "theme": "God's Holiness",
+    "readings": {
+      "old_testament": "Exodus 29-30",
+      "new_testament": "John 14:15-31",
+      "psalms": "Psalms 133",
+      "proverbs": "Proverbs 18:1-9",
+      "additional_reading": "Numbers 13"
+    }
+  },
+  {
+    "day": 41,
+    "theme": "God's Wisdom",
+    "readings": {
+      "old_testament": "Exodus 31-32",
+      "new_testament": "John 15:1-17",
+      "psalms": "Psalms 134",
+      "proverbs": "Proverbs 18:10-16",
+      "additional_reading": "Numbers 14"
+    }
+  },
+  {
+    "day": 42,
+    "theme": "God's Forgiveness",
+    "readings": {
+      "old_testament": "Exodus 33-34",
+      "new_testament": "John 15:18-27",
+      "psalms": "Psalms 135",
+      "proverbs": "Proverbs 18:17-24",
+      "additional_reading": "Numbers 15"
+    }
+  },
+  {
+    "day": 43,
+    "theme": "God's Workmanship",
+    "readings": {
+      "old_testament": "Exodus 35-36",
+      "new_testament": "John 16:1-15",
+      "psalms": "Psalms 136",
+      "proverbs": "Proverbs 19:1-7",
+      "additional_reading": "Numbers 16"
+    }
+  },
+  {
+    "day": 44,
+    "theme": "God's Glory",
+    "readings": {
+      "old_testament": "Exodus 37-38",
+      "new_testament": "John 16:16-33",
+      "psalms": "Psalms 137",
+      "proverbs": "Proverbs 19:8-14",
+      "additional_reading": "Numbers 17"
+    }
+  },
+  {
+    "day": 45,
+    "theme": "God's Presence",
+    "readings": {
+      "old_testament": "Exodus 39-40",
+      "new_testament": "John 17:1-19",
+      "psalms": "Psalms 138",
+      "proverbs": "Proverbs 19:15-21",
+      "additional_reading": "Numbers 18"
+    }
+  },
+  {
+    "day": 46,
+    "theme": "God's Laws",
+    "readings": {
+      "old_testament": "Leviticus 1-2",
+      "new_testament": "John 17:20-26",
+      "psalms": "Psalms 139",
+      "proverbs": "Proverbs 19:22-29",
+      "additional_reading": "Numbers 19"
+    }
+  },
+  {
+    "day": 47,
+    "theme": "God's Sacrifices",
+    "readings": {
+      "old_testament": "Leviticus 3-4",
+      "new_testament": "John 18:1-14",
+      "psalms": "Psalms 140",
+      "proverbs": "Proverbs 20:1-7",
+      "additional_reading": "Numbers 20"
+    }
+  },
+  {
+    "day": 48,
+    "theme": "God's Holiness",
+    "readings": {
+      "old_testament": "Leviticus 5-6",
+      "new_testament": "John 18:15-27",
+      "psalms": "Psalms 141",
+      "proverbs": "Proverbs 20:8-15",
+      "additional_reading": "Numbers 21"
+    }
+  },
+  {
+    "day": 49,
+    "theme": "God's Offerings",
+    "readings": {
+      "old_testament": "Leviticus 7-8",
+      "new_testament": "John 18:28-40",
+      "psalms": "Psalms 142",
+      "proverbs": "Proverbs 20:16-24",
+      "additional_reading": "Numbers 22"
+    }
+  },
+  {
+    "day": 50,
+    "theme": "God's Priests",
+    "readings": {
+      "old_testament": "Leviticus 9-10",
+      "new_testament": "John 19:1-16",
+      "psalms": "Psalms 143",
+      "proverbs": "Proverbs 20:25-30",
+      "additional_reading": "Numbers 23"
+    }
+  },
+  {
+    "day": 51,
+    "theme": "God's Purity",
+    "readings": {
+      "old_testament": "Leviticus 11-12",
+      "new_testament": "John 19:17-27",
+      "psalms": "Psalms 144",
+      "proverbs": "Proverbs 21:1-8",
+      "additional_reading": "Numbers 24"
+    }
+  },
+  {
+    "day": 52,
+    "theme": "God's Cleansing",
+    "readings": {
+      "old_testament": "Leviticus 13-14",
+      "new_testament": "John 19:28-42",
+      "psalms": "Psalms 145",
+      "proverbs": "Proverbs 21:9-15",
+      "additional_reading": "Numbers 25"
+    }
+  },
+  {
+    "day": 53,
+    "theme": "God's Atonement",
+    "readings": {
+      "old_testament": "Leviticus 15-16",
+      "new_testament": "John 20:1-18",
+      "psalms": "Psalms 146",
+      "proverbs": "Proverbs 21:16-21",
+      "additional_reading": "Numbers 26"
+    }
+  },
+  {
+    "day": 54,
+    "theme": "God's Laws",
+    "readings": {
+      "old_testament": "Leviticus 17-18",
+      "new_testament": "John 20:19-31",
+      "psalms": "Psalms 147",
+      "proverbs": "Proverbs 21:22-31",
+      "additional_reading": "Numbers 27"
+    }
+  },
+  {
+    "day": 55,
+    "theme": "God's Holiness",
+    "readings": {
+      "old_testament": "Leviticus 19-20",
+      "new_testament": "John 21:1-14",
+      "psalms": "Psalms 148",
+      "proverbs": "Proverbs 22:1-9",
+      "additional_reading": "Numbers 28"
+    }
+  },
+  {
+    "day": 56,
+    "theme": "God's Offerings",
+    "readings": {
+      "old_testament": "Leviticus 21-22",
+      "new_testament": "John 21:15-25",
+      "psalms": "Psalms 149",
+      "proverbs": "Proverbs 22:10-16",
+      "additional_reading": "Numbers 29"
+    }
+  },
+  {
+    "day": 57,
+    "theme": "God's Feasts",
+    "readings": {
+      "old_testament": "Leviticus 23-24",
+      "new_testament": "Acts 1:1-11",
+      "psalms": "Psalms 150",
+      "proverbs": "Proverbs 22:17-21",
+      "additional_reading": "Numbers 30"
+    }
+  },
+  {
+    "day": 58,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Leviticus 25-26",
+      "new_testament": "Acts 1:12-26",
+      "psalms": "Psalms 1",
+      "proverbs": "Proverbs 22:22-29",
+      "additional_reading": "Numbers 31"
+    }
+  },
+  {
+    "day": 59,
+    "theme": "God's Covenant",
+    "readings": {
+      "old_testament": "Leviticus 27",
+      "new_testament": "Acts 2:1-13",
+      "psalms": "Psalms 2",
+      "proverbs": "Proverbs 23:1-8",
+      "additional_reading": "Numbers 32"
+    }
+  },
+  {
+    "day": 60,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "Numbers 1-2",
+      "new_testament": "Acts 2:14-36",
+      "psalms": "Psalms 3",
+      "proverbs": "Proverbs 23:9-14",
+      "additional_reading": "Numbers 33"
+    }
+  }
+,
+  {
+    "day": 61,
+    "theme": "God's Order",
+    "readings": {
+      "old_testament": "Numbers 3-4",
+      "new_testament": "Acts 2:37-47",
+      "psalms": "Psalms 4",
+      "proverbs": "Proverbs 23:15-21",
+      "additional_reading": "Numbers 34"
+    }
+  },
+  {
+    "day": 62,
+    "theme": "God's Purity",
+    "readings": {
+      "old_testament": "Numbers 5-6",
+      "new_testament": "Acts 3:1-10",
+      "psalms": "Psalms 5",
+      "proverbs": "Proverbs 23:22-28",
+      "additional_reading": "Numbers 35"
+    }
+  },
+  {
+    "day": 63,
+    "theme": "God's Offerings",
+    "readings": {
+      "old_testament": "Numbers 7-8",
+      "new_testament": "Acts 3:11-26",
+      "psalms": "Psalms 6",
+      "proverbs": "Proverbs 23:29-35",
+      "additional_reading": "Numbers 36"
+    }
+  },
+  {
+    "day": 64,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "Numbers 9-10",
+      "new_testament": "Acts 4:1-22",
+      "psalms": "Psalms 7",
+      "proverbs": "Proverbs 24:1-6",
+      "additional_reading": "Deuteronomy 1"
+    }
+  },
+  {
+    "day": 65,
+    "theme": "God's Provision",
+    "readings": {
+      "old_testament": "Numbers 11-12",
+      "new_testament": "Acts 4:23-37",
+      "psalms": "Psalms 8",
+      "proverbs": "Proverbs 24:7-12",
+      "additional_reading": "Deuteronomy 2"
+    }
+  },
+  {
+    "day": 66,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Numbers 13-14",
+      "new_testament": "Acts 5:1-11",
+      "psalms": "Psalms 9",
+      "proverbs": "Proverbs 24:13-18",
+      "additional_reading": "Deuteronomy 3"
+    }
+  },
+  {
+    "day": 67,
+    "theme": "God's Judgment",
+    "readings": {
+      "old_testament": "Numbers 15-16",
+      "new_testament": "Acts 5:12-42",
+      "psalms": "Psalms 10",
+      "proverbs": "Proverbs 24:19-25",
+      "additional_reading": "Deuteronomy 4"
+    }
+  },
+  {
+    "day": 68,
+    "theme": "God's Authority",
+    "readings": {
+      "old_testament": "Numbers 17-18",
+      "new_testament": "Acts 6:1-15",
+      "psalms": "Psalms 11",
+      "proverbs": "Proverbs 24:26-34",
+      "additional_reading": "Deuteronomy 5"
+    }
+  },
+  {
+    "day": 69,
+    "theme": "God's Holiness",
+    "readings": {
+      "old_testament": "Numbers 19-20",
+      "new_testament": "Acts 7:1-19",
+      "psalms": "Psalms 12",
+      "proverbs": "Proverbs 25:1-7",
+      "additional_reading": "Deuteronomy 6"
+    }
+  },
+  {
+    "day": 70,
+    "theme": "God's Victory",
+    "readings": {
+      "old_testament": "Numbers 21-22",
+      "new_testament": "Acts 7:20-43",
+      "psalms": "Psalms 13",
+      "proverbs": "Proverbs 25:8-14",
+      "additional_reading": "Deuteronomy 7"
+    }
+  },
+  {
+    "day": 71,
+    "theme": "God's Blessings",
+    "readings": {
+      "old_testament": "Numbers 23-24",
+      "new_testament": "Acts 7:44-60",
+      "psalms": "Psalms 14",
+      "proverbs": "Proverbs 25:15-22",
+      "additional_reading": "Deuteronomy 8"
+    }
+  },
+  {
+    "day": 72,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Numbers 25-26",
+      "new_testament": "Acts 8:1-25",
+      "psalms": "Psalms 15",
+      "proverbs": "Proverbs 25:23-28",
+      "additional_reading": "Deuteronomy 9"
+    }
+  },
+  {
+    "day": 73,
+    "theme": "God's Inheritance",
+    "readings": {
+      "old_testament": "Numbers 27-28",
+      "new_testament": "Acts 8:26-40",
+      "psalms": "Psalms 16",
+      "proverbs": "Proverbs 26:1-9",
+      "additional_reading": "Deuteronomy 10"
+    }
+  },
+  {
+    "day": 74,
+    "theme": "God's Commands",
+    "readings": {
+      "old_testament": "Numbers 29-30",
+      "new_testament": "Acts 9:1-19",
+      "psalms": "Psalms 17",
+      "proverbs": "Proverbs 26:10-16",
+      "additional_reading": "Deuteronomy 11"
+    }
+  },
+  {
+    "day": 75,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Numbers 31-32",
+      "new_testament": "Acts 9:20-43",
+      "psalms": "Psalms 18",
+      "proverbs": "Proverbs 26:17-22",
+      "additional_reading": "Deuteronomy 12"
+    }
+  },
+  {
+    "day": 76,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "Numbers 33-34",
+      "new_testament": "Acts 10:1-23",
+      "psalms": "Psalms 19",
+      "proverbs": "Proverbs 26:23-28",
+      "additional_reading": "Deuteronomy 13"
+    }
+  },
+  {
+    "day": 77,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "Numbers 35-36",
+      "new_testament": "Acts 10:24-48",
+      "psalms": "Psalms 20",
+      "proverbs": "Proverbs 27:1-6",
+      "additional_reading": "Deuteronomy 14"
+    }
+  },
+  {
+    "day": 78,
+    "theme": "God's Provision",
+    "readings": {
+      "old_testament": "Deuteronomy 1-2",
+      "new_testament": "Acts 11:1-18",
+      "psalms": "Psalms 21",
+      "proverbs": "Proverbs 27:7-14",
+      "additional_reading": "Deuteronomy 15"
+    }
+  },
+  {
+    "day": 79,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Deuteronomy 3-4",
+      "new_testament": "Acts 11:19-30",
+      "psalms": "Psalms 22",
+      "proverbs": "Proverbs 27:15-22",
+      "additional_reading": "Deuteronomy 16"
+    }
+  },
+  {
+    "day": 80,
+    "theme": "God's Laws",
+    "readings": {
+      "old_testament": "Deuteronomy 5-6",
+      "new_testament": "Acts 12:1-19",
+      "psalms": "Psalms 23",
+      "proverbs": "Proverbs 27:23-27",
+      "additional_reading": "Deuteronomy 17"
+    }
+  },
+  {
+    "day": 81,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Deuteronomy 7-8",
+      "new_testament": "Acts 12:20-25",
+      "psalms": "Psalms 24",
+      "proverbs": "Proverbs 28:1-6",
+      "additional_reading": "Deuteronomy 18"
+    }
+  },
+  {
+    "day": 82,
+    "theme": "God's Holiness",
+    "readings": {
+      "old_testament": "Deuteronomy 9-10",
+      "new_testament": "Acts 13:1-12",
+      "psalms": "Psalms 25",
+      "proverbs": "Proverbs 28:7-14",
+      "additional_reading": "Deuteronomy 19"
+    }
+  },
+  {
+    "day": 83,
+    "theme": "God's Commands",
+    "readings": {
+      "old_testament": "Deuteronomy 11-12",
+      "new_testament": "Acts 13:13-41",
+      "psalms": "Psalms 26",
+      "proverbs": "Proverbs 28:15-22",
+      "additional_reading": "Deuteronomy 20"
+    }
+  },
+  {
+    "day": 84,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "Deuteronomy 13-14",
+      "new_testament": "Acts 13:42-52",
+      "psalms": "Psalms 27",
+      "proverbs": "Proverbs 28:23-28",
+      "additional_reading": "Deuteronomy 21"
+    }
+  },
+  {
+    "day": 85,
+    "theme": "God's Blessings",
+    "readings": {
+      "old_testament": "Deuteronomy 15-16",
+      "new_testament": "Acts 14:1-18",
+      "psalms": "Psalms 28",
+      "proverbs": "Proverbs 29:1-9",
+      "additional_reading": "Deuteronomy 22"
+    }
+  },
+  {
+    "day": 86,
+    "theme": "God's Laws",
+    "readings": {
+      "old_testament": "Deuteronomy 17-18",
+      "new_testament": "Acts 14:19-28",
+      "psalms": "Psalms 29",
+      "proverbs": "Proverbs 29:10-18",
+      "additional_reading": "Deuteronomy 23"
+    }
+  },
+  {
+    "day": 87,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "Deuteronomy 19-20",
+      "new_testament": "Acts 15:1-21",
+      "psalms": "Psalms 30",
+      "proverbs": "Proverbs 29:19-27",
+      "additional_reading": "Deuteronomy 24"
+    }
+  },
+  {
+    "day": 88,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "Deuteronomy 21-22",
+      "new_testament": "Acts 15:22-35",
+      "psalms": "Psalms 31",
+      "proverbs": "Proverbs 30:1-9",
+      "additional_reading": "Deuteronomy 25"
+    }
+  },
+  {
+    "day": 89,
+    "theme": "God's Holiness",
+    "readings": {
+      "old_testament": "Deuteronomy 23-24",
+      "new_testament": "Acts 15:36-41",
+      "psalms": "Psalms 32",
+      "proverbs": "Proverbs 30:10-17",
+      "additional_reading": "Deuteronomy 26"
+    }
+  },
+  {
+    "day": 90,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Deuteronomy 25-26",
+      "new_testament": "Acts 16:1-15",
+      "psalms": "Psalms 33",
+      "proverbs": "Proverbs 30:18-23",
+      "additional_reading": "Deuteronomy 27"
+    }
+  }
+,
+  {
+    "day": 91,
+    "theme": "God's Commands",
+    "readings": {
+      "old_testament": "Deuteronomy 25-26",
+      "new_testament": "Acts 16:16-40",
+      "psalms": "Psalms 34",
+      "proverbs": "Proverbs 30:18-23",
+      "additional_reading": "Deuteronomy 28"
+    }
+  },
+  {
+    "day": 92,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Deuteronomy 27-28",
+      "new_testament": "Acts 17:1-15",
+      "psalms": "Psalms 35",
+      "proverbs": "Proverbs 30:24-33",
+      "additional_reading": "Deuteronomy 29"
+    }
+  },
+  {
+    "day": 93,
+    "theme": "God's Covenant",
+    "readings": {
+      "old_testament": "Deuteronomy 29-30",
+      "new_testament": "Acts 17:16-34",
+      "psalms": "Psalms 36",
+      "proverbs": "Proverbs 31:1-9",
+      "additional_reading": "Deuteronomy 30"
+    }
+  },
+  {
+    "day": 94,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "Deuteronomy 31-32",
+      "new_testament": "Acts 18:1-17",
+      "psalms": "Psalms 37",
+      "proverbs": "Proverbs 31:10-20",
+      "additional_reading": "Deuteronomy 31"
+    }
+  },
+  {
+    "day": 95,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Deuteronomy 33-34",
+      "new_testament": "Acts 18:18-28",
+      "psalms": "Psalms 38",
+      "proverbs": "Proverbs 31:21-31",
+      "additional_reading": "Joshua 1"
+    }
+  },
+  {
+    "day": 96,
+    "theme": "God's Strength",
+    "readings": {
+      "old_testament": "Joshua 1-2",
+      "new_testament": "Acts 19:1-20",
+      "psalms": "Psalms 39",
+      "proverbs": "Proverbs 1:1-7",
+      "additional_reading": "Joshua 2"
+    }
+  },
+  {
+    "day": 97,
+    "theme": "God's Victory",
+    "readings": {
+      "old_testament": "Joshua 3-4",
+      "new_testament": "Acts 19:21-41",
+      "psalms": "Psalms 40",
+      "proverbs": "Proverbs 1:8-19",
+      "additional_reading": "Joshua 3"
+    }
+  },
+  {
+    "day": 98,
+    "theme": "God's Holiness",
+    "readings": {
+      "old_testament": "Joshua 5-6",
+      "new_testament": "Acts 20:1-16",
+      "psalms": "Psalms 41",
+      "proverbs": "Proverbs 1:20-33",
+      "additional_reading": "Joshua 4"
+    }
+  },
+  {
+    "day": 99,
+    "theme": "God's Judgment",
+    "readings": {
+      "old_testament": "Joshua 7-8",
+      "new_testament": "Acts 20:17-38",
+      "psalms": "Psalms 42",
+      "proverbs": "Proverbs 2:1-9",
+      "additional_reading": "Joshua 5"
+    }
+  },
+  {
+    "day": 100,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Joshua 9-10",
+      "new_testament": "Acts 21:1-16",
+      "psalms": "Psalms 43",
+      "proverbs": "Proverbs 2:10-22",
+      "additional_reading": "Joshua 6"
+    }
+  },
+  {
+    "day": 101,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Joshua 11-12",
+      "new_testament": "Acts 21:17-36",
+      "psalms": "Psalms 44",
+      "proverbs": "Proverbs 3:1-12",
+      "additional_reading": "Joshua 7"
+    }
+  },
+  {
+    "day": 102,
+    "theme": "God's Inheritance",
+    "readings": {
+      "old_testament": "Joshua 13-14",
+      "new_testament": "Acts 21:37-22:16",
+      "psalms": "Psalms 45",
+      "proverbs": "Proverbs 3:13-20",
+      "additional_reading": "Joshua 8"
+    }
+  },
+  {
+    "day": 103,
+    "theme": "God's Division",
+    "readings": {
+      "old_testament": "Joshua 15-16",
+      "new_testament": "Acts 22:17-29",
+      "psalms": "Psalms 46",
+      "proverbs": "Proverbs 3:21-26",
+      "additional_reading": "Joshua 9"
+    }
+  },
+  {
+    "day": 104,
+    "theme": "God's Provision",
+    "readings": {
+      "old_testament": "Joshua 17-18",
+      "new_testament": "Acts 22:30-23:11",
+      "psalms": "Psalms 47",
+      "proverbs": "Proverbs 3:27-35",
+      "additional_reading": "Joshua 10"
+    }
+  },
+  {
+    "day": 105,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Joshua 19-20",
+      "new_testament": "Acts 23:12-35",
+      "psalms": "Psalms 48",
+      "proverbs": "Proverbs 4:1-9",
+      "additional_reading": "Joshua 11"
+    }
+  },
+  {
+    "day": 106,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Joshua 21-22",
+      "new_testament": "Acts 24:1-27",
+      "psalms": "Psalms 49",
+      "proverbs": "Proverbs 4:10-19",
+      "additional_reading": "Joshua 12"
+    }
+  },
+  {
+    "day": 107,
+    "theme": "God's Covenant",
+    "readings": {
+      "old_testament": "Joshua 23-24",
+      "new_testament": "Acts 25:1-12",
+      "psalms": "Psalms 50",
+      "proverbs": "Proverbs 4:20-27",
+      "additional_reading": "Judges 1"
+    }
+  },
+  {
+    "day": 108,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "Judges 1-2",
+      "new_testament": "Acts 25:13-27",
+      "psalms": "Psalms 51",
+      "proverbs": "Proverbs 5:1-6",
+      "additional_reading": "Judges 2"
+    }
+  },
+  {
+    "day": 109,
+    "theme": "God's Deliverance",
+    "readings": {
+      "old_testament": "Judges 3-4",
+      "new_testament": "Acts 26:1-23",
+      "psalms": "Psalms 52",
+      "proverbs": "Proverbs 5:7-14",
+      "additional_reading": "Judges 3"
+    }
+  },
+  {
+    "day": 110,
+    "theme": "God's Strength",
+    "readings": {
+      "old_testament": "Judges 5-6",
+      "new_testament": "Acts 26:24-32",
+      "psalms": "Psalms 53",
+      "proverbs": "Proverbs 5:15-23",
+      "additional_reading": "Judges 4"
+    }
+  },
+  {
+    "day": 111,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Judges 7-8",
+      "new_testament": "Acts 27:1-12",
+      "psalms": "Psalms 54",
+      "proverbs": "Proverbs 6:1-5",
+      "additional_reading": "Judges 5"
+    }
+  },
+  {
+    "day": 112,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "Judges 9-10",
+      "new_testament": "Acts 27:13-44",
+      "psalms": "Psalms 55",
+      "proverbs": "Proverbs 6:6-11",
+      "additional_reading": "Judges 6"
+    }
+  },
+  {
+    "day": 113,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "Judges 11-12",
+      "new_testament": "Acts 28:1-10",
+      "psalms": "Psalms 56",
+      "proverbs": "Proverbs 6:12-19",
+      "additional_reading": "Judges 7"
+    }
+  },
+  {
+    "day": 114,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Judges 13-14",
+      "new_testament": "Acts 28:11-31",
+      "psalms": "Psalms 57",
+      "proverbs": "Proverbs 6:20-26",
+      "additional_reading": "Judges 8"
+    }
+  },
+  {
+    "day": 115,
+    "theme": "God's Strength",
+    "readings": {
+      "old_testament": "Judges 15-16",
+      "new_testament": "Romans 1:1-17",
+      "psalms": "Psalms 58",
+      "proverbs": "Proverbs 6:27-35",
+      "additional_reading": "Judges 9"
+    }
+  },
+  {
+    "day": 116,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Judges 17-18",
+      "new_testament": "Romans 1:18-32",
+      "psalms": "Psalms 59",
+      "proverbs": "Proverbs 7:1-5",
+      "additional_reading": "Judges 10"
+    }
+  },
+  {
+    "day": 117,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "Judges 19-20",
+      "new_testament": "Romans 2:1-16",
+      "psalms": "Psalms 60",
+      "proverbs": "Proverbs 7:6-20",
+      "additional_reading": "Judges 11"
+    }
+  },
+  {
+    "day": 118,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Judges 21",
+      "new_testament": "Romans 2:17-29",
+      "psalms": "Psalms 61",
+      "proverbs": "Proverbs 7:21-27",
+      "additional_reading": "Ruth 1"
+    }
+  },
+  {
+    "day": 119,
+    "theme": "God's Redemption",
+    "readings": {
+      "old_testament": "Ruth 1-2",
+      "new_testament": "Romans 3:1-20",
+      "psalms": "Psalms 62",
+      "proverbs": "Proverbs 8:1-11",
+      "additional_reading": "Ruth 2"
+    }
+  },
+  {
+    "day": 120,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Ruth 3-4",
+      "new_testament": "Romans 3:21-31",
+      "psalms": "Psalms 63",
+      "proverbs": "Proverbs 8:12-21",
+      "additional_reading": "1 Samuel 1"
+    }
+  }
+,
+  {
+    "day": 121,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "1 Samuel 1-2",
+      "new_testament": "Romans 4:1-12",
+      "psalms": "Psalms 64",
+      "proverbs": "Proverbs 8:22-31",
+      "additional_reading": "1 Samuel 2"
+    }
+  },
+  {
+    "day": 122,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "1 Samuel 3-4",
+      "new_testament": "Romans 4:13-25",
+      "psalms": "Psalms 65",
+      "proverbs": "Proverbs 8:32-36",
+      "additional_reading": "1 Samuel 3"
+    }
+  },
+  {
+    "day": 123,
+    "theme": "God's Judgment",
+    "readings": {
+      "old_testament": "1 Samuel 5-6",
+      "new_testament": "Romans 5:1-11",
+      "psalms": "Psalms 66",
+      "proverbs": "Proverbs 9:1-6",
+      "additional_reading": "1 Samuel 4"
+    }
+  },
+  {
+    "day": 124,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "1 Samuel 7-8",
+      "new_testament": "Romans 5:12-21",
+      "psalms": "Psalms 67",
+      "proverbs": "Proverbs 9:7-12",
+      "additional_reading": "1 Samuel 5"
+    }
+  },
+  {
+    "day": 125,
+    "theme": "God's Anointing",
+    "readings": {
+      "old_testament": "1 Samuel 9-10",
+      "new_testament": "Romans 6:1-14",
+      "psalms": "Psalms 68",
+      "proverbs": "Proverbs 9:13-18",
+      "additional_reading": "1 Samuel 6"
+    }
+  },
+  {
+    "day": 126,
+    "theme": "God's Victory",
+    "readings": {
+      "old_testament": "1 Samuel 11-12",
+      "new_testament": "Romans 6:15-23",
+      "psalms": "Psalms 69",
+      "proverbs": "Proverbs 10:1-5",
+      "additional_reading": "1 Samuel 7"
+    }
+  },
+  {
+    "day": 127,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "1 Samuel 13-14",
+      "new_testament": "Romans 7:1-12",
+      "psalms": "Psalms 70",
+      "proverbs": "Proverbs 10:6-12",
+      "additional_reading": "1 Samuel 8"
+    }
+  },
+  {
+    "day": 128,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "1 Samuel 15-16",
+      "new_testament": "Romans 7:13-25",
+      "psalms": "Psalms 71",
+      "proverbs": "Proverbs 10:13-20",
+      "additional_reading": "1 Samuel 9"
+    }
+  },
+  {
+    "day": 129,
+    "theme": "God's Anointing",
+    "readings": {
+      "old_testament": "1 Samuel 17-18",
+      "new_testament": "Romans 8:1-17",
+      "psalms": "Psalms 72",
+      "proverbs": "Proverbs 10:21-32",
+      "additional_reading": "1 Samuel 10"
+    }
+  },
+  {
+    "day": 130,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "1 Samuel 19-20",
+      "new_testament": "Romans 8:18-39",
+      "psalms": "Psalms 73",
+      "proverbs": "Proverbs 11:1-9",
+      "additional_reading": "1 Samuel 11"
+    }
+  },
+  {
+    "day": 131,
+    "theme": "God's Protection",
+    "readings": {
+      "old_testament": "1 Samuel 21-22",
+      "new_testament": "Romans 9:1-18",
+      "psalms": "Psalms 74",
+      "proverbs": "Proverbs 11:10-15",
+      "additional_reading": "1 Samuel 12"
+    }
+  },
+  {
+    "day": 132,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "1 Samuel 23-24",
+      "new_testament": "Romans 9:19-33",
+      "psalms": "Psalms 75",
+      "proverbs": "Proverbs 11:16-21",
+      "additional_reading": "1 Samuel 13"
+    }
+  },
+  {
+    "day": 133,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "1 Samuel 25-26",
+      "new_testament": "Romans 10:1-13",
+      "psalms": "Psalms 76",
+      "proverbs": "Proverbs 11:22-31",
+      "additional_reading": "1 Samuel 14"
+    }
+  },
+  {
+    "day": 134,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "1 Samuel 27-28",
+      "new_testament": "Romans 10:14-21",
+      "psalms": "Psalms 77",
+      "proverbs": "Proverbs 12:1-7",
+      "additional_reading": "1 Samuel 15"
+    }
+  },
+  {
+    "day": 135,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "1 Samuel 29-30",
+      "new_testament": "Romans 11:1-24",
+      "psalms": "Psalms 78",
+      "proverbs": "Proverbs 12:8-14",
+      "additional_reading": "1 Samuel 16"
+    }
+  },
+  {
+    "day": 136,
+    "theme": "God's Victory",
+    "readings": {
+      "old_testament": "1 Samuel 31",
+      "new_testament": "Romans 11:25-36",
+      "psalms": "Psalms 79",
+      "proverbs": "Proverbs 12:15-23",
+      "additional_reading": "2 Samuel 1"
+    }
+  },
+  {
+    "day": 137,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Samuel 1-2",
+      "new_testament": "Romans 12:1-8",
+      "psalms": "Psalms 80",
+      "proverbs": "Proverbs 12:24-28",
+      "additional_reading": "2 Samuel 2"
+    }
+  },
+  {
+    "day": 138,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "2 Samuel 3-4",
+      "new_testament": "Romans 12:9-21",
+      "psalms": "Psalms 81",
+      "proverbs": "Proverbs 13:1-6",
+      "additional_reading": "2 Samuel 3"
+    }
+  },
+  {
+    "day": 139,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Samuel 5-6",
+      "new_testament": "Romans 13:1-7",
+      "psalms": "Psalms 82",
+      "proverbs": "Proverbs 13:7-12",
+      "additional_reading": "2 Samuel 4"
+    }
+  },
+  {
+    "day": 140,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "2 Samuel 7-8",
+      "new_testament": "Romans 13:8-14",
+      "psalms": "Psalms 83",
+      "proverbs": "Proverbs 13:13-18",
+      "additional_reading": "2 Samuel 5"
+    }
+  },
+  {
+    "day": 141,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Samuel 9-10",
+      "new_testament": "Romans 14:1-12",
+      "psalms": "Psalms 84",
+      "proverbs": "Proverbs 13:19-25",
+      "additional_reading": "2 Samuel 6"
+    }
+  },
+  {
+    "day": 142,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "2 Samuel 11-12",
+      "new_testament": "Romans 14:13-23",
+      "psalms": "Psalms 85",
+      "proverbs": "Proverbs 14:1-7",
+      "additional_reading": "2 Samuel 7"
+    }
+  },
+  {
+    "day": 143,
+    "theme": "God's Mercy",
+    "readings": {
+      "old_testament": "2 Samuel 13-14",
+      "new_testament": "Romans 15:1-13",
+      "psalms": "Psalms 86",
+      "proverbs": "Proverbs 14:8-14",
+      "additional_reading": "2 Samuel 8"
+    }
+  },
+  {
+    "day": 144,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Samuel 15-16",
+      "new_testament": "Romans 15:14-33",
+      "psalms": "Psalms 87",
+      "proverbs": "Proverbs 14:15-21",
+      "additional_reading": "2 Samuel 9"
+    }
+  },
+  {
+    "day": 145,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Samuel 17-18",
+      "new_testament": "Romans 16:1-16",
+      "psalms": "Psalms 88",
+      "proverbs": "Proverbs 14:22-28",
+      "additional_reading": "2 Samuel 10"
+    }
+  },
+  {
+    "day": 146,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "2 Samuel 19-20",
+      "new_testament": "Romans 16:17-27",
+      "psalms": "Psalms 89",
+      "proverbs": "Proverbs 15:1-7",
+      "additional_reading": "2 Samuel 11"
+    }
+  },
+  {
+    "day": 147,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Samuel 21-22",
+      "new_testament": "1 Corinthians 1:1-17",
+      "psalms": "Psalms 90",
+      "proverbs": "Proverbs 15:8-15",
+      "additional_reading": "2 Samuel 12"
+    }
+  },
+  {
+    "day": 148,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Samuel 23-24",
+      "new_testament": "1 Corinthians 1:18-31",
+      "psalms": "Psalms 91",
+      "proverbs": "Proverbs 15:16-21",
+      "additional_reading": "1 Kings 1"
+    }
+  },
+  {
+    "day": 149,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "1 Kings 1-2",
+      "new_testament": "1 Corinthians 2:1-16",
+      "psalms": "Psalms 92",
+      "proverbs": "Proverbs 15:22-29",
+      "additional_reading": "1 Kings 2"
+    }
+  },
+  {
+    "day": 150,
+    "theme": "God's Wisdom",
+    "readings": {
+      "old_testament": "1 Kings 3-4",
+      "new_testament": "1 Corinthians 3:1-9",
+      "psalms": "Psalms 93",
+      "proverbs": "Proverbs 15:30-33",
+      "additional_reading": "1 Kings 3"
+    }
+  }
+,
+  {
+    "day": 151,
+    "theme": "God's Wisdom",
+    "readings": {
+      "old_testament": "1 Kings 5-6",
+      "new_testament": "1 Corinthians 3:10-23",
+      "psalms": "Psalms 94",
+      "proverbs": "Proverbs 16:1-7",
+      "additional_reading": "1 Kings 4"
+    }
+  },
+  {
+    "day": 152,
+    "theme": "God's Presence",
+    "readings": {
+      "old_testament": "1 Kings 7-8",
+      "new_testament": "1 Corinthians 4:1-13",
+      "psalms": "Psalms 95",
+      "proverbs": "Proverbs 16:8-15",
+      "additional_reading": "1 Kings 5"
+    }
+  },
+  {
+    "day": 153,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "1 Kings 9-10",
+      "new_testament": "1 Corinthians 4:14-21",
+      "psalms": "Psalms 96",
+      "proverbs": "Proverbs 16:16-24",
+      "additional_reading": "1 Kings 6"
+    }
+  },
+  {
+    "day": 154,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "1 Kings 11-12",
+      "new_testament": "1 Corinthians 5:1-13",
+      "psalms": "Psalms 97",
+      "proverbs": "Proverbs 16:25-33",
+      "additional_reading": "1 Kings 7"
+    }
+  },
+  {
+    "day": 155,
+    "theme": "God's Judgment",
+    "readings": {
+      "old_testament": "1 Kings 13-14",
+      "new_testament": "1 Corinthians 6:1-11",
+      "psalms": "Psalms 98",
+      "proverbs": "Proverbs 17:1-6",
+      "additional_reading": "1 Kings 8"
+    }
+  },
+  {
+    "day": 156,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "1 Kings 15-16",
+      "new_testament": "1 Corinthians 6:12-20",
+      "psalms": "Psalms 99",
+      "proverbs": "Proverbs 17:7-14",
+      "additional_reading": "1 Kings 9"
+    }
+  },
+  {
+    "day": 157,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "1 Kings 17-18",
+      "new_testament": "1 Corinthians 7:1-16",
+      "psalms": "Psalms 100",
+      "proverbs": "Proverbs 17:15-21",
+      "additional_reading": "1 Kings 10"
+    }
+  },
+  {
+    "day": 158,
+    "theme": "God's Power",
+    "readings": {
+      "old_testament": "1 Kings 19-20",
+      "new_testament": "1 Corinthians 7:17-24",
+      "psalms": "Psalms 101",
+      "proverbs": "Proverbs 17:22-28",
+      "additional_reading": "1 Kings 11"
+    }
+  },
+  {
+    "day": 159,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "1 Kings 21-22",
+      "new_testament": "1 Corinthians 7:25-40",
+      "psalms": "Psalms 102",
+      "proverbs": "Proverbs 18:1-9",
+      "additional_reading": "2 Kings 1"
+    }
+  },
+  {
+    "day": 160,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Kings 1-2",
+      "new_testament": "1 Corinthians 8:1-13",
+      "psalms": "Psalms 103",
+      "proverbs": "Proverbs 18:10-16",
+      "additional_reading": "2 Kings 2"
+    }
+  },
+  {
+    "day": 161,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Kings 3-4",
+      "new_testament": "1 Corinthians 9:1-12",
+      "psalms": "Psalms 104",
+      "proverbs": "Proverbs 18:17-24",
+      "additional_reading": "2 Kings 3"
+    }
+  },
+  {
+    "day": 162,
+    "theme": "God's Miracles",
+    "readings": {
+      "old_testament": "2 Kings 5-6",
+      "new_testament": "1 Corinthians 9:13-27",
+      "psalms": "Psalms 105",
+      "proverbs": "Proverbs 19:1-7",
+      "additional_reading": "2 Kings 4"
+    }
+  },
+  {
+    "day": 163,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Kings 7-8",
+      "new_testament": "1 Corinthians 10:1-13",
+      "psalms": "Psalms 106",
+      "proverbs": "Proverbs 19:8-14",
+      "additional_reading": "2 Kings 5"
+    }
+  },
+  {
+    "day": 164,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Kings 9-10",
+      "new_testament": "1 Corinthians 10:14-33",
+      "psalms": "Psalms 107",
+      "proverbs": "Proverbs 19:15-21",
+      "additional_reading": "2 Kings 6"
+    }
+  },
+  {
+    "day": 165,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "2 Kings 11-12",
+      "new_testament": "1 Corinthians 11:1-16",
+      "psalms": "Psalms 108",
+      "proverbs": "Proverbs 19:22-29",
+      "additional_reading": "2 Kings 7"
+    }
+  },
+  {
+    "day": 166,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Kings 13-14",
+      "new_testament": "1 Corinthians 11:17-34",
+      "psalms": "Psalms 109",
+      "proverbs": "Proverbs 20:1-7",
+      "additional_reading": "2 Kings 8"
+    }
+  },
+  {
+    "day": 167,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Kings 15-16",
+      "new_testament": "1 Corinthians 12:1-11",
+      "psalms": "Psalms 110",
+      "proverbs": "Proverbs 20:8-15",
+      "additional_reading": "2 Kings 9"
+    }
+  },
+  {
+    "day": 168,
+    "theme": "God's Judgment",
+    "readings": {
+      "old_testament": "2 Kings 17-18",
+      "new_testament": "1 Corinthians 12:12-31",
+      "psalms": "Psalms 111",
+      "proverbs": "Proverbs 20:16-24",
+      "additional_reading": "2 Kings 10"
+    }
+  },
+  {
+    "day": 169,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Kings 19-20",
+      "new_testament": "1 Corinthians 13:1-13",
+      "psalms": "Psalms 112",
+      "proverbs": "Proverbs 20:25-30",
+      "additional_reading": "2 Kings 11"
+    }
+  },
+  {
+    "day": 170,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Kings 21-22",
+      "new_testament": "1 Corinthians 14:1-19",
+      "psalms": "Psalms 113",
+      "proverbs": "Proverbs 21:1-8",
+      "additional_reading": "2 Kings 12"
+    }
+  },
+  {
+    "day": 171,
+    "theme": "God's Justice",
+    "readings": {
+      "old_testament": "2 Kings 23-24",
+      "new_testament": "1 Corinthians 14:20-40",
+      "psalms": "Psalms 114",
+      "proverbs": "Proverbs 21:9-15",
+      "additional_reading": "2 Kings 13"
+    }
+  },
+  {
+    "day": 172,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Kings 25",
+      "new_testament": "1 Corinthians 15:1-28",
+      "psalms": "Psalms 115",
+      "proverbs": "Proverbs 21:16-21",
+      "additional_reading": "1 Chronicles 1"
+    }
+  },
+  {
+    "day": 173,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "1 Chronicles 1-2",
+      "new_testament": "1 Corinthians 15:29-58",
+      "psalms": "Psalms 116",
+      "proverbs": "Proverbs 21:22-31",
+      "additional_reading": "1 Chronicles 2"
+    }
+  },
+  {
+    "day": 174,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "1 Chronicles 3-4",
+      "new_testament": "1 Corinthians 16:1-24",
+      "psalms": "Psalms 117",
+      "proverbs": "Proverbs 22:1-9",
+      "additional_reading": "1 Chronicles 3"
+    }
+  },
+  {
+    "day": 175,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "1 Chronicles 5-6",
+      "new_testament": "2 Corinthians 1:1-11",
+      "psalms": "Psalms 118",
+      "proverbs": "Proverbs 22:10-16",
+      "additional_reading": "1 Chronicles 4"
+    }
+  },
+  {
+    "day": 176,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "1 Chronicles 7-8",
+      "new_testament": "2 Corinthians 1:12-24",
+      "psalms": "Psalms 119:1-16",
+      "proverbs": "Proverbs 22:17-21",
+      "additional_reading": "1 Chronicles 5"
+    }
+  },
+  {
+    "day": 177,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "1 Chronicles 9-10",
+      "new_testament": "2 Corinthians 2:1-11",
+      "psalms": "Psalms 119:17-32",
+      "proverbs": "Proverbs 22:22-29",
+      "additional_reading": "1 Chronicles 6"
+    }
+  },
+  {
+    "day": 178,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "1 Chronicles 11-12",
+      "new_testament": "2 Corinthians 2:12-17",
+      "psalms": "Psalms 119:33-48",
+      "proverbs": "Proverbs 23:1-8",
+      "additional_reading": "1 Chronicles 7"
+    }
+  },
+  {
+    "day": 179,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "1 Chronicles 13-14",
+      "new_testament": "2 Corinthians 3:1-18",
+      "psalms": "Psalms 119:49-64",
+      "proverbs": "Proverbs 23:9-14",
+      "additional_reading": "1 Chronicles 8"
+    }
+  },
+  {
+    "day": 180,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "1 Chronicles 15-16",
+      "new_testament": "2 Corinthians 4:1-12",
+      "psalms": "Psalms 119:65-80",
+      "proverbs": "Proverbs 23:15-21",
+      "additional_reading": "1 Chronicles 9"
+    }
+  }
+,
+  {
+    "day": 181,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "1 Chronicles 17-18",
+      "new_testament": "2 Corinthians 4:13-18",
+      "psalms": "Psalms 119:81-96",
+      "proverbs": "Proverbs 23:22-28",
+      "additional_reading": "1 Chronicles 10"
+    }
+  },
+  {
+    "day": 182,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "1 Chronicles 19-20",
+      "new_testament": "2 Corinthians 5:1-10",
+      "psalms": "Psalms 119:97-112",
+      "proverbs": "Proverbs 23:29-35",
+      "additional_reading": "1 Chronicles 11"
+    }
+  },
+  {
+    "day": 183,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "1 Chronicles 21-22",
+      "new_testament": "2 Corinthians 5:11-21",
+      "psalms": "Psalms 119:113-128",
+      "proverbs": "Proverbs 24:1-6",
+      "additional_reading": "1 Chronicles 12"
+    }
+  },
+  {
+    "day": 184,
+    "theme": "God's Guidance",
+    "readings": {
+      "old_testament": "1 Chronicles 23-24",
+      "new_testament": "2 Corinthians 6:1-13",
+      "psalms": "Psalms 119:129-144",
+      "proverbs": "Proverbs 24:7-12",
+      "additional_reading": "1 Chronicles 13"
+    }
+  },
+  {
+    "day": 185,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "1 Chronicles 25-26",
+      "new_testament": "2 Corinthians 6:14-18",
+      "psalms": "Psalms 119:145-160",
+      "proverbs": "Proverbs 24:13-18",
+      "additional_reading": "1 Chronicles 14"
+    }
+  },
+  {
+    "day": 186,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "1 Chronicles 27-28",
+      "new_testament": "2 Corinthians 7:1-16",
+      "psalms": "Psalms 119:161-176",
+      "proverbs": "Proverbs 24:19-22",
+      "additional_reading": "1 Chronicles 15"
+    }
+  },
+  {
+    "day": 187,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "1 Chronicles 29",
+      "new_testament": "2 Corinthians 8:1-15",
+      "psalms": "Psalms 120",
+      "proverbs": "Proverbs 24:23-28",
+      "additional_reading": "1 Chronicles 16"
+    }
+  },
+  {
+    "day": 188,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Chronicles 1-2",
+      "new_testament": "2 Corinthians 8:16-24",
+      "psalms": "Psalms 121",
+      "proverbs": "Proverbs 24:29-34",
+      "additional_reading": "2 Chronicles 1"
+    }
+  },
+  {
+    "day": 189,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Chronicles 3-4",
+      "new_testament": "2 Corinthians 9:1-15",
+      "psalms": "Psalms 122",
+      "proverbs": "Proverbs 25:1-7",
+      "additional_reading": "2 Chronicles 2"
+    }
+  },
+  {
+    "day": 190,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "2 Chronicles 5-6",
+      "new_testament": "2 Corinthians 10:1-18",
+      "psalms": "Psalms 123",
+      "proverbs": "Proverbs 25:8-14",
+      "additional_reading": "2 Chronicles 3"
+    }
+  },
+  {
+    "day": 191,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Chronicles 7-8",
+      "new_testament": "2 Corinthians 11:1-15",
+      "psalms": "Psalms 124",
+      "proverbs": "Proverbs 25:15-22",
+      "additional_reading": "2 Chronicles 4"
+    }
+  },
+  {
+    "day": 192,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Chronicles 9-10",
+      "new_testament": "2 Corinthians 11:16-33",
+      "psalms": "Psalms 125",
+      "proverbs": "Proverbs 25:23-28",
+      "additional_reading": "2 Chronicles 5"
+    }
+  },
+  {
+    "day": 193,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "2 Chronicles 11-12",
+      "new_testament": "2 Corinthians 12:1-10",
+      "psalms": "Psalms 126",
+      "proverbs": "Proverbs 26:1-9",
+      "additional_reading": "2 Chronicles 6"
+    }
+  },
+  {
+    "day": 194,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Chronicles 13-14",
+      "new_testament": "2 Corinthians 12:11-21",
+      "psalms": "Psalms 127",
+      "proverbs": "Proverbs 26:10-16",
+      "additional_reading": "2 Chronicles 7"
+    }
+  },
+  {
+    "day": 195,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Chronicles 15-16",
+      "new_testament": "2 Corinthians 13:1-14",
+      "psalms": "Psalms 128",
+      "proverbs": "Proverbs 26:17-22",
+      "additional_reading": "2 Chronicles 8"
+    }
+  },
+  {
+    "day": 196,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "2 Chronicles 17-18",
+      "new_testament": "Galatians 1:1-10",
+      "psalms": "Psalms 129",
+      "proverbs": "Proverbs 26:23-28",
+      "additional_reading": "2 Chronicles 9"
+    }
+  },
+  {
+    "day": 197,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Chronicles 19-20",
+      "new_testament": "Galatians 1:11-24",
+      "psalms": "Psalms 130",
+      "proverbs": "Proverbs 27:1-6",
+      "additional_reading": "2 Chronicles 10"
+    }
+  },
+  {
+    "day": 198,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Chronicles 21-22",
+      "new_testament": "Galatians 2:1-10",
+      "psalms": "Psalms 131",
+      "proverbs": "Proverbs 27:7-14",
+      "additional_reading": "2 Chronicles 11"
+    }
+  },
+  {
+    "day": 199,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "2 Chronicles 23-24",
+      "new_testament": "Galatians 2:11-21",
+      "psalms": "Psalms 132",
+      "proverbs": "Proverbs 27:15-22",
+      "additional_reading": "2 Chronicles 12"
+    }
+  },
+  {
+    "day": 200,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Chronicles 25-26",
+      "new_testament": "Galatians 3:1-14",
+      "psalms": "Psalms 133",
+      "proverbs": "Proverbs 27:23-27",
+      "additional_reading": "2 Chronicles 13"
+    }
+  },
+  {
+    "day": 201,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Chronicles 27-28",
+      "new_testament": "Galatians 3:15-29",
+      "psalms": "Psalms 134",
+      "proverbs": "Proverbs 28:1-6",
+      "additional_reading": "2 Chronicles 14"
+    }
+  },
+  {
+    "day": 202,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "2 Chronicles 29-30",
+      "new_testament": "Galatians 4:1-20",
+      "psalms": "Psalms 135",
+      "proverbs": "Proverbs 28:7-14",
+      "additional_reading": "2 Chronicles 15"
+    }
+  },
+  {
+    "day": 203,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "2 Chronicles 31-32",
+      "new_testament": "Galatians 4:21-31",
+      "psalms": "Psalms 136",
+      "proverbs": "Proverbs 28:15-22",
+      "additional_reading": "2 Chronicles 16"
+    }
+  },
+  {
+    "day": 204,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "2 Chronicles 33-34",
+      "new_testament": "Galatians 5:1-15",
+      "psalms": "Psalms 137",
+      "proverbs": "Proverbs 28:23-28",
+      "additional_reading": "2 Chronicles 17"
+    }
+  },
+  {
+    "day": 205,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "2 Chronicles 35-36",
+      "new_testament": "Galatians 5:16-26",
+      "psalms": "Psalms 138",
+      "proverbs": "Proverbs 29:1-9",
+      "additional_reading": "2 Chronicles 18"
+    }
+  },
+  {
+    "day": 206,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Ezra 1-2",
+      "new_testament": "Galatians 6:1-18",
+      "psalms": "Psalms 139",
+      "proverbs": "Proverbs 29:10-18",
+      "additional_reading": "Ezra 1"
+    }
+  },
+  {
+    "day": 207,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Ezra 3-4",
+      "new_testament": "Ephesians 1:1-14",
+      "psalms": "Psalms 140",
+      "proverbs": "Proverbs 29:19-27",
+      "additional_reading": "Ezra 2"
+    }
+  },
+  {
+    "day": 208,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Ezra 5-6",
+      "new_testament": "Ephesians 1:15-23",
+      "psalms": "Psalms 141",
+      "proverbs": "Proverbs 30:1-9",
+      "additional_reading": "Ezra 3"
+    }
+  },
+  {
+    "day": 209,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Ezra 7-8",
+      "new_testament": "Ephesians 2:1-10",
+      "psalms": "Psalms 142",
+      "proverbs": "Proverbs 30:10-17",
+      "additional_reading": "Ezra 4"
+    }
+  },
+  {
+    "day": 210,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Ezra 9-10",
+      "new_testament": "Ephesians 2:11-22",
+      "psalms": "Psalms 143",
+      "proverbs": "Proverbs 30:18-23",
+      "additional_reading": "Ezra 5"
+    }
+  }
+,
+  {
+    "day": 211,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Nehemiah 1-2",
+      "new_testament": "Ephesians 3:1-13",
+      "psalms": "Psalms 144",
+      "proverbs": "Proverbs 30:24-33",
+      "additional_reading": "Ezra 6"
+    }
+  },
+  {
+    "day": 212,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Nehemiah 3-4",
+      "new_testament": "Ephesians 3:14-21",
+      "psalms": "Psalms 145",
+      "proverbs": "Proverbs 31:1-9",
+      "additional_reading": "Ezra 7"
+    }
+  },
+  {
+    "day": 213,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Nehemiah 5-6",
+      "new_testament": "Ephesians 4:1-16",
+      "psalms": "Psalms 146",
+      "proverbs": "Proverbs 31:10-20",
+      "additional_reading": "Ezra 8"
+    }
+  },
+  {
+    "day": 214,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Nehemiah 7-8",
+      "new_testament": "Ephesians 4:17-32",
+      "psalms": "Psalms 147",
+      "proverbs": "Proverbs 31:21-31",
+      "additional_reading": "Ezra 9"
+    }
+  },
+  {
+    "day": 215,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Nehemiah 9-10",
+      "new_testament": "Ephesians 5:1-14",
+      "psalms": "Psalms 148",
+      "proverbs": "Proverbs 1:1-7",
+      "additional_reading": "Ezra 10"
+    }
+  },
+  {
+    "day": 216,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Nehemiah 11-12",
+      "new_testament": "Ephesians 5:15-33",
+      "psalms": "Psalms 149",
+      "proverbs": "Proverbs 1:8-19",
+      "additional_reading": "Nehemiah 1"
+    }
+  },
+  {
+    "day": 217,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Nehemiah 13",
+      "new_testament": "Ephesians 6:1-9",
+      "psalms": "Psalms 150",
+      "proverbs": "Proverbs 1:20-33",
+      "additional_reading": "Nehemiah 2"
+    }
+  },
+  {
+    "day": 218,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Esther 1-2",
+      "new_testament": "Ephesians 6:10-24",
+      "psalms": "Psalms 1",
+      "proverbs": "Proverbs 2:1-9",
+      "additional_reading": "Nehemiah 3"
+    }
+  },
+  {
+    "day": 219,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Esther 3-4",
+      "new_testament": "Philippians 1:1-11",
+      "psalms": "Psalms 2",
+      "proverbs": "Proverbs 2:10-22",
+      "additional_reading": "Nehemiah 4"
+    }
+  },
+  {
+    "day": 220,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Esther 5-6",
+      "new_testament": "Philippians 1:12-30",
+      "psalms": "Psalms 3",
+      "proverbs": "Proverbs 3:1-12",
+      "additional_reading": "Nehemiah 5"
+    }
+  },
+  {
+    "day": 221,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Esther 7-8",
+      "new_testament": "Philippians 2:1-11",
+      "psalms": "Psalms 4",
+      "proverbs": "Proverbs 3:13-20",
+      "additional_reading": "Nehemiah 6"
+    }
+  },
+  {
+    "day": 222,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Esther 9-10",
+      "new_testament": "Philippians 2:12-30",
+      "psalms": "Psalms 5",
+      "proverbs": "Proverbs 3:21-26",
+      "additional_reading": "Nehemiah 7"
+    }
+  },
+  {
+    "day": 223,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Job 1-2",
+      "new_testament": "Philippians 3:1-11",
+      "psalms": "Psalms 6",
+      "proverbs": "Proverbs 3:27-35",
+      "additional_reading": "Nehemiah 8"
+    }
+  },
+  {
+    "day": 224,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Job 3-4",
+      "new_testament": "Philippians 3:12-21",
+      "psalms": "Psalms 7",
+      "proverbs": "Proverbs 4:1-9",
+      "additional_reading": "Nehemiah 9"
+    }
+  },
+  {
+    "day": 225,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Job 5-6",
+      "new_testament": "Philippians 4:1-9",
+      "psalms": "Psalms 8",
+      "proverbs": "Proverbs 4:10-19",
+      "additional_reading": "Nehemiah 10"
+    }
+  },
+  {
+    "day": 226,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Job 7-8",
+      "new_testament": "Philippians 4:10-23",
+      "psalms": "Psalms 9",
+      "proverbs": "Proverbs 4:20-27",
+      "additional_reading": "Nehemiah 11"
+    }
+  },
+  {
+    "day": 227,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Job 9-10",
+      "new_testament": "Colossians 1:1-14",
+      "psalms": "Psalms 10",
+      "proverbs": "Proverbs 5:1-6",
+      "additional_reading": "Nehemiah 12"
+    }
+  },
+  {
+    "day": 228,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Job 11-12",
+      "new_testament": "Colossians 1:15-23",
+      "psalms": "Psalms 11",
+      "proverbs": "Proverbs 5:7-14",
+      "additional_reading": "Nehemiah 13"
+    }
+  },
+  {
+    "day": 229,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Job 13-14",
+      "new_testament": "Colossians 1:24-29",
+      "psalms": "Psalms 12",
+      "proverbs": "Proverbs 5:15-23",
+      "additional_reading": "Esther 1"
+    }
+  },
+  {
+    "day": 230,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Job 15-16",
+      "new_testament": "Colossians 2:1-7",
+      "psalms": "Psalms 13",
+      "proverbs": "Proverbs 6:1-5",
+      "additional_reading": "Esther 2"
+    }
+  },
+  {
+    "day": 231,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Job 17-18",
+      "new_testament": "Colossians 2:8-15",
+      "psalms": "Psalms 14",
+      "proverbs": "Proverbs 6:6-11",
+      "additional_reading": "Esther 3"
+    }
+  },
+  {
+    "day": 232,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Job 19-20",
+      "new_testament": "Colossians 2:16-23",
+      "psalms": "Psalms 15",
+      "proverbs": "Proverbs 6:12-19",
+      "additional_reading": "Esther 4"
+    }
+  },
+  {
+    "day": 233,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Job 21-22",
+      "new_testament": "Colossians 3:1-11",
+      "psalms": "Psalms 16",
+      "proverbs": "Proverbs 6:20-26",
+      "additional_reading": "Esther 5"
+    }
+  },
+  {
+    "day": 234,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Job 23-24",
+      "new_testament": "Colossians 3:12-17",
+      "psalms": "Psalms 17",
+      "proverbs": "Proverbs 6:27-35",
+      "additional_reading": "Esther 6"
+    }
+  },
+  {
+    "day": 235,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Job 25-26",
+      "new_testament": "Colossians 3:18-25",
+      "psalms": "Psalms 18",
+      "proverbs": "Proverbs 7:1-5",
+      "additional_reading": "Esther 7"
+    }
+  },
+  {
+    "day": 236,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Job 27-28",
+      "new_testament": "Colossians 4:1-6",
+      "psalms": "Psalms 19",
+      "proverbs": "Proverbs 7:6-20",
+      "additional_reading": "Esther 8"
+    }
+  },
+  {
+    "day": 237,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Job 29-30",
+      "new_testament": "Colossians 4:7-18",
+      "psalms": "Psalms 20",
+      "proverbs": "Proverbs 7:21-27",
+      "additional_reading": "Esther 9"
+    }
+  },
+  {
+    "day": 238,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Job 31-32",
+      "new_testament": "1 Thessalonians 1:1-10",
+      "psalms": "Psalms 21",
+      "proverbs": "Proverbs 8:1-11",
+      "additional_reading": "Esther 10"
+    }
+  },
+  {
+    "day": 239,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Job 33-34",
+      "new_testament": "1 Thessalonians 2:1-12",
+      "psalms": "Psalms 22",
+      "proverbs": "Proverbs 8:12-21",
+      "additional_reading": "Job 1"
+    }
+  },
+  {
+    "day": 240,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Job 35-36",
+      "new_testament": "1 Thessalonians 2:13-20",
+      "psalms": "Psalms 23",
+      "proverbs": "Proverbs 8:22-31",
+      "additional_reading": "Job 2"
+    }
+  }
+,
+  {
+    "day": 241,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Job 37-38",
+      "new_testament": "1 Thessalonians 3:1-13",
+      "psalms": "Psalms 24",
+      "proverbs": "Proverbs 8:32-36",
+      "additional_reading": "Job 3"
+    }
+  },
+  {
+    "day": 242,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Job 39-40",
+      "new_testament": "1 Thessalonians 4:1-12",
+      "psalms": "Psalms 25",
+      "proverbs": "Proverbs 9:1-6",
+      "additional_reading": "Job 4"
+    }
+  },
+  {
+    "day": 243,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Job 41-42",
+      "new_testament": "1 Thessalonians 4:13-18",
+      "psalms": "Psalms 26",
+      "proverbs": "Proverbs 9:7-12",
+      "additional_reading": "Job 5"
+    }
+  },
+  {
+    "day": 244,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 1-2",
+      "new_testament": "1 Thessalonians 5:1-11",
+      "psalms": "Psalms 27",
+      "proverbs": "Proverbs 9:13-18",
+      "additional_reading": "Job 6"
+    }
+  },
+  {
+    "day": 245,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 3-4",
+      "new_testament": "1 Thessalonians 5:12-28",
+      "psalms": "Psalms 28",
+      "proverbs": "Proverbs 10:1-5",
+      "additional_reading": "Job 7"
+    }
+  },
+  {
+    "day": 246,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 5-6",
+      "new_testament": "2 Thessalonians 1:1-12",
+      "psalms": "Psalms 29",
+      "proverbs": "Proverbs 10:6-12",
+      "additional_reading": "Job 8"
+    }
+  },
+  {
+    "day": 247,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 7-8",
+      "new_testament": "2 Thessalonians 2:1-12",
+      "psalms": "Psalms 30",
+      "proverbs": "Proverbs 10:13-20",
+      "additional_reading": "Job 9"
+    }
+  },
+  {
+    "day": 248,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 9-10",
+      "new_testament": "2 Thessalonians 2:13-17",
+      "psalms": "Psalms 31",
+      "proverbs": "Proverbs 10:21-32",
+      "additional_reading": "Job 10"
+    }
+  },
+  {
+    "day": 249,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 11-12",
+      "new_testament": "2 Thessalonians 3:1-18",
+      "psalms": "Psalms 32",
+      "proverbs": "Proverbs 11:1-9",
+      "additional_reading": "Job 11"
+    }
+  },
+  {
+    "day": 250,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 13-14",
+      "new_testament": "1 Timothy 1:1-11",
+      "psalms": "Psalms 33",
+      "proverbs": "Proverbs 11:10-15",
+      "additional_reading": "Job 12"
+    }
+  },
+  {
+    "day": 251,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 15-16",
+      "new_testament": "1 Timothy 1:12-20",
+      "psalms": "Psalms 34",
+      "proverbs": "Proverbs 11:16-21",
+      "additional_reading": "Job 13"
+    }
+  },
+  {
+    "day": 252,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 17-18",
+      "new_testament": "1 Timothy 2:1-15",
+      "psalms": "Psalms 35",
+      "proverbs": "Proverbs 11:22-31",
+      "additional_reading": "Job 14"
+    }
+  },
+  {
+    "day": 253,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 19-20",
+      "new_testament": "1 Timothy 3:1-13",
+      "psalms": "Psalms 36",
+      "proverbs": "Proverbs 12:1-7",
+      "additional_reading": "Job 15"
+    }
+  },
+  {
+    "day": 254,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 21-22",
+      "new_testament": "1 Timothy 3:14-16",
+      "psalms": "Psalms 37",
+      "proverbs": "Proverbs 12:8-14",
+      "additional_reading": "Job 16"
+    }
+  },
+  {
+    "day": 255,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 23-24",
+      "new_testament": "1 Timothy 4:1-16",
+      "psalms": "Psalms 38",
+      "proverbs": "Proverbs 12:15-23",
+      "additional_reading": "Job 17"
+    }
+  },
+  {
+    "day": 256,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 25-26",
+      "new_testament": "1 Timothy 5:1-16",
+      "psalms": "Psalms 39",
+      "proverbs": "Proverbs 12:24-28",
+      "additional_reading": "Job 18"
+    }
+  },
+  {
+    "day": 257,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 27-28",
+      "new_testament": "1 Timothy 5:17-25",
+      "psalms": "Psalms 40",
+      "proverbs": "Proverbs 13:1-6",
+      "additional_reading": "Job 19"
+    }
+  },
+  {
+    "day": 258,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 29-30",
+      "new_testament": "1 Timothy 6:1-10",
+      "psalms": "Psalms 41",
+      "proverbs": "Proverbs 13:7-12",
+      "additional_reading": "Job 20"
+    }
+  },
+  {
+    "day": 259,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 31-32",
+      "new_testament": "1 Timothy 6:11-21",
+      "psalms": "Psalms 42",
+      "proverbs": "Proverbs 13:13-18",
+      "additional_reading": "Job 21"
+    }
+  },
+  {
+    "day": 260,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 33-34",
+      "new_testament": "2 Timothy 1:1-18",
+      "psalms": "Psalms 43",
+      "proverbs": "Proverbs 13:19-25",
+      "additional_reading": "Job 22"
+    }
+  },
+  {
+    "day": 261,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 35-36",
+      "new_testament": "2 Timothy 2:1-13",
+      "psalms": "Psalms 44",
+      "proverbs": "Proverbs 14:1-7",
+      "additional_reading": "Job 23"
+    }
+  },
+  {
+    "day": 262,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 37-38",
+      "new_testament": "2 Timothy 2:14-26",
+      "psalms": "Psalms 45",
+      "proverbs": "Proverbs 14:8-14",
+      "additional_reading": "Job 24"
+    }
+  },
+  {
+    "day": 263,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 39-40",
+      "new_testament": "2 Timothy 3:1-9",
+      "psalms": "Psalms 46",
+      "proverbs": "Proverbs 14:15-21",
+      "additional_reading": "Job 25"
+    }
+  },
+  {
+    "day": 264,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 41-42",
+      "new_testament": "2 Timothy 3:10-17",
+      "psalms": "Psalms 47",
+      "proverbs": "Proverbs 14:22-28",
+      "additional_reading": "Job 26"
+    }
+  },
+  {
+    "day": 265,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 43-44",
+      "new_testament": "2 Timothy 4:1-8",
+      "psalms": "Psalms 48",
+      "proverbs": "Proverbs 15:1-7",
+      "additional_reading": "Job 27"
+    }
+  },
+  {
+    "day": 266,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 45-46",
+      "new_testament": "2 Timothy 4:9-22",
+      "psalms": "Psalms 49",
+      "proverbs": "Proverbs 15:8-15",
+      "additional_reading": "Job 28"
+    }
+  },
+  {
+    "day": 267,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 47-48",
+      "new_testament": "Titus 1:1-9",
+      "psalms": "Psalms 50",
+      "proverbs": "Proverbs 15:16-21",
+      "additional_reading": "Job 29"
+    }
+  },
+  {
+    "day": 268,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 49-50",
+      "new_testament": "Titus 1:10-16",
+      "psalms": "Psalms 51",
+      "proverbs": "Proverbs 15:22-29",
+      "additional_reading": "Job 30"
+    }
+  },
+  {
+    "day": 269,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 51-52",
+      "new_testament": "Titus 2:1-15",
+      "psalms": "Psalms 52",
+      "proverbs": "Proverbs 15:30-33",
+      "additional_reading": "Job 31"
+    }
+  },
+  {
+    "day": 270,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 53-54",
+      "new_testament": "Titus 3:1-15",
+      "psalms": "Psalms 53",
+      "proverbs": "Proverbs 16:1-7",
+      "additional_reading": "Job 32"
+    }
+  }
+,
+  {
+    "day": 271,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 55-56",
+      "new_testament": "Philemon 1:1-25",
+      "psalms": "Psalms 54",
+      "proverbs": "Proverbs 16:8-15",
+      "additional_reading": "Job 33"
+    }
+  },
+  {
+    "day": 272,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 57-58",
+      "new_testament": "Hebrews 1:1-14",
+      "psalms": "Psalms 55",
+      "proverbs": "Proverbs 16:16-24",
+      "additional_reading": "Job 34"
+    }
+  },
+  {
+    "day": 273,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 59-60",
+      "new_testament": "Hebrews 2:1-9",
+      "psalms": "Psalms 56",
+      "proverbs": "Proverbs 16:25-33",
+      "additional_reading": "Job 35"
+    }
+  },
+  {
+    "day": 274,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 61-62",
+      "new_testament": "Hebrews 2:10-18",
+      "psalms": "Psalms 57",
+      "proverbs": "Proverbs 17:1-6",
+      "additional_reading": "Job 36"
+    }
+  },
+  {
+    "day": 275,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 63-64",
+      "new_testament": "Hebrews 3:1-6",
+      "psalms": "Psalms 58",
+      "proverbs": "Proverbs 17:7-14",
+      "additional_reading": "Job 37"
+    }
+  },
+  {
+    "day": 276,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 65-66",
+      "new_testament": "Hebrews 3:7-19",
+      "psalms": "Psalms 59",
+      "proverbs": "Proverbs 17:15-21",
+      "additional_reading": "Job 38"
+    }
+  },
+  {
+    "day": 277,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 67-68",
+      "new_testament": "Hebrews 4:1-13",
+      "psalms": "Psalms 60",
+      "proverbs": "Proverbs 17:22-28",
+      "additional_reading": "Job 39"
+    }
+  },
+  {
+    "day": 278,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 69-70",
+      "new_testament": "Hebrews 4:14-5:10",
+      "psalms": "Psalms 61",
+      "proverbs": "Proverbs 18:1-9",
+      "additional_reading": "Job 40"
+    }
+  },
+  {
+    "day": 279,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 71-72",
+      "new_testament": "Hebrews 5:11-6:12",
+      "psalms": "Psalms 62",
+      "proverbs": "Proverbs 18:10-16",
+      "additional_reading": "Job 41"
+    }
+  },
+  {
+    "day": 280,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 73-74",
+      "new_testament": "Hebrews 6:13-20",
+      "psalms": "Psalms 63",
+      "proverbs": "Proverbs 18:17-24",
+      "additional_reading": "Job 42"
+    }
+  },
+  {
+    "day": 281,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 75-76",
+      "new_testament": "Hebrews 7:1-10",
+      "psalms": "Psalms 64",
+      "proverbs": "Proverbs 19:1-7",
+      "additional_reading": "Proverbs 1"
+    }
+  },
+  {
+    "day": 282,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 77-78",
+      "new_testament": "Hebrews 7:11-28",
+      "psalms": "Psalms 65",
+      "proverbs": "Proverbs 19:8-14",
+      "additional_reading": "Proverbs 2"
+    }
+  },
+  {
+    "day": 283,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 79-80",
+      "new_testament": "Hebrews 8:1-13",
+      "psalms": "Psalms 66",
+      "proverbs": "Proverbs 19:15-21",
+      "additional_reading": "Proverbs 3"
+    }
+  },
+  {
+    "day": 284,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 81-82",
+      "new_testament": "Hebrews 9:1-10",
+      "psalms": "Psalms 67",
+      "proverbs": "Proverbs 19:22-29",
+      "additional_reading": "Proverbs 4"
+    }
+  },
+  {
+    "day": 285,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 83-84",
+      "new_testament": "Hebrews 9:11-28",
+      "psalms": "Psalms 68",
+      "proverbs": "Proverbs 20:1-7",
+      "additional_reading": "Proverbs 5"
+    }
+  },
+  {
+    "day": 286,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 85-86",
+      "new_testament": "Hebrews 10:1-18",
+      "psalms": "Psalms 69",
+      "proverbs": "Proverbs 20:8-15",
+      "additional_reading": "Proverbs 6"
+    }
+  },
+  {
+    "day": 287,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 87-88",
+      "new_testament": "Hebrews 10:19-39",
+      "psalms": "Psalms 70",
+      "proverbs": "Proverbs 20:16-24",
+      "additional_reading": "Proverbs 7"
+    }
+  },
+  {
+    "day": 288,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 89-90",
+      "new_testament": "Hebrews 11:1-16",
+      "psalms": "Psalms 71",
+      "proverbs": "Proverbs 20:25-30",
+      "additional_reading": "Proverbs 8"
+    }
+  },
+  {
+    "day": 289,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 91-92",
+      "new_testament": "Hebrews 11:17-40",
+      "psalms": "Psalms 72",
+      "proverbs": "Proverbs 21:1-8",
+      "additional_reading": "Proverbs 9"
+    }
+  },
+  {
+    "day": 290,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 93-94",
+      "new_testament": "Hebrews 12:1-13",
+      "psalms": "Psalms 73",
+      "proverbs": "Proverbs 21:9-15",
+      "additional_reading": "Proverbs 10"
+    }
+  },
+  {
+    "day": 291,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 95-96",
+      "new_testament": "Hebrews 12:14-29",
+      "psalms": "Psalms 74",
+      "proverbs": "Proverbs 21:16-21",
+      "additional_reading": "Proverbs 11"
+    }
+  },
+  {
+    "day": 292,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 97-98",
+      "new_testament": "Hebrews 13:1-8",
+      "psalms": "Psalms 75",
+      "proverbs": "Proverbs 21:22-31",
+      "additional_reading": "Proverbs 12"
+    }
+  },
+  {
+    "day": 293,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 99-100",
+      "new_testament": "Hebrews 13:9-25",
+      "psalms": "Psalms 76",
+      "proverbs": "Proverbs 22:1-9",
+      "additional_reading": "Proverbs 13"
+    }
+  },
+  {
+    "day": 294,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 101-102",
+      "new_testament": "James 1:1-18",
+      "psalms": "Psalms 77",
+      "proverbs": "Proverbs 22:10-16",
+      "additional_reading": "Proverbs 14"
+    }
+  },
+  {
+    "day": 295,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 103-104",
+      "new_testament": "James 1:19-27",
+      "psalms": "Psalms 78",
+      "proverbs": "Proverbs 22:17-21",
+      "additional_reading": "Proverbs 15"
+    }
+  },
+  {
+    "day": 296,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 105-106",
+      "new_testament": "James 2:1-13",
+      "psalms": "Psalms 79",
+      "proverbs": "Proverbs 22:22-29",
+      "additional_reading": "Proverbs 16"
+    }
+  },
+  {
+    "day": 297,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 107-108",
+      "new_testament": "James 2:14-26",
+      "psalms": "Psalms 80",
+      "proverbs": "Proverbs 23:1-8",
+      "additional_reading": "Proverbs 17"
+    }
+  },
+  {
+    "day": 298,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 109-110",
+      "new_testament": "James 3:1-12",
+      "psalms": "Psalms 81",
+      "proverbs": "Proverbs 23:9-14",
+      "additional_reading": "Proverbs 18"
+    }
+  },
+  {
+    "day": 299,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 111-112",
+      "new_testament": "James 3:13-18",
+      "psalms": "Psalms 82",
+      "proverbs": "Proverbs 23:15-21",
+      "additional_reading": "Proverbs 19"
+    }
+  },
+  {
+    "day": 300,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 113-114",
+      "new_testament": "James 4:1-10",
+      "psalms": "Psalms 83",
+      "proverbs": "Proverbs 23:22-28",
+      "additional_reading": "Proverbs 20"
+    }
+  }
+,
+  {
+    "day": 301,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 115-116",
+      "new_testament": "James 4:11-17",
+      "psalms": "Psalms 84",
+      "proverbs": "Proverbs 23:29-35",
+      "additional_reading": "Proverbs 21"
+    }
+  },
+  {
+    "day": 302,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 117-118",
+      "new_testament": "James 5:1-12",
+      "psalms": "Psalms 85",
+      "proverbs": "Proverbs 24:1-6",
+      "additional_reading": "Proverbs 22"
+    }
+  },
+  {
+    "day": 303,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 119:1-16",
+      "new_testament": "James 5:13-20",
+      "psalms": "Psalms 86",
+      "proverbs": "Proverbs 24:7-12",
+      "additional_reading": "Proverbs 23"
+    }
+  },
+  {
+    "day": 304,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 119:17-32",
+      "new_testament": "1 Peter 1:1-12",
+      "psalms": "Psalms 87",
+      "proverbs": "Proverbs 24:13-18",
+      "additional_reading": "Proverbs 24"
+    }
+  },
+  {
+    "day": 305,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 119:33-48",
+      "new_testament": "1 Peter 1:13-25",
+      "psalms": "Psalms 88",
+      "proverbs": "Proverbs 24:19-22",
+      "additional_reading": "Proverbs 25"
+    }
+  },
+  {
+    "day": 306,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 119:49-64",
+      "new_testament": "1 Peter 2:1-10",
+      "psalms": "Psalms 89",
+      "proverbs": "Proverbs 24:23-28",
+      "additional_reading": "Proverbs 26"
+    }
+  },
+  {
+    "day": 307,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 119:65-80",
+      "new_testament": "1 Peter 2:11-25",
+      "psalms": "Psalms 90",
+      "proverbs": "Proverbs 24:29-34",
+      "additional_reading": "Proverbs 27"
+    }
+  },
+  {
+    "day": 308,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 119:81-96",
+      "new_testament": "1 Peter 3:1-12",
+      "psalms": "Psalms 91",
+      "proverbs": "Proverbs 25:1-7",
+      "additional_reading": "Proverbs 28"
+    }
+  },
+  {
+    "day": 309,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 119:97-112",
+      "new_testament": "1 Peter 3:13-22",
+      "psalms": "Psalms 92",
+      "proverbs": "Proverbs 25:8-14",
+      "additional_reading": "Proverbs 29"
+    }
+  },
+  {
+    "day": 310,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 119:113-128",
+      "new_testament": "1 Peter 4:1-11",
+      "psalms": "Psalms 93",
+      "proverbs": "Proverbs 25:15-22",
+      "additional_reading": "Proverbs 30"
+    }
+  },
+  {
+    "day": 311,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 119:129-144",
+      "new_testament": "1 Peter 4:12-19",
+      "psalms": "Psalms 94",
+      "proverbs": "Proverbs 25:23-28",
+      "additional_reading": "Proverbs 31"
+    }
+  },
+  {
+    "day": 312,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 119:145-160",
+      "new_testament": "1 Peter 5:1-14",
+      "psalms": "Psalms 95",
+      "proverbs": "Proverbs 26:1-9",
+      "additional_reading": "Ecclesiastes 1"
+    }
+  },
+  {
+    "day": 313,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 119:161-176",
+      "new_testament": "2 Peter 1:1-11",
+      "psalms": "Psalms 96",
+      "proverbs": "Proverbs 26:10-16",
+      "additional_reading": "Ecclesiastes 2"
+    }
+  },
+  {
+    "day": 314,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 120-121",
+      "new_testament": "2 Peter 1:12-21",
+      "psalms": "Psalms 97",
+      "proverbs": "Proverbs 26:17-22",
+      "additional_reading": "Ecclesiastes 3"
+    }
+  },
+  {
+    "day": 315,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 122-123",
+      "new_testament": "2 Peter 2:1-11",
+      "psalms": "Psalms 98",
+      "proverbs": "Proverbs 26:23-28",
+      "additional_reading": "Ecclesiastes 4"
+    }
+  },
+  {
+    "day": 316,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 124-125",
+      "new_testament": "2 Peter 2:12-22",
+      "psalms": "Psalms 99",
+      "proverbs": "Proverbs 27:1-6",
+      "additional_reading": "Ecclesiastes 5"
+    }
+  },
+  {
+    "day": 317,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 126-127",
+      "new_testament": "2 Peter 3:1-9",
+      "psalms": "Psalms 100",
+      "proverbs": "Proverbs 27:7-14",
+      "additional_reading": "Ecclesiastes 6"
+    }
+  },
+  {
+    "day": 318,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 128-129",
+      "new_testament": "2 Peter 3:10-18",
+      "psalms": "Psalms 101",
+      "proverbs": "Proverbs 27:15-22",
+      "additional_reading": "Ecclesiastes 7"
+    }
+  },
+  {
+    "day": 319,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 130-131",
+      "new_testament": "1 John 1:1-10",
+      "psalms": "Psalms 102",
+      "proverbs": "Proverbs 27:23-27",
+      "additional_reading": "Ecclesiastes 8"
+    }
+  },
+  {
+    "day": 320,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 132-133",
+      "new_testament": "1 John 2:1-11",
+      "psalms": "Psalms 103",
+      "proverbs": "Proverbs 28:1-6",
+      "additional_reading": "Ecclesiastes 9"
+    }
+  },
+  {
+    "day": 321,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 134-135",
+      "new_testament": "1 John 2:12-17",
+      "psalms": "Psalms 104",
+      "proverbs": "Proverbs 28:7-14",
+      "additional_reading": "Ecclesiastes 10"
+    }
+  },
+  {
+    "day": 322,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 136-137",
+      "new_testament": "1 John 2:18-29",
+      "psalms": "Psalms 105",
+      "proverbs": "Proverbs 28:15-22",
+      "additional_reading": "Ecclesiastes 11"
+    }
+  },
+  {
+    "day": 323,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 138-139",
+      "new_testament": "1 John 3:1-10",
+      "psalms": "Psalms 106",
+      "proverbs": "Proverbs 28:23-28",
+      "additional_reading": "Ecclesiastes 12"
+    }
+  },
+  {
+    "day": 324,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 140-141",
+      "new_testament": "1 John 3:11-24",
+      "psalms": "Psalms 107",
+      "proverbs": "Proverbs 29:1-9",
+      "additional_reading": "Song of Solomon 1"
+    }
+  },
+  {
+    "day": 325,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 142-143",
+      "new_testament": "1 John 4:1-6",
+      "psalms": "Psalms 108",
+      "proverbs": "Proverbs 29:10-18",
+      "additional_reading": "Song of Solomon 2"
+    }
+  },
+  {
+    "day": 326,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 144-145",
+      "new_testament": "1 John 4:7-21",
+      "psalms": "Psalms 109",
+      "proverbs": "Proverbs 29:19-27",
+      "additional_reading": "Song of Solomon 3"
+    }
+  },
+  {
+    "day": 327,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Psalms 146-147",
+      "new_testament": "1 John 5:1-12",
+      "psalms": "Psalms 110",
+      "proverbs": "Proverbs 30:1-9",
+      "additional_reading": "Song of Solomon 4"
+    }
+  },
+  {
+    "day": 328,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Psalms 148-149",
+      "new_testament": "1 John 5:13-21",
+      "psalms": "Psalms 111",
+      "proverbs": "Proverbs 30:10-17",
+      "additional_reading": "Song of Solomon 5"
+    }
+  },
+  {
+    "day": 329,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Psalms 150",
+      "new_testament": "2 John 1:1-13",
+      "psalms": "Psalms 112",
+      "proverbs": "Proverbs 30:18-23",
+      "additional_reading": "Song of Solomon 6"
+    }
+  },
+  {
+    "day": 330,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Proverbs 1-2",
+      "new_testament": "3 John 1:1-14",
+      "psalms": "Psalms 113",
+      "proverbs": "Proverbs 30:24-33",
+      "additional_reading": "Song of Solomon 7"
+    }
+  }
+,
+  {
+    "day": 331,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Proverbs 3-4",
+      "new_testament": "Jude 1:1-25",
+      "psalms": "Psalms 114",
+      "proverbs": "Proverbs 31:1-9",
+      "additional_reading": "Song of Solomon 8"
+    }
+  },
+  {
+    "day": 332,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Proverbs 5-6",
+      "new_testament": "Revelation 1:1-8",
+      "psalms": "Psalms 115",
+      "proverbs": "Proverbs 31:10-20",
+      "additional_reading": "Isaiah 1"
+    }
+  },
+  {
+    "day": 333,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Proverbs 7-8",
+      "new_testament": "Revelation 1:9-20",
+      "psalms": "Psalms 116",
+      "proverbs": "Proverbs 31:21-31",
+      "additional_reading": "Isaiah 2"
+    }
+  },
+  {
+    "day": 334,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Proverbs 9-10",
+      "new_testament": "Revelation 2:1-11",
+      "psalms": "Psalms 117",
+      "proverbs": "Proverbs 1:1-7",
+      "additional_reading": "Isaiah 3"
+    }
+  },
+  {
+    "day": 335,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Proverbs 11-12",
+      "new_testament": "Revelation 2:12-29",
+      "psalms": "Psalms 118",
+      "proverbs": "Proverbs 1:8-19",
+      "additional_reading": "Isaiah 4"
+    }
+  },
+  {
+    "day": 336,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Proverbs 13-14",
+      "new_testament": "Revelation 3:1-13",
+      "psalms": "Psalms 119:1-16",
+      "proverbs": "Proverbs 1:20-33",
+      "additional_reading": "Isaiah 5"
+    }
+  },
+  {
+    "day": 337,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Proverbs 15-16",
+      "new_testament": "Revelation 3:14-22",
+      "psalms": "Psalms 119:17-32",
+      "proverbs": "Proverbs 2:1-9",
+      "additional_reading": "Isaiah 6"
+    }
+  },
+  {
+    "day": 338,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Proverbs 17-18",
+      "new_testament": "Revelation 4:1-11",
+      "psalms": "Psalms 119:33-48",
+      "proverbs": "Proverbs 2:10-22",
+      "additional_reading": "Isaiah 7"
+    }
+  },
+  {
+    "day": 339,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Proverbs 19-20",
+      "new_testament": "Revelation 5:1-14",
+      "psalms": "Psalms 119:49-64",
+      "proverbs": "Proverbs 3:1-12",
+      "additional_reading": "Isaiah 8"
+    }
+  },
+  {
+    "day": 340,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Proverbs 21-22",
+      "new_testament": "Revelation 6:1-17",
+      "psalms": "Psalms 119:65-80",
+      "proverbs": "Proverbs 3:13-20",
+      "additional_reading": "Isaiah 9"
+    }
+  },
+  {
+    "day": 341,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Proverbs 23-24",
+      "new_testament": "Revelation 7:1-17",
+      "psalms": "Psalms 119:81-96",
+      "proverbs": "Proverbs 3:21-26",
+      "additional_reading": "Isaiah 10"
+    }
+  },
+  {
+    "day": 342,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Proverbs 25-26",
+      "new_testament": "Revelation 8:1-13",
+      "psalms": "Psalms 119:97-112",
+      "proverbs": "Proverbs 3:27-35",
+      "additional_reading": "Isaiah 11"
+    }
+  },
+  {
+    "day": 343,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Proverbs 27-28",
+      "new_testament": "Revelation 9:1-21",
+      "psalms": "Psalms 119:113-128",
+      "proverbs": "Proverbs 4:1-9",
+      "additional_reading": "Isaiah 12"
+    }
+  },
+  {
+    "day": 344,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Proverbs 29-30",
+      "new_testament": "Revelation 10:1-11",
+      "psalms": "Psalms 119:129-144",
+      "proverbs": "Proverbs 4:10-19",
+      "additional_reading": "Isaiah 13"
+    }
+  },
+  {
+    "day": 345,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Proverbs 31",
+      "new_testament": "Revelation 11:1-19",
+      "psalms": "Psalms 119:145-160",
+      "proverbs": "Proverbs 4:20-27",
+      "additional_reading": "Isaiah 14"
+    }
+  },
+  {
+    "day": 346,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Ecclesiastes 1-2",
+      "new_testament": "Revelation 12:1-17",
+      "psalms": "Psalms 119:161-176",
+      "proverbs": "Proverbs 5:1-6",
+      "additional_reading": "Isaiah 15"
+    }
+  },
+  {
+    "day": 347,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Ecclesiastes 3-4",
+      "new_testament": "Revelation 13:1-18",
+      "psalms": "Psalms 120",
+      "proverbs": "Proverbs 5:7-14",
+      "additional_reading": "Isaiah 16"
+    }
+  },
+  {
+    "day": 348,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Ecclesiastes 5-6",
+      "new_testament": "Revelation 14:1-13",
+      "psalms": "Psalms 121",
+      "proverbs": "Proverbs 5:15-23",
+      "additional_reading": "Isaiah 17"
+    }
+  },
+  {
+    "day": 349,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Ecclesiastes 7-8",
+      "new_testament": "Revelation 14:14-20",
+      "psalms": "Psalms 122",
+      "proverbs": "Proverbs 6:1-5",
+      "additional_reading": "Isaiah 18"
+    }
+  },
+  {
+    "day": 350,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Ecclesiastes 9-10",
+      "new_testament": "Revelation 15:1-8",
+      "psalms": "Psalms 123",
+      "proverbs": "Proverbs 6:6-11",
+      "additional_reading": "Isaiah 19"
+    }
+  },
+  {
+    "day": 351,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Ecclesiastes 11-12",
+      "new_testament": "Revelation 16:1-21",
+      "psalms": "Psalms 124",
+      "proverbs": "Proverbs 6:12-19",
+      "additional_reading": "Isaiah 20"
+    }
+  },
+  {
+    "day": 352,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Song of Solomon 1-2",
+      "new_testament": "Revelation 17:1-18",
+      "psalms": "Psalms 125",
+      "proverbs": "Proverbs 6:20-26",
+      "additional_reading": "Isaiah 21"
+    }
+  },
+  {
+    "day": 353,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Song of Solomon 3-4",
+      "new_testament": "Revelation 18:1-24",
+      "psalms": "Psalms 126",
+      "proverbs": "Proverbs 6:27-35",
+      "additional_reading": "Isaiah 22"
+    }
+  },
+  {
+    "day": 354,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Song of Solomon 5-6",
+      "new_testament": "Revelation 19:1-10",
+      "psalms": "Psalms 127",
+      "proverbs": "Proverbs 7:1-5",
+      "additional_reading": "Isaiah 23"
+    }
+  },
+  {
+    "day": 355,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Song of Solomon 7-8",
+      "new_testament": "Revelation 19:11-21",
+      "psalms": "Psalms 128",
+      "proverbs": "Proverbs 7:6-20",
+      "additional_reading": "Isaiah 24"
+    }
+  },
+  {
+    "day": 356,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Isaiah 1-2",
+      "new_testament": "Revelation 20:1-10",
+      "psalms": "Psalms 129",
+      "proverbs": "Proverbs 7:21-27",
+      "additional_reading": "Isaiah 25"
+    }
+  },
+  {
+    "day": 357,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Isaiah 3-4",
+      "new_testament": "Revelation 20:11-15",
+      "psalms": "Psalms 130",
+      "proverbs": "Proverbs 8:1-11",
+      "additional_reading": "Isaiah 26"
+    }
+  },
+  {
+    "day": 358,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Isaiah 5-6",
+      "new_testament": "Revelation 21:1-8",
+      "psalms": "Psalms 131",
+      "proverbs": "Proverbs 8:12-21",
+      "additional_reading": "Isaiah 27"
+    }
+  },
+  {
+    "day": 359,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Isaiah 7-8",
+      "new_testament": "Revelation 21:9-27",
+      "psalms": "Psalms 132",
+      "proverbs": "Proverbs 8:22-31",
+      "additional_reading": "Isaiah 28"
+    }
+  },
+  {
+    "day": 360,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Isaiah 9-10",
+      "new_testament": "Revelation 22:1-6",
+      "psalms": "Psalms 133",
+      "proverbs": "Proverbs 8:32-36",
+      "additional_reading": "Isaiah 29"
+    }
+  },
+  {
+    "day": 361,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Isaiah 11-12",
+      "new_testament": "Revelation 22:7-21",
+      "psalms": "Psalms 134",
+      "proverbs": "Proverbs 9:1-6",
+      "additional_reading": "Isaiah 30"
+    }
+  },
+  {
+    "day": 362,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Isaiah 13-14",
+      "new_testament": "Matthew 1:1-17",
+      "psalms": "Psalms 135",
+      "proverbs": "Proverbs 9:7-12",
+      "additional_reading": "Isaiah 31"
+    }
+  },
+  {
+    "day": 363,
+    "theme": "God's Promises",
+    "readings": {
+      "old_testament": "Isaiah 15-16",
+      "new_testament": "Matthew 1:18-25",
+      "psalms": "Psalms 136",
+      "proverbs": "Proverbs 9:13-18",
+      "additional_reading": "Isaiah 32"
+    }
+  },
+  {
+    "day": 364,
+    "theme": "God's Faithfulness",
+    "readings": {
+      "old_testament": "Isaiah 17-18",
+      "new_testament": "Matthew 2:1-12",
+      "psalms": "Psalms 137",
+      "proverbs": "Proverbs 10:1-5",
+      "additional_reading": "Isaiah 33"
+    }
+  },
+  {
+    "day": 365,
+    "theme": "God's Sovereignty",
+    "readings": {
+      "old_testament": "Isaiah 19-20",
+      "new_testament": "Matthew 2:13-23",
+      "psalms": "Psalms 138",
+      "proverbs": "Proverbs 10:6-12",
+      "additional_reading": "Isaiah 34"
+    }
+  }
+]

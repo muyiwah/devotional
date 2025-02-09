@@ -88,7 +88,7 @@ bool isSearched=false;
                   },
                     child: Container(padding: EdgeInsets.all(8),
                           margin: EdgeInsets.all(4),
-                          height: 72,
+                          // height: 72,
                           decoration: BoxDecoration(color: Colors.green.withOpacity(.4),
                               borderRadius: BorderRadius.circular(5)),
                           child: Column(

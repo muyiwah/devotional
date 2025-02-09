@@ -540,7 +540,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                 });
                 circularMenuKey.currentState?.reverseAnimation();
               }),
-
+      
           CircularMenuItem(
               iconSize: 25,
               icon: Icons.notifications,
@@ -567,7 +567,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                     setState(() {});
                   }
                 });
-
+      
                 circularMenuKey.currentState?.reverseAnimation();
               }),
         ],
