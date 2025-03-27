@@ -223,7 +223,7 @@ class _DevorionScreenState extends State<DevorionScreen> {
                               Text(
                                 allDevotional[index].title,
                                 style: TextStyle(
-                                    fontSize: 16+ appfontSize, fontWeight: FontWeight.w100),
+                                     fontSize: 16+ appfontSize, fontWeight: FontWeight.w100),
                               ),
                               SizedBox(
                                 height: 8,

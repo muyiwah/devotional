@@ -1,21 +1,28 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 // import 'package:alarm/alarm.dart';
 // import 'package:audioplayers/audioplayers.dart';
 import 'package:circular_menu/circular_menu.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mivdevotional/core/provider/bible.provider.dart';
 import 'package:mivdevotional/model/bible.model.dart';
+import 'package:mivdevotional/model/reader_model.dart';
+import 'package:mivdevotional/model/voiceSettings.dart';
 import 'package:mivdevotional/ui/bibleplanselect.dart';
 import 'package:mivdevotional/ui/home/cmenu.dart';
 import 'package:mivdevotional/ui/home/notification.dart';
 import 'package:mivdevotional/ui/home/word_clinic_today.dart';
 import 'package:collection/collection.dart';
+import 'package:mivdevotional/ui/test/tts.dart';
 import 'package:mivdevotional/utils/snack.dart';
 import 'package:provider/provider.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -29,9 +36,17 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
       GlobalKey<CircularMenuState>();
   List<Bible>? bibleData;
   List<dynamic>? readingPlan;
+  List<String> _voicesString = ['Melina'];
+  List<Map> _voices = [];
+  Map? _currentVoice;
+  List chapterVerses2 = [];
+  var allVerses;
   int completedDays = 0;
   late ScrollController _scrollController;
+  bool voiceFound = false;
   var today;
+  ReaderModel _readerModel =
+      ReaderModel(name: '', gender: '', identifier: '', locale: '');
   // AudioPlayer? audioPlayer;
   bool isPlaying = false;
   @override
@@ -45,6 +60,8 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
 
     getDay(DateTime.now());
     loadResources();
+    getSaveVoiceSettings();
+    initTts2();
   }
 
   @override
@@ -59,6 +76,250 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
     }));
     super.didChangeDependencies();
   }
+
+  Future<void> _getDefaultEngine() async {
+    var engine = await _flutterTts.getDefaultEngine;
+    if (engine != null) {}
+  }
+
+  Future<void> _getDefaultVoice() async {
+    var voice = await _flutterTts.getDefaultVoice;
+    if (voice != null) {}
+  }
+
+  dynamic initTts2() {
+    _flutterTts = FlutterTts();
+
+    _setAwaitOptions();
+
+    if (isAndroid) {
+      _getDefaultEngine();
+      _getDefaultVoice();
+    }
+
+    _flutterTts.setStartHandler(() {
+      if (mounted)
+        setState(() {
+          // print("Playing");
+          ttsState = TtsState.playing;
+        });
+    });
+
+    _flutterTts.setCompletionHandler(() {
+      if (mounted)
+        setState(() {
+          // print("Complete");
+          ttsState = TtsState.stopped;
+        });
+    });
+
+    _flutterTts.setCancelHandler(() {
+      if (mounted)
+        setState(() {
+          // print("Cancel");
+          ttsState = TtsState.stopped;
+        });
+    });
+
+    _flutterTts.setPauseHandler(() {
+      if (mounted)
+        setState(() {
+          // print("Paused");
+          ttsState = TtsState.paused;
+        });
+    });
+
+    _flutterTts.setContinueHandler(() {
+      if (mounted)
+        setState(() {
+          // print("Continued");
+          ttsState = TtsState.continued;
+        });
+    });
+
+    _flutterTts.setErrorHandler((msg) {
+      if (mounted)
+        setState(() {
+          // print("error: $msg");
+          ttsState = TtsState.stopped;
+        });
+    });
+    _getLang();
+    inti2();
+    initTts();
+  }
+
+  inti2() async {
+    // print('i am herererer');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+// prefBible
+    // print(prefs.containsKey('savedReader'));
+    if (prefs.containsKey('savedReader')) {
+      usingDefaultReader = false;
+      // print('found saved voiceeeeeeeee');
+      String d = prefs.getString('savedReader').toString();
+      _readerModel = ReaderModel.fromJsonJson(jsonEncode(jsonDecode(d)));
+      var data = await _getLanguages2;
+      if (data.toString().isNotEmpty) {
+        setVoiceN();
+      }
+    } else {
+      await _flutterTts.getVoices.then((data) {
+        try {
+          _voicesString.clear();
+          _voices = List<Map>.from(data);
+          if (mounted)
+            setState(() {
+              _voices = _voices
+                  .where((_voice) => _voice['name'].contains('en'))
+                  .toList();
+              // _voices.forEach(
+              //   (voi) => _voicesString.add(voi['name']),
+              // );
+              // print(_voices);
+              if (_voices.isNotEmpty) {
+                _currentVoice = _voices[_voices.length > 20 ? 20 : 0];
+                setVoice2();
+              }
+            });
+        } catch (e) {
+          print(e);
+        }
+      });
+    }
+  }
+
+  setVoice2() {
+    // print(_currentVoice);
+    // print('cannnnooootttttttt found savvvvvvvvvvvreeeeed');
+    // print(_voiceSettings);
+    _flutterTts.setVoice(
+        {'name': _currentVoice!['name'], 'locale': _currentVoice!['locale']});
+    voiceFound = true;
+    if (mounted) setState(() {});
+  }
+
+  void setVoiceN() {
+    // print(_readerModel);
+    // print('found savvvvvvvvvvvreeeeed');
+
+    _flutterTts
+        .setVoice({'name': _readerModel.name, 'locale': _readerModel.locale});
+    voiceFound = true;
+    if (mounted) setState(() {});
+  }
+
+  getSaveVoiceSettings() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('voiceSettings')) {
+      String d = (prefs.getString('voiceSettings').toString());
+
+      _voiceSettings = VoiceSettings.fromJsonJson(jsonEncode(jsonDecode(d)));
+
+      // print((_voiceSettings.volume));
+    }
+  }
+
+  VoiceSettings _voiceSettings = VoiceSettings(
+    volume: .7,
+    rate: .5,
+    pitch: .5,
+  );
+
+  Future<dynamic> _getLanguages() async => await _flutterTts.getLanguages;
+  Future<dynamic> _getLanguages2() async => await _flutterTts.getVoices;
+
+  Future<dynamic> _getEngines() async => await _flutterTts.getEngines;
+
+  Future<void> _setAwaitOptions() async {
+    await _flutterTts.awaitSpeakCompletion(true);
+  }
+
+  bool usingDefaultReader = true;
+  bool isCurrentLanguageInstalled = false;
+  late FlutterTts _flutterTts;
+  String? language;
+
+  TtsState ttsState = TtsState.stopped;
+
+  bool get isStopped => ttsState == TtsState.stopped;
+  bool get isPaused => ttsState == TtsState.paused;
+  bool get isContinued => ttsState == TtsState.continued;
+
+  bool get isIOS => !kIsWeb && Platform.isIOS;
+  bool get isAndroid => !kIsWeb && Platform.isAndroid;
+  bool get isWindows => !kIsWeb && Platform.isWindows;
+  bool get isWeb => kIsWeb;
+
+  _getLang() async {
+    await _getLanguages();
+    // var data = await _getLanguages2();
+    // print(data);
+    // _controller.text = data.toString();
+    if (mounted) setState(() {});
+  }
+
+  // void _startAutoScroll() {
+  //   if (_scrollController.hasClients) {
+  //     _scrollController.animateTo(
+  //       _scrollController.offset + 100, // Scroll down by 100 pixels
+  //       duration: const Duration(milliseconds: 500),
+  //       curve: Curves.easeOut,
+  //     );
+  //   }
+  // }
+
+  final ItemScrollController itemScrollController = ItemScrollController();
+
+  scollToVerse(pos) {
+    if (mounted)
+      itemScrollController.scrollTo(
+          index: pos,
+          duration: Duration(seconds: 2),
+          curve: Curves.easeInOutCubic);
+  }
+
+  String currentlyPlayingSentence = '';
+
+  initTts() async {
+    _flutterTts.setProgressHandler((text, start, end, word) async {
+      int x = 0;
+      print(' = $x');
+      print(start);
+// if(Platform.isIOS){
+      currentlyPlayingSentence = text;
+      // if (currentlyPlayingSentence.endsWith(word) ||
+      //     currentlyPlayingSentence.endsWith('${word}.') ||
+      //     currentlyPlayingSentence.endsWith('${word})') ||
+      //     currentlyPlayingSentence.endsWith('${word}!') ||
+      //     currentlyPlayingSentence.endsWith('${word}"') ||
+      //     currentlyPlayingSentence.endsWith('${word}".') ||
+      //     currentlyPlayingSentence.endsWith('${word},') ||
+      //     currentlyPlayingSentence.endsWith('${word}:') ||
+      //     currentlyPlayingSentence.endsWith('${word};') ||
+      //     currentlyPlayingSentence.endsWith('${word}?')) {
+
+      if ((x.isEven && (x < chapterVerses2.length - 5))) {
+        // scollToVerse(x);
+      }
+      //   // if ((x == -1)) {
+      //   //   scollToVerse(0);
+      //   // }
+      //   if (Platform.isAndroid) {
+      //   } else {}
+      // }
+
+      if (mounted)
+        setState(() {
+          _currentWordStart = start;
+          _currentWordEnd = end;
+        });
+    });
+  }
+
+  int? _currentWordStart, _currentWordEnd;
+
+  List allScripture = [];
 
   showPrompt() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -87,9 +348,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
     if (prefs.containsKey('prefBible')) {
       selection = prefs.getString('prefBible').toString();
       prefBibleDone = true;
-      // print(jsonDecode(selection));
       selection = jsonDecode(selection);
-      print('selection $selection');
       if (mounted) setState(() {});
     }
   }
@@ -112,12 +371,10 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
     // if (isScrolledToTop(_scrollController)) {
     //   top = true;
 
-    //   print("The screen is scrolled to the top.");
     // }
     // if (hasScrolledDown(_scrollController, 100.0)) {
     // top = false;
 
-    //   print("Scrolled more than 100 pixels down from the top.");
     // }
   }
 
@@ -174,9 +431,130 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
         progressMap = Map<DateTime, bool>.from(json.decode(progress).map(
               (key, value) => MapEntry(DateTime.parse(key), value),
             ));
-        print('progress map $progressMap');
       }
     });
+  }
+
+  playBible() async {
+    // chapterVerses2.forEach((e) => print(e));
+    {
+      // if (_currentWordStart != null && _currentWordStart! != 0) {
+      //   // _flutterTts.setCompletionHandler(() { })
+      //   await _flutterTts.stop();
+      //   await _flutterTts.speak('');
+      //   await _flutterTts.stop();
+
+      //   _currentWordStart = 0;
+      //   if (Platform.isAndroid) {
+
+      //     await _flutterTts.awaitSpeakCompletion(false);
+
+      //     await _flutterTts.pause();
+      //     await _flutterTts.stop();
+      //     await _flutterTts.stop();
+      //     await _flutterTts.stop();
+      //     Future.delayed(Duration(seconds: 1), () async {
+      //       await _flutterTts.stop();
+      //     });
+      //   }
+
+      //   if (mounted) setState(() {});
+      // }
+      //  else
+      {
+        allScripture.clear();
+
+        if (Platform.isAndroid) {
+          await _flutterTts.setVolume(_voiceSettings.volume);
+          await _flutterTts.setSpeechRate(_voiceSettings.rate);
+          await _flutterTts.setPitch(_voiceSettings.pitch);
+
+          // if (widget.bookName
+          //     .contains('1')) {
+          //   await _flutterTts.speak(
+          //       'first ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+          // } else if (widget.bookName
+          //     .contains('2')) {
+          //   await _flutterTts.speak(
+          //       'second ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+          // } else if (widget.bookName
+          //     .contains('3')) {
+          //   await _flutterTts.speak(
+          //       'third ${widget.bookName.split(' ')[1]} chapter ${widget.chapter}');
+          // } else {
+          //   await _flutterTts.speak(
+          //       '${widget.bookName} chapter ${widget.chapter}');
+          // }
+          // await _flutterTts.speak('chapter');
+          // await _flutterTts.speak(widget.chapter.toString());
+          // for (int x = 0; allVerses.length > x; x++) {
+          //   await _flutterTts.setVolume(_voiceSettings.volume);
+          //   // await _flutterTts.setSpeechRate(_voiceSettingRs.rate);
+          //   // await _flutterTts.setPitch(_voiceSettings.pitch);
+          //   await _flutterTts.awaitSpeakCompletion(true);
+          //   // allScripture.add(
+          //   //     chapterVerses2[x].text);
+          //   // if (x % 10 == 0) {
+          //   //   await _flutterTts.speak(
+          //   //       'verse ${x + 1}');
+          //   // }
+          //   await _flutterTts.speak(allVerses[x]);
+          //   // audioPlayIndex = x;
+          // }
+
+          // y = 0;
+        }
+        if (Platform.isIOS) {
+          await _flutterTts.setVolume(_voiceSettings.volume);
+          await _flutterTts.setSpeechRate(_voiceSettings.rate);
+          await _flutterTts.setPitch(_voiceSettings.pitch);
+          // if (widget.bookName
+          //     .contains('1')) {
+          //   await _flutterTts
+          //       .speak('first');
+          //   await _flutterTts.speak(
+          //       widget.bookName
+          //           .split(' ')[1]);
+          // } else if (widget.bookName
+          //     .contains('2')) {
+          //   await _flutterTts
+          //       .speak('second');
+          //   await _flutterTts.speak(
+          //       widget.bookName
+          //           .split(' ')[1]);
+          // } else if (widget.bookName
+          //     .contains('3')) {
+          //   await _flutterTts
+          //       .speak('third');
+          //   await _flutterTts.speak(
+          //       widget.bookName
+          //           .split(' ')[1]);
+          // } else {
+          //   await _flutterTts
+          //       .speak(widget.bookName);
+          // }
+          // await _flutterTts
+          //     .speak('chapter');
+          // await _flutterTts.speak(widget
+          //     .chapter
+          //     .toString());
+
+          // for (int x = 0; chapterVerses2.length > x; x++) {
+          //   // if (x % 10 == 0) {
+          //   //   await _flutterTts.speak('verse ${x + 1}');
+          //   // }
+          //   await _flutterTts.speak(chapterVerses2[x]);
+          //   allScripture.add(chapterVerses2[x]);
+          //   // audioPlayIndex = x;
+          // }
+          // await _flutterTts.speak(allVerses);
+          print('allVerses');
+          print(allVerses);
+
+          if (mounted) setState(() {});
+        }
+      }
+    }
   }
 
   void updateReadingsForSelectedDay() {
@@ -191,7 +569,6 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
     // DateTime date = DateTime.now();
     DateTime currentDay = DateTime(today.year, today.month, today.day);
 
-    print('currentday=$currentDay'); // Normalize to midnight
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (currentDay == DateTime(today.year, 12, 31)) {
       Navigator.push(
@@ -249,7 +626,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
       for (var entry in bibleData) {
         if (entry.book == bookName && entry.chapter == chapter) {
           no++;
-          print('verses = $no');
+          // print('verses = $no');
         }
       }
     }
@@ -262,12 +639,10 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
     if (prefs.containsKey('prefBible')) {
       selection = prefs.getString('prefBible').toString();
       prefBibleDone = true;
-      // print(jsonDecode(selection));
       selection = jsonDecode(selection);
-      print('selection $selection');
       if (mounted) setState(() {});
     }
-    print('see selection $selection');
+    // print('see selection $selection');
     if (selection == 'KJV') {
       final data = await rootBundle.loadString('assets/bibleJson/bible.json');
       final jsonData = json.decode(data) as List<dynamic>;
@@ -311,6 +686,34 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
       final jsonData = json.decode(data) as List<dynamic>;
       return jsonData.map((entry) => Bible.fromJson(entry)).toList();
     }
+  }
+
+//getallbibledata
+  getAllData(readings) {
+    bibleString = '';
+    List<List<Bible>> verses = [];
+    for (int x = 0; readings.length > x; x++) {
+      print(x);
+      final entry = readings.entries.elementAt(x);
+      final category = entry.key.replaceAll('_', ' ').toUpperCase();
+      final reference = entry.value['reference'] as String;
+      verses.add(entry.value['verses'] as List<Bible>);
+      print('versesssssssss $x');
+      print(verses);
+    }
+
+    List<Bible> newData = verses.expand((e) => e).toList();
+    newData.forEach((e) {
+      bibleString = bibleString + e.text;
+    });
+
+    print(bibleString);
+    // final versesText = verses.map((verse) {
+    //   return "${verse.verse}. ${verse.text}";
+    // }πz);
+    // versesText.forEach((e) => print(e));
+    // print(versesText);
+    return bibleString;
   }
 
   // Function to extract verses based on reading format
@@ -421,7 +824,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
         'noOfVersesInStartChapter': getNoOfVersesInChapter(
             bibleData, reading, startChapterForOnlyChapterRead)
       };
-      print(data);
+      // print(data);
     }
     return data;
   }
@@ -448,7 +851,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
 
   ///my edit
   int day = 0;
-
+  String bibleString = '';
   getDay(DateTime today) {
     day = today.day;
   }
@@ -468,7 +871,7 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
   @override
   Widget build(BuildContext context) {
     // final day = today.day;
-    print('today =$today');
+    // print('today =$today');
     final dayPlan = getDailyReadings(readingPlan ?? [], today);
 
     if (bibleData == null || dayPlan == null) {
@@ -480,12 +883,12 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
         body: Center(child: Text('No data for the day available')),
       );
     }
-
+    String a = '';
     final readings = <String, Map<String, dynamic>>{};
     dayPlan['readings'].forEach((key, value) {
-      print('---------');
+      // print('---------');
       theme = dayPlan['theme'] ?? '';
-      print(dayPlan['theme']);
+      // print(dayPlan['theme']);
       readings[key] = {
         // 'theme': theme,
         'startNo': startNo(bibleData!, value),
@@ -493,14 +896,33 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
         'verses': getVerses(bibleData!, value),
       };
     });
+
+    // getAllData(readings);
+
     final missedDays = calculateMissedDays(progressMap);
-    print(missedDays);
+    // print(missedDays);
     return Scaffold(
+      appBar: AppBar(
+        leading: Row(
+          children: [
+            InkWell(
+                onTap: () {
+                  playBible();
+                },
+                child: Icon(Icons.play_arrow)),
+            InkWell(
+                onTap: () async {
+                  await _flutterTts.stop();
+                },
+                child: Icon(Icons.stop)),
+          ],
+        ),
+      ),
       floatingActionButton: CircularMenu(
         toggleButtonSize: 27,
         radius: 140,
         toggleButtonOnPressed: () {
-          print('object');
+          // print('object');
         },
         alignment: Alignment.bottomRight,
         toggleButtonColor: Colors.pink.withOpacity(.2),
@@ -560,8 +982,8 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                     MaterialPageRoute(
                         builder: (_) => TableCalendarScreen())).then((e) {
                   if (e != null) {
-                    print('eeeee');
-                    print(e);
+                    // print('eeeee');
+                    // print(e);
                     today = e;
                     setState(() {});
                   }
@@ -653,8 +1075,8 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                                         builder: (_) => TableCalendarScreen()))
                                 .then((e) {
                               if (e != null) {
-                                print('eeeee');
-                                print(e);
+                                // print('eeeee');
+                                // print(e);
                                 today = e;
 
                                 setState(() {});
@@ -690,14 +1112,21 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
+                print('index $index');
                 final entry = readings.entries.elementAt(index);
                 final category = entry.key.replaceAll('_', ' ').toUpperCase();
                 final reference = entry.value['reference'] as String;
                 final verses = entry.value['verses'] as List<Bible>;
+                // chapterVerses2.clear();
+                verses.forEach((e) => chapterVerses2.add(e.text));
+                // print('1111111');
+
                 final versesText = verses.map((verse) {
                   return "${verse.verse}. ${verse.text}";
                 }).join('\n');
-
+                // a = a + versesText.toString();
+                allVerses = versesText;
+                // print(allVerses);
                 return GestureDetector(
                   onTap: () {
                     circularMenuKey.currentState?.reverseAnimation();
@@ -731,10 +1160,32 @@ class _DailyBiblePage2State extends State<DailyBiblePage2> {
                         ),
                       ],
                     ),
-                    subtitle: Text(
-                      versesText,
-                      style: TextStyle(fontSize: 18, height: 1.6),
-                    ),
+                    subtitle: RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                        text: versesText.substring(0, _currentWordStart),
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                      if (_currentWordStart != null)
+                        TextSpan(
+                          text: versesText.substring(
+                              _currentWordStart!, _currentWordEnd),
+                          style: TextStyle(
+                              backgroundColor: Colors.green,
+                              color: Colors.white,
+                              fontSize: 16),
+                        ),
+                      if (_currentWordEnd != null)
+                        TextSpan(
+                          text: versesText.substring(_currentWordEnd!),
+                          style: TextStyle(color: Colors.black, fontSize: 16),
+                        ),
+                    ])),
+
+                    // subtitle: Text(
+                    //   versesText,
+                    //   style: TextStyle(fontSize: 18, height: 1.6),
+                    // ),
                   ),
                 );
               },
